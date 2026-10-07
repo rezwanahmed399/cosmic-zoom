@@ -143,6 +143,10 @@ export class CosmicRenderEngine {
   update(dt) {
     this.time += dt;
 
+    if (this.strainShakeIntensity > 0) {
+      this.strainShakeIntensity = Math.max(0, this.strainShakeIntensity - dt * 10);
+    }
+
     // Smooth inertia camera interpolation (only if not locked in black hole)
     // Frame-rate independent exponential smoothing: lambda = 1 - exp(-k * dt)
     if (this.blackHoleState === 'inactive' || this.blackHoleState === 'charging') {
@@ -180,7 +184,6 @@ export class CosmicRenderEngine {
       if (this.strainShakeIntensity > 0) {
         shakeX += (Math.random() - 0.5) * this.strainShakeIntensity;
         shakeY += (Math.random() - 0.5) * this.strainShakeIntensity;
-        this.strainShakeIntensity = Math.max(0, this.strainShakeIntensity - dt * 10);
       }
       if (this.blackHoleState === 'charging') {
         const stressShake = this.blackHoleCharge * 4.5;
@@ -1637,6 +1640,8 @@ export class CosmicRenderEngine {
   }
 
   triggerBlackHoleCollapse(x = this.width / 2, y = this.height / 2) {
+    this.currentOrder = -35.0;
+    this.targetOrder = -35.0;
     this.blackHoleState = 'shattering';
     this.blackHoleTimer = 0;
     this.blackHoleCharge = 1.0;
@@ -1697,7 +1702,7 @@ export class CosmicRenderEngine {
   }
 
   triggerBlackHoleEvaporation() {
-    if (this.blackHoleState !== 'active') return;
+    if (this.blackHoleState !== 'active' && this.blackHoleState !== 'shattering') return;
     this.blackHoleState = 'evaporating';
     this.blackHoleTimer = 0;
   }

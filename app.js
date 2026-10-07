@@ -397,7 +397,7 @@ class CosmicApp {
       this.stopTour();
 
       // If Black Hole is currently active, scrolling UP triggers evaporation and restores Planck scale!
-      if (this.renderEngine.blackHoleState === 'active') {
+      if (this.renderEngine.blackHoleState === 'active' || this.renderEngine.blackHoleState === 'shattering') {
         if (e.deltaY < 0) {
           this.renderEngine.triggerBlackHoleEvaporation();
         }
@@ -405,7 +405,7 @@ class CosmicApp {
       }
 
       // Trans-Planckian Over-Zoom: If user forces past the Planck limit, accumulate strain
-      if (this.renderEngine.currentOrder <= -34.75 && e.deltaY > 0) {
+      if (this.renderEngine.currentOrder <= -34.5 && e.deltaY > 0) {
         clearTimeout(this.strainDecayTimer);
         this.planckStrainCount = Math.min(7, (this.planckStrainCount || 0) + 1);
 
@@ -604,23 +604,28 @@ class CosmicApp {
 
     // Black Hole Collapse & Evaporate Buttons
     if (this.collapseBtn) {
-      this.collapseBtn.addEventListener('click', () => {
-        if (this.renderEngine.blackHoleState === 'active') {
+      this.collapseBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (this.renderEngine.blackHoleState === 'active' || this.renderEngine.blackHoleState === 'shattering') {
           this.renderEngine.triggerBlackHoleEvaporation();
         } else {
+          this.stopTour();
+          this.renderEngine.setTargetOrder(-35.0);
           this.renderEngine.triggerBlackHoleCollapse(window.innerWidth / 2, window.innerHeight / 2);
         }
       });
     }
 
     if (this.evaporateBtn) {
-      this.evaporateBtn.addEventListener('click', () => {
+      this.evaporateBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
         this.renderEngine.triggerBlackHoleEvaporation();
       });
     }
 
     if (this.bhModeToggleBtn) {
-      this.bhModeToggleBtn.addEventListener('click', () => {
+      this.bhModeToggleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
         this.renderEngine.blackHoleAccretionMode = this.renderEngine.blackHoleAccretionMode === 'disk' ? 'vacuum' : 'disk';
         const isDisk = this.renderEngine.blackHoleAccretionMode === 'disk';
         if (this.bhModeLabel) {
@@ -635,7 +640,8 @@ class CosmicApp {
 
     // Black Hole Card Hide & Restore Pill Buttons
     if (this.bhHideCardBtn) {
-      this.bhHideCardBtn.addEventListener('click', () => {
+      this.bhHideCardBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
         if (this.blackholeOverlay) {
           this.blackholeOverlay.classList.add('card-minimized');
         }
@@ -647,7 +653,8 @@ class CosmicApp {
     }
 
     if (this.bhRestoreCardPill) {
-      this.bhRestoreCardPill.addEventListener('click', () => {
+      this.bhRestoreCardPill.addEventListener('click', (e) => {
+        e.stopPropagation();
         if (this.blackholeOverlay) {
           this.blackholeOverlay.classList.remove('card-minimized');
         }
