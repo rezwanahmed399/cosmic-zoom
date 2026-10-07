@@ -1,0 +1,10 @@
+node_modules
+.git
+.github
+*.log
+test_esm.mjs
+check_emojis.js
+verify_ids.js
+fix_quotes.js
+generate_science_data.js
+server.js

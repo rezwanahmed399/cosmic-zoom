@@ -20,3 +20,5 @@ Thumbs.db
 # Temporary migration scripts
 fix_quotes.js
 generate_science_data.js
+
+.vercel
