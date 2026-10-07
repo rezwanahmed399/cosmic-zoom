@@ -1634,19 +1634,20 @@ body.black-hole-mode .force-dominance-panel {
 /* ================= BLACK HOLE ACTIVE OVERLAY ================= */
 .blackhole-active-overlay {
   position: fixed;
-  bottom: 32px;
-  left: 50%;
-  transform: translateX(-50%) translateY(30px);
+  bottom: 24px;
+  right: 24px;
+  left: auto;
+  transform: translateY(30px);
   z-index: 95;
   pointer-events: none;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s ease;
-  width: 680px;
+  width: 440px;
   max-width: 92vw;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-end;
 }
 
 .blackhole-active-overlay.active {
@@ -1654,7 +1655,7 @@ body.black-hole-mode .force-dominance-panel {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
-  transform: translateX(-50%) translateY(0);
+  transform: translateY(0);
 }
 
 .blackhole-active-overlay.card-minimized .blackhole-telemetry-panel {
@@ -1674,12 +1675,12 @@ body.black-hole-mode .force-dominance-panel {
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border: 1px solid rgba(192, 132, 252, 0.4);
-  border-radius: 20px;
-  padding: 18px 24px;
+  border-radius: 18px;
+  padding: 16px 20px;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9), 0 0 35px rgba(168, 85, 247, 0.3), inset 0 0 20px rgba(168, 85, 247, 0.08);
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
   width: 100%;
 }
 
@@ -1687,7 +1688,7 @@ body.black-hole-mode .force-dominance-panel {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: 10px;
   flex-wrap: wrap;
 }
 
@@ -1695,7 +1696,7 @@ body.black-hole-mode .force-dominance-panel {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 700;
   color: #f3e8ff;
   letter-spacing: 0.5px;
@@ -1725,45 +1726,39 @@ body.black-hole-mode .force-dominance-panel {
 .bh-header-actions {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
+  flex-wrap: wrap;
 }
 
-.bh-mode-toggle-btn {
+.bh-overlay-toggle-btn,
+.bh-mode-toggle-btn,
+.bh-hide-card-btn {
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.16);
   color: #e2e8f0;
   border-radius: 8px;
-  padding: 6px 12px;
-  font-size: 11.5px;
+  padding: 5px 10px;
+  font-size: 11px;
   font-weight: 600;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
   transition: all 0.2s ease;
   font-family: var(--font-bn);
 }
 
+.bh-overlay-toggle-btn:hover,
 .bh-mode-toggle-btn:hover {
   background: rgba(192, 132, 252, 0.2);
   border-color: #c084fc;
   color: #ffffff;
 }
 
-.bh-hide-card-btn {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  color: #e2e8f0;
-  border-radius: 8px;
-  padding: 6px 12px;
-  font-size: 11.5px;
-  font-weight: 600;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  transition: all 0.2s ease;
-  font-family: var(--font-bn);
+.bh-overlay-toggle-btn.active {
+  background: rgba(56, 189, 248, 0.25);
+  border-color: #38bdf8;
+  color: #bae6fd;
 }
 
 .bh-hide-card-btn:hover {
@@ -1775,14 +1770,14 @@ body.black-hole-mode .force-dominance-panel {
 .bh-evaporate-btn {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
+  gap: 6px;
   background: linear-gradient(135deg, rgba(239, 68, 68, 0.25), rgba(168, 85, 247, 0.4));
   border: 1px solid rgba(244, 63, 94, 0.55);
   border-radius: 8px;
   color: #ffffff;
-  font-size: 11.5px;
+  font-size: 11px;
   font-weight: 600;
-  padding: 6px 12px;
+  padding: 5px 10px;
   cursor: pointer;
   transition: all 0.25s ease;
   font-family: var(--font-bn);
@@ -1796,41 +1791,77 @@ body.black-hole-mode .force-dominance-panel {
   box-shadow: 0 6px 18px rgba(244, 63, 94, 0.45);
 }
 
+/* Mass Presets Selector */
+.bh-mass-selector {
+  display: flex;
+  gap: 6px;
+  width: 100%;
+}
+
+.bh-mass-chip {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  padding: 5px 4px;
+  color: rgba(233, 213, 255, 0.8);
+  font-size: 10.5px;
+  font-weight: 600;
+  font-family: var(--font-bn);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.bh-mass-chip:hover {
+  background: rgba(168, 85, 247, 0.2);
+  border-color: rgba(192, 132, 252, 0.4);
+  color: #ffffff;
+}
+
+.bh-mass-chip.active {
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.35), rgba(56, 189, 248, 0.25));
+  border-color: #c084fc;
+  color: #ffffff;
+  box-shadow: 0 0 10px rgba(192, 132, 252, 0.3);
+}
+
 .bh-stats-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 12px;
-  padding: 10px 14px;
+  border-radius: 10px;
+  padding: 8px 12px;
 }
 
 .bh-stat-item {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 2px;
 }
 
 .bh-stat-lbl {
-  font-size: 11px;
+  font-size: 10.5px;
   color: rgba(216, 180, 254, 0.7);
   font-weight: 500;
 }
 
 .bh-stat-val {
-  font-size: 12.5px;
+  font-size: 11.5px;
   font-weight: 700;
   color: #ffffff;
   font-family: var(--font-bn);
+  word-break: break-word;
 }
 
 .bh-notice {
-  font-size: 12px;
-  line-height: 1.5;
+  font-size: 11.5px;
+  line-height: 1.45;
   color: rgba(233, 213, 255, 0.85);
   margin: 0;
-  padding-left: 10px;
+  padding-left: 8px;
   border-left: 3px solid #c084fc;
   font-family: var(--font-bn);
 }
@@ -1842,9 +1873,9 @@ body.black-hole-mode .force-dominance-panel {
   background: rgba(147, 51, 234, 0.12);
   border: 1px solid rgba(168, 85, 247, 0.25);
   border-radius: 6px;
-  padding: 6px 10px;
+  padding: 5px 8px;
   color: rgba(233, 213, 255, 0.9);
-  font-size: 11px;
+  font-size: 10.5px;
   font-family: var(--font-bn);
 }
 
@@ -1858,15 +1889,14 @@ body.black-hole-mode .force-dominance-panel {
   -webkit-backdrop-filter: blur(24px);
   border: 1px solid rgba(192, 132, 252, 0.55);
   border-radius: 9999px;
-  padding: 10px 22px;
+  padding: 8px 18px;
   color: #f3e8ff;
   font-family: var(--font-bn);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
   cursor: pointer;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.85), 0 0 25px rgba(168, 85, 247, 0.35);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  margin: 0 auto;
 }
 
 .bh-restore-card-pill:hover {
@@ -1874,6 +1904,20 @@ body.black-hole-mode .force-dominance-panel {
   border-color: #c084fc;
   transform: translateY(-2px) scale(1.03);
   box-shadow: 0 14px 40px rgba(0, 0, 0, 0.9), 0 0 35px rgba(168, 85, 247, 0.6);
+}
+
+/* Discreet Permanent Corner Watermark */
+.canvas-corner-disclaimer {
+  position: fixed;
+  bottom: 12px;
+  left: 16px;
+  font-size: 10.5px;
+  color: rgba(255, 255, 255, 0.35);
+  font-family: var(--font-bn);
+  pointer-events: none;
+  z-index: 20;
+  letter-spacing: 0.3px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
 }
 
 .sr-only {
@@ -1889,12 +1933,24 @@ body.black-hole-mode .force-dominance-panel {
 }
 
 @media (max-width: 768px) {
-  .bh-stats-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
   .blackhole-active-overlay {
-    bottom: 96px;
-    width: 94vw;
+    bottom: 84px;
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%) translateY(30px);
+    width: 92vw;
+    align-items: center;
+  }
+  .blackhole-active-overlay.active {
+    transform: translateX(-50%) translateY(0);
+  }
+  .bh-stats-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .canvas-corner-disclaimer {
+    bottom: 60px;
+    left: 12px;
+    font-size: 9.5px;
   }
 }
 

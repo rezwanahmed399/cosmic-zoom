@@ -30,8 +30,11 @@ export class CosmicRenderEngine {
     this.shatterShards = [];
     this.accretionSparks = [];
     this.jetSparks = [];
+    this.hawkingVirtualPairs = [];
     this.blackHoleLensingAngle = 0;
     this.blackHoleAccretionMode = 'disk'; // 'disk' | 'vacuum'
+    this.blackHoleMassType = 'planck'; // 'planck' | 'sun' | 'sgra'
+    this.showGeometryOverlay = false; // 3-ring educational geometry overlay
     this.strainShakeIntensity = 0;
     this.onBlackHoleTriggered = null;
     this.onBlackHoleEvaporated = null;
@@ -114,6 +117,19 @@ export class CosmicRenderEngine {
         vx: (Math.random() - 0.5) * 0.4,
         vy: (Math.random() - 0.5) * 0.4,
         radius: Math.random() * 2 + 0.8
+      });
+    }
+
+    // 6. Hawking Radiation Virtual Particle-Antiparticle Pairs (Planck Quantum Scale)
+    this.hawkingVirtualPairs = [];
+    for (let i = 0; i < 40; i++) {
+      this.hawkingVirtualPairs.push({
+        angle: Math.random() * Math.PI * 2,
+        r0: 57 + (Math.random() - 0.5) * 10,
+        life: Math.random(),
+        maxLife: 0.8 + Math.random() * 0.8,
+        speed: 50 + Math.random() * 60,
+        color: Math.random() > 0.5 ? '#bae6fd' : '#c084fc'
       });
     }
   }
@@ -354,16 +370,55 @@ export class CosmicRenderEngine {
 
   renderStarfield(ctx, cx, cy) {
     ctx.save();
+    const isBhActive = this.blackHoleState === 'active' || this.blackHoleState === 'shattering';
+    const bhX = isBhActive ? this.blackHoleCenter.x : cx;
+    const bhY = isBhActive ? this.blackHoleCenter.y : cy;
+    const einsteinR2 = 110 * 110;
+    const shadowR = (this.blackHoleMassType === 'planck' ? 57 : (this.blackHoleMassType === 'sgra' ? 114 : 94));
+
     for (const star of this.stars) {
       const parallax = 1000 / (star.z + 50);
       const sx = cx + star.x * parallax * 0.3;
       const sy = cy + star.y * parallax * 0.3;
       const twinkle = Math.sin(this.time * 2 + star.x) * 0.3 + 0.7;
 
+      let drawX = sx;
+      let drawY = sy;
+      let starRadX = star.radius;
+      let starRadY = star.radius;
+      let rotAngle = 0;
+      let alpha = Math.min(1, (1000 - star.z) / 1000) * twinkle * 0.75;
+
+      if (isBhActive) {
+        const dx = sx - bhX;
+        const dy = sy - bhY;
+        const dist = Math.hypot(dx, dy);
+
+        // If directly behind the event horizon shadow boundary, light cannot escape
+        if (dist < shadowR * 0.94) {
+          continue;
+        }
+
+        // Relativistic gravitational light bending deflection ~ 4GM/(c^2 b)
+        const deltaR = einsteinR2 / Math.max(dist, 10);
+        const lensedDist = dist + deltaR;
+        const phi = Math.atan2(dy, dx);
+
+        drawX = bhX + Math.cos(phi) * lensedDist;
+        drawY = bhY + Math.sin(phi) * lensedDist;
+
+        // Tangential elongation into Einstein arclet
+        const shear = 1 + Math.min(2.5, einsteinR2 / (dist * dist));
+        starRadX = star.radius * shear;
+        starRadY = Math.max(0.4, star.radius * 0.8);
+        rotAngle = phi + Math.PI / 2;
+        alpha = Math.min(1.0, alpha * (1 + 0.4 * (einsteinR2 / (dist * dist))));
+      }
+
       ctx.fillStyle = star.color;
-      ctx.globalAlpha = Math.min(1, (1000 - star.z) / 1000) * twinkle * 0.75;
+      ctx.globalAlpha = alpha;
       ctx.beginPath();
-      ctx.arc(sx, sy, star.radius, 0, Math.PI * 2);
+      ctx.ellipse(drawX, drawY, Math.max(0.2, starRadX), Math.max(0.2, starRadY), rotAngle, 0, Math.PI * 2);
       ctx.fill();
     }
     ctx.restore();
@@ -448,23 +503,62 @@ export class CosmicRenderEngine {
     ctx.globalCompositeOperation = 'lighter';
     const t = this.time * 3;
 
-    // Bubbling spacetime topology
-    ctx.strokeStyle = 'rgba(217, 70, 239, 0.22)';
-    ctx.lineWidth = 1.4;
+    const isBhActive = this.blackHoleState === 'active' || this.blackHoleState === 'shattering';
+    const bhX = isBhActive ? this.blackHoleCenter.x : cx;
+    const bhY = isBhActive ? this.blackHoleCenter.y : cy;
+    const einsteinR2 = 110 * 110;
+    const shadowR = (this.blackHoleMassType === 'planck' ? 57 : (this.blackHoleMassType === 'sgra' ? 114 : 94));
 
     for (const node of this.quantumFoamNodes) {
-      const rad = node.r + Math.sin(t * node.speed + node.phase) * 12;
+      const origRad = node.r + Math.sin(t * node.speed + node.phase) * 12;
       const nx = cx + node.x + Math.sin(t * 0.5 + node.phase) * 10;
       const ny = cy + node.y + Math.cos(t * 0.5 + node.phase) * 10;
 
+      let drawX = nx;
+      let drawY = ny;
+      let radX = Math.max(1, origRad);
+      let radY = Math.max(1, origRad);
+      let rotAngle = 0;
+      let alpha = 0.22;
+
+      if (isBhActive) {
+        const dx = nx - bhX;
+        const dy = ny - bhY;
+        const dist = Math.hypot(dx, dy);
+
+        // Photons behind the black hole shadow are absorbed
+        if (dist < shadowR * 0.94) {
+          continue;
+        }
+
+        // Relativistic deflection: 4GM/(c^2 b)
+        const deltaR = einsteinR2 / Math.max(dist, 10);
+        const lensedDist = dist + deltaR;
+        const phi = Math.atan2(dy, dx);
+
+        drawX = bhX + Math.cos(phi) * lensedDist;
+        drawY = bhY + Math.sin(phi) * lensedDist;
+
+        // Tangential stretching around the shadow circumference
+        const shear = 1 + Math.min(3.2, einsteinR2 / (dist * dist));
+        const compress = Math.max(0.3, 1 - (einsteinR2 / (dist * dist)) * 0.5);
+
+        radX = origRad * shear;
+        radY = origRad * compress;
+        rotAngle = phi + Math.PI / 2; // Perpendicular to radial vector
+        alpha = Math.min(0.65, 0.22 + (einsteinR2 / (dist * dist)) * 0.45);
+      }
+
+      ctx.strokeStyle = `rgba(217, 70, 239, ${alpha})`;
+      ctx.lineWidth = 1.4;
       ctx.beginPath();
-      ctx.arc(nx, ny, Math.max(1, rad), 0, Math.PI * 2);
+      ctx.ellipse(drawX, drawY, Math.max(1, radX), Math.max(1, radY), rotAngle, 0, Math.PI * 2);
       ctx.stroke();
 
       // Connecting micro-wormhole links
-      ctx.fillStyle = 'rgba(168, 85, 247, 0.35)';
+      ctx.fillStyle = `rgba(168, 85, 247, ${alpha * 1.3})`;
       ctx.beginPath();
-      ctx.arc(nx, ny, 2.5, 0, Math.PI * 2);
+      ctx.arc(drawX, drawY, 2.5, 0, Math.PI * 2);
       ctx.fill();
     }
     ctx.restore();
@@ -1760,6 +1854,19 @@ export class CosmicRenderEngine {
           j.xSpread = (Math.random() - 0.5) * 8;
         }
       }
+
+      // Hawking virtual particle pairs update (Planck quantum scale)
+      for (const p of this.hawkingVirtualPairs) {
+        p.life += dt / p.maxLife;
+        if (p.life >= 1.0) {
+          p.angle = Math.random() * Math.PI * 2;
+          p.r0 = (this.blackHoleMassType === 'planck' ? 62 : 94) + (Math.random() - 0.5) * 8;
+          p.life = 0;
+          p.maxLife = 0.7 + Math.random() * 0.7;
+          p.speed = 50 + Math.random() * 60;
+          p.color = Math.random() > 0.5 ? '#bae6fd' : '#c084fc';
+        }
+      }
     } else if (this.blackHoleState === 'evaporating') {
       this.blackHoleTimer += dt;
       if (this.blackHoleTimer >= 1.1) {
@@ -1871,18 +1978,23 @@ export class CosmicRenderEngine {
 
     // ================= SCHWARZSCHILD EXACT GEOMETRY SCALES =================
     // 1. Schwarzschild Radius r_s = 2GM/c^2 (Physical Event Horizon boundary)
-    const rs = 38; 
     // 2. Photon Sphere r_ph = 1.5 * r_s (Where light orbits in circular paths)
-    const r_photon = rs * 1.5; // 57px
     // 3. Apparent Black Hole Shadow Radius r_shadow = sqrt(27)/2 * r_s ≈ 2.598 * r_s
     // (Critical impact parameter b_c = 3*sqrt(3)*M below which photons fall into horizon)
-    const r_shadow = rs * (Math.sqrt(27) / 2); // 98.7px
-    // 4. Innermost Stable Circular Orbit (ISCO) = 3.0 * r_s
-    const r_isco = rs * 3.0; // 114px
+    const massType = this.blackHoleMassType || 'planck';
+    let rs = 24;
+    if (massType === 'sun') rs = 36;
+    else if (massType === 'sgra') rs = 44;
 
-    const hasAccretionDisk = this.blackHoleAccretionMode === 'disk';
+    const r_photon = rs * 1.5;
+    const r_shadow = rs * (Math.sqrt(27) / 2); // ~2.598 * rs
+    const r_isco = rs * 3.0; // Innermost Stable Circular Orbit
+
+    const isPlanck = massType === 'planck';
+    const hasAccretionDisk = !isPlanck && this.blackHoleAccretionMode === 'disk';
 
     // ================= 1. RELATIVISTIC POLAR JETS (ONLY IF ACCRETION DISK ACTIVE) =================
+    // Jets emerge strictly from the North/South poles outside the shadow (never cutting across shadow center)
     if (hasAccretionDisk) {
       ctx.save();
       ctx.globalCompositeOperation = 'lighter';
@@ -1891,29 +2003,29 @@ export class CosmicRenderEngine {
       jetGrad.addColorStop(0.5, 'rgba(255, 255, 255, 0.9)');
       jetGrad.addColorStop(1, 'rgba(56, 189, 248, 0)');
 
-      // Upward Jet
+      // Upward Jet (Originates strictly above the shadow top: cy - r_shadow)
       ctx.fillStyle = jetGrad;
       ctx.beginPath();
-      ctx.moveTo(cx - 8, cy - rs * 0.9);
+      ctx.moveTo(cx - 6, cy - r_shadow - 1);
       ctx.lineTo(cx - 36, cy - 580);
       ctx.lineTo(cx + 36, cy - 580);
-      ctx.lineTo(cx + 8, cy - rs * 0.9);
+      ctx.lineTo(cx + 6, cy - r_shadow - 1);
       ctx.closePath();
       ctx.fill();
 
-      // Downward Jet
+      // Downward Jet (Originates strictly below the shadow bottom: cy + r_shadow)
       ctx.beginPath();
-      ctx.moveTo(cx - 8, cy + rs * 0.9);
+      ctx.moveTo(cx - 6, cy + r_shadow + 1);
       ctx.lineTo(cx - 36, cy + 580);
       ctx.lineTo(cx + 36, cy + 580);
-      ctx.lineTo(cx + 8, cy + rs * 0.9);
+      ctx.lineTo(cx + 6, cy + r_shadow + 1);
       ctx.closePath();
       ctx.fill();
 
-      // Jet particles
+      // Polar Jet streaming particles
       ctx.fillStyle = '#bae6fd';
       for (const j of this.jetSparks) {
-        const jy = cy + j.dir * j.distY;
+        const jy = cy + j.dir * (r_shadow + 5 + j.distY);
         const jx = cx + j.xSpread;
         ctx.beginPath();
         ctx.arc(jx, jy, j.size, 0, Math.PI * 2);
@@ -1924,75 +2036,129 @@ export class CosmicRenderEngine {
 
     // ================= 2. GRAVITATIONAL LENSING BACKGROUND WARP GLOW =================
     ctx.save();
-    const lensGlow = ctx.createRadialGradient(cx, cy, r_shadow, cx, cy, 320);
-    lensGlow.addColorStop(0, 'rgba(251, 191, 36, 0.45)');
-    lensGlow.addColorStop(0.3, 'rgba(245, 158, 11, 0.2)');
-    lensGlow.addColorStop(0.6, 'rgba(168, 85, 247, 0.08)');
-    lensGlow.addColorStop(1, 'rgba(0, 0, 0, 0)');
-    ctx.fillStyle = lensGlow;
-    ctx.beginPath();
-    ctx.arc(cx, cy, 320, 0, Math.PI * 2);
-    ctx.fill();
+    if (isPlanck) {
+      // Cold quantum violet/cyan vacuum glow for microscopic Planck-scale black hole
+      const quantGlow = ctx.createRadialGradient(cx, cy, r_shadow, cx, cy, 240);
+      quantGlow.addColorStop(0, 'rgba(192, 132, 252, 0.45)');
+      quantGlow.addColorStop(0.35, 'rgba(56, 189, 248, 0.2)');
+      quantGlow.addColorStop(0.75, 'rgba(147, 51, 234, 0.08)');
+      quantGlow.addColorStop(1, 'rgba(0, 0, 0, 0)');
+      ctx.fillStyle = quantGlow;
+      ctx.beginPath();
+      ctx.arc(cx, cy, 240, 0, Math.PI * 2);
+      ctx.fill();
+    } else {
+      // Thermal gravitational lens glow for macro black holes
+      const lensGlow = ctx.createRadialGradient(cx, cy, r_shadow, cx, cy, 320);
+      lensGlow.addColorStop(0, 'rgba(251, 191, 36, 0.45)');
+      lensGlow.addColorStop(0.3, 'rgba(245, 158, 11, 0.2)');
+      lensGlow.addColorStop(0.6, 'rgba(168, 85, 247, 0.08)');
+      lensGlow.addColorStop(1, 'rgba(0, 0, 0, 0)');
+      ctx.fillStyle = lensGlow;
+      ctx.beginPath();
+      ctx.arc(cx, cy, 320, 0, Math.PI * 2);
+      ctx.fill();
+    }
     ctx.restore();
 
     // ================= 3. REAR ACCRETION DISK (WARPED OVER & UNDER BY GRAVITATIONAL DEFLECTION) =================
     if (hasAccretionDisk) {
-      // Upper Warped Arc (Light bent over the top of the shadow)
+      // Upper Warped Arc (Rear disk light bent over the top of the shadow)
       ctx.save();
       ctx.beginPath();
-      ctx.arc(cx, cy - 8, 160, Math.PI * 0.95, Math.PI * 2.05, false);
-      ctx.arc(cx, cy - 8, r_shadow + 2, Math.PI * 2.05, Math.PI * 0.95, true);
+      ctx.arc(cx, cy - 6, r_shadow * 1.72, Math.PI * 0.96, Math.PI * 2.04, false);
+      ctx.arc(cx, cy - 6, r_shadow + 1, Math.PI * 2.04, Math.PI * 0.96, true);
       ctx.closePath();
-      const upperDiskGrad = ctx.createRadialGradient(cx, cy - 8, r_shadow, cx, cy - 8, 170);
+
+      // Temperature gradient: White-hot inner ISCO edge -> Gold mid -> Deep red outer
+      const upperDiskGrad = ctx.createRadialGradient(cx, cy - 6, r_shadow, cx, cy - 6, r_shadow * 1.75);
       upperDiskGrad.addColorStop(0, '#ffffff');
-      upperDiskGrad.addColorStop(0.2, '#fde047');
-      upperDiskGrad.addColorStop(0.5, '#f97316');
-      upperDiskGrad.addColorStop(0.85, '#991b1b');
+      upperDiskGrad.addColorStop(0.18, '#bae6fd');
+      upperDiskGrad.addColorStop(0.4, '#fde047');
+      upperDiskGrad.addColorStop(0.7, '#f97316');
+      upperDiskGrad.addColorStop(0.92, '#991b1b');
       upperDiskGrad.addColorStop(1, 'rgba(153, 27, 27, 0)');
       ctx.fillStyle = upperDiskGrad;
       ctx.fill();
 
-      // Lower Warped Arc (Light bent under the bottom of the shadow)
+      // Lower Warped Arc (Rear disk light bent under the bottom of the shadow)
       ctx.beginPath();
-      ctx.arc(cx, cy + 8, 135, 0, Math.PI, false);
-      ctx.arc(cx, cy + 8, r_shadow + 2, Math.PI, 0, true);
+      ctx.arc(cx, cy + 6, r_shadow * 1.42, 0.04 * Math.PI, 0.96 * Math.PI, false);
+      ctx.arc(cx, cy + 6, r_shadow + 1, 0.96 * Math.PI, 0.04 * Math.PI, true);
       ctx.closePath();
-      const lowerDiskGrad = ctx.createRadialGradient(cx, cy + 8, r_shadow, cx, cy + 8, 145);
-      lowerDiskGrad.addColorStop(0, 'rgba(255, 255, 255, 0.7)');
-      lowerDiskGrad.addColorStop(0.3, 'rgba(251, 191, 36, 0.5)');
-      lowerDiskGrad.addColorStop(0.7, 'rgba(239, 68, 68, 0.25)');
+      const lowerDiskGrad = ctx.createRadialGradient(cx, cy + 6, r_shadow, cx, cy + 6, r_shadow * 1.45);
+      lowerDiskGrad.addColorStop(0, 'rgba(255, 255, 255, 0.85)');
+      lowerDiskGrad.addColorStop(0.25, 'rgba(251, 191, 36, 0.6)');
+      lowerDiskGrad.addColorStop(0.65, 'rgba(239, 68, 68, 0.3)');
       lowerDiskGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
       ctx.fillStyle = lowerDiskGrad;
       ctx.fill();
       ctx.restore();
-    } else {
-      // PURE VACUUM LENSING: Background starlight deflection rings (Einstein light bending)
+    } else if (isPlanck) {
+      // Quantum Vacuum Lensing Interference Rings
       ctx.save();
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.35)';
+      ctx.strokeStyle = 'rgba(192, 132, 252, 0.35)';
       ctx.lineWidth = 1.0;
       ctx.beginPath();
-      ctx.arc(cx, cy, r_shadow + 18, 0, Math.PI * 2);
+      ctx.arc(cx, cy, r_shadow + 12, 0, Math.PI * 2);
       ctx.stroke();
 
       ctx.strokeStyle = 'rgba(56, 189, 248, 0.25)';
       ctx.beginPath();
-      ctx.arc(cx, cy, r_shadow + 40, 0, Math.PI * 2);
+      ctx.arc(cx, cy, r_shadow + 26, 0, Math.PI * 2);
       ctx.stroke();
       ctx.restore();
     }
 
-    // ================= 4. HORIZONTAL ACCRETION DISK (FRONT EQUATORIAL PLANE) =================
+    // ================= 4. THE APPARENT BLACK HOLE SHADOW (PITCH-BLACK DISK) =================
+    // Pure pitch-black interior: absolutely NO white ring inside the shadow
+    ctx.save();
+    ctx.fillStyle = '#000000';
+    ctx.beginPath();
+    ctx.arc(cx, cy, r_shadow, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+
+    // ================= 5. THE PHOTON RING (LOCATED PRECISELY AT SHADOW BOUNDARY r_shadow) =================
+    ctx.save();
+    ctx.strokeStyle = isPlanck ? '#f3e8ff' : '#ffffff';
+    ctx.lineWidth = 1.8;
+    ctx.shadowColor = isPlanck ? '#c084fc' : '#fef08a';
+    ctx.shadowBlur = 12;
+    ctx.beginPath();
+    ctx.arc(cx, cy, r_shadow, 0, Math.PI * 2);
+    ctx.stroke();
+
+    // Secondary delicate diffraction halo
+    ctx.strokeStyle = isPlanck ? 'rgba(192, 132, 252, 0.5)' : 'rgba(253, 224, 71, 0.5)';
+    ctx.lineWidth = 0.8;
+    ctx.shadowBlur = 4;
+    ctx.beginPath();
+    ctx.arc(cx, cy, r_shadow + 1.5, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.restore();
+
+    // ================= 6. FRONT ACCRETION DISK (PASSES IN FRONT OF LOWER SHADOW) =================
+    // Layering rule: Front half of tilted disk sweeps across the front of the lower black hole shadow
     if (hasAccretionDisk) {
       ctx.save();
+      // Clip to lower front half so it only displays across the front of the lower sphere
+      ctx.beginPath();
+      ctx.rect(cx - 380, cy, 760, 380);
+      ctx.clip();
+
       ctx.translate(cx, cy);
       ctx.scale(1.0, 0.32); // Inclined equatorial disk view
 
-      // Relativistic Doppler Beaming Gradient (Approaching left side is blueshifted & brighter, receding right side is redshifted & dimmer)
+      // Relativistic Doppler Beaming Gradient:
+      // Approaching (left side) is blueshifted & significantly brighter.
+      // Receding (right side) is redshifted & dimmer.
       const diskLinGrad = ctx.createLinearGradient(-280, 0, 280, 0);
-      diskLinGrad.addColorStop(0, 'rgba(255, 255, 255, 0.95)');
-      diskLinGrad.addColorStop(0.3, 'rgba(253, 224, 71, 0.9)');
-      diskLinGrad.addColorStop(0.55, 'rgba(249, 115, 22, 0.7)');
-      diskLinGrad.addColorStop(0.85, 'rgba(220, 38, 38, 0.35)');
+      diskLinGrad.addColorStop(0, 'rgba(255, 255, 255, 0.98)');
+      diskLinGrad.addColorStop(0.18, 'rgba(186, 230, 253, 0.92)');
+      diskLinGrad.addColorStop(0.38, 'rgba(253, 224, 71, 0.85)');
+      diskLinGrad.addColorStop(0.65, 'rgba(249, 115, 22, 0.65)');
+      diskLinGrad.addColorStop(0.88, 'rgba(220, 38, 38, 0.3)');
       diskLinGrad.addColorStop(1, 'rgba(127, 29, 29, 0)');
 
       ctx.fillStyle = diskLinGrad;
@@ -2001,66 +2167,154 @@ export class CosmicRenderEngine {
       ctx.arc(0, 0, r_isco, 0, Math.PI * 2, true);
       ctx.fill();
 
-      // Accretion Disk Gas Filaments & Plasma Sparks
+      // Front Accretion Disk Gas Filaments & Plasma Sparks
       ctx.globalCompositeOperation = 'lighter';
       for (const spark of this.accretionSparks) {
         const sx = Math.cos(spark.angle) * spark.radius;
         const sy = Math.sin(spark.angle) * spark.radius + spark.verticalOffset;
-        const isApproaching = sx < 0; // Left side
-        ctx.fillStyle = isApproaching ? '#ffffff' : '#f97316';
-        ctx.globalAlpha = isApproaching ? spark.opacity : spark.opacity * 0.45;
-        ctx.beginPath();
-        ctx.arc(sx, sy, spark.size * (isApproaching ? 1.4 : 0.8), 0, Math.PI * 2);
-        ctx.fill();
+        // In the lower half, sin(spark.angle) >= 0
+        if (Math.sin(spark.angle) >= -0.05) {
+          const isApproaching = sx < 0; // Left side
+          ctx.fillStyle = isApproaching ? '#ffffff' : '#f97316';
+          ctx.globalAlpha = isApproaching ? spark.opacity : spark.opacity * 0.45;
+          ctx.beginPath();
+          ctx.arc(sx, sy, spark.size * (isApproaching ? 1.4 : 0.8), 0, Math.PI * 2);
+          ctx.fill();
+        }
       }
       ctx.restore();
     }
 
-    // ================= 5. THE APPARENT BLACK HOLE SHADOW BOUNDARY (r_shadow ≈ 2.6 r_s) =================
-    ctx.save();
-    ctx.fillStyle = '#010101';
-    ctx.beginPath();
-    ctx.arc(cx, cy, r_shadow, 0, Math.PI * 2);
-    ctx.fill();
+    // ================= 7. HAWKING RADIATION VIRTUAL PARTICLE PAIRS (PLANCK SCALE ONLY) =================
+    // Microscopic quantum black hole: Virtual particle-antiparticle pairs form at horizon;
+    // negative partner falls into horizon, positive partner radiates outward into vacuum space.
+    if (isPlanck) {
+      ctx.save();
+      for (const p of this.hawkingVirtualPairs) {
+        const cosA = Math.cos(p.angle);
+        const sinA = Math.sin(p.angle);
 
-    // Shadow outer boundary line
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
-    ctx.lineWidth = 1.0;
-    ctx.stroke();
-    ctx.restore();
+        // 1. Infalling negative-energy partner (falls inward towards singularity, redshifting/fading)
+        const inDist = Math.max(2, r_shadow - p.life * (r_shadow - 4));
+        const inX = cx + cosA * inDist;
+        const inY = cy + sinA * inDist;
+        const inAlpha = (1 - p.life) * 0.8;
+        ctx.fillStyle = `rgba(244, 63, 94, ${inAlpha})`; // Redshifted as it enters horizon
+        ctx.beginPath();
+        ctx.arc(inX, inY, 1.2 * (1 - p.life * 0.5), 0, Math.PI * 2);
+        ctx.fill();
 
-    // ================= 6. THE PHOTON RING / PHOTON SPHERE (r_ph = 1.5 r_s) =================
-    ctx.save();
-    ctx.strokeStyle = '#ffffff';
-    ctx.lineWidth = 2.2;
-    ctx.shadowColor = '#fef08a';
-    ctx.shadowBlur = 16;
-    ctx.beginPath();
-    ctx.arc(cx, cy, r_photon, 0, Math.PI * 2);
-    ctx.stroke();
+        // 2. Radiating positive-energy partner (escapes into space as high-energy Hawking radiation)
+        const outDist = r_shadow + p.life * 130;
+        const outX = cx + cosA * outDist;
+        const outY = cy + sinA * outDist;
+        const outAlpha = (1 - p.life * 0.8);
+        ctx.fillStyle = p.color;
+        ctx.globalAlpha = outAlpha;
+        ctx.shadowColor = p.color;
+        ctx.shadowBlur = 6;
+        ctx.beginPath();
+        ctx.arc(outX, outY, 1.8 * (1 - p.life * 0.4), 0, Math.PI * 2);
+        ctx.fill();
 
-    // Secondary delicate sub-ring
-    ctx.strokeStyle = 'rgba(253, 224, 71, 0.7)';
-    ctx.lineWidth = 1.0;
-    ctx.shadowBlur = 4;
-    ctx.beginPath();
-    ctx.arc(cx, cy, r_photon + 2, 0, Math.PI * 2);
-    ctx.stroke();
-    ctx.restore();
+        // Delicate radiation spark trail
+        ctx.strokeStyle = p.color;
+        ctx.lineWidth = 0.8;
+        ctx.beginPath();
+        ctx.moveTo(cx + cosA * (outDist - 8), cy + sinA * (outDist - 8));
+        ctx.lineTo(outX, outY);
+        ctx.stroke();
+      }
 
-    // ================= 7. THE EVENT HORIZON (r_s = 1.0 r_s) =================
-    // Pure pitch-black interior
-    ctx.save();
-    ctx.fillStyle = '#000000';
-    ctx.beginPath();
-    ctx.arc(cx, cy, rs, 0, Math.PI * 2);
-    ctx.fill();
+      // Lifespan theoretical countdown badge near core
+      ctx.font = '600 10.5px system-ui';
+      ctx.fillStyle = 'rgba(216, 180, 254, 0.75)';
+      ctx.textAlign = 'center';
+      ctx.fillText('তাত্ত্বিক আয়ুষ্কাল: ~১০⁻⁴⁰ s', cx, cy + r_shadow + 28);
+      ctx.restore();
+    }
 
-    // Event Horizon demarcation line
-    ctx.strokeStyle = '#0a0a0a';
-    ctx.lineWidth = 1.5;
-    ctx.stroke();
-    ctx.restore();
+    // ================= 8. EDUCATIONAL 3-RING GEOMETRY OVERLAY [O] =================
+    // Demonstrates exact Schwarzschild boundaries: Event Horizon (1.0 rs), Photon Sphere (1.5 rs), Shadow (~2.6 rs)
+    if (this.showGeometryOverlay) {
+      ctx.save();
+      ctx.lineWidth = 1.4;
+
+      // Ring 1: Event Horizon (1.0 rs)
+      ctx.setLineDash([4, 4]);
+      ctx.strokeStyle = '#38bdf8'; // Cyan
+      ctx.beginPath();
+      ctx.arc(cx, cy, rs, 0, Math.PI * 2);
+      ctx.stroke();
+
+      // Ring 2: Photon Sphere (1.5 rs)
+      ctx.setLineDash([5, 4]);
+      ctx.strokeStyle = '#facc15'; // Yellow
+      ctx.beginPath();
+      ctx.arc(cx, cy, r_photon, 0, Math.PI * 2);
+      ctx.stroke();
+
+      // Ring 3: Apparent Shadow Edge (~2.6 rs)
+      ctx.setLineDash([6, 4]);
+      ctx.strokeStyle = '#f43f5e'; // Pink/Rose
+      ctx.beginPath();
+      ctx.arc(cx, cy, r_shadow, 0, Math.PI * 2);
+      ctx.stroke();
+
+      ctx.setLineDash([]); // Reset dash
+
+      // Educational Leader Lines & Labels
+      ctx.font = '600 11px system-ui';
+      ctx.textAlign = 'left';
+
+      // 1. Horizon Label
+      const a1 = -Math.PI * 0.25;
+      const lx1 = cx + Math.cos(a1) * rs;
+      const ly1 = cy + Math.sin(a1) * rs;
+      ctx.strokeStyle = '#38bdf8';
+      ctx.beginPath();
+      ctx.moveTo(lx1, ly1);
+      ctx.lineTo(lx1 + 28, ly1 - 22);
+      ctx.lineTo(lx1 + 140, ly1 - 22);
+      ctx.stroke();
+      ctx.fillStyle = '#38bdf8';
+      ctx.fillText('১. ঘটনা দিগন্ত (১.০ rs)', lx1 + 32, ly1 - 26);
+
+      // 2. Photon Sphere Label
+      const a2 = Math.PI * 0.22;
+      const lx2 = cx + Math.cos(a2) * r_photon;
+      const ly2 = cy + Math.sin(a2) * r_photon;
+      ctx.strokeStyle = '#facc15';
+      ctx.beginPath();
+      ctx.moveTo(lx2, ly2);
+      ctx.lineTo(lx2 + 28, ly2 + 22);
+      ctx.lineTo(lx2 + 140, ly2 + 22);
+      ctx.stroke();
+      ctx.fillStyle = '#facc15';
+      ctx.fillText('২. ফোটন স্ফিয়ার (১.৫ rs)', lx2 + 32, ly2 + 36);
+
+      // 3. Shadow Edge Label
+      const a3 = -Math.PI * 0.78;
+      const lx3 = cx + Math.cos(a3) * r_shadow;
+      const ly3 = cy + Math.sin(a3) * r_shadow;
+      ctx.strokeStyle = '#f43f5e';
+      ctx.beginPath();
+      ctx.moveTo(lx3, ly3);
+      ctx.lineTo(lx3 - 28, ly3 - 22);
+      ctx.lineTo(lx3 - 150, ly3 - 22);
+      ctx.stroke();
+      ctx.textAlign = 'right';
+      ctx.fillStyle = '#f43f5e';
+      ctx.fillText('৩. ছায়ার কিনারা (~২.৬ rs)', lx3 - 32, ly3 - 26);
+
+      // Note callout
+      ctx.textAlign = 'center';
+      ctx.font = '500 10px monospace';
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.65)';
+      ctx.fillText('আসল ফোটন রিং এর চেয়েও সরু ও ঝাপসা (Critical impact parameter bc = 3√3 M)', cx, cy + r_shadow + 48);
+
+      ctx.restore();
+    }
 
     ctx.restore();
   }
@@ -2068,15 +2322,15 @@ export class CosmicRenderEngine {
   renderEvaporationFX(ctx, cx, cy) {
     ctx.save();
     const p = Math.min(1.0, this.blackHoleTimer / 1.0);
-    const rs = 38;
+    const rs = this.blackHoleMassType === 'planck' ? 24 : 36;
     const rad = Math.max(0, (1 - p) * rs);
 
-    // Soft Hawking Radiation Dissolution
-    const shockRadius = p * 500 + 40;
+    // Soft, elegant quantum Hawking radiation dissipation
+    const shockRadius = p * 380 + 30;
     const shockGrad = ctx.createRadialGradient(cx, cy, rad, cx, cy, shockRadius);
-    shockGrad.addColorStop(0, `rgba(255, 255, 255, ${(1 - p) * 0.8})`);
-    shockGrad.addColorStop(0.3, `rgba(56, 189, 248, ${(1 - p) * 0.5})`);
-    shockGrad.addColorStop(0.7, `rgba(168, 85, 247, ${(1 - p) * 0.25})`);
+    shockGrad.addColorStop(0, `rgba(255, 255, 255, ${(1 - p) * 0.6})`);
+    shockGrad.addColorStop(0.35, `rgba(192, 132, 252, ${(1 - p) * 0.4})`);
+    shockGrad.addColorStop(0.7, `rgba(56, 189, 248, ${(1 - p) * 0.18})`);
     shockGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
 
     ctx.fillStyle = shockGrad;

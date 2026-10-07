@@ -476,6 +476,14 @@
           <span id="bh-title-badge">শোয়ার্জশিল্ড ব্ল্যাকহোল (SCHWARZSCHILD GR MODEL)</span>
         </div>
         <div class="bh-header-actions">
+          <button class="bh-overlay-toggle-btn" id="bh-overlay-toggle-btn" title="আইনস্টাইন জ্যামিতি ও ৩টি বৃত্ত [O]">
+            <svg class="svg-icon mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <circle cx="12" cy="12" r="6"></circle>
+              <circle cx="12" cy="12" r="2"></circle>
+            </svg>
+            <span id="bh-overlay-label">৩টি বৃত্ত [O]</span>
+          </button>
           <button class="bh-mode-toggle-btn" id="bh-mode-toggle-btn" title="ডিস্ক ও ভ্যাকিউম মোড পরিবর্তন">
             <svg class="svg-icon mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="12" cy="12" r="10"></circle>
@@ -502,26 +510,34 @@
           </button>
         </div>
       </div>
+
+      <!-- Black Hole Mass Scale Presets Switcher -->
+      <div class="bh-mass-selector" id="bh-mass-selector">
+        <button class="bh-mass-chip active" data-mass="planck" id="mass-chip-planck">প্ল্যাঙ্ক ভর (কোয়ান্টাম)</button>
+        <button class="bh-mass-chip" data-mass="sun" id="mass-chip-sun">সূর্য (নাক্ষত্রিক)</button>
+        <button class="bh-mass-chip" data-mass="sgra" id="mass-chip-sgra">স্যাজিটেরিয়াস A* (সুপারম্যাসিভ)</button>
+      </div>
+
       <div class="bh-stats-grid">
         <div class="bh-stat-item">
           <span class="bh-stat-lbl">সংকুচিত বস্তুর ভর (Mass)</span>
-          <span class="bh-stat-val" id="bh-stat-mass">১.৯৯ × ১০³⁰ কেজি (সূর্য)</span>
+          <span class="bh-stat-val" id="bh-stat-mass">২.১৮ × ১০⁻⁸ কেজি (প্ল্যাঙ্ক ভর)</span>
         </div>
         <div class="bh-stat-item">
           <span class="bh-stat-lbl">ঘটনা দিগন্ত ও শ্যাডো (Horizon & Shadow)</span>
-          <span class="bh-stat-val" id="bh-stat-radius">rs = ২.৯৫ কিমি | শ্যাডো ≈ ৭.৬৮ কিমি</span>
+          <span class="bh-stat-val" id="bh-stat-radius">rs = ৩.২৩ × ১০⁻³⁵ মি | শ্যাডো ≈ ৮.৪০ × ১০⁻³⁵ মি</span>
         </div>
         <div class="bh-stat-item">
           <span class="bh-stat-lbl">ফোটন স্ফিয়ার (Photon Sphere)</span>
-          <span class="bh-stat-val" id="bh-stat-photon">১.৫ × rs (৪.৪৩ কিমি)</span>
+          <span class="bh-stat-val" id="bh-stat-photon">১.৫ × rs (৪.৮৫ × ১০⁻³⁵ মি)</span>
         </div>
         <div class="bh-stat-item">
           <span class="bh-stat-lbl">হকিং তাপমাত্রা ও আয়ুষ্কাল</span>
-          <span class="bh-stat-val" id="bh-stat-hawking">৬.২ × ১০⁻⁸ K (~১০⁶⁷ বছর)</span>
+          <span class="bh-stat-val" id="bh-stat-hawking">৫.৬৪ × ১০³⁰ K (~১০⁻⁴⁰ সেকেন্ড)</span>
         </div>
       </div>
       <p class="bh-notice" id="bh-notice-text">
-        মহাকর্ষীয় পতনে বস্তুর ভর সংকুচিত হয়ে একটি অ-ঘূর্ণায়মান শোয়ার্জশিল্ড ব্ল্যাকহোল তৈরি করেছে। সাধারণ আপেক্ষিকতার সূত্রে আলো বেঁকে তৈরি হয়েছে ফোটন রিং (১.৫ rs), মহাকর্ষীয় ছায়া (২.৬ rs) এবং লেন্সকৃত পেছনের ডিস্কের প্রতিচ্ছবি।
+        মহাকর্ষীয় পতনে বস্তুর ভর সংকুচিত হয়ে একটি অ-ঘূর্ণায়মান শোয়ার্জশিল্ড ব্ল্যাকহোল তৈরি করেছে। সাধারণ আপেক্ষিকতায় আলো বেঁকে তৈরি হয়েছে ফোটন রিং ও স্থান-কাল শ্যাডো।
       </p>
       <div class="bh-disclaimer-badge">
         <svg class="svg-icon mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -529,7 +545,7 @@
           <line x1="12" y1="16" x2="12" y2="12"></line>
           <line x1="12" y1="8" x2="12.01" y2="8"></line>
         </svg>
-        <span id="bh-disclaimer-text">[তাত্ত্বিক সরলীকৃত ২ডি মডেল] | ম্যাক্রো ব্ল্যাকহোলের হকিং বাষ্পীভবন বাস্তবে মহাবিশ্বের বয়সের চেয়েও বিলিয়ন গুণ দীর্ঘ (অতি-ত্বরিত টাইম-ল্যাপ্স)।</span>
+        <span id="bh-disclaimer-text">[তাত্ত্বিক সরলীকৃত ২ডি মডেল] | আসল ফোটন রিং এর চেয়েও সূক্ষ্ম ও ঝাপসা।</span>
       </div>
     </div>
 
@@ -542,6 +558,9 @@
       <span id="bh-restore-label">শোয়ার্জশিল্ড তথ্য দেখুন [H]</span>
     </button>
   </div>
+
+  <!-- Permanent Canvas Corner Disclaimer -->
+  <div class="canvas-corner-disclaimer" id="canvas-corner-disclaimer">সরলীকৃত ২ডি আপেক্ষিকীয় মডেল, আসল ছবি নয়</div>
 
   <!-- Accessibility Screen Reader Live Region -->
   <div id="bh-sr-announcements" class="sr-only" aria-live="polite"></div>

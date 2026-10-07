@@ -97,6 +97,9 @@ class CosmicApp {
     this.blackholePanel = document.getElementById('blackhole-telemetry-panel');
     this.evaporateBtn = document.getElementById('evaporate-btn');
     this.evaporateBtnLabel = document.getElementById('evaporate-btn-label');
+    this.bhOverlayToggleBtn = document.getElementById('bh-overlay-toggle-btn');
+    this.bhOverlayLabel = document.getElementById('bh-overlay-label');
+    this.bhMassChips = document.querySelectorAll('.bh-mass-chip');
     this.bhModeToggleBtn = document.getElementById('bh-mode-toggle-btn');
     this.bhModeLabel = document.getElementById('bh-mode-label');
     this.bhHideCardBtn = document.getElementById('bh-hide-card-btn');
@@ -108,6 +111,7 @@ class CosmicApp {
     this.bhStatPhoton = document.getElementById('bh-stat-photon');
     this.bhStatHawking = document.getElementById('bh-stat-hawking');
     this.bhNoticeText = document.getElementById('bh-notice-text');
+    this.bhDisclaimerText = document.getElementById('bh-disclaimer-text');
     this.bhSrAnnouncements = document.getElementById('bh-sr-announcements');
 
     // Spacetime Strain Meter Elements (Trans-Planckian Over-Zoom)
@@ -638,6 +642,30 @@ class CosmicApp {
       });
     }
 
+    // 3-Ring Geometry Overlay Toggle [O]
+    if (this.bhOverlayToggleBtn) {
+      this.bhOverlayToggleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.renderEngine.showGeometryOverlay = !this.renderEngine.showGeometryOverlay;
+        this.bhOverlayToggleBtn.classList.toggle('active', this.renderEngine.showGeometryOverlay);
+        this.audioEngine.playChime(this.renderEngine.showGeometryOverlay ? 720 : 540);
+      });
+    }
+
+    // Black Hole Mass Scale Presets Switcher
+    if (this.bhMassChips) {
+      this.bhMassChips.forEach(chip => {
+        chip.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const mass = chip.getAttribute('data-mass');
+          this.renderEngine.blackHoleMassType = mass;
+          this.bhMassChips.forEach(c => c.classList.toggle('active', c === chip));
+          this.updateBlackHoleStats();
+          this.audioEngine.playChime(620);
+        });
+      });
+    }
+
     // Black Hole Card Hide & Restore Pill Buttons
     if (this.bhHideCardBtn) {
       this.bhHideCardBtn.addEventListener('click', (e) => {
@@ -719,6 +747,14 @@ class CosmicApp {
             this.bhRestoreCardPill.style.display = isMin ? 'inline-flex' : 'none';
           }
           this.audioEngine.playChime(isMin ? 480 : 640);
+        }
+      } else if (e.key === 'o' || e.key === 'O') {
+        if (this.renderEngine.blackHoleState === 'active') {
+          this.renderEngine.showGeometryOverlay = !this.renderEngine.showGeometryOverlay;
+          if (this.bhOverlayToggleBtn) {
+            this.bhOverlayToggleBtn.classList.toggle('active', this.renderEngine.showGeometryOverlay);
+          }
+          this.audioEngine.playChime(this.renderEngine.showGeometryOverlay ? 720 : 540);
         }
       } else if (e.key === '0') {
         this.stopTour();
@@ -1061,43 +1097,33 @@ class CosmicApp {
     const hbar = 1.0545718e-34;
     const kB = 1.380649e-23;
 
-    let massKg = 1.989e30; // Default 1 Solar mass
-    let objNameBn = 'সূর্য';
-    let objNameEn = 'The Sun';
+    const massType = this.renderEngine ? this.renderEngine.blackHoleMassType : 'planck';
 
-    if (object) {
-      if (object.id === 'sun') {
-        massKg = 1.989e30;
-        objNameBn = 'সূর্য';
-        objNameEn = 'The Sun';
-      } else if (object.id === 'earth') {
+    let massKg = 2.176434e-8; // Default Planck mass
+    let objNameBn = 'প্ল্যাঙ্ক ভর (কোয়ান্টাম সীমা)';
+    let objNameEn = 'Planck Mass (Quantum Limit)';
+    let customLifespanBn = null;
+    let customLifespanEn = null;
+
+    if (massType === 'planck') {
+      massKg = 2.176434e-8;
+      objNameBn = 'প্ল্যাঙ্ক ভর (কোয়ান্টাম সীমা)';
+      objNameEn = 'Planck Mass (Quantum Limit)';
+      customLifespanBn = '~১০⁻⁴⁰ s (আনুমানিক, ~১০⁻³৯ থেকে ১০⁻⁴³ s, তাত্ত্বিক)';
+      customLifespanEn = '~10⁻⁴⁰ s (est. ~10⁻³⁹ to 10⁻⁴³ s, theoretical)';
+    } else if (massType === 'sun') {
+      massKg = 1.989e30;
+      objNameBn = 'সূর্য (১ সৌর ভর)';
+      objNameEn = 'The Sun (1 Solar Mass)';
+    } else if (massType === 'sgra') {
+      massKg = 8.26e36;
+      objNameBn = 'স্যাজিটেরিয়াস A* (সুপারম্যাসিভ)';
+      objNameEn = 'Sagittarius A* (Supermassive)';
+    } else if (object) {
+      if (object.id === 'earth') {
         massKg = 5.972e24;
         objNameBn = 'পৃথিবী';
         objNameEn = 'Planet Earth';
-      } else if (object.id === 'jupiter') {
-        massKg = 1.898e27;
-        objNameBn = 'বৃহস্পতি গ্রহ';
-        objNameEn = 'Jupiter';
-      } else if (object.id === 'mount_everest') {
-        massKg = 1.6e14;
-        objNameBn = 'মাউন্ট এভারেস্ট';
-        objNameEn = 'Mount Everest';
-      } else if (object.id === 'padma_bridge') {
-        massKg = 3.0e9;
-        objNameBn = 'পদ্মা সেতু';
-        objNameEn = 'Padma Bridge';
-      } else if (object.id === 'human') {
-        massKg = 70;
-        objNameBn = 'মানবদেহ';
-        objNameEn = 'Human Body';
-      } else if (object.order <= -30) {
-        massKg = 2.176e-8; // Planck mass
-        objNameBn = 'প্ল্যাঙ্ক ভর (তাত্ত্বিক সীমা)';
-        objNameEn = 'Planck Mass (Thought Experiment)';
-      } else if (object.order >= 20) {
-        massKg = 1.5e42; // Milky Way
-        objNameBn = 'আকাশগঙ্গা গ্যালাক্সি';
-        objNameEn = 'Milky Way Galaxy';
       } else if (object.massKg) {
         massKg = object.massKg;
         objNameBn = object.nameBn;
@@ -1112,7 +1138,7 @@ class CosmicApp {
     const tEvapSec = (5120 * Math.PI * Math.pow(G, 2) * Math.pow(massKg, 3)) / (hbar * Math.pow(c, 4));
     const tEvapYrs = tEvapSec / (365.25 * 86400);
 
-    return { massKg, objNameBn, objNameEn, rs, rph, rshadow, TH, tEvapSec, tEvapYrs };
+    return { massKg, objNameBn, objNameEn, rs, rph, rshadow, TH, tEvapSec, tEvapYrs, customLifespanBn, customLifespanEn, massType };
   }
 
   formatScientific(val, unit = '', isBn = false) {
@@ -1162,8 +1188,7 @@ class CosmicApp {
 
   updateBlackHoleStats() {
     if (!this.bhStatRadius) return;
-    const nearest = this.activeObject;
-    const bh = this.calculateBlackHolePhysics(nearest);
+    const bh = this.calculateBlackHolePhysics(this.activeObject);
 
     const name = this.lang === 'bn' ? bh.objNameBn : bh.objNameEn;
     const isBn = this.lang === 'bn';
@@ -1187,7 +1212,11 @@ class CosmicApp {
 
     if (this.bhStatHawking) {
       let tStr = '';
-      if (bh.tEvapYrs >= 1e6) {
+      if (isBn && bh.customLifespanBn) {
+        tStr = bh.customLifespanBn;
+      } else if (!isBn && bh.customLifespanEn) {
+        tStr = bh.customLifespanEn;
+      } else if (bh.tEvapYrs >= 1e6) {
         tStr = isBn
           ? `~${this.formatScientific(bh.tEvapYrs, 'বছর', true)}`
           : `~${bh.tEvapYrs.toExponential(1)} yrs`;
@@ -1206,10 +1235,23 @@ class CosmicApp {
     }
 
     if (this.bhNoticeText) {
+      const isPlanck = bh.massType === 'planck';
       const isDisk = this.renderEngine.blackHoleAccretionMode === 'disk';
-      this.bhNoticeText.textContent = this.lang === 'bn'
-        ? `মহাকর্ষীয় পতনে "${name}"-এর ভর সংকুচিত হয়ে একটি অ-ঘূর্ণায়মান শোয়ার্জশিল্ড ব্ল্যাকহোল তৈরি করেছে। সাধারণ আপেক্ষিকতায় আলো বেঁকে তৈরি হয়েছে ফোটন রিং (১.৫ rs) ও স্থান-কাল শ্যাডো (২.৬ rs)। ${isDisk ? 'পার্শ্ববর্তী গ্যাসীয় কণা থেকে উজ্জ্বল ডপলার অ্যাক্রিশন ডিস্ক দৃশ্যমান।' : 'বিশুদ্ধ ভ্যাকিউমে কেবল স্থান-কালের বক্রতা ও আলো বাঁকার দৃশ্য প্রতিভাত হচ্ছে।'}`
-        : `Gravitational collapse compressed "${name}" into a non-rotating Schwarzschild black hole. General relativity bends light into a photon ring (1.5 rs) and shadow (2.6 rs). ${isDisk ? 'Relativistic Doppler-beamed accretion disk visible from captured gas.' : 'Pure vacuum curvature shows pristine gravitational light deflection without matter.'}`;
+      if (isPlanck) {
+        this.bhNoticeText.textContent = this.lang === 'bn'
+          ? 'প্ল্যাঙ্ক-ভরের কোয়ান্টাম ব্ল্যাকহোল: এখানে কোনো গ্যাসীয় অ্যাক্রিশন ডিস্ক বা জেট বাস্তবসম্মত নয়। ঘটনা দিগন্তের কিনারায় কোয়ান্টাম ফ্লাকচুয়েশনের ফলে ভার্চুয়াল হকিং কণা জোড়া তৈরি হচ্ছে এবং তীব্র বিকিরণে বাষ্পীভূত হচ্ছে।'
+          : 'Planck-mass quantum black hole: An accretion disk or polar jet is physically impossible here. Spacetime quantum fluctuations produce virtual Hawking particle pairs at the horizon, radiating away in rapid evaporation.';
+      } else {
+        this.bhNoticeText.textContent = this.lang === 'bn'
+          ? `মহাকর্ষীয় পতনে "${name}"-এর ভর সংকুচিত হয়ে একটি অ-ঘূর্ণায়মান শোয়ার্জশিল্ড ব্ল্যাকহোল তৈরি করেছে। আপেক্ষিকতায় আলো বেঁকে তৈরি হয়েছে ফোটন রিং (১.৫ rs) ও স্থান-কাল শ্যাডো (২.৬ rs)। ${isDisk ? 'ঘূর্ণায়মান গ্যাসীয় ডিস্কে তাপমাত্রা গ্রেডিয়েন্ট ও ডপলার বিমিং প্রতিভাত।' : 'বিশুদ্ধ ভ্যাকিউমে স্থান-কালের গ্র্যাভিটেশনাল লেন্সিং ও আলো বাঁকার দৃশ্য দৃশ্যমান।'}`
+          : `Gravitational collapse compressed "${name}" into a Schwarzschild black hole. General relativity bends light into a photon ring (1.5 rs) and shadow (2.6 rs). ${isDisk ? 'Relativistic Doppler beaming and temperature gradient visible on accretion disk.' : 'Pure vacuum curvature shows pristine gravitational light deflection without matter.'}`;
+      }
+    }
+
+    if (this.bhDisclaimerText) {
+      this.bhDisclaimerText.textContent = this.lang === 'bn'
+        ? '[তাত্ত্বিক সরলীকৃত ২ডি মডেল] | আসল ফোটন রিং এর চেয়েও সূক্ষ্ম ও ঝাপসা।'
+        : '[Simplified 2D Theoretical Model] | Physical photon ring is sharper and fainter.';
     }
 
     // Screen reader live announcement

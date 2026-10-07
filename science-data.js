@@ -1082,8 +1082,8 @@ export const COSMIC_OBJECTS = [
     truthBadgeEn: 'Deepest Technological Probe',
     truthBadgeBn: 'মানবজাতির গভীরতম পর্যবেক্ষণ প্রযুক্তি',
     dominantForce: 'weak',
-    dominantForceEn: '13.6 TeV Collision Debris',
-    dominantForceBn: '১৩.৬ TeV শক্তি-ভর রূপান্তর',
+    dominantForceEn: 'Energy Scale ~2 TeV (ħc/E) / 13.6 TeV Collision',
+    dominantForceBn: 'শক্তি স্কেল ~২ TeV (ħc/E) / ১৩.৬ TeV সংঘর্ষ',
     instrumentEn: 'Large Hadron Collider (27 km Superconducting Ring)',
     instrumentBn: 'সার্নের লার্জ হ্যাড্রন কলাইডার (২৭ কিমি বলয়)',
     humanTransit: {
@@ -1094,8 +1094,8 @@ export const COSMIC_OBJECTS = [
     domain: 'planck',
     renderType: 'lhc_limit',
     accentColor: '#ef4444',
-    summaryEn: 'The smallest physical distance scale directly probed by human instrumentation. At 13.6 TeV, protons collide with enough localized energy to resolve features down to a fraction of an attometer.',
-    summaryBn: 'মানবজাতির প্রযুক্তির ইতিহাসের সবচেয়ে ক্ষুদ্রতম পরিমাপ সীমা। আলোর ৯৯.৯৯৯৯৯৯১% গতিতে প্রোটনের মুখোমুখি সংঘর্ষ ঘটিয়ে বিজ্ঞানীরা স্থান-কালের ১০⁻১৯ মিটার গভীরতা পর্যন্ত নিরীক্ষা করেছেন।',
+    summaryEn: 'An order-of-magnitude technological scale probed by human instrumentation. Using the relativistic relation λ ~ ħc/E, resolving ~10⁻¹⁹ m corresponds to ~2 TeV localized energy (within the 13.6 TeV collision energy).',
+    summaryBn: 'মানবজাতির কণা ত্বরক প্রযুক্তির গভীরতম অর্ডার-অফ-ম্যাগনিটিউড নিরীক্ষা সীমা। আপেক্ষিকীয় সূত্র λ ~ ħc/E অনুসারে ১০⁻১৯ মিটার গভীরতা নিরীক্ষা করতে প্রয়োজন হয় প্রায় ২ TeV কার্যকর শক্তি (মোট ১৩.৬ TeV সংঘর্ষ ক্ষমতার অধীনে)।',
     factEn: 'At this extreme scale, technology reaches its pinnacle. For comparison, the LIGO gravitational wave detector sensed arm-length variations of ~4 × 10⁻¹⁸ m during GW150914—less than a thousandth of a proton width!',
     factBn: 'এই অতিক্ষুদ্র স্কেলে প্রযুক্তি তার চূড়ান্ত সীমায় পৌঁছায়। তুলনামূলকভাবে, লাইগো (LIGO) মহাকর্ষীয় তরঙ্গ শনাক্ত করতে ইন্টারফেরোমিটারের বাহুর মাত্র ~৪ × ১০⁻১৮ মিটার সূক্ষ্ম পরিবর্তন পরিমাপ করে—যা প্রোটনের ব্যাসের হাজার ভাগের এক ভাগ!',
     sources: 'CERN Experimental Reports / Particle Data Group'
