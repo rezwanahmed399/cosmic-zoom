@@ -1502,6 +1502,7 @@ html, body {
 
 /* ================= BLACK HOLE CINEMATIC IMMERSION MODE ================= */
 body.black-hole-mode .hud-top,
+body.black-hole-mode .domain-indicator-wrapper,
 body.black-hole-mode .info-panel,
 body.black-hole-mode .object-card-container,
 body.black-hole-mode .planck-wall-banner,
@@ -1516,7 +1517,8 @@ body.black-hole-mode .spacetime-strain-container {
   transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.45s ease !important;
 }
 
-body.black-hole-mode .hud-top {
+body.black-hole-mode .hud-top,
+body.black-hole-mode .domain-indicator-wrapper {
   transform: translateY(-28px) !important;
 }
 

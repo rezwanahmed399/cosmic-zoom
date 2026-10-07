@@ -1108,14 +1108,49 @@ class CosmicApp {
     return { massKg, objNameBn, objNameEn, rs, rph, rshadow, TH, tEvapSec, tEvapYrs };
   }
 
-  formatDistance(meters) {
-    if (meters >= 1000) return `${(meters / 1000).toFixed(2)} km`;
-    if (meters >= 0.01) return `${(meters * 1000).toFixed(2)} mm`;
-    if (meters >= 1e-6) return `${(meters * 1e6).toFixed(2)} µm`;
-    if (meters >= 1e-9) return `${(meters * 1e9).toFixed(2)} nm`;
-    if (meters >= 1e-12) return `${(meters * 1e12).toFixed(2)} pm`;
-    if (meters >= 1e-15) return `${(meters * 1e15).toFixed(2)} fm`;
-    return `${meters.toExponential(2)} m`;
+  formatScientific(val, unit = '', isBn = false) {
+    if (typeof val !== 'number' || isNaN(val)) return '';
+    const expStr = val.toExponential(2);
+    if (!isBn) return `${expStr} ${unit}`.trim();
+    const [coeff, exp] = expStr.split('e');
+    const bnCoeff = this.toBanglaNum(coeff);
+    const expNum = parseInt(exp, 10);
+    const superscripts = {
+      '-': '⁻', '+': '⁺', '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴',
+      '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹'
+    };
+    const sign = expNum < 0 ? '⁻' : '';
+    const absExpStr = String(Math.abs(expNum));
+    const bnExp = absExpStr.split('').map(c => superscripts[c] || c).join('');
+    return `${bnCoeff} × ১০${sign}${bnExp} ${unit}`.trim();
+  }
+
+  formatDistance(meters, isBn = false) {
+    if (meters >= 1000) {
+      const v = (meters / 1000).toFixed(2);
+      return isBn ? `${this.toBanglaNum(v)} কিমি` : `${v} km`;
+    }
+    if (meters >= 0.01) {
+      const v = (meters * 1000).toFixed(2);
+      return isBn ? `${this.toBanglaNum(v)} মিমি` : `${v} mm`;
+    }
+    if (meters >= 1e-6) {
+      const v = (meters * 1e6).toFixed(2);
+      return isBn ? `${this.toBanglaNum(v)} µm` : `${v} µm`;
+    }
+    if (meters >= 1e-9) {
+      const v = (meters * 1e9).toFixed(2);
+      return isBn ? `${this.toBanglaNum(v)} nm` : `${v} nm`;
+    }
+    if (meters >= 1e-12) {
+      const v = (meters * 1e12).toFixed(2);
+      return isBn ? `${this.toBanglaNum(v)} pm` : `${v} pm`;
+    }
+    if (meters >= 1e-15) {
+      const v = (meters * 1e15).toFixed(2);
+      return isBn ? `${this.toBanglaNum(v)} fm` : `${v} fm`;
+    }
+    return this.formatScientific(meters, isBn ? 'মি' : 'm', isBn);
   }
 
   updateBlackHoleStats() {
@@ -1124,34 +1159,43 @@ class CosmicApp {
     const bh = this.calculateBlackHolePhysics(nearest);
 
     const name = this.lang === 'bn' ? bh.objNameBn : bh.objNameEn;
+    const isBn = this.lang === 'bn';
 
     if (this.bhStatMass) {
-      this.bhStatMass.textContent = this.lang === 'bn'
-        ? `${bh.massKg.toExponential(2)} কেজি (${name})`
+      this.bhStatMass.textContent = isBn
+        ? `${this.formatScientific(bh.massKg, 'কেজি', true)} (${name})`
         : `${bh.massKg.toExponential(2)} kg (${name})`;
     }
 
     if (this.bhStatRadius) {
-      const rsStr = this.formatDistance(bh.rs);
-      const rshStr = this.formatDistance(bh.rshadow);
-      this.bhStatRadius.textContent = `rs = ${rsStr} | শ্যাডো ≈ ${rshStr}`;
+      const rsStr = this.formatDistance(bh.rs, isBn);
+      const rshStr = this.formatDistance(bh.rshadow, isBn);
+      this.bhStatRadius.textContent = `rs = ${rsStr} | ${isBn ? 'শ্যাডো' : 'Shadow'} ≈ ${rshStr}`;
     }
 
     if (this.bhStatPhoton) {
-      const rphStr = this.formatDistance(bh.rph);
-      this.bhStatPhoton.textContent = `১.৫ × rs (${rphStr})`;
+      const rphStr = this.formatDistance(bh.rph, isBn);
+      this.bhStatPhoton.textContent = `${isBn ? '১.৫' : '1.5'} × rs (${rphStr})`;
     }
 
     if (this.bhStatHawking) {
       let tStr = '';
       if (bh.tEvapYrs >= 1e6) {
-        tStr = `~${bh.tEvapYrs.toExponential(1)} বছর`;
+        tStr = isBn
+          ? `~${this.formatScientific(bh.tEvapYrs, 'বছর', true)}`
+          : `~${bh.tEvapYrs.toExponential(1)} yrs`;
       } else if (bh.tEvapSec >= 1) {
-        tStr = `~${bh.tEvapSec.toFixed(1)} সেকেন্ড`;
+        tStr = isBn
+          ? `~${this.toBanglaNum(bh.tEvapSec.toFixed(1))} সেকেন্ড`
+          : `~${bh.tEvapSec.toFixed(1)} s`;
       } else {
-        tStr = `${bh.tEvapSec.toExponential(2)} সেকেন্ড`;
+        tStr = isBn
+          ? `${this.formatScientific(bh.tEvapSec, 'সেকেন্ড', true)}`
+          : `${bh.tEvapSec.toExponential(2)} s`;
       }
-      this.bhStatHawking.textContent = `${bh.TH.toExponential(1)} K (${tStr})`;
+      this.bhStatHawking.textContent = isBn
+        ? `${this.formatScientific(bh.TH, 'K', true)} (${tStr})`
+        : `${bh.TH.toExponential(1)} K (${tStr})`;
     }
 
     if (this.bhNoticeText) {
@@ -1164,8 +1208,8 @@ class CosmicApp {
     // Screen reader live announcement
     if (this.bhSrAnnouncements) {
       this.bhSrAnnouncements.textContent = this.lang === 'bn'
-        ? `শোয়ার্জশিল্ড ব্ল্যাকহোল সক্রিয়। সংকুচিত ভর: ${name}, শোয়ার্জশিল্ড ব্যাসার্ধ: ${this.formatDistance(bh.rs)}`
-        : `Schwarzschild black hole active. Collapsed mass: ${name}, Event horizon radius: ${this.formatDistance(bh.rs)}`;
+        ? `শোয়ার্জশিল্ড ব্ল্যাকহোল সক্রিয়। সংকুচিত ভর: ${name}, শোয়ার্জশিল্ড ব্যাসার্ধ: ${this.formatDistance(bh.rs, true)}`
+        : `Schwarzschild black hole active. Collapsed mass: ${name}, Event horizon radius: ${this.formatDistance(bh.rs, false)}`;
     }
   }
 }
