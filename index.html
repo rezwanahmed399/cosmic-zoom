@@ -9,11 +9,22 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Hind+Siliguri:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "./lib/three.module.js",
+      "three/addons/": "./lib/jsm/"
+    }
+  }
+  </script>
 </head>
 <body>
 
-  <!-- Fullscreen WebGL/Canvas Viewport -->
+  <!-- Fullscreen 2D Viewport Canvas -->
   <canvas id="viewport-canvas"></canvas>
+
+  <!-- Fullscreen 3D WebGL (Three.js) Viewport Canvas -->
+  <canvas id="canvas-3d" class="webgl-canvas"></canvas>
 
   <!-- Sci-Fi Vignette and Ambient Scanline Overlay -->
   <div class="hud-overlay"></div>
@@ -94,6 +105,17 @@
           </svg>
         </span>
         <span class="btn-label" id="collapse-btn-label">ব্ল্যাকহোল</span>
+      </button>
+
+      <button class="hud-btn dimension-btn" id="dimension-toggle-btn" title="2D / 3D ডাইমেনশন মোড সুইচ (Toggle 2D/3D Mode) [3]">
+        <span class="btn-icon">
+          <svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+          </svg>
+        </span>
+        <span class="btn-label" id="dimension-label">3D মোড</span>
       </button>
 
       <button class="hud-btn" id="audio-toggle-btn" title="কোয়ান্টাম-কসমিক অডিও (Sound Synth)">

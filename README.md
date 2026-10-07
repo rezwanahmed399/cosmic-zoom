@@ -8,18 +8,24 @@ Built with Vanilla JavaScript, HTML5 Canvas, Web Audio API, and pure SVG iconogr
 
 ## Key Features
 
-1. **Continuous 62 Orders of Magnitude Zoom Engine**
+1. **Dual-Engine Architecture: 2D Canvas & 3D WebGL (Three.js)**
+   - Seamless live toggling between 2D Canvas and 3D WebGL via the HUD button `[ 2D / 3D ]` or keyboard shortcut `[3]`.
+   - Full 360-degree free orbital navigation: drag to orbit around cosmic, atomic, and quantum bodies in three dimensions with logarithmic depth buffering (`logarithmicDepthBuffer: true`).
+   - True 3D Schwarzschild Black Hole: pure pitch-black shadow sphere, razor photon ring, 3D accretion disk with real-time Doppler beaming reacting to camera orbit angle, 3D relativistic polar jets, and isotropic 3D Hawking radiation particle swarm.
+   - 100% self-hosted native browser ES Modules in `lib/` with browser `importmap` support.
+
+2. **Continuous 62 Orders of Magnitude Zoom Engine**
    - Seamless logarithmic camera transitions spanning from $+27.0$ down to $-35.0$.
    - Frame-rate independent exponential smoothing damping ($\lambda = 1 - e^{-k \cdot \Delta t}$) supporting 60Hz, 120Hz, and variable refresh rate screens.
    - Deep URL hash linking (`#s=27.0` to `#s=-35.0`) for sharing exact scale positions.
 
-2. **38 Scientifically Grounded Landmark Objects**
+3. **38 Scientifically Grounded Landmark Objects**
    - Detailed astronomical, planetary, biological, atomic, and quantum landmark objects.
    - Exact scientific metrics: physical sizes, comoving distances, light-transit times, and observation instrument ladder tags.
    - Explicit distinction between physical measurement (STM, spectroscopy) and theoretical quantum probability clouds ($|\psi|^2$).
    - Particle physics "desert" scales represented as energy-equivalent probing distances ($\lambda = \hbar c / E$) in GeV.
 
-3. **Governing Force of Structure Panel**
+4. **Governing Force of Structure Panel**
    - Real-time HUD tracking the fundamental physical force governing stability at each scale:
      - **Gravity & Dark Energy** ($10^{27}$ to $10^{11}\text{ m}$)
      - **Electromagnetism** ($10^{10}$ to $10^{-13}\text{ m}$, binding planets, mountains, human bodies, cells, molecules, and atoms)
@@ -27,7 +33,7 @@ Built with Vanilla JavaScript, HTML5 Canvas, Web Audio API, and pure SVG iconogr
      - **Weak & Electroweak Unification** ($10^{-18}$ to $10^{-27}\text{ m}$)
      - **Quantum Gravity / Planck Scale** ($10^{-28}$ to $10^{-35}\text{ m}$)
 
-4. **Schwarzschild Black Hole Simulation (General Relativity)**
+5. **Schwarzschild Black Hole Simulation (General Relativity)**
    - Dynamic gravitational collapse trigger on the active landmark object's mass (e.g., Sun, Earth, Human body, Planck mass).
    - Exact Schwarzschild concentric geometry:
      - Event Horizon ($r_s = 2GM/c^2 = 1.0 \, r_s$)
@@ -37,16 +43,16 @@ Built with Vanilla JavaScript, HTML5 Canvas, Web Audio API, and pure SVG iconogr
    - Live Accretion Mode Toggle: switch between gas accretion with relativistic Doppler beaming & polar jets, and pure vacuum gravitational lensing.
    - Real-time Hawking thermodynamics telemetry: Hawking Temperature ($T_H$) and evaporation lifespan ($t_{\text{evap}}$) with time-lapse transparency.
 
-5. **Procedural Multi-Layer Ambient Canvas Engine**
+6. **Procedural Multi-Layer Ambient Canvas Engine**
    - Custom rendering per scale: cosmic web filaments, galactic spirals, starfields, planetary surfaces, cell membranes, DNA double helixes, quantum probability clouds, and Planck quantum foam.
    - Planck Wall barrier with visual quantum jitter and auditory vacuum fluctuation hum.
 
-6. **Generative Web Audio Synthesizer**
+7. **Generative Web Audio Synthesizer**
    - Procedural soundscapes with sub-bass cosmic drones, harmonic mid-frequency pads, and high-frequency quantum vacuum noise.
    - Safe dual-stage limiter: Web Audio DynamicsCompressor paired with post-compressor safety gain ceiling ($0.35$).
    - Audible harmonics included for full fidelity on mobile phone and laptop speakers.
 
-7. **Accessibility & Design System**
+8. **Accessibility & Design System**
    - Zero emojis policy: 100% custom SVG vector icons.
    - Full support for `prefers-reduced-motion` (WCAG 2.3.1 compliance).
    - Live screen reader announcements (`aria-live="polite"`).
@@ -64,8 +70,11 @@ Built with Vanilla JavaScript, HTML5 Canvas, Web Audio API, and pure SVG iconogr
 - **Keyboard Shortcuts:**
   - `Arrow Up` / `Page Up` / `-`: Zoom out towards Cosmic scale
   - `Arrow Down` / `Page Down` / `+`: Zoom in towards Planck scale
+  - `3`: Toggle 2D Canvas / 3D WebGL mode
   - `0`: Reset to Human scale ($10^0\text{ m}$)
   - `B`: Trigger Gravitational Collapse on current object / toggle black hole
+  - `O`: Toggle Schwarzschild 3-ring educational geometry overlay
+  - `H`: Toggle Black Hole data telemetry card visibility
   - `X`: Trigger Hawking Evaporation and restore space
   - `Space`: Toggle automated scale cruise tour
   - `Escape`: Close dialogue modals

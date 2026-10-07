@@ -7,14 +7,18 @@
 import { COSMIC_OBJECTS, SCALE_DOMAINS, SCALE_COMPARISONS, SCALE_QUIZ_QUESTIONS } from './science-data.js';
 import { CosmicAudioEngine } from './audio-engine.js';
 import { CosmicRenderEngine } from './render-engine.js';
+import { CosmicRenderEngine3D } from './render-engine-3d.js';
 import { getIcon } from './icons.js';
 
 class CosmicApp {
   constructor() {
     this.canvas = document.getElementById('viewport-canvas');
     this.renderEngine = new CosmicRenderEngine(this.canvas);
+    this.canvas3D = document.getElementById('canvas-3d');
+    this.renderEngine3D = new CosmicRenderEngine3D(this.canvas3D);
     this.audioEngine = new CosmicAudioEngine();
 
+    this.dimensionMode = '2d'; // '2d' | '3d'
     this.lang = 'bn'; // Default to Bengali as requested by the user, toggleable to 'en'
     this.isAutoCruising = false;
     this.cruiseSpeed = 0.04; // orders per frame
@@ -54,6 +58,9 @@ class CosmicApp {
     this.sliderEl = document.getElementById('scale-slider');
     this.audioBtn = document.getElementById('audio-toggle-btn');
     this.audioWave = document.getElementById('audio-wave');
+    this.dimensionBtn = document.getElementById('dimension-toggle-btn');
+    this.dimensionLabel = document.getElementById('dimension-label');
+    this.cornerDisclaimerEl = document.getElementById('canvas-corner-disclaimer');
     this.tourBtn = document.getElementById('tour-toggle-btn');
     this.langBtn = document.getElementById('lang-toggle-btn');
     this.fullscreenBtn = document.getElementById('fullscreen-btn');
@@ -125,6 +132,7 @@ class CosmicApp {
 
     // Connect Render Engine Black Hole Callbacks
     this.renderEngine.onBlackHoleTriggered = () => {
+      this.renderEngine3D.triggerBlackHoleCollapse();
       this.audioEngine.playBlackHoleCollapse();
       this.stopTour();
       document.body.classList.add('black-hole-mode');
@@ -140,6 +148,7 @@ class CosmicApp {
     };
 
     this.renderEngine.onBlackHoleEvaporated = () => {
+      this.renderEngine3D.triggerBlackHoleEvaporation();
       this.audioEngine.playBlackHoleEvaporate();
       document.body.classList.remove('black-hole-mode');
       if (this.blackholeOverlay) {
@@ -151,6 +160,7 @@ class CosmicApp {
       }
       if (this.collapseBtn) this.collapseBtn.classList.remove('active');
       this.updateHUD(true);
+      this.updateCornerDisclaimer();
     };
 
     // Quick Jump Buttons Container
@@ -186,6 +196,7 @@ class CosmicApp {
         this.stopTour();
         this.audioEngine.playChime(600);
         this.renderEngine.setTargetOrder(m.order);
+        this.renderEngine3D.setTargetOrder(m.order);
       });
       this.quickJumpContainer.appendChild(btn);
       this.jumpButtons.push({ btn, order: m.order });
@@ -216,6 +227,7 @@ class CosmicApp {
         const targetObj = COSMIC_OBJECTS.find(o => o.id === comp.targetA);
         if (targetObj) {
           this.renderEngine.setTargetOrder(targetObj.order);
+          this.renderEngine3D.setTargetOrder(targetObj.order);
           this.closeModals();
         }
       });
@@ -290,6 +302,7 @@ class CosmicApp {
           jumpBtn.addEventListener('click', () => {
             this.stopTour();
             this.renderEngine.setTargetOrder(q.targetOrder);
+            this.renderEngine3D.setTargetOrder(q.targetOrder);
             this.closeModals();
             this.audioEngine.playChime(640);
           });
@@ -342,6 +355,7 @@ class CosmicApp {
     // Window Resize
     window.addEventListener('resize', () => {
       this.renderEngine.resize();
+      this.renderEngine3D.onWindowResize();
     });
 
     // Page Visibility: Pause tour and cancel compression if tab is hidden
@@ -447,6 +461,7 @@ class CosmicApp {
       // Normalized delta
       const delta = (e.deltaY > 0 ? -1 : 1) * Math.min(Math.abs(e.deltaY) * 0.0035, 0.9);
       this.renderEngine.addZoomDelta(delta);
+      this.renderEngine3D.addZoomDelta(delta);
       this.audioEngine.playZoomPulse(delta > 0 ? 1 : -1);
     }, { passive: true });
 
@@ -469,6 +484,7 @@ class CosmicApp {
       if (this.renderEngine.blackHoleState === 'active') {
         if (e.touches.length === 1 && e.touches[0].clientY - touchStartY > 20) {
           this.renderEngine.triggerBlackHoleEvaporation();
+          this.renderEngine3D.triggerBlackHoleEvaporation();
         }
         return;
       }
@@ -476,6 +492,7 @@ class CosmicApp {
         const diffY = e.touches[0].clientY - touchStartY;
         touchStartY = e.touches[0].clientY;
         this.renderEngine.addZoomDelta(diffY * 0.02);
+        this.renderEngine3D.addZoomDelta(diffY * 0.02);
       } else if (e.touches.length === 2) {
         const dx = e.touches[0].clientX - e.touches[1].clientX;
         const dy = e.touches[0].clientY - e.touches[1].clientY;
@@ -483,6 +500,7 @@ class CosmicApp {
         const pinchDelta = (dist - touchStartDist) * 0.03;
         touchStartDist = dist;
         this.renderEngine.addZoomDelta(pinchDelta);
+        this.renderEngine3D.addZoomDelta(pinchDelta);
       }
     }, { passive: true });
 
@@ -491,6 +509,7 @@ class CosmicApp {
       this.stopTour();
       const val = parseFloat(e.target.value);
       this.renderEngine.setTargetOrder(27 - val);
+      this.renderEngine3D.setTargetOrder(27 - val);
     });
 
     // Zoom Buttons (+ / -)
@@ -498,15 +517,18 @@ class CosmicApp {
       this.stopTour();
       if (this.renderEngine.currentOrder <= -34.8) {
         this.renderEngine.triggerBlackHoleCollapse(window.innerWidth / 2, window.innerHeight / 2);
+        this.renderEngine3D.triggerBlackHoleCollapse();
         return;
       }
       this.renderEngine.addZoomDelta(-1.5);
+      this.renderEngine3D.addZoomDelta(-1.5);
       this.audioEngine.playZoomPulse(-1);
     });
 
     document.getElementById('zoom-out-btn').addEventListener('click', () => {
       this.stopTour();
       this.renderEngine.addZoomDelta(1.5);
+      this.renderEngine3D.addZoomDelta(1.5);
       this.audioEngine.playZoomPulse(1);
     });
 
@@ -517,6 +539,13 @@ class CosmicApp {
       this.audioWave.style.opacity = active ? '1' : '0.3';
     });
 
+    // 2D / 3D Dimension Switcher
+    if (this.dimensionBtn) {
+      this.dimensionBtn.addEventListener('click', () => {
+        this.toggleDimension();
+      });
+    }
+
     // Auto-Tour Toggle
     this.tourBtn.addEventListener('click', () => {
       this.toggleTour();
@@ -526,6 +555,12 @@ class CosmicApp {
     this.langBtn.addEventListener('click', () => {
       this.lang = this.lang === 'bn' ? 'en' : 'bn';
       this.langBtn.textContent = this.lang === 'bn' ? 'বাংলা' : 'EN';
+      if (this.dimensionLabel) {
+        this.dimensionLabel.textContent = this.dimensionMode === '3d'
+          ? (this.lang === 'bn' ? '২D মোড' : '2D Mode')
+          : (this.lang === 'bn' ? '৩D মোড' : '3D Mode');
+      }
+      this.updateCornerDisclaimer();
       if (this.collapseBtnLabel) {
         this.collapseBtnLabel.textContent = this.lang === 'bn' ? 'ব্ল্যাকহোল' : 'Black Hole';
       }
@@ -612,10 +647,13 @@ class CosmicApp {
         e.stopPropagation();
         if (this.renderEngine.blackHoleState === 'active' || this.renderEngine.blackHoleState === 'shattering') {
           this.renderEngine.triggerBlackHoleEvaporation();
+          this.renderEngine3D.triggerBlackHoleEvaporation();
         } else {
           this.stopTour();
           this.renderEngine.setTargetOrder(-35.0);
+          this.renderEngine3D.setTargetOrder(-35.0);
           this.renderEngine.triggerBlackHoleCollapse(window.innerWidth / 2, window.innerHeight / 2);
+          this.renderEngine3D.triggerBlackHoleCollapse();
         }
       });
     }
@@ -624,6 +662,7 @@ class CosmicApp {
       this.evaporateBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         this.renderEngine.triggerBlackHoleEvaporation();
+        this.renderEngine3D.triggerBlackHoleEvaporation();
       });
     }
 
@@ -631,6 +670,7 @@ class CosmicApp {
       this.bhModeToggleBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         this.renderEngine.blackHoleAccretionMode = this.renderEngine.blackHoleAccretionMode === 'disk' ? 'vacuum' : 'disk';
+        this.renderEngine3D.blackHoleAccretionMode = this.renderEngine.blackHoleAccretionMode;
         const isDisk = this.renderEngine.blackHoleAccretionMode === 'disk';
         if (this.bhModeLabel) {
           this.bhModeLabel.textContent = this.lang === 'bn'
@@ -647,6 +687,7 @@ class CosmicApp {
       this.bhOverlayToggleBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         this.renderEngine.showGeometryOverlay = !this.renderEngine.showGeometryOverlay;
+        this.renderEngine3D.showGeometryOverlay = this.renderEngine.showGeometryOverlay;
         this.bhOverlayToggleBtn.classList.toggle('active', this.renderEngine.showGeometryOverlay);
         this.audioEngine.playChime(this.renderEngine.showGeometryOverlay ? 720 : 540);
       });
@@ -659,6 +700,7 @@ class CosmicApp {
           e.stopPropagation();
           const mass = chip.getAttribute('data-mass');
           this.renderEngine.blackHoleMassType = mass;
+          this.renderEngine3D.blackHoleMassType = mass;
           this.bhMassChips.forEach(c => c.classList.toggle('active', c === chip));
           this.updateBlackHoleStats();
           this.audioEngine.playChime(620);
@@ -763,6 +805,8 @@ class CosmicApp {
         }
         this.renderEngine.setTargetOrder(0.23); // Reset to human scale
         this.audioEngine.playChime(500);
+      } else if (e.key === '3') {
+        this.toggleDimension();
       } else if (e.key === 'b' || e.key === 'B') {
         if (this.renderEngine.blackHoleState === 'active') {
           this.renderEngine.triggerBlackHoleEvaporation();
@@ -784,6 +828,54 @@ class CosmicApp {
         this.closeModals();
       }
     });
+  }
+
+  toggleDimension() {
+    this.dimensionMode = this.dimensionMode === '2d' ? '3d' : '2d';
+    document.body.classList.toggle('mode-3d', this.dimensionMode === '3d');
+
+    if (this.dimensionBtn) {
+      this.dimensionBtn.classList.toggle('active', this.dimensionMode === '3d');
+    }
+    if (this.dimensionLabel) {
+      this.dimensionLabel.textContent = this.dimensionMode === '3d'
+        ? (this.lang === 'bn' ? '২D মোড' : '2D Mode')
+        : (this.lang === 'bn' ? '৩D মোড' : '3D Mode');
+    }
+
+    if (this.dimensionMode === '3d') {
+      this.renderEngine3D.setTargetOrder(this.renderEngine.currentOrder);
+      this.renderEngine3D.currentOrder = this.renderEngine.currentOrder;
+      this.renderEngine3D.blackHoleState = this.renderEngine.blackHoleState;
+      this.renderEngine3D.blackHoleMassType = this.renderEngine.blackHoleMassType;
+      this.renderEngine3D.blackHoleAccretionMode = this.renderEngine.blackHoleAccretionMode;
+      this.renderEngine3D.showGeometryOverlay = this.renderEngine.showGeometryOverlay;
+      this.renderEngine3D.onWindowResize();
+    } else {
+      this.renderEngine.setTargetOrder(this.renderEngine3D.currentOrder);
+      this.renderEngine.currentOrder = this.renderEngine3D.currentOrder;
+      this.renderEngine.blackHoleState = this.renderEngine3D.blackHoleState;
+      this.renderEngine.blackHoleMassType = this.renderEngine3D.blackHoleMassType;
+      this.renderEngine.blackHoleAccretionMode = this.renderEngine3D.blackHoleAccretionMode;
+      this.renderEngine.showGeometryOverlay = this.renderEngine3D.showGeometryOverlay;
+      this.renderEngine.resize();
+    }
+
+    this.audioEngine.playChime(this.dimensionMode === '3d' ? 880 : 440);
+    this.updateCornerDisclaimer();
+  }
+
+  updateCornerDisclaimer() {
+    if (!this.cornerDisclaimerEl) return;
+    if (this.dimensionMode === '3d') {
+      this.cornerDisclaimerEl.textContent = this.lang === 'bn'
+        ? 'সরলীকৃত ৩ডি আপেক্ষিকীয় মডেল (Three.js WebGL)'
+        : 'Simplified 3D Relativistic Model (Three.js WebGL)';
+    } else {
+      this.cornerDisclaimerEl.textContent = this.lang === 'bn'
+        ? 'সরলীকৃত ২ডি আপেক্ষিকীয় মডেল, আসল ছবি নয়'
+        : 'Simplified 2D Relativistic Model, Not Real Image';
+    }
   }
 
   toBanglaNum(num) {
@@ -848,6 +940,7 @@ class CosmicApp {
       `;
       row.addEventListener('click', () => {
         this.renderEngine.setTargetOrder(obj.order);
+        this.renderEngine3D.setTargetOrder(obj.order);
         this.closeModals();
         this.audioEngine.playChime(640);
       });
@@ -896,6 +989,7 @@ class CosmicApp {
           this.cruiseDirection = -1;
         }
         this.renderEngine.setTargetOrder(nextOrder);
+        this.renderEngine3D.setTargetOrder(nextOrder);
       }
 
       // Handle Gravitational Compression Charging while Mouse / Touch is held
@@ -903,9 +997,22 @@ class CosmicApp {
         this.renderEngine.updateCompression(dt, true, this.mousePos.x, this.mousePos.y);
       }
 
-      // Update Render Engine
-      this.renderEngine.update(dt);
-      this.renderEngine.render();
+      // Update Render Engine according to active dimension
+      if (this.dimensionMode === '3d') {
+        this.renderEngine3D.update(dt);
+        this.renderEngine3D.render();
+        // Sync 2D engine's scale orders
+        this.renderEngine.currentOrder = this.renderEngine3D.currentOrder;
+        this.renderEngine.targetOrder = this.renderEngine3D.targetOrder;
+        this.renderEngine.zoomVelocity = this.renderEngine3D.zoomVelocity;
+      } else {
+        this.renderEngine.update(dt);
+        this.renderEngine.render();
+        // Sync 3D engine's scale orders
+        this.renderEngine3D.currentOrder = this.renderEngine.currentOrder;
+        this.renderEngine3D.targetOrder = this.renderEngine.targetOrder;
+        this.renderEngine3D.zoomVelocity = this.renderEngine.zoomVelocity;
+      }
 
       // Update UI Telemetry & Audio
       this.updateHUD();

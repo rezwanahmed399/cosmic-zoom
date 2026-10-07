@@ -45,7 +45,7 @@ html, body {
   font-family: var(--font-bn);
 }
 
-/* Fullscreen Viewport Canvas */
+/* Fullscreen Dual-Engine Viewport Canvases */
 #viewport-canvas {
   position: absolute;
   top: 0;
@@ -54,6 +54,35 @@ html, body {
   height: 100vh;
   z-index: 1;
   display: block;
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#canvas-3d,
+.webgl-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  display: block;
+  opacity: 0;
+  pointer-events: none;
+  touch-action: none;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body.mode-3d #viewport-canvas {
+  opacity: 0;
+  pointer-events: none;
+}
+
+body.mode-3d #canvas-3d,
+body.mode-3d .webgl-canvas {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 /* Sci-Fi Vignette & Vignette Mask */
@@ -1498,6 +1527,27 @@ html, body {
     box-shadow: 0 0 24px rgba(239, 68, 68, 0.8);
     transform: scale(1.04);
   }
+}
+
+/* 2D / 3D Dimension Mode Switcher Button */
+.dimension-btn {
+  background: rgba(14, 165, 233, 0.1);
+  border-color: rgba(56, 189, 248, 0.35);
+  color: #bae6fd;
+}
+
+.dimension-btn:hover {
+  background: rgba(14, 165, 233, 0.25);
+  border-color: #38bdf8;
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+  color: #ffffff;
+}
+
+.dimension-btn.active {
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.35), rgba(99, 102, 241, 0.35));
+  border-color: #38bdf8;
+  color: #38bdf8;
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.55);
 }
 
 /* ================= BLACK HOLE CINEMATIC IMMERSION MODE ================= */
