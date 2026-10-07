@@ -32,6 +32,7 @@ export class CosmicRenderEngine {
     this.jetSparks = [];
     this.blackHoleLensingAngle = 0;
     this.blackHoleAccretionMode = 'disk'; // 'disk' | 'vacuum'
+    this.strainShakeIntensity = 0;
     this.onBlackHoleTriggered = null;
     this.onBlackHoleEvaporated = null;
 
@@ -175,6 +176,11 @@ export class CosmicRenderEngine {
         const shakeIntensity = Math.min(3.0, (-this.currentOrder - 34.2) * 3.5);
         shakeX = (Math.random() - 0.5) * shakeIntensity;
         shakeY = (Math.random() - 0.5) * shakeIntensity;
+      }
+      if (this.strainShakeIntensity > 0) {
+        shakeX += (Math.random() - 0.5) * this.strainShakeIntensity;
+        shakeY += (Math.random() - 0.5) * this.strainShakeIntensity;
+        this.strainShakeIntensity = Math.max(0, this.strainShakeIntensity - dt * 10);
       }
       if (this.blackHoleState === 'charging') {
         const stressShake = this.blackHoleCharge * 4.5;

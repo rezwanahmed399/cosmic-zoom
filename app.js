@@ -94,10 +94,15 @@ class CosmicApp {
     this.collapseBtn = document.getElementById('collapse-btn');
     this.collapseBtnLabel = document.getElementById('collapse-btn-label');
     this.blackholeOverlay = document.getElementById('blackhole-active-overlay');
+    this.blackholePanel = document.getElementById('blackhole-telemetry-panel');
     this.evaporateBtn = document.getElementById('evaporate-btn');
     this.evaporateBtnLabel = document.getElementById('evaporate-btn-label');
     this.bhModeToggleBtn = document.getElementById('bh-mode-toggle-btn');
     this.bhModeLabel = document.getElementById('bh-mode-label');
+    this.bhHideCardBtn = document.getElementById('bh-hide-card-btn');
+    this.bhHideBtnLabel = document.getElementById('bh-hide-btn-label');
+    this.bhRestoreCardPill = document.getElementById('bh-restore-card-pill');
+    this.bhRestoreLabel = document.getElementById('bh-restore-label');
     this.bhStatMass = document.getElementById('bh-stat-mass');
     this.bhStatRadius = document.getElementById('bh-stat-radius');
     this.bhStatPhoton = document.getElementById('bh-stat-photon');
@@ -105,21 +110,43 @@ class CosmicApp {
     this.bhNoticeText = document.getElementById('bh-notice-text');
     this.bhSrAnnouncements = document.getElementById('bh-sr-announcements');
 
+    // Spacetime Strain Meter Elements (Trans-Planckian Over-Zoom)
+    this.strainContainer = document.getElementById('spacetime-strain-container');
+    this.strainTitleText = document.getElementById('strain-title-text');
+    this.strainPercentText = document.getElementById('strain-percent-text');
+    this.strainFillBar = document.getElementById('strain-fill-bar');
+    this.strainSubText = document.getElementById('strain-sub-text');
+    this.planckStrainCount = 0;
+    this.strainDecayTimer = null;
+
     // Connect Render Engine Black Hole Callbacks
     this.renderEngine.onBlackHoleTriggered = () => {
       this.audioEngine.playBlackHoleCollapse();
+      this.stopTour();
+      document.body.classList.add('black-hole-mode');
       if (this.blackholeOverlay) {
         this.blackholeOverlay.classList.add('active');
-        this.updateBlackHoleStats();
+        this.blackholeOverlay.classList.remove('card-minimized');
       }
-      this.stopTour();
+      if (this.bhRestoreCardPill) {
+        this.bhRestoreCardPill.style.display = 'none';
+      }
+      if (this.collapseBtn) this.collapseBtn.classList.add('active');
+      this.updateBlackHoleStats();
     };
 
     this.renderEngine.onBlackHoleEvaporated = () => {
       this.audioEngine.playBlackHoleEvaporate();
+      document.body.classList.remove('black-hole-mode');
       if (this.blackholeOverlay) {
-        this.blackholeOverlay.style.display = 'none';
+        this.blackholeOverlay.classList.remove('active');
+        this.blackholeOverlay.classList.remove('card-minimized');
       }
+      if (this.bhRestoreCardPill) {
+        this.bhRestoreCardPill.style.display = 'none';
+      }
+      if (this.collapseBtn) this.collapseBtn.classList.remove('active');
+      this.updateHUD(true);
     };
 
     // Quick Jump Buttons Container
@@ -365,21 +392,52 @@ class CosmicApp {
       }
     });
 
-    // Mouse Wheel / Trackpad smooth zooming & Trans-Planckian Over-Zoom Collapse
+    // Mouse Wheel / Trackpad smooth zooming & Trans-Planckian Over-Zoom Strain Collapse
     window.addEventListener('wheel', (e) => {
       this.stopTour();
 
-      // Trans-Planckian Over-Zoom: If user forces past the Planck limit, trigger micro black hole
-      if (this.renderEngine.currentOrder <= -34.8 && e.deltaY > 0) {
-        this.planckOverZoomCount = (this.planckOverZoomCount || 0) + 1;
-        this.audioEngine.playSpacetimeStress(Math.min(1.0, this.planckOverZoomCount / 5));
-        if (this.planckOverZoomCount >= 5) {
-          this.planckOverZoomCount = 0;
+      // If Black Hole is currently active, scrolling UP triggers evaporation and restores Planck scale!
+      if (this.renderEngine.blackHoleState === 'active') {
+        if (e.deltaY < 0) {
+          this.renderEngine.triggerBlackHoleEvaporation();
+        }
+        return;
+      }
+
+      // Trans-Planckian Over-Zoom: If user forces past the Planck limit, accumulate strain
+      if (this.renderEngine.currentOrder <= -34.75 && e.deltaY > 0) {
+        clearTimeout(this.strainDecayTimer);
+        this.planckStrainCount = Math.min(7, (this.planckStrainCount || 0) + 1);
+
+        if (this.strainContainer) {
+          this.strainContainer.style.display = 'flex';
+          this.strainContainer.style.opacity = '1';
+        }
+        const pct = Math.round((this.planckStrainCount / 7) * 100);
+        if (this.strainFillBar) this.strainFillBar.style.width = `${pct}%`;
+        if (this.strainPercentText) {
+          this.strainPercentText.textContent = `${this.lang === 'bn' ? this.toBanglaNum(pct) : pct}%`;
+        }
+
+        this.audioEngine.playSpacetimeStress(this.planckStrainCount / 7);
+        this.renderEngine.strainShakeIntensity = this.planckStrainCount * 2.8;
+
+        if (this.planckStrainCount >= 7) {
+          this.planckStrainCount = 0;
+          if (this.strainContainer) this.strainContainer.style.display = 'none';
           this.renderEngine.triggerBlackHoleCollapse(window.innerWidth / 2, window.innerHeight / 2);
           return;
         }
+
+        this.strainDecayTimer = setTimeout(() => {
+          this.dischargeStrain();
+        }, 1800);
+        return;
       } else {
-        this.planckOverZoomCount = 0;
+        if (this.planckStrainCount > 0 && e.deltaY < 0) {
+          this.planckStrainCount = 0;
+          if (this.strainContainer) this.strainContainer.style.display = 'none';
+        }
       }
 
       // Normalized delta
@@ -404,6 +462,12 @@ class CosmicApp {
 
     window.addEventListener('touchmove', (e) => {
       this.stopTour();
+      if (this.renderEngine.blackHoleState === 'active') {
+        if (e.touches.length === 1 && e.touches[0].clientY - touchStartY > 20) {
+          this.renderEngine.triggerBlackHoleEvaporation();
+        }
+        return;
+      }
       if (e.touches.length === 1) {
         const diffY = e.touches[0].clientY - touchStartY;
         touchStartY = e.touches[0].clientY;
@@ -462,7 +526,23 @@ class CosmicApp {
         this.collapseBtnLabel.textContent = this.lang === 'bn' ? 'ব্ল্যাকহোল' : 'Black Hole';
       }
       if (this.evaporateBtnLabel) {
-        this.evaporateBtnLabel.textContent = this.lang === 'bn' ? 'বাষ্পীভবন (Time-Lapse) [X]' : 'Evaporate (Time-Lapse) [X]';
+        this.evaporateBtnLabel.textContent = this.lang === 'bn' ? 'বাষ্পীভবন ও রিস্টোর [X]' : 'Evaporate & Return [X]';
+      }
+      if (this.bhHideBtnLabel) {
+        this.bhHideBtnLabel.textContent = this.lang === 'bn' ? 'কার্ড লুকান' : 'Hide Card';
+      }
+      if (this.bhRestoreLabel) {
+        this.bhRestoreLabel.textContent = this.lang === 'bn' ? 'শোয়ার্জশিল্ড তথ্য দেখুন [H]' : 'Show Data Card [H]';
+      }
+      if (this.strainTitleText) {
+        this.strainTitleText.textContent = this.lang === 'bn'
+          ? 'স্থান-কাল মহাকর্ষীয় সংকোচন টান (SPACETIME STRAIN)'
+          : 'Spacetime Gravitational Strain (TRANS-PLANCKIAN)';
+      }
+      if (this.strainSubText) {
+        this.strainSubText.textContent = this.lang === 'bn'
+          ? 'মাউস হুইল দিয়ে আরো স্ক্রোল করে মহাকর্ষীয় পতন ঘটান... (Scroll more to force collapse)'
+          : 'Scroll mouse wheel more to force gravitational collapse...';
       }
       if (this.bhModeLabel) {
         const isDisk = this.renderEngine.blackHoleAccretionMode === 'disk';
@@ -553,24 +633,30 @@ class CosmicApp {
       });
     }
 
-    // Connect Render Engine Black Hole Callbacks
-    this.renderEngine.onBlackHoleTriggered = () => {
-      this.audioEngine.playBlackHoleCollapse();
-      this.stopTour();
-      if (this.blackholeOverlay) {
-        this.blackholeOverlay.classList.add('active');
-      }
-      if (this.collapseBtn) this.collapseBtn.classList.add('active');
-      this.updateBlackHoleStats();
-    };
+    // Black Hole Card Hide & Restore Pill Buttons
+    if (this.bhHideCardBtn) {
+      this.bhHideCardBtn.addEventListener('click', () => {
+        if (this.blackholeOverlay) {
+          this.blackholeOverlay.classList.add('card-minimized');
+        }
+        if (this.bhRestoreCardPill) {
+          this.bhRestoreCardPill.style.display = 'inline-flex';
+        }
+        this.audioEngine.playChime(480);
+      });
+    }
 
-    this.renderEngine.onBlackHoleEvaporated = () => {
-      this.audioEngine.playBlackHoleEvaporate();
-      if (this.blackholeOverlay) {
-        this.blackholeOverlay.classList.remove('active');
-      }
-      if (this.collapseBtn) this.collapseBtn.classList.remove('active');
-    };
+    if (this.bhRestoreCardPill) {
+      this.bhRestoreCardPill.addEventListener('click', () => {
+        if (this.blackholeOverlay) {
+          this.blackholeOverlay.classList.remove('card-minimized');
+        }
+        if (this.bhRestoreCardPill) {
+          this.bhRestoreCardPill.style.display = 'none';
+        }
+        this.audioEngine.playChime(640);
+      });
+    }
 
     // Fullscreen Toggle
     this.fullscreenBtn.addEventListener('click', () => {
@@ -585,18 +671,53 @@ class CosmicApp {
     window.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowUp' || e.key === 'PageUp' || e.key === '-' || e.key === '_') {
         this.stopTour();
+        if (this.renderEngine.blackHoleState === 'active') {
+          this.renderEngine.triggerBlackHoleEvaporation();
+          return;
+        }
         this.renderEngine.addZoomDelta(1.0);
         this.audioEngine.playZoomPulse(1);
       } else if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === '+' || e.key === '=') {
         this.stopTour();
-        if (this.renderEngine.currentOrder <= -34.8) {
-          this.renderEngine.triggerBlackHoleCollapse(window.innerWidth / 2, window.innerHeight / 2);
+        if (this.renderEngine.blackHoleState === 'active') return;
+        if (this.renderEngine.currentOrder <= -34.75) {
+          clearTimeout(this.strainDecayTimer);
+          this.planckStrainCount = Math.min(7, (this.planckStrainCount || 0) + 1);
+          if (this.strainContainer) {
+            this.strainContainer.style.display = 'flex';
+            this.strainContainer.style.opacity = '1';
+          }
+          const pct = Math.round((this.planckStrainCount / 7) * 100);
+          if (this.strainFillBar) this.strainFillBar.style.width = `${pct}%`;
+          if (this.strainPercentText) {
+            this.strainPercentText.textContent = `${this.lang === 'bn' ? this.toBanglaNum(pct) : pct}%`;
+          }
+          this.audioEngine.playSpacetimeStress(this.planckStrainCount / 7);
+          this.renderEngine.strainShakeIntensity = this.planckStrainCount * 2.8;
+          if (this.planckStrainCount >= 7) {
+            this.planckStrainCount = 0;
+            if (this.strainContainer) this.strainContainer.style.display = 'none';
+            this.renderEngine.triggerBlackHoleCollapse(window.innerWidth / 2, window.innerHeight / 2);
+            return;
+          }
+          this.strainDecayTimer = setTimeout(() => this.dischargeStrain(), 1800);
           return;
         }
         this.renderEngine.addZoomDelta(-1.0);
         this.audioEngine.playZoomPulse(-1);
+      } else if (e.key === 'h' || e.key === 'H' || e.key === 'i' || e.key === 'I') {
+        if (this.renderEngine.blackHoleState === 'active' && this.blackholeOverlay) {
+          const isMin = this.blackholeOverlay.classList.toggle('card-minimized');
+          if (this.bhRestoreCardPill) {
+            this.bhRestoreCardPill.style.display = isMin ? 'inline-flex' : 'none';
+          }
+          this.audioEngine.playChime(isMin ? 480 : 640);
+        }
       } else if (e.key === '0') {
         this.stopTour();
+        if (this.renderEngine.blackHoleState === 'active') {
+          this.renderEngine.triggerBlackHoleEvaporation();
+        }
         this.renderEngine.setTargetOrder(0.23); // Reset to human scale
         this.audioEngine.playChime(500);
       } else if (e.key === 'b' || e.key === 'B') {
@@ -620,6 +741,34 @@ class CosmicApp {
         this.closeModals();
       }
     });
+  }
+
+  toBanglaNum(num) {
+    const bnDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
+    return String(num).replace(/\d/g, d => bnDigits[d]);
+  }
+
+  dischargeStrain() {
+    if (this.planckStrainCount > 0) {
+      this.planckStrainCount--;
+      const pct = Math.round((this.planckStrainCount / 7) * 100);
+      if (this.strainFillBar) this.strainFillBar.style.width = `${pct}%`;
+      if (this.strainPercentText) {
+        this.strainPercentText.textContent = `${this.lang === 'bn' ? this.toBanglaNum(pct) : pct}%`;
+      }
+      if (this.planckStrainCount > 0) {
+        this.strainDecayTimer = setTimeout(() => this.dischargeStrain(), 250);
+      } else {
+        if (this.strainContainer) {
+          this.strainContainer.style.opacity = '0';
+          setTimeout(() => {
+            if (this.planckStrainCount === 0 && this.strainContainer) {
+              this.strainContainer.style.display = 'none';
+            }
+          }, 350);
+        }
+      }
+    }
   }
 
   closeModals() {
