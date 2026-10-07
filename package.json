@@ -1,0 +1,22 @@
+{
+  "name": "cosmic-zoom",
+  "version": "1.0.0",
+  "description": "The Cosmic to Planck Scale Journey — 62 Orders of Magnitude Interactive Scientific Exploration",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test_esm.mjs && node check_emojis.js && node verify_ids.js"
+  },
+  "keywords": [
+    "cosmology",
+    "physics",
+    "quantum-mechanics",
+    "schwarzschild",
+    "general-relativity",
+    "canvas",
+    "web-audio"
+  ],
+  "author": "rezwanahmed399",
+  "license": "MIT"
+}
