@@ -1728,8 +1728,10 @@ body.black-hole-mode .hud-top,
 body.black-hole-mode .domain-indicator-wrapper,
 body.black-hole-mode .info-panel,
 body.black-hole-mode .object-card-container,
+body.black-hole-mode .object-card-restore-pill,
 body.black-hole-mode .planck-wall-banner,
 body.black-hole-mode .force-dominance-panel,
+body.black-hole-mode .force-restore-pill,
 body.black-hole-mode .screen-ruler-widget,
 body.black-hole-mode .hud-bottom,
 body.black-hole-mode .spacetime-strain-container {
@@ -1738,6 +1740,11 @@ body.black-hole-mode .spacetime-strain-container {
   pointer-events: none !important;
   transform: translateY(28px) !important;
   transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.45s ease !important;
+}
+
+body.black-hole-mode .object-card-restore-pill,
+body.black-hole-mode .force-restore-pill {
+  display: none !important;
 }
 
 body.black-hole-mode .hud-top,

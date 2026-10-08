@@ -176,6 +176,12 @@ class CosmicApp {
       this.audioEngine.playBlackHoleCollapse();
       this.stopTour();
       document.body.classList.add('black-hole-mode');
+      if (this.cardRestorePill) {
+        this.cardRestorePill.style.display = 'none';
+      }
+      if (this.forceRestorePill) {
+        this.forceRestorePill.style.display = 'none';
+      }
       if (this.blackholeOverlay) {
         this.blackholeOverlay.classList.add('active');
         this.blackholeOverlay.classList.remove('card-minimized');
@@ -196,6 +202,12 @@ class CosmicApp {
       }
       if (this.bhRestoreCardPill) {
         this.bhRestoreCardPill.style.display = 'none';
+      }
+      if (this.objectCardContainer && this.objectCardContainer.classList.contains('minimized')) {
+        if (this.cardRestorePill) this.cardRestorePill.style.display = 'inline-flex';
+      }
+      if (this.forceDominancePanel && this.forceDominancePanel.classList.contains('minimized')) {
+        if (this.forceRestorePill) this.forceRestorePill.style.display = 'inline-flex';
       }
       if (this.collapseBtn) this.collapseBtn.classList.remove('active');
       this.updateHUD(true);
@@ -819,8 +831,10 @@ class CosmicApp {
         this.renderEngine.addZoomDelta(-1.0);
         this.audioEngine.playZoomPulse(-1);
       } else if (e.key === 'c' || e.key === 'C') {
+        if (this.renderEngine && (this.renderEngine.blackHoleState === 'active' || this.renderEngine.blackHoleState === 'shattering')) return;
         this.toggleObjectCard();
       } else if (e.key === 'f' || e.key === 'F') {
+        if (this.renderEngine && (this.renderEngine.blackHoleState === 'active' || this.renderEngine.blackHoleState === 'shattering')) return;
         this.toggleForcesPanel();
       } else if (e.key === 'h' || e.key === 'H' || e.key === 'i' || e.key === 'I') {
         if (this.renderEngine.blackHoleState === 'active' && this.blackholeOverlay) {
@@ -1121,13 +1135,17 @@ class CosmicApp {
       this.audioEngine.playChime(640);
     } else {
       this.objectCardContainer.classList.add('minimized');
-      if (this.cardRestorePill) this.cardRestorePill.style.display = 'inline-flex';
+      if (this.cardRestorePill) {
+        const isBhActive = this.renderEngine && (this.renderEngine.blackHoleState === 'active' || this.renderEngine.blackHoleState === 'shattering');
+        this.cardRestorePill.style.display = isBhActive ? 'none' : 'inline-flex';
+      }
       this.audioEngine.playChime(480);
     }
   }
 
   toggleObjectCard() {
     if (!this.objectCardContainer) return;
+    if (this.renderEngine && (this.renderEngine.blackHoleState === 'active' || this.renderEngine.blackHoleState === 'shattering')) return;
     const isMin = this.objectCardContainer.classList.contains('minimized');
     this.setObjectCardVisible(isMin);
   }
@@ -1140,13 +1158,17 @@ class CosmicApp {
       this.audioEngine.playChime(640);
     } else {
       this.forceDominancePanel.classList.add('minimized');
-      if (this.forceRestorePill) this.forceRestorePill.style.display = 'inline-flex';
+      if (this.forceRestorePill) {
+        const isBhActive = this.renderEngine && (this.renderEngine.blackHoleState === 'active' || this.renderEngine.blackHoleState === 'shattering');
+        this.forceRestorePill.style.display = isBhActive ? 'none' : 'inline-flex';
+      }
       this.audioEngine.playChime(480);
     }
   }
 
   toggleForcesPanel() {
     if (!this.forceDominancePanel) return;
+    if (this.renderEngine && (this.renderEngine.blackHoleState === 'active' || this.renderEngine.blackHoleState === 'shattering')) return;
     const isMin = this.forceDominancePanel.classList.contains('minimized');
     this.setForcesPanelVisible(isMin);
   }
