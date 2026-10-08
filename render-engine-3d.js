@@ -490,7 +490,7 @@ export class CosmicRenderEngine3D {
       transparent: true,
       opacity: 0.28
     });
-    universeGroup.add(new THREE.Mesh(cmGeo => cmbGeo, cmbMat));
+    universeGroup.add(new THREE.Mesh(cmbGeo, cmbMat));
 
     // Supercluster Nodes
     const clusterCount = 1400;

@@ -2,6 +2,7 @@ import { COSMIC_OBJECTS, SCALE_DOMAINS, SCALE_COMPARISONS } from './science-data
 import { SVG_ICONS, getIcon } from './icons.js';
 import { CosmicAudioEngine } from './audio-engine.js';
 import { CosmicRenderEngine } from './render-engine.js';
+import { CosmicRenderEngine3D } from './render-engine-3d.js';
 
 console.log('Verification Success!');
 console.log('Objects count:', COSMIC_OBJECTS.length);

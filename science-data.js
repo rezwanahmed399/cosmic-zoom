@@ -543,38 +543,6 @@ export const COSMIC_OBJECTS = [
     sources: 'Survey of Nepal & China 2020'
   },
   {
-    order: 3.79,
-    id: 'padma_bridge',
-    nameEn: 'Padma Multipurpose Bridge',
-    nameBn: 'পদ্মা বহুমুখী সেতু',
-    sizeMeters: 6150,
-    sizeFormatted: '6,150 m (6.15 km Length)',
-    sizeFormattedBn: '৬,১৫০ মিটার (৬.১৫ কিমি দৈর্ঘ্য)',
-    lightTime: '~20.5 Microseconds (μs)',
-    lightTimeBn: '~২০.৫ মাইক্রোসেকেন্ড (μs)',
-    truthTag: 'measured',
-    truthBadgeEn: 'Civil Engineering Metrology',
-    truthBadgeBn: 'পরিমাপকৃত মেগা-স্থাপত্য',
-    dominantForce: 'electromagnetism',
-    dominantForceEn: 'Structural Steel & Pre-stressed Concrete',
-    dominantForceBn: 'ইস্পাত ও কংক্রিটের তাড়িতচৌম্বক বন্ধন',
-    instrumentEn: 'Laser Total Station / GNSS Surveying',
-    instrumentBn: 'লেজার টোটাল স্টেশন ও জিএনএসএস জরিপ',
-    humanTransit: {
-      walk: '১.২ ঘণ্টা (না থেমে হাঁটলে)',
-      jet: '২৪.৬ সেকেন্ড',
-      voyager: '০.৩৬ সেকেন্ড'
-    },
-    domain: 'macro',
-    renderType: 'padma_bridge',
-    accentColor: '#38bdf8',
-    summaryEn: 'A landmark engineering marvel of Bangladesh crossing the turbulent Padma River. Spans 6.15 kilometers with 41 steel truss spans resting on deep friction piles.',
-    summaryBn: 'বাংলাদেশের খরস্রোতা পদ্মা নদীর বুকে নির্মিত ৬.১৫ কিলোমিটার দীর্ঘ দ্বি-তল ইস্পাত ট্রাস মেগা-সেতু। এর পাইলগুলো পৃথিবীর যেকোনো সেতুর চেয়ে সবচেয়ে গভীরে (১২২ মিটার) প্রোথিত।',
-    factEn: 'The friction steel piles of Padma Bridge plunge 122 meters deep into the riverbed—a world record in civil bridge foundations!',
-    factBn: 'পদ্মা সেতুর স্টিল পাইলগুলো নদীর তলদেশের ১২২ মিটার গভীরে প্রবেশ করানো হয়েছে—যা বিশ্ব রেকর্ড!',
-    sources: 'Padma Bridge Project Directorate / BBA'
-  },
-  {
     order: 0.23,
     id: 'human',
     nameEn: 'Human Being',
