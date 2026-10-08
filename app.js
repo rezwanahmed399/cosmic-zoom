@@ -220,16 +220,11 @@ class CosmicApp {
     this.populateComparisons();
     this.populateQuiz();
 
-    // Responsive initial panel visibility:
-    // On mobile / small view (<= 768px): hide both info card and forces panel by default so canvas is 100% clear.
-    // On desktop view (> 768px): both panels are on/visible by default.
-    if (window.innerWidth <= 768) {
-      this.setObjectCardVisible(false, true);
-      this.setForcesPanelVisible(false, true);
-    } else {
-      this.setObjectCardVisible(true, true);
-      this.setForcesPanelVisible(true, true);
-    }
+    // All devices (desktop, laptop, tablet, mobile):
+    // Both info card and forces panel are hidden by default on all screens,
+    // keeping the cosmic canvas 100% clear with quick restore pills ready to toggle.
+    this.setObjectCardVisible(false, true);
+    this.setForcesPanelVisible(false, true);
   }
 
   populateQuickJumps() {
@@ -413,19 +408,9 @@ class CosmicApp {
   }
 
   initEvents() {
-    // Window Resize & Responsive Breakpoint Adaption
-    let lastWidth = window.innerWidth;
+    // Window Resize Handler
     window.addEventListener('resize', () => {
       this.renderEngine.resize();
-      const currentWidth = window.innerWidth;
-      if (lastWidth > 768 && currentWidth <= 768) {
-        this.setObjectCardVisible(false, true);
-        this.setForcesPanelVisible(false, true);
-      } else if (lastWidth <= 768 && currentWidth > 768) {
-        this.setObjectCardVisible(true, true);
-        this.setForcesPanelVisible(true, true);
-      }
-      lastWidth = currentWidth;
     });
 
     // Page Visibility: Pause tour and cancel compression if tab is hidden

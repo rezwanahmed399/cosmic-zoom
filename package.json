@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "node server.js",
-    "test": "node test_esm.mjs && node check_emojis.js && node verify_ids.js && node test_zero_bengali.js && node test_zero_bengali_app.js && node test_black_hole_pills.js"
+    "test": "node test_esm.mjs && node check_emojis.js && node verify_ids.js && node test_zero_bengali.js && node test_zero_bengali_app.js && node test_black_hole_pills.js && node test_default_hidden_all_devices.js"
   },
   "keywords": [
     "cosmology",
