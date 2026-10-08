@@ -41,7 +41,12 @@ class CosmicApp {
     this.domainBadgeEl = document.getElementById('domain-badge');
 
     // Object Details Panel
+    this.objectCardContainer = document.getElementById('object-card-container');
     this.objectCardEl = document.getElementById('object-card');
+    this.cardHideBtn = document.getElementById('card-hide-btn');
+    this.cardHideLabel = document.getElementById('card-hide-label');
+    this.cardRestorePill = document.getElementById('object-card-restore-pill');
+    this.cardRestoreLabel = document.getElementById('object-card-restore-label');
     this.objectNameEl = document.getElementById('object-name');
     this.objectSubNameEl = document.getElementById('object-subname');
     this.objectDimensionEl = document.getElementById('object-dimension');
@@ -399,6 +404,12 @@ class CosmicApp {
 
     // Mouse Wheel / Trackpad smooth zooming & Trans-Planckian Over-Zoom Strain Collapse
     window.addEventListener('wheel', (e) => {
+      // If user is wheeling/scrolling inside the object card, HUD panels, or modal dialogs:
+      // Allow native container scrolling and NEVER mutate the cosmic scale zoom in the background!
+      if (e.target && e.target.closest && e.target.closest('.object-card, .object-card-container, .force-dominance-panel, .modal-card, .modal-inner, .modal-dialog, #compare-modal, #search-modal, #quiz-modal, .blackhole-telemetry-panel')) {
+        return;
+      }
+
       this.stopTour();
 
       // If Black Hole is currently active, scrolling UP triggers evaporation and restores Planck scale!
@@ -456,6 +467,9 @@ class CosmicApp {
     let touchStartDist = 0;
 
     window.addEventListener('touchstart', (e) => {
+      if (e.target && e.target.closest && e.target.closest('.object-card, .object-card-container, .force-dominance-panel, .modal-card, .modal-inner, .modal-dialog, #compare-modal, #search-modal, #quiz-modal, .blackhole-telemetry-panel')) {
+        return;
+      }
       if (e.touches.length === 1) {
         touchStartY = e.touches[0].clientY;
       } else if (e.touches.length === 2) {
@@ -466,6 +480,9 @@ class CosmicApp {
     }, { passive: true });
 
     window.addEventListener('touchmove', (e) => {
+      if (e.target && e.target.closest && e.target.closest('.object-card, .object-card-container, .force-dominance-panel, .modal-card, .modal-inner, .modal-dialog, #compare-modal, #search-modal, #quiz-modal, .blackhole-telemetry-panel')) {
+        return;
+      }
       this.stopTour();
       if (this.renderEngine.blackHoleState === 'active') {
         if (e.touches.length === 1 && e.touches[0].clientY - touchStartY > 20) {
@@ -511,6 +528,28 @@ class CosmicApp {
       this.audioEngine.playZoomPulse(1);
     });
 
+    // Object Details Card Hide & Restore Pill Listeners
+    if (this.cardHideBtn) {
+      this.cardHideBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.setObjectCardVisible(false);
+      });
+    }
+
+    if (this.cardRestorePill) {
+      this.cardRestorePill.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.setObjectCardVisible(true);
+      });
+    }
+
+    // Stop wheel events inside scrollable cards/panels from changing background universe scale
+    if (this.objectCardEl) {
+      this.objectCardEl.addEventListener('wheel', (e) => {
+        e.stopPropagation();
+      }, { passive: true });
+    }
+
     // Audio Toggle
     this.audioBtn.addEventListener('click', () => {
       const active = this.audioEngine.toggleSound();
@@ -528,6 +567,18 @@ class CosmicApp {
       this.lang = this.lang === 'bn' ? 'en' : 'bn';
       this.langBtn.textContent = this.lang === 'bn' ? 'বাংলা' : 'EN';
       this.updateCornerDisclaimer();
+      if (this.cardHideLabel) {
+        this.cardHideLabel.textContent = this.lang === 'bn' ? 'লুকান' : 'Hide';
+      }
+      if (this.cardHideBtn) {
+        this.cardHideBtn.title = this.lang === 'bn' ? 'তথ্য কার্ড লুকান [C]' : 'Hide Info Card [C]';
+      }
+      if (this.cardRestoreLabel) {
+        this.cardRestoreLabel.textContent = this.lang === 'bn' ? 'তথ্য কার্ড দেখুন [C]' : 'Show Info Card [C]';
+      }
+      if (this.cardRestorePill) {
+        this.cardRestorePill.title = this.lang === 'bn' ? 'তথ্য কার্ড দেখুন [C]' : 'Show Info Card [C]';
+      }
       if (this.collapseBtnLabel) {
         this.collapseBtnLabel.textContent = this.lang === 'bn' ? 'ব্ল্যাকহোল' : 'Black Hole';
       }
@@ -742,6 +793,8 @@ class CosmicApp {
         }
         this.renderEngine.addZoomDelta(-1.0);
         this.audioEngine.playZoomPulse(-1);
+      } else if (e.key === 'c' || e.key === 'C') {
+        this.toggleObjectCard();
       } else if (e.key === 'h' || e.key === 'H' || e.key === 'i' || e.key === 'I') {
         if (this.renderEngine.blackHoleState === 'active' && this.blackholeOverlay) {
           const isMin = this.blackholeOverlay.classList.toggle('card-minimized');
@@ -749,6 +802,8 @@ class CosmicApp {
             this.bhRestoreCardPill.style.display = isMin ? 'inline-flex' : 'none';
           }
           this.audioEngine.playChime(isMin ? 480 : 640);
+        } else {
+          this.toggleObjectCard();
         }
       } else if (e.key === 'o' || e.key === 'O') {
         if (this.renderEngine.blackHoleState === 'active') {
@@ -793,6 +848,25 @@ class CosmicApp {
     this.cornerDisclaimerEl.textContent = this.lang === 'bn'
       ? 'সরলীকৃত ২ডি আপেক্ষিকীয় মডেল, আসল ছবি নয়'
       : 'Simplified 2D Relativistic Model, Not Real Image';
+  }
+
+  setObjectCardVisible(visible) {
+    if (!this.objectCardContainer) return;
+    if (visible) {
+      this.objectCardContainer.classList.remove('minimized');
+      if (this.cardRestorePill) this.cardRestorePill.style.display = 'none';
+      this.audioEngine.playChime(640);
+    } else {
+      this.objectCardContainer.classList.add('minimized');
+      if (this.cardRestorePill) this.cardRestorePill.style.display = 'inline-flex';
+      this.audioEngine.playChime(480);
+    }
+  }
+
+  toggleObjectCard() {
+    if (!this.objectCardContainer) return;
+    const isMin = this.objectCardContainer.classList.contains('minimized');
+    this.setObjectCardVisible(isMin);
   }
 
   toBanglaNum(num) {

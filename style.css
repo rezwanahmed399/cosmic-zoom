@@ -298,6 +298,55 @@ html, body {
   pointer-events: auto;
   display: flex;
   flex-direction: column;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  overscroll-behavior: contain;
+}
+
+.object-card-container.minimized {
+  transform: translateX(calc(-100% - 30px));
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Floating Restore Object Card Pill Button */
+.object-card-restore-pill {
+  position: absolute;
+  top: 110px;
+  left: 24px;
+  z-index: 12;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(10, 16, 32, 0.92);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  color: #38bdf8;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-family: var(--font-bn);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 15px rgba(56, 189, 248, 0.2);
+  transition: all 0.25s ease;
+  animation: cardPillPulse 2.5s infinite ease-in-out;
+}
+
+.object-card-restore-pill:hover {
+  background: rgba(56, 189, 248, 0.22);
+  border-color: #38bdf8;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7), 0 0 25px rgba(56, 189, 248, 0.45);
+}
+
+@keyframes cardPillPulse {
+  0%, 100% {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 15px rgba(56, 189, 248, 0.2);
+  }
+  50% {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 25px rgba(56, 189, 248, 0.45);
+  }
 }
 
 .object-card {
@@ -316,6 +365,7 @@ html, body {
   scrollbar-width: thin;
   scrollbar-color: rgba(56, 189, 248, 0.3) transparent;
   transition: all 0.3s ease;
+  overscroll-behavior: contain;
 }
 
 .object-card::-webkit-scrollbar {
@@ -352,12 +402,49 @@ html, body {
   gap: 6px;
 }
 
-.card-header h2 {
+.card-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.card-title-row h2 {
   font-family: var(--font-bn);
   font-size: 20px;
   font-weight: 700;
   line-height: 1.25;
   color: #ffffff;
+  margin: 0;
+}
+
+.card-hide-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: var(--text-dim);
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-family: var(--font-bn);
+  font-size: 11.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.card-hide-btn:hover {
+  background: rgba(239, 68, 68, 0.22);
+  border-color: rgba(239, 68, 68, 0.55);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.card-hide-btn .svg-icon {
+  width: 13px;
+  height: 13px;
 }
 
 .card-meta-row {
@@ -1192,6 +1279,13 @@ html, body {
     position: static;
     margin: 140px 16px 0 16px;
     width: auto;
+  }
+  .object-card-container.minimized {
+    display: none !important;
+  }
+  .object-card-restore-pill {
+    top: 140px;
+    left: 16px;
   }
   .hud-btn .btn-label {
     display: none;

@@ -131,13 +131,22 @@
   </div>
 
   <!-- FLOATING SCI-FI OBJECT TELEMETRY CARD -->
-  <aside class="object-card-container">
+  <aside class="object-card-container" id="object-card-container">
     <div class="object-card" id="object-card">
       <div class="card-glow-border"></div>
       
       <!-- Card Header -->
       <div class="card-header">
-        <h2 id="object-name">দৃশ্যমান মহাবিশ্ব</h2>
+        <div class="card-title-row">
+          <h2 id="object-name">দৃশ্যমান মহাবিশ্ব</h2>
+          <button class="card-hide-btn" id="card-hide-btn" type="button" title="তথ্য কার্ড লুকান [C] (Hide Info Card [C])" aria-label="তথ্য কার্ড লুকান">
+            <svg class="svg-icon mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+            <span class="btn-hide-text" id="card-hide-label">লুকান</span>
+          </button>
+        </div>
         <div class="card-meta-row">
           <span class="card-subname" id="object-subname">The Observable Universe</span>
           <div class="card-dimension-badge" id="object-dimension">৮.৮ × ১০²⁶ মিটার</div>
@@ -259,6 +268,15 @@
       </div>
     </div>
   </aside>
+  
+  <!-- Floating Restore Object Card Pill Button (shown when info card is hidden) -->
+  <button class="object-card-restore-pill" id="object-card-restore-pill" type="button" title="তথ্য কার্ড দেখুন [C] (Show Info Card [C])" style="display: none;">
+    <svg class="svg-icon mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+      <circle cx="12" cy="12" r="3"></circle>
+    </svg>
+    <span id="object-card-restore-label">তথ্য কার্ড দেখুন [C]</span>
+  </button>
 
   <!-- RIGHT HUD: FUNDAMENTAL FORCES DOMINANCE PANEL -->
   <aside class="force-dominance-panel" id="force-dominance-panel">
