@@ -14,7 +14,7 @@ class CosmicApp {
     this.canvas = document.getElementById('viewport-canvas');
     this.renderEngine = new CosmicRenderEngine(this.canvas);
     this.audioEngine = new CosmicAudioEngine();
-    this.lang = 'bn'; // Default to Bengali, toggleable to 'en' with 100% pure localization
+    this.lang = 'en'; // Default to English, toggleable to 'bn' with 100% pure localization
     this.isAutoCruising = false;
     this.cruiseSpeed = 0.04; // orders per frame
     this.cruiseDirection = -1; // -1 = zooming into smaller scales, +1 = zooming out
@@ -220,9 +220,15 @@ class CosmicApp {
     this.populateComparisons();
     this.populateQuiz();
 
-    // Mobile initial state: minimize forces panel by default so canvas is clear
+    // Responsive initial panel visibility:
+    // On mobile / small view (<= 768px): hide both info card and forces panel by default so canvas is 100% clear.
+    // On desktop view (> 768px): both panels are on/visible by default.
     if (window.innerWidth <= 768) {
-      this.setForcesPanelVisible(false);
+      this.setObjectCardVisible(false, true);
+      this.setForcesPanelVisible(false, true);
+    } else {
+      this.setObjectCardVisible(true, true);
+      this.setForcesPanelVisible(true, true);
     }
   }
 
@@ -407,9 +413,19 @@ class CosmicApp {
   }
 
   initEvents() {
-    // Window Resize
+    // Window Resize & Responsive Breakpoint Adaption
+    let lastWidth = window.innerWidth;
     window.addEventListener('resize', () => {
       this.renderEngine.resize();
+      const currentWidth = window.innerWidth;
+      if (lastWidth > 768 && currentWidth <= 768) {
+        this.setObjectCardVisible(false, true);
+        this.setForcesPanelVisible(false, true);
+      } else if (lastWidth <= 768 && currentWidth > 768) {
+        this.setObjectCardVisible(true, true);
+        this.setForcesPanelVisible(true, true);
+      }
+      lastWidth = currentWidth;
     });
 
     // Page Visibility: Pause tour and cancel compression if tab is hidden
@@ -1126,22 +1142,22 @@ class CosmicApp {
       : 'Simplified 2D Relativistic Model, Not Real Image';
   }
 
-  setObjectCardVisible(visible) {
+  setObjectCardVisible(visible, silent = false) {
     if (!this.objectCardContainer) return;
     if (visible) {
       this.objectCardContainer.classList.remove('minimized');
       if (this.cardRestorePill) this.cardRestorePill.style.display = 'none';
       if (window.innerWidth <= 768 && this.forceDominancePanel && !this.forceDominancePanel.classList.contains('minimized')) {
-        this.setForcesPanelVisible(false);
+        this.setForcesPanelVisible(false, silent);
       }
-      this.audioEngine.playChime(640);
+      if (!silent) this.audioEngine.playChime(640);
     } else {
       this.objectCardContainer.classList.add('minimized');
       if (this.cardRestorePill) {
         const isBhActive = this.renderEngine && (this.renderEngine.blackHoleState === 'active' || this.renderEngine.blackHoleState === 'shattering');
         this.cardRestorePill.style.display = isBhActive ? 'none' : 'inline-flex';
       }
-      this.audioEngine.playChime(480);
+      if (!silent) this.audioEngine.playChime(480);
     }
   }
 
@@ -1152,22 +1168,22 @@ class CosmicApp {
     this.setObjectCardVisible(isMin);
   }
 
-  setForcesPanelVisible(visible) {
+  setForcesPanelVisible(visible, silent = false) {
     if (!this.forceDominancePanel) return;
     if (visible) {
       this.forceDominancePanel.classList.remove('minimized');
       if (this.forceRestorePill) this.forceRestorePill.style.display = 'none';
       if (window.innerWidth <= 768 && this.objectCardContainer && !this.objectCardContainer.classList.contains('minimized')) {
-        this.setObjectCardVisible(false);
+        this.setObjectCardVisible(false, silent);
       }
-      this.audioEngine.playChime(640);
+      if (!silent) this.audioEngine.playChime(640);
     } else {
       this.forceDominancePanel.classList.add('minimized');
       if (this.forceRestorePill) {
         const isBhActive = this.renderEngine && (this.renderEngine.blackHoleState === 'active' || this.renderEngine.blackHoleState === 'shattering');
         this.forceRestorePill.style.display = isBhActive ? 'none' : 'inline-flex';
       }
-      this.audioEngine.playChime(480);
+      if (!silent) this.audioEngine.playChime(480);
     }
   }
 

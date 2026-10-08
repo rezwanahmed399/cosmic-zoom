@@ -18,7 +18,7 @@ export class CosmicRenderEngine {
     this.height = window.innerHeight;
 
     // Viewport & Scale State
-    this.lang = 'bn';
+    this.lang = 'en';
     this.currentOrder = 27.0; // Observable Universe
     this.targetOrder = 27.0;
     this.zoomVelocity = 0;
