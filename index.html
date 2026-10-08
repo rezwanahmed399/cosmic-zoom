@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>মহাজাগতিক স্কেল জুম | The Cosmic to Planck Scale Journey</title>
+  <title>CosmoPlanck | The Cosmic to Planck Scale Journey</title>
   <meta name="description" content="দৃশ্যমান মহাবিশ্ব (১০²⁷ মিটার) থেকে শুরু করে চরম ক্ষুদ্রতম প্ল্যাঙ্ক দৈর্ঘ্য (১০⁻³⁵ মিটার) পর্যন্ত মহাজাগতিক ও কোয়ান্টাম স্কেল জুমের এক অবিস্মরণীয় অভিজ্ঞতা।">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Hind+Siliguri:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=4.0.0">
 </head>
 <body>
 
@@ -23,25 +23,25 @@
     <div class="hud-brand">
       <div class="brand-badge">
         <span class="pulsing-core"></span>
-        <span class="brand-title">COSMIC SCALE</span>
+        <span class="brand-title">CosmoPlanck</span>
       </div>
-      <div class="brand-sub">মহাজাগতিক থেকে প্ল্যাঙ্ক স্কেল</div>
+      <div class="brand-sub" id="brand-sub">মহাজাগতিক থেকে প্ল্যাঙ্ক স্কেল</div>
     </div>
 
     <!-- Live Exponential Scale Metric Gauge -->
     <div class="scale-telemetry">
       <div class="telemetry-item main-order">
-        <span class="telemetry-label">অর্ডার অফ ম্যাগনিটিউড / SCALE</span>
+        <span class="telemetry-label" id="label-order">অর্ডার অফ ম্যাগনিটিউড / SCALE</span>
         <span class="telemetry-value" id="order-exponent">10<sup>+27.0</sup> m</span>
       </div>
       <div class="telemetry-divider"></div>
       <div class="telemetry-item metric-size">
-        <span class="telemetry-label">প্রকৃত পরিমাপ / METRIC</span>
+        <span class="telemetry-label" id="label-metric">প্রকৃত পরিমাপ / METRIC</span>
         <span class="telemetry-value" id="order-metric">৯৩ বিলিয়ন আলোকবর্ষ</span>
       </div>
       <div class="telemetry-divider"></div>
       <div class="telemetry-item light-time">
-        <span class="telemetry-label">আলোর অতিক্রম সময় / LIGHT TRANSIT</span>
+        <span class="telemetry-label" id="label-light">আলোর অতিক্রম সময় / LIGHT TRANSIT</span>
         <span class="telemetry-value" id="light-time-value">৯৩ বিলিয়ন বছর</span>
       </div>
     </div>
@@ -55,7 +55,7 @@
             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
           </svg>
         </span>
-        <span class="btn-label">খুঁজুন</span>
+        <span class="btn-label" id="search-btn-label">খুঁজুন</span>
       </button>
 
       <button class="hud-btn" id="compare-btn" title="স্কেলের তুলনা (Scale Comparisons)">
@@ -68,7 +68,7 @@
             <path d="M8 21h8"></path>
           </svg>
         </span>
-        <span class="btn-label">তুলনা</span>
+        <span class="btn-label" id="compare-btn-label">তুলনা</span>
       </button>
 
       <button class="hud-btn" id="quiz-btn" title="স্কেল চ্যালেঞ্জ কুইজ (Scale Quiz)">
@@ -180,7 +180,7 @@
             <line x1="11" y1="8" x2="11" y2="14"></line>
             <line x1="8" y1="11" x2="14" y2="11"></line>
           </svg>
-          <span>পর্যবেক্ষণ প্রযুক্তি (Instrument Ladder):</span>
+          <span id="instrument-title-label">পর্যবেক্ষণ প্রযুক্তি (Instrument Ladder):</span>
         </div>
         <p class="instrument-content" id="object-instrument">কসমিক মাইক্রোওয়েভ ব্যাকগ্রাউন্ড (Planck স্যাটেলাইট)</p>
       </div>
@@ -197,19 +197,19 @@
             <circle cx="12" cy="12" r="10"></circle>
             <polyline points="12 6 12 12 16 14"></polyline>
           </svg>
-          <span>বাস্তব ভ্রমণ গতিতে সময় (Transit Time):</span>
+          <span id="transit-title-label">বাস্তব ভ্রমণ গতিতে সময় (Transit Time):</span>
         </div>
         <div class="transit-grid">
           <div class="transit-item">
-            <span class="transit-mode-tag">হাঁটা (৫ কিমি/ঘণ্টা):</span>
+            <span class="transit-mode-tag" id="transit-tag-walk">হাঁটা (৫ কিমি/ঘণ্টা):</span>
             <span class="transit-mode-val" id="transit-walk-val">অপ্রাসঙ্গিক</span>
           </div>
           <div class="transit-item">
-            <span class="transit-mode-tag">জেট (৯০০ কিমি/ঘণ্টা):</span>
+            <span class="transit-mode-tag" id="transit-tag-jet">জেট (৯০০ কিমি/ঘণ্টা):</span>
             <span class="transit-mode-val" id="transit-jet-val">অপ্রাসঙ্গিক</span>
           </div>
           <div class="transit-item">
-            <span class="transit-mode-tag">ভয়েজার (১৭ কিমি/সেকেন্ড):</span>
+            <span class="transit-mode-tag" id="transit-tag-voyager">ভয়েজার (১৭ কিমি/সেকেন্ড):</span>
             <span class="transit-mode-val" id="transit-voyager-val">অপ্রাসঙ্গিক</span>
           </div>
         </div>
@@ -235,7 +235,7 @@
             <circle cx="12" cy="12" r="9"></circle>
             <circle cx="12" cy="12" r="3" fill="currentColor"></circle>
           </svg>
-          <span>ব্ল্যাকহোল ব্যাসার্ধ (Schwarzschild Radius rs = 2GM/c²):</span>
+          <span id="blackhole-title-label">ব্ল্যাকহোল ব্যাসার্ধ (Schwarzschild Radius rs = 2GM/c²):</span>
         </div>
         <p class="blackhole-content" id="blackhole-val"></p>
       </div>
@@ -250,7 +250,7 @@
               <path d="M12 2a7 7 0 0 0-7 7c0 2.5 1.3 4.7 3.2 6h7.6c1.9-1.3 3.2-3.5 3.2-6a7 7 0 0 0-7-7z"></path>
             </svg>
           </span>
-          <span>মহাজাগতিক তথ্য (COSMIC FACT)</span>
+          <span id="fact-title-label">মহাজাগতিক তথ্য (COSMIC FACT)</span>
         </div>
         <p class="fact-content" id="object-fact">
           মহাবিশ্বের ত্বরাণ্বিত প্রসারণের কারণে এর ব্যাসার্ধ ৪৬.৫ বিলিয়ন আলোকবর্ষ—যা বিগ ব্যাং-এর সময়ের চেয়েও অনেক বড়!
@@ -263,7 +263,7 @@
             <rect x="5" y="2" width="14" height="20" rx="7"></rect>
             <line x1="12" y1="6" x2="12" y2="10"></line>
           </svg>
-          <span>স্ক্রোল বা সোয়াইপ করে গভীরে প্রবেশ করুন</span>
+          <span id="scroll-hint-label">স্ক্রোল বা সোয়াইপ করে গভীরে প্রবেশ করুন</span>
         </span>
       </div>
     </div>
@@ -281,34 +281,54 @@
   <!-- RIGHT HUD: FUNDAMENTAL FORCES DOMINANCE PANEL -->
   <aside class="force-dominance-panel" id="force-dominance-panel">
     <div class="force-panel-header">
-      <svg class="svg-icon mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="3"></circle>
-        <path d="M12 2v3m0 14v3M2 12h3m14 0h3"></path>
-        <path d="M4.93 4.93l2.12 2.12m9.9 9.9l2.12 2.12M4.93 19.07l2.12-2.12m9.9-9.9l2.12-2.12"></path>
-      </svg>
-      <span>এই স্কেলের গঠন কোন বল ঠিক করে (Governing Force)</span>
+      <div class="force-title-row">
+        <div class="force-header-title">
+          <svg class="svg-icon mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M12 2v3m0 14v3M2 12h3m14 0h3"></path>
+            <path d="M4.93 4.93l2.12 2.12m9.9 9.9l2.12 2.12M4.93 19.07l2.12-2.12m9.9-9.9l2.12-2.12"></path>
+          </svg>
+          <span id="force-panel-heading">মৌলিক বলের প্রভাব (Governing Force)</span>
+        </div>
+        <button class="force-hide-btn" id="force-hide-btn" type="button" title="মৌলিক বল প্যানেল লুকান [F] (Hide Forces Panel [F])" aria-label="মৌলিক বল লুকান">
+          <svg class="svg-icon mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+          <span class="btn-hide-text" id="force-hide-label">লুকান</span>
+        </button>
+      </div>
     </div>
     <div class="force-item-row" data-force="gravity">
       <span class="force-indicator-dot"></span>
-      <span class="force-item-name">মহাকর্ষ ও ডার্ক এনার্জি (Gravity & Dark Energy)</span>
+      <span class="force-item-name" id="force-name-gravity">মহাকর্ষ ও ডার্ক এনার্জি (Gravity & Dark Energy)</span>
     </div>
     <div class="force-item-row" data-force="electromagnetism">
       <span class="force-indicator-dot"></span>
-      <span class="force-item-name">তড়িৎচৌম্বক বল (Electromagnetism)</span>
+      <span class="force-item-name" id="force-name-electromagnetism">তড়িৎচৌম্বক বল (Electromagnetism)</span>
     </div>
     <div class="force-item-row" data-force="strong">
       <span class="force-indicator-dot"></span>
-      <span class="force-item-name">সবল নিউক্লীয় বল (Strong Nuclear Force)</span>
+      <span class="force-item-name" id="force-name-strong">সবল নিউক্লীয় বল (Strong Nuclear Force)</span>
     </div>
     <div class="force-item-row" data-force="weak">
       <span class="force-indicator-dot"></span>
-      <span class="force-item-name">দুর্বল ও ইলেকট্রোউইক (Weak / Electroweak)</span>
+      <span class="force-item-name" id="force-name-weak">দুর্বল ও ইলেকট্রোউইক (Weak / Electroweak)</span>
     </div>
     <div class="force-item-row" data-force="quantum-gravity">
       <span class="force-indicator-dot"></span>
-      <span class="force-item-name">কোয়ান্টাম গ্র্যাভিটি (Quantum Gravity / Planck)</span>
+      <span class="force-item-name" id="force-name-quantum-gravity">কোয়ান্টাম গ্র্যাভিটি (Quantum Gravity / Planck)</span>
     </div>
   </aside>
+
+  <!-- Floating Restore Forces Panel Pill Button (shown when forces panel is hidden) -->
+  <button class="force-restore-pill" id="force-restore-pill" type="button" title="মৌলিক বল দেখুন [F] (Show Forces Panel [F])" style="display: none;">
+    <svg class="svg-icon mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="3"></circle>
+      <path d="M12 2v3m0 14v3M2 12h3m14 0h3"></path>
+    </svg>
+    <span id="force-restore-label">মৌলিক বল [F]</span>
+  </button>
 
   <!-- DYNAMIC SCREEN RULER WIDGET -->
   <div class="screen-ruler-widget" id="screen-ruler-widget">
@@ -329,8 +349,8 @@
         <line x1="12" y1="17" x2="12.01" y2="17"></line>
       </svg>
       <div>
-        <strong>প্ল্যাঙ্ক দেয়াল অর্জিত (The Planck Wall Limit):</strong>
-        <span>বর্তমান তত্ত্বের শেষ সীমা। এর নিচে কোনো দূরত্ব দেখতে চাইলে ফোটনের শক্তি ক্ষুদ্র ব্ল্যাকহোল তৈরি করে সব ঢেকে ফেলে!</span>
+        <strong id="planck-banner-title">প্ল্যাঙ্ক দেয়াল অর্জিত (The Planck Wall Limit):</strong>
+        <span id="planck-banner-text">বর্তমান তত্ত্বের শেষ সীমা। এর নিচে কোনো দূরত্ব দেখতে চাইলে ফোটনের শক্তি ক্ষুদ্র ব্ল্যাকহোল তৈরি করে সব ঢেকে ফেলে!</span>
       </div>
     </div>
   </div>
@@ -368,7 +388,7 @@
       </button>
 
       <div class="slider-track-wrapper">
-        <div class="slider-domain-markers">
+        <div class="slider-domain-markers" id="slider-domain-markers">
           <span style="left: 0%;">+27<br>মহাবিশ্ব</span>
           <span style="left: 9.7%;">+21<br>ছায়াপথ</span>
           <span style="left: 25.8%;">+11<br>সৌরজগৎ</span>
@@ -397,7 +417,7 @@
             <polygon points="5 3 19 12 5 21 5 3"></polygon>
           </svg>
         </span>
-        <span class="btn-text">ট্যুর শুরু</span>
+        <span class="btn-text" id="tour-btn-label">ট্যুর শুরু</span>
       </button>
     </div>
   </footer>
@@ -412,7 +432,7 @@
             <circle cx="11" cy="11" r="8"></circle>
             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
           </svg>
-          <h3>মহাজাগতিক ও কোয়ান্টাম বস্তু খুঁজুন</h3>
+          <h3 id="search-modal-title">মহাজাগতিক ও কোয়ান্টাম বস্তু খুঁজুন</h3>
         </div>
         <button class="modal-close" id="close-search-btn" title="বন্ধ করুন">
           <svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -443,7 +463,7 @@
             <path d="M15 13l3-6 3 6c0 1.66-1.34 3-3 3s-3-1.34-3-3z"></path>
             <path d="M8 21h8"></path>
           </svg>
-          <h3>স্কেলের বিস্ময়কর তুলনা (Mind-Blowing Comparisons)</h3>
+          <h3 id="compare-modal-title">স্কেলের বিস্ময়কর তুলনা (Mind-Blowing Comparisons)</h3>
         </div>
         <button class="modal-close" id="close-compare-btn" title="বন্ধ করুন">
           <svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -452,7 +472,7 @@
           </svg>
         </button>
       </div>
-      <p class="modal-intro">মহাবিশ্বের চরম বৃহত্তম ও ক্ষুদ্রতম বস্তুগুলোর আকারের তুলনামূলক অনুপাত:</p>
+      <p class="modal-intro" id="compare-modal-intro">মহাবিশ্বের চরম বৃহত্তম ও ক্ষুদ্রতম বস্তুগুলোর আকারের তুলনামূলক অনুপাত:</p>
       <div class="compare-results-list" id="compare-list">
         <!-- Comparisons injected by app.js -->
       </div>
@@ -538,19 +558,19 @@
 
       <div class="bh-stats-grid">
         <div class="bh-stat-item">
-          <span class="bh-stat-lbl">সংকুচিত বস্তুর ভর (Mass)</span>
+          <span class="bh-stat-lbl" id="bh-lbl-mass">সংকুচিত বস্তুর ভর (Mass)</span>
           <span class="bh-stat-val" id="bh-stat-mass">২.১৮ × ১০⁻⁸ কেজি (প্ল্যাঙ্ক ভর)</span>
         </div>
         <div class="bh-stat-item">
-          <span class="bh-stat-lbl">ঘটনা দিগন্ত ও শ্যাডো (Horizon & Shadow)</span>
+          <span class="bh-stat-lbl" id="bh-lbl-radius">ঘটনা দিগন্ত ও শ্যাডো (Horizon & Shadow)</span>
           <span class="bh-stat-val" id="bh-stat-radius">rs = ৩.২৩ × ১০⁻³⁵ মি | শ্যাডো ≈ ৮.৪০ × ১০⁻³⁵ মি</span>
         </div>
         <div class="bh-stat-item">
-          <span class="bh-stat-lbl">ফোটন স্ফিয়ার (Photon Sphere)</span>
+          <span class="bh-stat-lbl" id="bh-lbl-photon">ফোটন স্ফিয়ার (Photon Sphere)</span>
           <span class="bh-stat-val" id="bh-stat-photon">১.৫ × rs (৪.৮৫ × ১০⁻³⁵ মি)</span>
         </div>
         <div class="bh-stat-item">
-          <span class="bh-stat-lbl">হকিং তাপমাত্রা ও আয়ুষ্কাল</span>
+          <span class="bh-stat-lbl" id="bh-lbl-hawking">হকিং তাপমাত্রা ও আয়ুষ্কাল</span>
           <span class="bh-stat-val" id="bh-stat-hawking">৫.৬৪ × ১০³⁰ K (~১০⁻⁴⁰ সেকেন্ড)</span>
         </div>
       </div>
@@ -583,6 +603,6 @@
   <!-- Accessibility Screen Reader Live Region -->
   <div id="bh-sr-announcements" class="sr-only" aria-live="polite"></div>
 
-  <script type="module" src="app.js?v=3.0.0"></script>
+  <script type="module" src="app.js?v=4.0.0"></script>
 </body>
 </html>

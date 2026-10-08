@@ -43,6 +43,11 @@ export const COSMIC_OBJECTS = [
       jet: 'অপ্রাসঙ্গিক',
       voyager: 'অপ্রাসঙ্গিক'
     },
+    humanTransitEn: {
+      walk: 'Irrelevant (Space expands faster than light)',
+      jet: 'Irrelevant',
+      voyager: 'Irrelevant'
+    },
     domain: 'cosmic',
     renderType: 'observable_universe',
     accentColor: '#818cf8',
@@ -74,6 +79,11 @@ export const COSMIC_OBJECTS = [
       walk: '৭.২ × ১০²⁵ বছর',
       jet: '৪.০ × ১০²৩ বছর',
       voyager: '৫.৯ × ১০²১ বছর'
+    },
+    humanTransitEn: {
+      walk: '7.2 × 10²⁵ Years',
+      jet: '4.0 × 10²³ Years',
+      voyager: '5.9 × 10²¹ Years'
     },
     domain: 'cosmic',
     renderType: 'super_wall',
@@ -107,6 +117,11 @@ export const COSMIC_OBJECTS = [
       jet: '৪.০ × ১০²২ বছর',
       voyager: '৫.৯ × ১০২০ বছর'
     },
+    humanTransitEn: {
+      walk: '7.2 × 10²⁴ Years',
+      jet: '4.0 × 10²² Years',
+      voyager: '5.9 × 10²⁰ Years'
+    },
     domain: 'cosmic',
     renderType: 'cosmic_web',
     accentColor: '#38bdf8',
@@ -139,6 +154,11 @@ export const COSMIC_OBJECTS = [
       jet: '১.৯ × ১০২২ বছর',
       voyager: '২.৯ × ১০২০ বছর'
     },
+    humanTransitEn: {
+      walk: '3.5 × 10²⁴ Years',
+      jet: '1.9 × 10²² Years',
+      voyager: '2.9 × 10²⁰ Years'
+    },
     domain: 'cosmic',
     renderType: 'supercluster',
     accentColor: '#a78bfa',
@@ -170,6 +190,11 @@ export const COSMIC_OBJECTS = [
       walk: '৬.৮ × ১০²² বছর',
       jet: '৩.৮ × ১০২০ বছর',
       voyager: '৫.৬ × ১০১৮ বছর'
+    },
+    humanTransitEn: {
+      walk: '6.8 × 10²² Years',
+      jet: '3.8 × 10²⁰ Years',
+      voyager: '5.6 × 10¹⁸ Years'
     },
     domain: 'cosmic',
     renderType: 'local_group',
@@ -205,6 +230,11 @@ export const COSMIC_OBJECTS = [
       jet: '৩.৮ × ১০১৮ বছর',
       voyager: '১.৭৭ বিলিয়ন (১৭০ কোটি) বছর'
     },
+    humanTransitEn: {
+      walk: '6.8 × 10²⁰ Years',
+      jet: '3.8 × 10¹⁸ Years',
+      voyager: '1.77 Billion Years'
+    },
     domain: 'astrophysical',
     renderType: 'milky_way',
     accentColor: '#818cf8',
@@ -236,6 +266,11 @@ export const COSMIC_OBJECTS = [
       walk: '১.৬ × ১০১৭ বছর',
       jet: '২.৯ × ১০১৪ বছর',
       voyager: '৪,৩০০ বছর'
+    },
+    humanTransitEn: {
+      walk: '1.6 × 10¹⁷ Years',
+      jet: '2.9 × 10¹⁴ Years',
+      voyager: '4,300 Years'
     },
     domain: 'astrophysical',
     renderType: 'nebula',
@@ -269,6 +304,11 @@ export const COSMIC_OBJECTS = [
       jet: '৫.২ × ১০১২ বছর',
       voyager: '৭৬,০০০ বছর'
     },
+    humanTransitEn: {
+      walk: '9.4 × 10¹⁵ Years',
+      jet: '5.2 × 10¹² Years',
+      voyager: '76,000 Years'
+    },
     domain: 'astrophysical',
     renderType: 'star_system',
     accentColor: '#fbbf24',
@@ -300,6 +340,11 @@ export const COSMIC_OBJECTS = [
       walk: '২.৩ × ১০১৫ বছর',
       jet: '১.৩ × ১০১২ বছর',
       voyager: '১৯,০০০ বছর'
+    },
+    humanTransitEn: {
+      walk: '2.3 × 10¹⁵ Years',
+      jet: '1.3 × 10¹² Years',
+      voyager: '19,000 Years'
     },
     domain: 'astrophysical',
     renderType: 'oort_cloud',
@@ -333,6 +378,11 @@ export const COSMIC_OBJECTS = [
       jet: '৪.৬ × ১০৯ বছর',
       voyager: '৬৭ বছর (১৯৭৭ সালে উৎক্ষেপণ)'
     },
+    humanTransitEn: {
+      walk: '8.2 × 10¹² Years',
+      jet: '4.6 × 10⁹ Years',
+      voyager: '67 Years (Launched 1977)'
+    },
     domain: 'planetary',
     renderType: 'heliosphere',
     accentColor: '#38bdf8',
@@ -365,6 +415,11 @@ export const COSMIC_OBJECTS = [
       jet: '১.৯ × ১০৯ বছর',
       voyager: '২৮ বছর'
     },
+    humanTransitEn: {
+      walk: '3.4 × 10¹² Years',
+      jet: '1.9 × 10⁹ Years',
+      voyager: '28 Years'
+    },
     domain: 'planetary',
     renderType: 'kuiper_belt',
     accentColor: '#67e8f9',
@@ -396,6 +451,11 @@ export const COSMIC_OBJECTS = [
       walk: '৬৮,৫০০ বছর',
       jet: '৩৮০ বছর',
       voyager: '২০৫ দিন'
+    },
+    humanTransitEn: {
+      walk: '68,500 Years',
+      jet: '380 Years',
+      voyager: '205 Days'
     },
     domain: 'planetary',
     renderType: 'orbit_ring',
@@ -431,6 +491,11 @@ export const COSMIC_OBJECTS = [
       jet: '৬৪ দিন',
       voyager: '২২.৭ ঘণ্টা'
     },
+    humanTransitEn: {
+      walk: '31.7 Years',
+      jet: '64 Days',
+      voyager: '22.7 Hours'
+    },
     domain: 'planetary',
     renderType: 'sun_star',
     accentColor: '#f59e0b',
@@ -464,6 +529,11 @@ export const COSMIC_OBJECTS = [
       walk: '৩.৩ বছর',
       jet: '৬.৬ দিন',
       voyager: '২.৩ ঘণ্টা'
+    },
+    humanTransitEn: {
+      walk: '3.3 Years',
+      jet: '6.6 Days',
+      voyager: '2.3 Hours'
     },
     domain: 'planetary',
     renderType: 'jupiter_planet',
@@ -499,6 +569,11 @@ export const COSMIC_OBJECTS = [
       jet: '১৪ ঘণ্টা (ব্যাস বরাবর)',
       voyager: '১২.৫ মিনিট'
     },
+    humanTransitEn: {
+      walk: '334 Days (Non-stop walking)',
+      jet: '14 Hours (Across diameter)',
+      voyager: '12.5 Minutes'
+    },
     domain: 'planetary',
     renderType: 'earth_globe',
     accentColor: '#38bdf8',
@@ -532,6 +607,11 @@ export const COSMIC_OBJECTS = [
       walk: '১.৭ ঘণ্টা (সমতল গতিতে)',
       jet: '৩৫ সেকেন্ড',
       voyager: '০.৫২ সেকেন্ড'
+    },
+    humanTransitEn: {
+      walk: '1.7 Hours (At flat speed)',
+      jet: '35 Seconds',
+      voyager: '0.52 Seconds'
     },
     domain: 'macro',
     renderType: 'mountain',
@@ -567,6 +647,11 @@ export const COSMIC_OBJECTS = [
       jet: '৬.৮ মিলি-সেকেন্ড',
       voyager: '০.১ মিলি-সেকেন্ড'
     },
+    humanTransitEn: {
+      walk: '1.2 Seconds',
+      jet: '6.8 Milliseconds',
+      voyager: '0.1 Milliseconds'
+    },
     domain: 'macro',
     renderType: 'human_figure',
     accentColor: '#10b981',
@@ -598,6 +683,11 @@ export const COSMIC_OBJECTS = [
       walk: '১০.৮ মিলি-সেকেন্ড',
       jet: '৬০ মাইক্রোসেকেন্ড',
       voyager: '০.৮৮ মাইক্রোসেকেন্ড'
+    },
+    humanTransitEn: {
+      walk: '10.8 Milliseconds',
+      jet: '60 Microseconds',
+      voyager: '0.88 Microseconds'
     },
     domain: 'macro',
     renderType: 'insect',
@@ -631,6 +721,11 @@ export const COSMIC_OBJECTS = [
       jet: '২.০ মাইক্রোসেকেন্ড',
       voyager: '২৯ ন্যানোসেকেন্ড'
     },
+    humanTransitEn: {
+      walk: '0.36 Milliseconds',
+      jet: '2.0 Microseconds',
+      voyager: '29 Nanoseconds'
+    },
     domain: 'macro',
     renderType: 'sand_grain',
     accentColor: '#fde047',
@@ -662,6 +757,11 @@ export const COSMIC_OBJECTS = [
       walk: '০.২১ মিলি-সেকেন্ড',
       jet: '১.২ মাইক্রোসেকেন্ড',
       voyager: '১৭ ন্যানোসেকেন্ড'
+    },
+    humanTransitEn: {
+      walk: '0.21 Milliseconds',
+      jet: '1.2 Microseconds',
+      voyager: '17 Nanoseconds'
     },
     domain: 'micro',
     renderType: 'dust_mite',
@@ -695,6 +795,11 @@ export const COSMIC_OBJECTS = [
       jet: '০.৩ মাইক্রোসেকেন্ড',
       voyager: '৪.৭ ন্যানোসেকেন্ড'
     },
+    humanTransitEn: {
+      walk: '58 Microseconds',
+      jet: '0.3 Microseconds',
+      voyager: '4.7 Nanoseconds'
+    },
     domain: 'micro',
     renderType: 'hair_fiber',
     accentColor: '#ca8a04',
@@ -726,6 +831,11 @@ export const COSMIC_OBJECTS = [
       walk: '৫.৪ মাইক্রোসেকেন্ড',
       jet: '৩০ ন্যানোসেকেন্ড',
       voyager: '০.৪৪ ন্যানোসেকেন্ড'
+    },
+    humanTransitEn: {
+      walk: '5.4 Microseconds',
+      jet: '30 Nanoseconds',
+      voyager: '0.44 Nanoseconds'
     },
     domain: 'micro',
     renderType: 'rbc_cell',
@@ -759,6 +869,11 @@ export const COSMIC_OBJECTS = [
       jet: '৮.০ ন্যানোসেকেন্ড',
       voyager: '০.১২ ন্যানোসেকেন্ড'
     },
+    humanTransitEn: {
+      walk: '1.44 Microseconds',
+      jet: '8.0 Nanoseconds',
+      voyager: '0.12 Nanoseconds'
+    },
     domain: 'micro',
     renderType: 'bacteria',
     accentColor: '#10b981',
@@ -790,6 +905,11 @@ export const COSMIC_OBJECTS = [
       walk: '৭২ ন্যানোসেকেন্ড',
       jet: '০.৪ ন্যানোসেকেন্ড',
       voyager: '৫.৯ পিকোসেকেন্ড'
+    },
+    humanTransitEn: {
+      walk: '72 Nanoseconds',
+      jet: '0.4 Nanoseconds',
+      voyager: '5.9 Picoseconds'
     },
     domain: 'nano',
     renderType: 'virus_capsid',
@@ -823,6 +943,11 @@ export const COSMIC_OBJECTS = [
       jet: '২০ পিকোসেকেন্ড',
       voyager: '০.২৯ পিকোসেকেন্ড'
     },
+    humanTransitEn: {
+      walk: '3.6 Nanoseconds',
+      jet: '20 Picoseconds',
+      voyager: '0.29 Picoseconds'
+    },
     domain: 'nano',
     renderType: 'protein_folding',
     accentColor: '#ec4899',
@@ -854,6 +979,11 @@ export const COSMIC_OBJECTS = [
       walk: '১.৪৪ ন্যানোসেকেন্ড',
       jet: '৮.০ পিকোসেকেন্ড',
       voyager: '০.১২ পিকোসেকেন্ড'
+    },
+    humanTransitEn: {
+      walk: '1.44 Nanoseconds',
+      jet: '8.0 Picoseconds',
+      voyager: '0.12 Picoseconds'
     },
     domain: 'nano',
     renderType: 'dna_helix',
@@ -887,9 +1017,16 @@ export const COSMIC_OBJECTS = [
       jet: '০.৪ পিকোসেকেন্ড',
       voyager: '৫.৯ ফেমটোসেকেন্ড'
     },
+    humanTransitEn: {
+      walk: '72 Picoseconds',
+      jet: '0.4 Picoseconds',
+      voyager: '5.9 Femtoseconds'
+    },
     misconception: {
       titleBn: 'বোর মডেলের গ্রহীয় কক্ষপথ সম্পূর্ণ ভুল!',
-      realityBn: 'পরমাণু কোনো খুদে সৌরজগৎ নয় যেখানে ইলেকট্রন বলের মতো নির্দিষ্ট পথে ঘোরে। ইলেকট্রন হলো কোয়ান্টাম তরঙ্গ ফাংশন—এটি একই সাথে পরমাণুর সর্বত্র সম্ভাব্যতার মেঘ আকারে বিরাজ করে।'
+      realityBn: 'পরমাণু কোনো খুদে সৌরজগৎ নয় যেখানে ইলেকট্রন বলের মতো নির্দিষ্ট পথে ঘোরে। ইলেকট্রন হলো কোয়ান্টাম তরঙ্গ ফাংশন—এটি একই সাথে পরমাণুর সর্বত্র সম্ভাব্যতার মেঘ আকারে বিরাজ করে।',
+      titleEn: "Bohr's planetary orbits are completely incorrect!",
+      realityEn: "An atom is not a miniature solar system where electrons orbit like hard spheres. Electrons are quantum wavefunctions existing simultaneously across the atom as a 3D probability cloud (|ψ|²)."
     },
     domain: 'nano',
     renderType: 'hydrogen_cloud',
@@ -923,6 +1060,11 @@ export const COSMIC_OBJECTS = [
       jet: '২১ অ্যাটোসেকেন্ড',
       voyager: '০.৩১ অ্যাটোসেকেন্ড'
     },
+    humanTransitEn: {
+      walk: '3.9 Femtoseconds',
+      jet: '21 Attoseconds',
+      voyager: '0.31 Attoseconds'
+    },
     domain: 'nuclear',
     renderType: 'atomic_nucleus',
     accentColor: '#f43f5e',
@@ -955,9 +1097,16 @@ export const COSMIC_OBJECTS = [
       jet: '৬.৮ অ্যাটোসেকেন্ড',
       voyager: '০.১ অ্যাটোসেকেন্ড'
     },
+    humanTransitEn: {
+      walk: '1.22 Femtoseconds',
+      jet: '6.8 Attoseconds',
+      voyager: '0.1 Attoseconds'
+    },
     misconception: {
       titleBn: 'প্রোটনের ভর কোয়ার্ক থেকে আসে না!',
-      realityBn: 'প্রোটনের তিনটি ভ্যালেন্স কোয়ার্কের (uud) সম্মিলিত ভর প্রোটনের মোট ভরের মাত্র ১%! বাকি ৯৯% ভর আসে তাদের আবদ্ধ রাখা গ্লুয়ন ক্ষেত্রের গতিশক্তি ও বাইন্ডিং এনার্জি থেকে (E = mc²)।'
+      realityBn: 'প্রোটনের তিনটি ভ্যালেন্স কোয়ার্কের (uud) সম্মিলিত ভর প্রোটনের মোট ভরের মাত্র ১%! বাকি ৯৯% ভর আসে তাদের আবদ্ধ রাখা গ্লুয়ন ক্ষেত্রের গতিশক্তি ও বাইন্ডিং এনার্জি থেকে (E = mc²)।',
+      titleEn: "Proton mass does NOT originate from its quarks!",
+      realityEn: "The three valence quarks (uud) account for barely 1% of the proton's mass! The remaining 99% arises from the kinetic energy and binding energy of the fluctuating gluon fields holding them together (E = mc²)."
     },
     domain: 'nuclear',
     renderType: 'proton_quarks',
@@ -991,9 +1140,16 @@ export const COSMIC_OBJECTS = [
       jet: '৪.০ × ১০⁻২১ সেকেন্ড',
       voyager: '৫.৯ × ১০⁻২৩ সেকেন্ড'
     },
+    humanTransitEn: {
+      walk: '7.2 × 10⁻¹⁹ Seconds',
+      jet: '4.0 × 10⁻²¹ Seconds',
+      voyager: '5.9 × 10⁻²³ Seconds'
+    },
     misconception: {
       titleBn: 'কোয়ার্ক বা ইলেকট্রনের কোনো আকার নেই!',
-      realityBn: 'কোয়ার্ক ও ইলেকট্রন কোনো ছোট বল বা গোলক নয়। স্ট্যান্ডার্ড মডেল অনুসারে এগুলো শূন্য-আয়তনের বিন্দুবৎ (Point-like) কণা। ১০⁻১৮ মিটার হলো আমাদের বর্তমান ডিটেক্টরের পরিমাপের উর্ধ্বসীমা মাত্র।'
+      realityBn: 'কোয়ার্ক ও ইলেকট্রন কোনো ছোট বল বা গোলক নয়। স্ট্যান্ডার্ড মডেল অনুসারে এগুলো শূন্য-আয়তনের বিন্দুবৎ (Point-like) কণা। ১০⁻১৮ মিটার হলো আমাদের বর্তমান ডিটেক্টরের পরিমাপের উর্ধ্বসীমা মাত্র।',
+      titleEn: "Quarks and electrons have no measurable physical size!",
+      realityEn: "Quarks and electrons are not little spheres. In the Standard Model, they are zero-volume point particles. 10⁻¹⁸ meters is merely the upper experimental resolution limit of modern particle detectors."
     },
     domain: 'nuclear',
     renderType: 'fundamental_point',
@@ -1027,6 +1183,11 @@ export const COSMIC_OBJECTS = [
       jet: '১.৩ × ১০⁻২১ সেকেন্ড',
       voyager: '১.৯ × ১০⁻২৩ সেকেন্ড'
     },
+    humanTransitEn: {
+      walk: '2.3 × 10⁻¹⁹ Seconds',
+      jet: '1.3 × 10⁻²¹ Seconds',
+      voyager: '1.9 × 10⁻²³ Seconds'
+    },
     domain: 'nuclear',
     renderType: 'higgs_field',
     accentColor: '#fbbf24',
@@ -1058,6 +1219,11 @@ export const COSMIC_OBJECTS = [
       walk: '৭.২ × ১০⁻২০ সেকেন্ড',
       jet: '৪.০ × ১০⁻২২ সেকেন্ড',
       voyager: '৫.৯ × ১০⁻২৪ সেকেন্ড'
+    },
+    humanTransitEn: {
+      walk: '7.2 × 10⁻²⁰ Seconds',
+      jet: '4.0 × 10⁻²² Seconds',
+      voyager: '5.9 × 10⁻²⁴ Seconds'
     },
     domain: 'planck',
     renderType: 'lhc_limit',
@@ -1091,6 +1257,11 @@ export const COSMIC_OBJECTS = [
       jet: '৮.০ × ১০⁻৩০ সেকেন্ড',
       voyager: '১.২ × ১০⁻৩১ সেকেন্ড'
     },
+    humanTransitEn: {
+      walk: '1.4 × 10⁻²⁷ Seconds',
+      jet: '8.0 × 10⁻³⁰ Seconds',
+      voyager: '1.2 × 10⁻³¹ Seconds'
+    },
     domain: 'planck',
     renderType: 'physics_desert',
     accentColor: '#9333ea',
@@ -1106,7 +1277,7 @@ export const COSMIC_OBJECTS = [
     nameEn: 'Cosmic Inflation Epoch',
     nameBn: 'মহাজাগতিক স্ফীতি যুগ (Cosmic Inflation)',
     sizeMeters: 2.0e-32,
-    sizeFormatted: '~2.0 × 10⁻³২ m (Energy Equiv: ~10¹⁶ GeV Horizon)',
+    sizeFormatted: '~2.0 × 10⁻³² m (Energy Equiv: ~10¹⁶ GeV Horizon)',
     sizeFormattedBn: '~২.০ × ১০⁻৩২ মিটার (১০¹৬ GeV স্ফীতি দিগন্ত)',
     lightTime: '6.67 × 10⁻⁴১ s',
     lightTimeBn: '৬.৬৭ × ১০⁻৪১ সেকেন্ড',
@@ -1123,6 +1294,11 @@ export const COSMIC_OBJECTS = [
       jet: '৮.০ × ১০⁻৩৫ সেকেন্ড',
       voyager: '১.২ × ১০⁻৩৬ সেকেন্ড'
     },
+    humanTransitEn: {
+      walk: '1.4 × 10⁻³² Seconds',
+      jet: '8.0 × 10⁻³⁵ Seconds',
+      voyager: '1.2 × 10⁻³⁶ Seconds'
+    },
     domain: 'planck',
     renderType: 'inflation_field',
     accentColor: '#c084fc',
@@ -1138,7 +1314,7 @@ export const COSMIC_OBJECTS = [
     nameEn: 'Grand Unified Theory (GUT) Scale',
     nameBn: 'গ্র্যান্ড ইউনিফাইড থিওরি (GUT) স্কেল',
     sizeMeters: 1.0e-32,
-    sizeFormatted: '~1.0 × 10⁻³২ m (~10¹⁶ GeV)',
+    sizeFormatted: '~1.0 × 10⁻³² m (~10¹⁶ GeV)',
     sizeFormattedBn: '~১.০ × ১০⁻৩২ মিটার (~১০১৬ GeV)',
     lightTime: '3.33 × 10⁻⁴¹ s',
     lightTimeBn: '৩.৩৩ × ১০⁻৪১ সেকেন্ড',
@@ -1154,6 +1330,11 @@ export const COSMIC_OBJECTS = [
       walk: '৭.২ × ১০⁻৩৩ সেকেন্ড',
       jet: '৪.০ × ১০⁻৩৫ সেকেন্ড',
       voyager: '৫.৯ × ১০⁻৩৭ সেকেন্ড'
+    },
+    humanTransitEn: {
+      walk: '7.2 × 10⁻³³ Seconds',
+      jet: '4.0 × 10⁻³⁵ Seconds',
+      voyager: '5.9 × 10⁻³⁷ Seconds'
     },
     domain: 'planck',
     renderType: 'gut_unification',
@@ -1187,6 +1368,11 @@ export const COSMIC_OBJECTS = [
       jet: '৪.০ × ১০⁻৩৭ সেকেন্ড',
       voyager: '৫.৯ × ১০⁻৩৯ সেকেন্ড'
     },
+    humanTransitEn: {
+      walk: '7.2 × 10⁻³⁵ Seconds',
+      jet: '4.0 × 10⁻³⁷ Seconds',
+      voyager: '5.9 × 10⁻³⁹ Seconds'
+    },
     domain: 'planck',
     renderType: 'quantum_foam',
     accentColor: '#d946ef',
@@ -1219,9 +1405,16 @@ export const COSMIC_OBJECTS = [
       jet: '৬.৫ × ১০⁻৩৮ সেকেন্ড',
       voyager: '৯.৫ × ১০⁻৪০ সেকেন্ড'
     },
+    humanTransitEn: {
+      walk: '1.16 × 10⁻³⁵ Seconds',
+      jet: '6.5 × 10⁻³⁸ Seconds',
+      voyager: '9.5 × 10⁻⁴⁰ Seconds'
+    },
     misconception: {
       titleBn: 'প্ল্যাঙ্ক দৈর্ঘ্য কোনো প্রমাণিত স্ক্রিন পিক্সেল নয়!',
-      realityBn: 'জনপ্রিয় ভুল ধারণা হলো মহাবিশ্ব নাকি প্ল্যাঙ্ক দৈর্ঘ্যের পিক্সেলে তৈরি। বাস্তবে বিজ্ঞান এটি প্রমাণ করেনি; এটি এমন এক দৈর্ঘ্য যেখানে মহাকর্ষ ও কোয়ান্টাম মেকানিক্স একসাথে ধাক্কা খায় এবং স্থান-কাল ব্ল্যাকহোলে পরিণত হয়।'
+      realityBn: 'জনপ্রিয় ভুল ধারণা হলো মহাবিশ্ব নাকি প্ল্যাঙ্ক দৈর্ঘ্যের পিক্সেলে তৈরি। বাস্তবে বিজ্ঞান এটি প্রমাণ করেনি; এটি এমন এক দৈর্ঘ্য যেখানে মহাকর্ষ ও কোয়ান্টাম মেকানিক্স একসাথে ধাক্কা খায় এবং স্থান-কাল ব্ল্যাকহোলে পরিণত হয়।',
+      titleEn: "Planck length is NOT a proven pixel of spacetime!",
+      realityEn: "A popular myth claims the universe is made of discrete Planck pixels. Physics has not proven this; rather, it is the threshold where Quantum Mechanics and General Relativity collide, causing probing photons to collapse into black holes."
     },
     domain: 'planck',
     renderType: 'planck_limit',
@@ -1313,40 +1506,50 @@ export const SCALE_QUIZ_QUESTIONS = [
     questionBn: 'ডিএনএ (DNA) ডাবল হেলিক্সের প্রস্থ আনুমানিক কত?',
     questionEn: 'What is the approximate diameter of a DNA double helix?',
     options: ['২ ন্যানোমিটার (2 nm)', '২ মাইক্রন (2 µm)', '২ মিলিমিটার (2 mm)', '০.২ অ্যাংস্ট্রম (0.2 Å)'],
+    optionsEn: ['2 nanometers (2 nm)', '2 microns (2 µm)', '2 millimeters (2 mm)', '0.2 Ångström (0.2 Å)'],
     correctIndex: 0,
     explanationBn: 'ডিএনএ ডাবল হেলিক্সের ব্যাস প্রায় ২ ন্যানোমিটার (১০⁻⁸.⁷ মিটার)।',
+    explanationEn: 'The DNA double helix has a diameter of approximately 2 nanometers (10⁻⁸.⁷ meters).',
     targetOrder: -8.7
   },
   {
     questionBn: 'একটি সাধারণ মানব লোহিত রক্তকণিকার (RBC) ব্যাস কত?',
     questionEn: 'What is the diameter of a human red blood cell?',
     options: ['৭.৫ মাইক্রন (7.5 µm)', '৭৫ ন্যানোমিটার (75 nm)', '০.৭৫ মিমি (0.75 mm)', '৭.৫ পিকোমিটার (7.5 pm)'],
+    optionsEn: ['7.5 microns (7.5 µm)', '75 nanometers (75 nm)', '0.75 mm', '7.5 picometers (7.5 pm)'],
     correctIndex: 0,
     explanationBn: 'লোহিত রক্তকণিকার ব্যাস প্রায় ৭.৫ মাইক্রন (১০⁻⁵.¹ মিটার)।',
+    explanationEn: 'The diameter of a human red blood cell is approximately 7.5 microns (10⁻⁵.¹ meters).',
     targetOrder: -5.12
   },
   {
     questionBn: 'সূর্যের ব্যাস আনুমানিক কত?',
     questionEn: 'What is the approximate diameter of the Sun?',
     options: ['১৩.৯ লক্ষ কিলোমিটার', '১.৩৯ লক্ষ কিলোমিটার', '১৩.৯ কোটি কিলোমিটার', '১,৩৯০ কিলোমিটার'],
+    optionsEn: ['1.39 million kilometers', '139,000 kilometers', '139 million kilometers', '1,390 kilometers'],
     correctIndex: 0,
     explanationBn: 'সূর্যের ব্যাস প্রায় ১৩.৯ লক্ষ কিলোমিটার (১.৩৯ × ১০⁹ মিটার)।',
+    explanationEn: 'The diameter of the Sun is approximately 1.39 million kilometers (1.39 × 10⁹ meters).',
     targetOrder: 9.14
   },
   {
     questionBn: 'প্রকৃতির অবিভাজ্য তাত্ত্বিক সর্বনিম্ন সীমা বা প্ল্যাঙ্ক দৈর্ঘ্য কত?',
     questionEn: 'What is the theoretical Planck length limit?',
     options: ['১.৬১৬ × ১০⁻৩৫ মিটার', '১.০ × ১০⁻১৮ মিটার', '৩.৩ × ১০⁻৪৪ মিটার', '১.৬১৬ × ১০⁻১৫ মিটার'],
+    optionsEn: ['1.616 × 10⁻³⁵ meters', '1.0 × 10⁻¹⁸ meters', '3.3 × 10⁻⁴⁴ meters', '1.616 × 10⁻¹⁵ meters'],
     correctIndex: 0,
     explanationBn: 'প্ল্যাঙ্ক দৈর্ঘ্য হলো ১.৬১৬ × ১০⁻৩৫ মিটার।',
+    explanationEn: 'The theoretical Planck length is approximately 1.616 × 10⁻³⁵ meters.',
     targetOrder: -34.79
   },
   {
     questionBn: 'আকাশগঙ্গা গ্যালাক্সির ব্যাস আনুমানিক কত আলোকবর্ষ?',
     questionEn: 'What is the approximate diameter of the Milky Way galaxy?',
     options: ['১ লক্ষ আলোকবর্ষ', '১ কোটি আলোকবর্ষ', '১০,০০০ আলোকবর্ষ', '৯৩ বিলিয়ন আলোকবর্ষ'],
+    optionsEn: ['100,000 light years', '10 million light years', '10,000 light years', '93 billion light years'],
     correctIndex: 0,
     explanationBn: 'আকাশগঙ্গার ব্যাস প্রায় ১ লক্ষ আলোকবর্ষ (৯.৫ × ১০²⁰ মিটার)।',
+    explanationEn: 'The Milky Way galaxy spans approximately 100,000 light years (9.5 × 10²⁰ meters).',
     targetOrder: 21.0
   }
 ];

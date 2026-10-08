@@ -122,10 +122,10 @@ html, body {
 
 .brand-title {
   font-family: var(--font-en);
-  font-weight: 700;
-  font-size: 14px;
-  letter-spacing: 2px;
-  background: linear-gradient(135deg, #ffffff, #93c5fd);
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: 1.5px;
+  background: linear-gradient(135deg, #ffffff 10%, #38bdf8 65%, #a855f7 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -136,51 +136,77 @@ html, body {
   padding-left: 10px;
 }
 
-/* Center Scale Telemetry Bar */
+/* Center Scale Telemetry Bar - Rock-Solid Stable Width & Centered Items */
 .scale-telemetry {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   background: var(--bg-card);
   backdrop-filter: blur(20px);
-  padding: 8px 24px;
+  padding: 8px 20px;
   border-radius: 30px;
   border: 1px solid var(--border-glass);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 1px rgba(255, 255, 255, 0.2);
-  gap: 20px;
+  width: 580px;
+  max-width: calc(100vw - 420px);
+  gap: 16px;
+  flex-shrink: 0;
 }
 
 .telemetry-item {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
+}
+
+.telemetry-item.main-order {
+  width: 135px;
+  flex-shrink: 0;
+}
+
+.telemetry-item.metric-size {
+  width: 175px;
+  flex-shrink: 0;
+}
+
+.telemetry-item.light-time {
+  width: 215px;
+  flex-shrink: 0;
 }
 
 .telemetry-label {
   font-family: var(--font-en);
   font-size: 9px;
   font-weight: 600;
-  letter-spacing: 1.5px;
+  letter-spacing: 1px;
   color: var(--text-dim);
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .telemetry-value {
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 15px;
+  font-size: 14px;
   color: var(--text-main);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
 .main-order .telemetry-value {
-  font-size: 18px;
+  font-size: 17px;
   color: var(--accent-cyan);
   text-shadow: 0 0 12px rgba(56, 189, 248, 0.5);
 }
 
 .telemetry-divider {
   width: 1px;
-  height: 28px;
+  height: 26px;
   background: rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
 }
 
 /* Action Toolbar Buttons */
@@ -264,8 +290,8 @@ html, body {
 /* ================= DOMAIN BADGE ================= */
 .domain-indicator-wrapper {
   position: absolute;
-  top: 84px;
-  left: 24px;
+  top: 76px;
+  left: 20px;
   z-index: 10;
   pointer-events: none;
 }
@@ -276,10 +302,10 @@ html, body {
   gap: 8px;
   background: rgba(8, 14, 28, 0.85);
   backdrop-filter: blur(16px);
-  padding: 6px 14px;
+  padding: 5px 12px;
   border-radius: 20px;
   border: 1px solid var(--accent-cosmic);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.5px;
   color: #ffffff;
@@ -289,11 +315,11 @@ html, body {
 /* ================= FLOATING OBJECT DETAILS CARD ================= */
 .object-card-container {
   position: absolute;
-  top: 110px;
-  left: 24px;
-  width: 380px;
-  max-width: calc(100vw - 48px);
-  max-height: calc(100vh - 180px);
+  top: 114px;
+  left: 20px;
+  width: 320px;
+  max-width: calc(100vw - 40px);
+  max-height: calc(100vh - 220px);
   z-index: 10;
   pointer-events: auto;
   display: flex;
@@ -311,8 +337,8 @@ html, body {
 /* Floating Restore Object Card Pill Button */
 .object-card-restore-pill {
   position: absolute;
-  top: 110px;
-  left: 24px;
+  top: 114px;
+  left: 20px;
   z-index: 12;
   display: inline-flex;
   align-items: center;
@@ -321,10 +347,10 @@ html, body {
   backdrop-filter: blur(20px);
   border: 1px solid rgba(56, 189, 248, 0.4);
   color: #38bdf8;
-  padding: 8px 16px;
+  padding: 7px 14px;
   border-radius: 20px;
   font-family: var(--font-bn);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
   cursor: pointer;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 15px rgba(56, 189, 248, 0.2);
@@ -351,16 +377,19 @@ html, body {
 
 .object-card {
   position: relative;
-  background: var(--bg-card);
+  background: rgba(10, 16, 32, 0.94);
   backdrop-filter: blur(24px);
   border: 1px solid var(--border-glass);
-  border-radius: 18px;
-  padding: 18px 20px;
+  border-radius: 16px;
+  padding: 14px 16px;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  overflow-y: auto;
+  gap: 10px;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  width: 100%;
+  box-sizing: border-box;
   max-height: 100%;
   scrollbar-width: thin;
   scrollbar-color: rgba(56, 189, 248, 0.3) transparent;
@@ -406,29 +435,30 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: 10px;
 }
 
 .card-title-row h2 {
   font-family: var(--font-bn);
-  font-size: 20px;
+  font-size: 17px;
   font-weight: 700;
   line-height: 1.25;
   color: #ffffff;
   margin: 0;
+  word-break: break-word;
 }
 
 .card-hide-btn {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 4px;
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.14);
   color: var(--text-dim);
-  padding: 4px 10px;
-  border-radius: 8px;
+  padding: 3px 8px;
+  border-radius: 6px;
   font-family: var(--font-bn);
-  font-size: 11.5px;
+  font-size: 11px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -443,34 +473,39 @@ html, body {
 }
 
 .card-hide-btn .svg-icon {
-  width: 13px;
-  height: 13px;
+  width: 12px;
+  height: 12px;
 }
 
 .card-meta-row {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  width: 100%;
 }
 
 .card-subname {
   font-family: var(--font-en);
-  font-size: 13px;
+  font-size: 11.5px;
   color: var(--text-dim);
   font-weight: 500;
 }
 
 .card-dimension-badge {
+  display: inline-block;
   font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 700;
-  padding: 4px 10px;
-  border-radius: 8px;
+  font-size: 10.5px;
+  font-weight: 600;
+  line-height: 1.35;
+  padding: 3px 8px;
+  border-radius: 6px;
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.12);
-  white-space: nowrap;
+  white-space: normal;
+  word-break: break-word;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 /* Scientific Truth & Force Badges Row */
@@ -704,35 +739,124 @@ html, body {
 /* ================= RIGHT HUD: FUNDAMENTAL FORCES PANEL ================= */
 .force-dominance-panel {
   position: absolute;
-  top: 110px;
-  right: 24px;
-  width: 230px;
-  background: var(--bg-card);
+  top: 114px;
+  right: 20px;
+  width: 220px;
+  background: rgba(10, 16, 32, 0.94);
   backdrop-filter: blur(20px);
   border: 1px solid var(--border-glass);
   border-radius: 16px;
-  padding: 14px 16px;
+  padding: 12px 14px;
   z-index: 10;
   pointer-events: auto;
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  transition: all 0.3s ease;
+  gap: 8px;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  overscroll-behavior: contain;
+}
+
+.force-dominance-panel.minimized {
+  transform: translateX(calc(100% + 30px));
+  opacity: 0;
+  pointer-events: none;
 }
 
 .force-panel-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 6px;
+}
+
+.force-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  width: 100%;
+}
+
+.force-header-title {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
   color: var(--text-dim);
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  padding-bottom: 8px;
 }
+
+.force-hide-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: var(--text-dim);
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-family: var(--font-bn);
+  font-size: 10.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.force-hide-btn:hover {
+  background: rgba(239, 68, 68, 0.22);
+  border-color: rgba(239, 68, 68, 0.55);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.force-hide-btn .svg-icon {
+  width: 12px;
+  height: 12px;
+}
+
+/* Floating Restore Forces Panel Pill Button */
+.force-restore-pill {
+  position: absolute;
+  top: 114px;
+  right: 20px;
+  z-index: 12;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(10, 16, 32, 0.92);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  color: #c084fc;
+  padding: 7px 14px;
+  border-radius: 20px;
+  font-family: var(--font-bn);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 15px rgba(168, 85, 247, 0.2);
+  transition: all 0.25s ease;
+  animation: forcePillPulse 2.5s infinite ease-in-out;
+}
+
+.force-restore-pill:hover {
+  background: rgba(168, 85, 247, 0.22);
+  border-color: #c084fc;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7), 0 0 25px rgba(168, 85, 247, 0.45);
+}
+
+@keyframes forcePillPulse {
+  0%, 100% {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 15px rgba(168, 85, 247, 0.2);
+  }
+  50% {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 25px rgba(168, 85, 247, 0.45);
+  }
+}
+
 
 .force-item-row {
   display: flex;
@@ -864,14 +988,14 @@ html, body {
 /* ================= BOTTOM HUD ================= */
 .hud-bottom {
   position: absolute;
-  bottom: 20px;
+  bottom: 14px;
   left: 20px;
   right: 20px;
   z-index: 10;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   pointer-events: none;
 }
 
@@ -886,7 +1010,7 @@ html, body {
   gap: 8px;
   background: var(--bg-card);
   backdrop-filter: blur(20px);
-  padding: 6px 12px;
+  padding: 5px 12px;
   border-radius: 20px;
   border: 1px solid var(--border-glass);
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
@@ -906,10 +1030,10 @@ html, body {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 12px;
-  padding: 6px 12px;
+  padding: 5px 10px;
   color: var(--text-muted);
   font-family: var(--font-bn);
-  font-size: 12px;
+  font-size: 11.5px;
   font-weight: 600;
   white-space: nowrap;
   cursor: pointer;
@@ -937,21 +1061,21 @@ html, body {
 }
 
 .jump-icon {
-  font-size: 14px;
+  font-size: 13px;
 }
 
 /* Main Timeline Scrubber Panel */
 .timeline-scrubber-panel {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   background: var(--bg-card);
   backdrop-filter: blur(24px);
   border: 1px solid var(--border-glass);
-  padding: 10px 20px;
+  padding: 8px 18px;
   border-radius: 24px;
-  width: 780px;
-  max-width: 92vw;
+  width: 680px;
+  max-width: calc(100vw - 40px);
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
 }
 
@@ -2008,13 +2132,13 @@ body.black-hole-mode .force-dominance-panel {
 /* Discreet Permanent Corner Watermark */
 .canvas-corner-disclaimer {
   position: fixed;
-  bottom: 12px;
-  left: 16px;
-  font-size: 10.5px;
-  color: rgba(255, 255, 255, 0.35);
+  bottom: 6px;
+  left: 20px;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.28);
   font-family: var(--font-bn);
   pointer-events: none;
-  z-index: 20;
+  z-index: 5;
   letter-spacing: 0.3px;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
 }

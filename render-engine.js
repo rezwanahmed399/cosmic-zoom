@@ -18,6 +18,7 @@ export class CosmicRenderEngine {
     this.height = window.innerHeight;
 
     // Viewport & Scale State
+    this.lang = 'bn';
     this.currentOrder = 27.0; // Observable Universe
     this.targetOrder = 27.0;
     this.zoomVelocity = 0;
@@ -1688,11 +1689,11 @@ export class CosmicRenderEngine {
     // Callout text
     ctx.fillStyle = '#ffffff';
     ctx.font = '600 13px system-ui';
-    ctx.fillText(obj.nameEn, tagX, tagY - 14);
+    ctx.fillText(this.lang === 'bn' ? (obj.nameBn || obj.nameEn) : obj.nameEn, tagX, tagY - 14);
 
     ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
     ctx.font = '500 11px system-ui';
-    ctx.fillText(obj.sizeFormatted, tagX, tagY + 16);
+    ctx.fillText(this.lang === 'bn' ? (obj.sizeFormattedBn || obj.sizeFormatted) : obj.sizeFormatted, tagX, tagY + 16);
 
     ctx.restore();
   }
@@ -1924,7 +1925,7 @@ export class CosmicRenderEngine {
     ctx.font = '700 11px system-ui';
     ctx.textAlign = 'center';
     const pct = Math.floor(charge * 100);
-    ctx.fillText(`মহাকর্ষীয় সংকোচন: ${pct}%`, x, y + 80);
+    ctx.fillText(this.lang === 'bn' ? `মহাকর্ষীয় সংকোচন: ${pct}%` : `Gravitational Collapse: ${pct}%`, x, y + 80);
     ctx.font = '600 10px monospace';
     ctx.fillStyle = '#a855f7';
     ctx.fillText(`DENSITY CRITICAL`, x, y + 94);
@@ -2230,7 +2231,7 @@ export class CosmicRenderEngine {
       ctx.font = '600 10.5px system-ui';
       ctx.fillStyle = 'rgba(216, 180, 254, 0.75)';
       ctx.textAlign = 'center';
-      ctx.fillText('তাত্ত্বিক আয়ুষ্কাল: ~১০⁻⁴⁰ s', cx, cy + r_shadow + 28);
+      ctx.fillText(this.lang === 'bn' ? 'তাত্ত্বিক আয়ুষ্কাল: ~১০⁻⁴⁰ s' : 'Theoretical Lifetime: ~10⁻⁴⁰ s', cx, cy + r_shadow + 28);
       ctx.restore();
     }
 
@@ -2278,7 +2279,7 @@ export class CosmicRenderEngine {
       ctx.lineTo(lx1 + 140, ly1 - 22);
       ctx.stroke();
       ctx.fillStyle = '#38bdf8';
-      ctx.fillText('১. ঘটনা দিগন্ত (১.০ rs)', lx1 + 32, ly1 - 26);
+      ctx.fillText(this.lang === 'bn' ? '১. ঘটনা দিগন্ত (১.০ rs)' : '1. Event Horizon (1.0 rs)', lx1 + 32, ly1 - 26);
 
       // 2. Photon Sphere Label
       const a2 = Math.PI * 0.22;
@@ -2291,7 +2292,7 @@ export class CosmicRenderEngine {
       ctx.lineTo(lx2 + 140, ly2 + 22);
       ctx.stroke();
       ctx.fillStyle = '#facc15';
-      ctx.fillText('২. ফোটন স্ফিয়ার (১.৫ rs)', lx2 + 32, ly2 + 36);
+      ctx.fillText(this.lang === 'bn' ? '২. ফোটন স্ফিয়ার (১.৫ rs)' : '2. Photon Sphere (1.5 rs)', lx2 + 32, ly2 + 36);
 
       // 3. Shadow Edge Label
       const a3 = -Math.PI * 0.78;
@@ -2305,13 +2306,13 @@ export class CosmicRenderEngine {
       ctx.stroke();
       ctx.textAlign = 'right';
       ctx.fillStyle = '#f43f5e';
-      ctx.fillText('৩. ছায়ার কিনারা (~২.৬ rs)', lx3 - 32, ly3 - 26);
+      ctx.fillText(this.lang === 'bn' ? '৩. ছায়ার কিনারা (~২.৬ rs)' : '3. Shadow Boundary (~2.6 rs)', lx3 - 32, ly3 - 26);
 
       // Note callout
       ctx.textAlign = 'center';
       ctx.font = '500 10px monospace';
       ctx.fillStyle = 'rgba(255, 255, 255, 0.65)';
-      ctx.fillText('আসল ফোটন রিং এর চেয়েও সরু ও ঝাপসা (Critical impact parameter bc = 3√3 M)', cx, cy + r_shadow + 48);
+      ctx.fillText(this.lang === 'bn' ? 'আসল ফোটন রিং এর চেয়েও সরু ও ঝাপসা (Critical impact parameter bc = 3√3 M)' : 'Real photon ring is thinner and fainter (Critical impact parameter bc = 3√3 M)', cx, cy + r_shadow + 48);
 
       ctx.restore();
     }

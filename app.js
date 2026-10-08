@@ -14,7 +14,7 @@ class CosmicApp {
     this.canvas = document.getElementById('viewport-canvas');
     this.renderEngine = new CosmicRenderEngine(this.canvas);
     this.audioEngine = new CosmicAudioEngine();
-    this.lang = 'bn'; // Default to Bengali as requested by the user, toggleable to 'en'
+    this.lang = 'bn'; // Default to Bengali, toggleable to 'en' with 100% pure localization
     this.isAutoCruising = false;
     this.cruiseSpeed = 0.04; // orders per frame
     this.cruiseDirection = -1; // -1 = zooming into smaller scales, +1 = zooming out
@@ -27,6 +27,7 @@ class CosmicApp {
 
     this.initDOM();
     this.initEvents();
+    this.applyLanguageTranslations();
     this.startLoop();
 
     // Initial update
@@ -35,10 +36,16 @@ class CosmicApp {
 
   initDOM() {
     // Top HUD
+    this.brandSub = document.getElementById('brand-sub');
     this.orderExpEl = document.getElementById('order-exponent');
     this.orderMetricEl = document.getElementById('order-metric');
     this.lightTimeEl = document.getElementById('light-time-value');
     this.domainBadgeEl = document.getElementById('domain-badge');
+    this.labelOrder = document.getElementById('label-order');
+    this.labelMetric = document.getElementById('label-metric');
+    this.labelLight = document.getElementById('label-light');
+    this.searchBtnLabel = document.getElementById('search-btn-label');
+    this.compareBtnLabel = document.getElementById('compare-btn-label');
 
     // Object Details Panel
     this.objectCardContainer = document.getElementById('object-card-container');
@@ -54,18 +61,35 @@ class CosmicApp {
     this.objectFactEl = document.getElementById('object-fact');
     this.factContainerEl = document.getElementById('fact-container');
 
+    // Fundamental Forces Panel (Right HUD)
+    this.forceDominancePanel = document.getElementById('force-dominance-panel');
+    this.forceHideBtn = document.getElementById('force-hide-btn');
+    this.forceHideLabel = document.getElementById('force-hide-label');
+    this.forceRestorePill = document.getElementById('force-restore-pill');
+    this.forceRestoreLabel = document.getElementById('force-restore-label');
+    this.forcePanelHeading = document.getElementById('force-panel-heading');
+    this.forceNameGravity = document.getElementById('force-name-gravity');
+    this.forceNameElectromagnetism = document.getElementById('force-name-electromagnetism');
+    this.forceNameStrong = document.getElementById('force-name-strong');
+    this.forceNameWeak = document.getElementById('force-name-weak');
+    this.forceNameQuantumGravity = document.getElementById('force-name-quantum-gravity');
+
     // Controls
     this.sliderEl = document.getElementById('scale-slider');
     this.audioBtn = document.getElementById('audio-toggle-btn');
     this.audioWave = document.getElementById('audio-wave');
     this.cornerDisclaimerEl = document.getElementById('canvas-corner-disclaimer');
     this.tourBtn = document.getElementById('tour-toggle-btn');
+    this.tourBtnLabel = document.getElementById('tour-btn-label');
     this.langBtn = document.getElementById('lang-toggle-btn');
     this.fullscreenBtn = document.getElementById('fullscreen-btn');
     this.searchModal = document.getElementById('search-modal');
+    this.searchModalTitle = document.getElementById('search-modal-title');
     this.searchInput = document.getElementById('search-input');
     this.searchResults = document.getElementById('search-results');
     this.compareModal = document.getElementById('compare-modal');
+    this.compareModalTitle = document.getElementById('compare-modal-title');
+    this.compareModalIntro = document.getElementById('compare-modal-intro');
 
     // Advanced Scientific HUD Elements
     this.truthBadgeEl = document.getElementById('object-truth-badge');
@@ -73,18 +97,29 @@ class CosmicApp {
     this.forceBadgeEl = document.getElementById('object-force-badge');
     this.forceTextValEl = document.getElementById('force-text-val');
     this.instrumentContentEl = document.getElementById('object-instrument');
+    this.instrumentTitleLabel = document.getElementById('instrument-title-label');
+    this.transitTitleLabel = document.getElementById('transit-title-label');
+    this.transitTagWalk = document.getElementById('transit-tag-walk');
+    this.transitTagJet = document.getElementById('transit-tag-jet');
+    this.transitTagVoyager = document.getElementById('transit-tag-voyager');
     this.transitWalkValEl = document.getElementById('transit-walk-val');
     this.transitJetValEl = document.getElementById('transit-jet-val');
     this.transitVoyagerValEl = document.getElementById('transit-voyager-val');
     this.misconceptionContainerEl = document.getElementById('misconception-container');
     this.misconceptionHeadingEl = document.getElementById('misconception-heading');
     this.misconceptionTextEl = document.getElementById('misconception-text');
+    this.factTitleLabel = document.getElementById('fact-title-label');
+    this.scrollHintLabel = document.getElementById('scroll-hint-label');
     this.rulerLabelEl = document.getElementById('ruler-label');
     this.planckWallBannerEl = document.getElementById('planck-wall-banner');
+    this.planckBannerTitle = document.getElementById('planck-banner-title');
+    this.planckBannerText = document.getElementById('planck-banner-text');
+    this.sliderDomainMarkers = document.getElementById('slider-domain-markers');
     this.forceRows = document.querySelectorAll('.force-item-row');
 
-    // Black Hole Schwarzschild Radius Elements
+    // Black Hole Schwarzschild Radius Elements in Left Card
     this.blackholeContainerEl = document.getElementById('blackhole-container');
+    this.blackholeTitleLabel = document.getElementById('blackhole-title-label');
     this.blackholeValEl = document.getElementById('blackhole-val');
 
     // Quiz Modal Elements
@@ -100,17 +135,25 @@ class CosmicApp {
     this.collapseBtnLabel = document.getElementById('collapse-btn-label');
     this.blackholeOverlay = document.getElementById('blackhole-active-overlay');
     this.blackholePanel = document.getElementById('blackhole-telemetry-panel');
+    this.bhTitleBadge = document.getElementById('bh-title-badge');
     this.evaporateBtn = document.getElementById('evaporate-btn');
     this.evaporateBtnLabel = document.getElementById('evaporate-btn-label');
     this.bhOverlayToggleBtn = document.getElementById('bh-overlay-toggle-btn');
     this.bhOverlayLabel = document.getElementById('bh-overlay-label');
     this.bhMassChips = document.querySelectorAll('.bh-mass-chip');
+    this.massChipPlanck = document.getElementById('mass-chip-planck');
+    this.massChipSun = document.getElementById('mass-chip-sun');
+    this.massChipSgra = document.getElementById('mass-chip-sgra');
     this.bhModeToggleBtn = document.getElementById('bh-mode-toggle-btn');
     this.bhModeLabel = document.getElementById('bh-mode-label');
     this.bhHideCardBtn = document.getElementById('bh-hide-card-btn');
     this.bhHideBtnLabel = document.getElementById('bh-hide-btn-label');
     this.bhRestoreCardPill = document.getElementById('bh-restore-card-pill');
     this.bhRestoreLabel = document.getElementById('bh-restore-label');
+    this.bhLblMass = document.getElementById('bh-lbl-mass');
+    this.bhLblRadius = document.getElementById('bh-lbl-radius');
+    this.bhLblPhoton = document.getElementById('bh-lbl-photon');
+    this.bhLblHawking = document.getElementById('bh-lbl-hawking');
     this.bhStatMass = document.getElementById('bh-stat-mass');
     this.bhStatRadius = document.getElementById('bh-stat-radius');
     this.bhStatPhoton = document.getElementById('bh-stat-photon');
@@ -169,7 +212,7 @@ class CosmicApp {
   populateQuickJumps() {
     const keyMilestones = [
       { order: 26.94, nameEn: 'Universe', nameBn: 'মহাবিশ্ব', iconKey: 'universe' },
-      { order: 21.0, nameEn: 'Milky Way', nameBn: 'আকাশগঙ্গা', iconKey: 'galaxy' },
+      { order: 21.0, nameEn: 'Milky Way', nameBn: 'ছায়াপথ', iconKey: 'galaxy' },
       { order: 9.14, nameEn: 'Sun', nameBn: 'সূর্য', iconKey: 'sun' },
       { order: 7.1, nameEn: 'Earth', nameBn: 'পৃথিবী', iconKey: 'earth' },
       { order: 0.23, nameEn: 'Human', nameBn: 'মানুষ', iconKey: 'human' },
@@ -186,8 +229,9 @@ class CosmicApp {
     keyMilestones.forEach(m => {
       const btn = document.createElement('button');
       btn.className = 'jump-btn';
-      btn.title = `${m.nameBn} / ${m.nameEn} (${m.order > 0 ? '+' : ''}${Math.round(m.order)})`;
-      btn.innerHTML = `<span class="jump-icon">${getIcon(m.iconKey)}</span><span class="jump-name">${this.lang === 'bn' ? m.nameBn : m.nameEn}</span>`;
+      const name = this.lang === 'bn' ? m.nameBn : m.nameEn;
+      btn.title = `${name} (${m.order > 0 ? '+' : ''}${Math.round(m.order)})`;
+      btn.innerHTML = `<span class="jump-icon">${getIcon(m.iconKey)}</span><span class="jump-name">${name}</span>`;
       btn.addEventListener('click', () => {
         this.stopTour();
         this.audioEngine.playChime(600);
@@ -203,7 +247,7 @@ class CosmicApp {
     if (!listEl) return;
     listEl.innerHTML = '';
 
-    SCALE_COMPARISONS.forEach((comp, idx) => {
+    SCALE_COMPARISONS.forEach((comp) => {
       const item = document.createElement('div');
       item.className = 'compare-card';
       const objA = COSMIC_OBJECTS.find(o => o.id === comp.targetA) || { nameEn: comp.targetA, nameBn: comp.targetA };
@@ -258,8 +302,9 @@ class CosmicApp {
 
       const optionsContainer = card.querySelector(`#quiz-options-${qIdx}`);
       const feedbackBox = card.querySelector(`#quiz-feedback-${qIdx}`);
+      const opts = (this.lang === 'en' && q.optionsEn) ? q.optionsEn : q.options;
 
-      q.options.forEach((optText, optIdx) => {
+      opts.forEach((optText, optIdx) => {
         const btn = document.createElement('button');
         btn.className = 'quiz-option-btn';
         btn.textContent = optText;
@@ -550,6 +595,27 @@ class CosmicApp {
       }, { passive: true });
     }
 
+    // Fundamental Forces Panel Hide & Restore Pill Listeners
+    if (this.forceHideBtn) {
+      this.forceHideBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.setForcesPanelVisible(false);
+      });
+    }
+
+    if (this.forceRestorePill) {
+      this.forceRestorePill.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.setForcesPanelVisible(true);
+      });
+    }
+
+    if (this.forceDominancePanel) {
+      this.forceDominancePanel.addEventListener('wheel', (e) => {
+        e.stopPropagation();
+      }, { passive: true });
+    }
+
     // Audio Toggle
     this.audioBtn.addEventListener('click', () => {
       const active = this.audioEngine.toggleSound();
@@ -565,48 +631,7 @@ class CosmicApp {
     // Language Toggle
     this.langBtn.addEventListener('click', () => {
       this.lang = this.lang === 'bn' ? 'en' : 'bn';
-      this.langBtn.textContent = this.lang === 'bn' ? 'বাংলা' : 'EN';
-      this.updateCornerDisclaimer();
-      if (this.cardHideLabel) {
-        this.cardHideLabel.textContent = this.lang === 'bn' ? 'লুকান' : 'Hide';
-      }
-      if (this.cardHideBtn) {
-        this.cardHideBtn.title = this.lang === 'bn' ? 'তথ্য কার্ড লুকান [C]' : 'Hide Info Card [C]';
-      }
-      if (this.cardRestoreLabel) {
-        this.cardRestoreLabel.textContent = this.lang === 'bn' ? 'তথ্য কার্ড দেখুন [C]' : 'Show Info Card [C]';
-      }
-      if (this.cardRestorePill) {
-        this.cardRestorePill.title = this.lang === 'bn' ? 'তথ্য কার্ড দেখুন [C]' : 'Show Info Card [C]';
-      }
-      if (this.collapseBtnLabel) {
-        this.collapseBtnLabel.textContent = this.lang === 'bn' ? 'ব্ল্যাকহোল' : 'Black Hole';
-      }
-      if (this.evaporateBtnLabel) {
-        this.evaporateBtnLabel.textContent = this.lang === 'bn' ? 'বাষ্পীভবন ও রিস্টোর [X]' : 'Evaporate & Return [X]';
-      }
-      if (this.bhHideBtnLabel) {
-        this.bhHideBtnLabel.textContent = this.lang === 'bn' ? 'কার্ড লুকান' : 'Hide Card';
-      }
-      if (this.bhRestoreLabel) {
-        this.bhRestoreLabel.textContent = this.lang === 'bn' ? 'শোয়ার্জশিল্ড তথ্য দেখুন [H]' : 'Show Data Card [H]';
-      }
-      if (this.strainTitleText) {
-        this.strainTitleText.textContent = this.lang === 'bn'
-          ? 'স্থান-কাল মহাকর্ষীয় সংকোচন টান (SPACETIME STRAIN)'
-          : 'Spacetime Gravitational Strain (TRANS-PLANCKIAN)';
-      }
-      if (this.strainSubText) {
-        this.strainSubText.textContent = this.lang === 'bn'
-          ? 'মাউস হুইল দিয়ে আরো স্ক্রোল করে মহাকর্ষীয় পতন ঘটান... (Scroll more to force collapse)'
-          : 'Scroll mouse wheel more to force gravitational collapse...';
-      }
-      if (this.bhModeLabel) {
-        const isDisk = this.renderEngine.blackHoleAccretionMode === 'disk';
-        this.bhModeLabel.textContent = this.lang === 'bn'
-          ? (isDisk ? 'গ্যাসীয় ডিস্ক সহ' : 'বিশুদ্ধ ভ্যাকিউম')
-          : (isDisk ? 'With Disk' : 'Pure Vacuum');
-      }
+      this.applyLanguageTranslations();
       this.populateQuickJumps();
       this.populateComparisons();
       this.populateQuiz();
@@ -688,7 +713,7 @@ class CosmicApp {
         if (this.bhModeLabel) {
           this.bhModeLabel.textContent = this.lang === 'bn'
             ? (isDisk ? 'গ্যাসীয় ডিস্ক সহ' : 'বিশুদ্ধ ভ্যাকিউম')
-            : (isDisk ? 'With Disk' : 'Pure Vacuum');
+            : (isDisk ? 'Accretion Disk' : 'Pure Vacuum');
         }
         this.updateBlackHoleStats();
         this.audioEngine.playChime(640);
@@ -795,6 +820,8 @@ class CosmicApp {
         this.audioEngine.playZoomPulse(-1);
       } else if (e.key === 'c' || e.key === 'C') {
         this.toggleObjectCard();
+      } else if (e.key === 'f' || e.key === 'F') {
+        this.toggleForcesPanel();
       } else if (e.key === 'h' || e.key === 'H' || e.key === 'i' || e.key === 'I') {
         if (this.renderEngine.blackHoleState === 'active' && this.blackholeOverlay) {
           const isMin = this.blackholeOverlay.classList.toggle('card-minimized');
@@ -843,6 +870,242 @@ class CosmicApp {
     });
   }
 
+  applyLanguageTranslations() {
+    const isBn = this.lang === 'bn';
+    document.documentElement.lang = this.lang;
+
+    if (this.langBtn) {
+      this.langBtn.textContent = isBn ? 'বাংলা' : 'EN';
+      this.langBtn.title = isBn ? 'ভাষা পরিবর্তন (Toggle Language)' : 'Switch Language';
+    }
+
+    if (this.brandSub) {
+      this.brandSub.textContent = isBn ? 'মহাজাগতিক থেকে প্ল্যাঙ্ক স্কেল' : 'The Cosmic to Planck Journey';
+    }
+
+    if (this.labelOrder) {
+      this.labelOrder.textContent = isBn ? 'অর্ডার অফ ম্যাগনিটিউড / SCALE' : 'ORDER OF MAGNITUDE / SCALE';
+    }
+    if (this.labelMetric) {
+      this.labelMetric.textContent = isBn ? 'প্রকৃত পরিমাপ / METRIC' : 'ACTUAL MEASURE / METRIC';
+    }
+    if (this.labelLight) {
+      this.labelLight.textContent = isBn ? 'আলোর অতিক্রম সময় / LIGHT TRANSIT' : 'LIGHT TRAVEL TIME / TRANSIT';
+    }
+
+    // Top action buttons
+    if (this.searchBtnLabel) this.searchBtnLabel.textContent = isBn ? 'খুঁজুন' : 'Search';
+    if (this.compareBtnLabel) this.compareBtnLabel.textContent = isBn ? 'তুলনা' : 'Compare';
+    if (this.quizBtnLabel) this.quizBtnLabel.textContent = isBn ? 'কুইজ' : 'Quiz';
+    if (this.collapseBtnLabel) this.collapseBtnLabel.textContent = isBn ? 'ব্ল্যাকহোল' : 'Black Hole';
+
+    const searchBtn = document.getElementById('search-btn');
+    if (searchBtn) searchBtn.title = isBn ? 'বস্তু খুঁজুন (Search Objects)' : 'Search Objects';
+    const compareBtn = document.getElementById('compare-btn');
+    if (compareBtn) compareBtn.title = isBn ? 'স্কেলের তুলনা (Scale Comparisons)' : 'Scale Comparisons';
+    if (this.quizBtn) this.quizBtn.title = isBn ? 'স্কেল চ্যালেঞ্জ কুইজ (Scale Quiz)' : 'Scale Estimation Quiz';
+    if (this.collapseBtn) this.collapseBtn.title = isBn ? 'মহাকর্ষীয় সংকোচন ও ব্ল্যাকহোল সৃষ্টি' : 'Gravitational Collapse Simulation';
+    if (this.audioBtn) this.audioBtn.title = isBn ? 'কোয়ান্টাম-কসমিক অডিও' : 'Cosmic Audio Synthesizer';
+    if (this.fullscreenBtn) this.fullscreenBtn.title = isBn ? 'ফুলস্ক্রিন' : 'Toggle Fullscreen';
+
+    // Left info card
+    if (this.cardHideLabel) this.cardHideLabel.textContent = isBn ? 'লুকান' : 'Hide';
+    if (this.cardHideBtn) {
+      this.cardHideBtn.title = isBn ? 'তথ্য কার্ড লুকান [C]' : 'Hide Info Card [C]';
+      this.cardHideBtn.setAttribute('aria-label', isBn ? 'তথ্য কার্ড লুকান' : 'Hide Info Card');
+    }
+    if (this.cardRestoreLabel) this.cardRestoreLabel.textContent = isBn ? 'তথ্য কার্ড দেখুন [C]' : 'Show Info Card [C]';
+    if (this.cardRestorePill) this.cardRestorePill.title = isBn ? 'তথ্য কার্ড দেখুন [C]' : 'Show Info Card [C]';
+
+    // Right fundamental forces panel
+    if (this.forceHideLabel) this.forceHideLabel.textContent = isBn ? 'লুকান' : 'Hide';
+    if (this.forceHideBtn) {
+      this.forceHideBtn.title = isBn ? 'মৌলিক বল প্যানেল লুকান [F]' : 'Hide Forces Panel [F]';
+      this.forceHideBtn.setAttribute('aria-label', isBn ? 'মৌলিক বল লুকান' : 'Hide Forces Panel');
+    }
+    if (this.forceRestoreLabel) this.forceRestoreLabel.textContent = isBn ? 'মৌলিক বল [F]' : 'Governing Forces [F]';
+    if (this.forceRestorePill) this.forceRestorePill.title = isBn ? 'মৌলিক বল দেখুন [F]' : 'Show Governing Forces [F]';
+    if (this.forcePanelHeading) {
+      this.forcePanelHeading.textContent = isBn ? 'মৌলিক বলের প্রভাব (Governing Force)' : 'Governing Force Dominance';
+    }
+    if (this.forceNameGravity) {
+      this.forceNameGravity.textContent = isBn ? 'মহাকর্ষ ও ডার্ক এনার্জি (Gravity & Dark Energy)' : 'Gravity & Dark Energy';
+    }
+    if (this.forceNameElectromagnetism) {
+      this.forceNameElectromagnetism.textContent = isBn ? 'তড়িৎচৌম্বক বল (Electromagnetism)' : 'Electromagnetism';
+    }
+    if (this.forceNameStrong) {
+      this.forceNameStrong.textContent = isBn ? 'সবল নিউক্লীয় বল (Strong Nuclear Force)' : 'Strong Nuclear Force';
+    }
+    if (this.forceNameWeak) {
+      this.forceNameWeak.textContent = isBn ? 'দুর্বল ও ইলেকট্রোউইক (Weak / Electroweak)' : 'Weak Nuclear / Electroweak';
+    }
+    if (this.forceNameQuantumGravity) {
+      this.forceNameQuantumGravity.textContent = isBn ? 'কোয়ান্টাম গ্র্যাভিটি (Quantum Gravity / Planck)' : 'Quantum Gravity / Planck Scale';
+    }
+
+    // Card section headers and labels
+    if (this.instrumentTitleLabel) {
+      this.instrumentTitleLabel.textContent = isBn ? 'পর্যবেক্ষণ প্রযুক্তি (Instrument Ladder):' : 'Observation Technology (Instrument Ladder):';
+    }
+    if (this.transitTitleLabel) {
+      this.transitTitleLabel.textContent = isBn ? 'বাস্তব ভ্রমণ গতিতে সময় (Transit Time):' : 'Human Travel Time Equivalent:';
+    }
+    if (this.transitTagWalk) this.transitTagWalk.textContent = isBn ? 'হাঁটা (৫ কিমি/ঘণ্টা):' : 'Walk (5 km/h):';
+    if (this.transitTagJet) this.transitTagJet.textContent = isBn ? 'জেট (৯০০ কিমি/ঘণ্টা):' : 'Jet (900 km/h):';
+    if (this.transitTagVoyager) this.transitTagVoyager.textContent = isBn ? 'ভয়েজার (১৭ কিমি/সেকেন্ড):' : 'Voyager (17 km/s):';
+    if (this.blackholeTitleLabel) {
+      this.blackholeTitleLabel.textContent = isBn ? 'ব্ল্যাকহোল ব্যাসার্ধ (Schwarzschild Radius rs = 2GM/c²):' : 'Schwarzschild Radius (rs = 2GM/c²):';
+    }
+    if (this.factTitleLabel) this.factTitleLabel.textContent = isBn ? 'মহাজাগতিক তথ্য (COSMIC FACT)' : 'COSMIC FACT';
+    if (this.scrollHintLabel) {
+      this.scrollHintLabel.textContent = isBn ? 'স্ক্রোল বা সোয়াইপ করে গভীরে প্রবেশ করুন' : 'Scroll or swipe to explore scales';
+    }
+
+    // Planck wall paradox banner
+    if (this.planckBannerTitle) {
+      this.planckBannerTitle.textContent = isBn ? 'প্ল্যাঙ্ক দেয়াল অর্জিত (The Planck Wall Limit):' : 'Planck Wall Reached (Quantum Limit):';
+    }
+    if (this.planckBannerText) {
+      this.planckBannerText.textContent = isBn
+        ? 'বর্তমান তত্ত্বের শেষ সীমা। এর নিচে কোনো দূরত্ব দেখতে চাইলে ফোটনের শক্তি ক্ষুদ্র ব্ল্যাকহোল তৈরি করে সব ঢেকে ফেলে!'
+        : 'The fundamental threshold of modern physics. Probing beyond this creates a micro black hole that conceals spacetime!';
+    }
+
+    // Spacetime strain meter
+    if (this.strainTitleText) {
+      this.strainTitleText.textContent = isBn
+        ? 'স্থান-কাল মহাকর্ষীয় সংকোচন টান (SPACETIME STRAIN)'
+        : 'Spacetime Gravitational Strain (TRANS-PLANCKIAN)';
+    }
+    if (this.strainSubText) {
+      this.strainSubText.textContent = isBn
+        ? 'মাউস হুইল দিয়ে আরো স্ক্রোল করে মহাকর্ষীয় পতন ঘটান... (Scroll more to force collapse)'
+        : 'Scroll mouse wheel more to force gravitational collapse...';
+    }
+
+    // Slider domain markers
+    if (this.sliderDomainMarkers) {
+      if (isBn) {
+        this.sliderDomainMarkers.innerHTML = `
+          <span style="left: 0%;">+27<br>মহাবিশ্ব</span>
+          <span style="left: 9.7%;">+21<br>ছায়াপথ</span>
+          <span style="left: 25.8%;">+11<br>সৌরজগৎ</span>
+          <span style="left: 32.3%;">+7<br>পৃথিবী</span>
+          <span style="left: 43.5%;">0<br>মানুষ</span>
+          <span style="left: 51.6%;">-5<br>রক্তকোষ</span>
+          <span style="left: 58.1%;">-9<br>ডিএনএ</span>
+          <span style="left: 67.7%;">-15<br>প্রোটন</span>
+          <span style="left: 88.7%;">-28<br>GUT</span>
+          <span style="left: 100%;">-35<br>প্ল্যাঙ্ক</span>
+        `;
+      } else {
+        this.sliderDomainMarkers.innerHTML = `
+          <span style="left: 0%;">+27<br>Universe</span>
+          <span style="left: 9.7%;">+21<br>Galaxy</span>
+          <span style="left: 25.8%;">+11<br>Solar Sys</span>
+          <span style="left: 32.3%;">+7<br>Earth</span>
+          <span style="left: 43.5%;">0<br>Human</span>
+          <span style="left: 51.6%;">-5<br>Cell</span>
+          <span style="left: 58.1%;">-9<br>DNA</span>
+          <span style="left: 67.7%;">-15<br>Proton</span>
+          <span style="left: 88.7%;">-28<br>GUT</span>
+          <span style="left: 100%;">-35<br>Planck</span>
+        `;
+      }
+    }
+
+    // Zoom and stepper button tooltips
+    const zoomInBtn = document.getElementById('zoom-in-btn');
+    if (zoomInBtn) zoomInBtn.title = isBn ? 'জুম ইন (Zoom In)' : 'Zoom In';
+    const zoomOutBtn = document.getElementById('zoom-out-btn');
+    if (zoomOutBtn) zoomOutBtn.title = isBn ? 'জুম আউট (Zoom Out)' : 'Zoom Out';
+
+    // Tour button
+    if (this.tourBtn) {
+      const tourText = this.isAutoCruising
+        ? (isBn ? 'থামুন' : 'Pause')
+        : (isBn ? 'ট্যুর শুরু' : 'Auto Tour');
+      const iconKey = this.isAutoCruising ? 'pause' : 'play';
+      this.tourBtn.innerHTML = `<span class="tour-icon-slot">${getIcon(iconKey)}</span><span class="btn-text" id="tour-btn-label">${tourText}</span>`;
+    }
+
+    // Search modal
+    if (this.searchModalTitle) {
+      this.searchModalTitle.textContent = isBn ? 'মহাজাগতিক ও কোয়ান্টাম বস্তু খুঁজুন' : 'Search Cosmic & Quantum Objects';
+    }
+    if (this.searchInput) {
+      this.searchInput.placeholder = isBn
+        ? 'নাম লিখুন (যেমন: DNA, পৃথিবী, সূর্য, কোয়ার্ক, লানিয়াকিয়া)...'
+        : 'Type object name (e.g., DNA, Earth, Sun, Quark, Laniakea)...';
+    }
+    const closeSearchBtn = document.getElementById('close-search-btn');
+    if (closeSearchBtn) closeSearchBtn.title = isBn ? 'বন্ধ করুন' : 'Close';
+
+    // Compare modal
+    if (this.compareModalTitle) {
+      this.compareModalTitle.textContent = isBn ? 'স্কেলের বিস্ময়কর তুলনা (Mind-Blowing Comparisons)' : 'Mind-Blowing Scale Comparisons';
+    }
+    if (this.compareModalIntro) {
+      this.compareModalIntro.textContent = isBn
+        ? 'মহাবিশ্বের চরম বৃহত্তম ও ক্ষুদ্রতম বস্তুগুলোর আকারের তুলনামূলক অনুপাত:'
+        : 'Comparative ratios between cosmic and subatomic structures:';
+    }
+    const closeCompareBtn = document.getElementById('close-compare-btn');
+    if (closeCompareBtn) closeCompareBtn.title = isBn ? 'বন্ধ করুন' : 'Close';
+
+    // Quiz modal
+    if (this.quizTitleEl) {
+      this.quizTitleEl.textContent = isBn ? 'মহাজাগতিক স্কেল অনুমান চ্যালেঞ্জ' : 'Cosmic Scale Estimation Challenge';
+    }
+    if (this.closeQuizBtn) this.closeQuizBtn.title = isBn ? 'বন্ধ করুন' : 'Close';
+
+    // Black Hole controls and chips
+    if (this.bhTitleBadge) {
+      this.bhTitleBadge.textContent = isBn ? 'শোয়ার্জশিল্ড ব্ল্যাকহোল (SCHWARZSCHILD GR MODEL)' : 'SCHWARZSCHILD BLACK HOLE (GR MODEL)';
+    }
+    if (this.bhOverlayLabel) this.bhOverlayLabel.textContent = isBn ? '৩টি বৃত্ত [O]' : '3-Rings [O]';
+    if (this.bhOverlayToggleBtn) this.bhOverlayToggleBtn.title = isBn ? 'আইনস্টাইন জ্যামিতি ও ৩টি বৃত্ত [O]' : 'Einstein Geometry & 3 Rings [O]';
+    if (this.bhModeToggleBtn) this.bhModeToggleBtn.title = isBn ? 'ডিস্ক ও ভ্যাকিউম মোড পরিবর্তন' : 'Toggle Accretion Disk / Vacuum Mode';
+    if (this.bhModeLabel) {
+      const isDisk = this.renderEngine.blackHoleAccretionMode === 'disk';
+      this.bhModeLabel.textContent = isBn
+        ? (isDisk ? 'গ্যাসীয় ডিস্ক সহ' : 'বিশুদ্ধ ভ্যাকিউম')
+        : (isDisk ? 'Accretion Disk' : 'Pure Vacuum');
+    }
+    if (this.bhHideBtnLabel) this.bhHideBtnLabel.textContent = isBn ? 'কার্ড লুকান' : 'Hide Card';
+    if (this.bhHideCardBtn) this.bhHideCardBtn.title = isBn ? 'কার্ড লুকান (Hide Data Card) [H]' : 'Hide Data Card [H]';
+    if (this.evaporateBtnLabel) this.evaporateBtnLabel.textContent = isBn ? 'বাষ্পীভবন ও রিস্টোর [X]' : 'Evaporate & Return [X]';
+    if (this.evaporateBtn) this.evaporateBtn.title = isBn ? 'হকিং বাষ্পীভবন ও স্পেস রিস্টোর [X]' : 'Hawking Evaporation & Return [X]';
+    if (this.bhRestoreLabel) this.bhRestoreLabel.textContent = isBn ? 'শোয়ার্জশিল্ড তথ্য দেখুন [H]' : 'Show Black Hole Data [H]';
+    if (this.bhRestoreCardPill) this.bhRestoreCardPill.title = isBn ? 'শোয়ার্জশিল্ড তথ্য দেখুন [H]' : 'Show Black Hole Data [H]';
+
+    if (this.massChipPlanck) this.massChipPlanck.textContent = isBn ? 'প্ল্যাঙ্ক ভর (কোয়ান্টাম)' : 'Planck Mass (Quantum)';
+    if (this.massChipSun) this.massChipSun.textContent = isBn ? 'সূর্য (১ সৌর ভর)' : 'The Sun (1 Solar Mass)';
+    if (this.massChipSgra) this.massChipSgra.textContent = isBn ? 'স্যাজিটেরিয়াস A* (সুপারম্যাসিভ)' : 'Sagittarius A* (SMBH)';
+
+    if (this.bhLblMass) this.bhLblMass.textContent = isBn ? 'সংকুচিত বস্তুর ভর (Mass)' : 'Collapsed Object Mass';
+    if (this.bhLblRadius) this.bhLblRadius.textContent = isBn ? 'ঘটনা দিগন্ত ও শ্যাডো (Horizon & Shadow)' : 'Event Horizon & Shadow';
+    if (this.bhLblPhoton) this.bhLblPhoton.textContent = isBn ? 'ফোটন স্ফিয়ার (Photon Sphere)' : 'Photon Sphere (r_ph)';
+    if (this.bhLblHawking) this.bhLblHawking.textContent = isBn ? 'হকিং তাপমাত্রা ও আয়ুষ্কাল' : 'Hawking Temp & Lifetime';
+
+    if (this.misconceptionHeadingEl) {
+      this.misconceptionHeadingEl.textContent = isBn ? 'ভুল ধারণা ভাঙা (Misconception Buster)' : 'Misconception Buster';
+    }
+    if (this.strainPercentText) {
+      const pct = Math.round(((this.planckStrainCount || 0) / 7) * 100);
+      this.strainPercentText.textContent = isBn ? `${this.toBanglaNum(pct)}%` : `${pct}%`;
+    }
+
+    this.updateCornerDisclaimer();
+    this.updateBlackHoleStats();
+
+    // Inform Render Engine of language update
+    if (this.renderEngine) {
+      this.renderEngine.lang = this.lang;
+    }
+  }
+
   updateCornerDisclaimer() {
     if (!this.cornerDisclaimerEl) return;
     this.cornerDisclaimerEl.textContent = this.lang === 'bn'
@@ -867,6 +1130,25 @@ class CosmicApp {
     if (!this.objectCardContainer) return;
     const isMin = this.objectCardContainer.classList.contains('minimized');
     this.setObjectCardVisible(isMin);
+  }
+
+  setForcesPanelVisible(visible) {
+    if (!this.forceDominancePanel) return;
+    if (visible) {
+      this.forceDominancePanel.classList.remove('minimized');
+      if (this.forceRestorePill) this.forceRestorePill.style.display = 'none';
+      this.audioEngine.playChime(640);
+    } else {
+      this.forceDominancePanel.classList.add('minimized');
+      if (this.forceRestorePill) this.forceRestorePill.style.display = 'inline-flex';
+      this.audioEngine.playChime(480);
+    }
+  }
+
+  toggleForcesPanel() {
+    if (!this.forceDominancePanel) return;
+    const isMin = this.forceDominancePanel.classList.contains('minimized');
+    this.setForcesPanelVisible(isMin);
   }
 
   toBanglaNum(num) {
@@ -922,9 +1204,12 @@ class CosmicApp {
     results.forEach(obj => {
       const row = document.createElement('div');
       row.className = 'search-item';
+      const nameHtml = this.lang === 'bn'
+        ? `${obj.nameBn} <span class="search-sub">(${obj.nameEn})</span>`
+        : `${obj.nameEn}`;
       row.innerHTML = `
         <div class="search-item-info">
-          <h4>${this.lang === 'bn' ? obj.nameBn : obj.nameEn} <span class="search-sub">(${obj.nameEn})</span></h4>
+          <h4>${nameHtml}</h4>
           <p>${this.lang === 'bn' ? obj.sizeFormattedBn : obj.sizeFormatted}</p>
         </div>
         <span class="search-order">10<sup>${obj.order > 0 ? '+' : ''}${Math.round(obj.order)}</sup> m</span>
@@ -942,7 +1227,7 @@ class CosmicApp {
     this.isAutoCruising = !this.isAutoCruising;
     this.tourBtn.classList.toggle('active', this.isAutoCruising);
     if (this.isAutoCruising) {
-      this.tourBtn.innerHTML = `<span class="tour-icon-slot">${getIcon('pause')}</span><span class="btn-text">${this.lang === 'bn' ? 'থামুন' : 'Pause'}</span>`;
+      this.tourBtn.innerHTML = `<span class="tour-icon-slot">${getIcon('pause')}</span><span class="btn-text" id="tour-btn-label">${this.lang === 'bn' ? 'থামুন' : 'Pause'}</span>`;
       // If we are at the bottom (Planck length), reverse direction upward
       if (this.renderEngine.currentOrder <= -34.8) {
         this.cruiseDirection = 1;
@@ -951,7 +1236,7 @@ class CosmicApp {
       }
       this.audioEngine.playChime(440);
     } else {
-      this.tourBtn.innerHTML = `<span class="tour-icon-slot">${getIcon('play')}</span><span class="btn-text">${this.lang === 'bn' ? 'ট্যুর শুরু' : 'Auto Tour'}</span>`;
+      this.tourBtn.innerHTML = `<span class="tour-icon-slot">${getIcon('play')}</span><span class="btn-text" id="tour-btn-label">${this.lang === 'bn' ? 'ট্যুর শুরু' : 'Auto Tour'}</span>`;
     }
   }
 
@@ -959,7 +1244,7 @@ class CosmicApp {
     if (this.isAutoCruising) {
       this.isAutoCruising = false;
       this.tourBtn.classList.remove('active');
-      this.tourBtn.innerHTML = `<span class="tour-icon-slot">${getIcon('play')}</span><span class="btn-text">${this.lang === 'bn' ? 'ট্যুর শুরু' : 'Auto Tour'}</span>`;
+      this.tourBtn.innerHTML = `<span class="tour-icon-slot">${getIcon('play')}</span><span class="btn-text" id="tour-btn-label">${this.lang === 'bn' ? 'ট্যুর শুরু' : 'Auto Tour'}</span>`;
     }
   }
 
@@ -1074,7 +1359,7 @@ class CosmicApp {
     if (nearest && (nearest !== this.activeObject || forceRefresh)) {
       this.activeObject = nearest;
       this.objectNameEl.textContent = this.lang === 'bn' ? nearest.nameBn : nearest.nameEn;
-      this.objectSubNameEl.textContent = nearest.nameEn !== (this.lang === 'bn' ? nearest.nameBn : nearest.nameEn) ? nearest.nameEn : '';
+      this.objectSubNameEl.textContent = this.lang === 'bn' ? (nearest.nameEn !== nearest.nameBn ? nearest.nameEn : '') : '';
       this.objectDimensionEl.textContent = this.lang === 'bn' ? nearest.sizeFormattedBn : nearest.sizeFormatted;
       this.objectDimensionEl.style.color = nearest.accentColor;
       this.objectSummaryEl.textContent = this.lang === 'bn' ? nearest.summaryBn : nearest.summaryEn;
@@ -1101,7 +1386,11 @@ class CosmicApp {
       }
 
       // Update Human Scale Transit Equivalents
-      if (nearest.humanTransit) {
+      if (this.lang === 'en' && nearest.humanTransitEn) {
+        if (this.transitWalkValEl) this.transitWalkValEl.textContent = nearest.humanTransitEn.walk || 'N/A';
+        if (this.transitJetValEl) this.transitJetValEl.textContent = nearest.humanTransitEn.jet || 'N/A';
+        if (this.transitVoyagerValEl) this.transitVoyagerValEl.textContent = nearest.humanTransitEn.voyager || 'N/A';
+      } else if (nearest.humanTransit) {
         if (this.transitWalkValEl) this.transitWalkValEl.textContent = nearest.humanTransit.walk || 'N/A';
         if (this.transitJetValEl) this.transitJetValEl.textContent = nearest.humanTransit.jet || 'N/A';
         if (this.transitVoyagerValEl) this.transitVoyagerValEl.textContent = nearest.humanTransit.voyager || 'N/A';
@@ -1111,8 +1400,16 @@ class CosmicApp {
       if (this.misconceptionContainerEl) {
         if (nearest.misconception) {
           this.misconceptionContainerEl.style.display = 'block';
-          if (this.misconceptionHeadingEl) this.misconceptionHeadingEl.textContent = nearest.misconception.titleBn || 'ভুল ধারণা ভাঙা';
-          if (this.misconceptionTextEl) this.misconceptionTextEl.textContent = nearest.misconception.realityBn || '';
+          if (this.misconceptionHeadingEl) {
+            this.misconceptionHeadingEl.textContent = this.lang === 'bn'
+              ? (nearest.misconception.titleBn || 'ভুল ধারণা ভাঙা')
+              : (nearest.misconception.titleEn || 'Misconception Buster');
+          }
+          if (this.misconceptionTextEl) {
+            this.misconceptionTextEl.textContent = this.lang === 'bn'
+              ? (nearest.misconception.realityBn || '')
+              : (nearest.misconception.realityEn || nearest.misconception.realityBn || '');
+          }
         } else {
           this.misconceptionContainerEl.style.display = 'none';
         }
@@ -1120,9 +1417,10 @@ class CosmicApp {
 
       // Schwarzschild Black Hole Radius Box
       if (this.blackholeContainerEl && this.blackholeValEl) {
-        if (nearest.blackHoleRadiusBn) {
+        const radiusStr = this.lang === 'bn' ? nearest.blackHoleRadiusBn : nearest.blackHoleRadiusEn;
+        if (radiusStr) {
           this.blackholeContainerEl.style.display = 'block';
-          this.blackholeValEl.textContent = this.lang === 'bn' ? nearest.blackHoleRadiusBn : nearest.blackHoleRadiusEn;
+          this.blackholeValEl.textContent = radiusStr;
         } else {
           this.blackholeContainerEl.style.display = 'none';
         }
@@ -1321,25 +1619,25 @@ class CosmicApp {
       const isPlanck = bh.massType === 'planck';
       const isDisk = this.renderEngine.blackHoleAccretionMode === 'disk';
       if (isPlanck) {
-        this.bhNoticeText.textContent = this.lang === 'bn'
+        this.bhNoticeText.textContent = isBn
           ? 'প্ল্যাঙ্ক-ভরের কোয়ান্টাম ব্ল্যাকহোল: এখানে কোনো গ্যাসীয় অ্যাক্রিশন ডিস্ক বা জেট বাস্তবসম্মত নয়। ঘটনা দিগন্তের কিনারায় কোয়ান্টাম ফ্লাকচুয়েশনের ফলে ভার্চুয়াল হকিং কণা জোড়া তৈরি হচ্ছে এবং তীব্র বিকিরণে বাষ্পীভূত হচ্ছে।'
           : 'Planck-mass quantum black hole: An accretion disk or polar jet is physically impossible here. Spacetime quantum fluctuations produce virtual Hawking particle pairs at the horizon, radiating away in rapid evaporation.';
       } else {
-        this.bhNoticeText.textContent = this.lang === 'bn'
+        this.bhNoticeText.textContent = isBn
           ? `মহাকর্ষীয় পতনে "${name}"-এর ভর সংকুচিত হয়ে একটি অ-ঘূর্ণায়মান শোয়ার্জশিল্ড ব্ল্যাকহোল তৈরি করেছে। আপেক্ষিকতায় আলো বেঁকে তৈরি হয়েছে ফোটন রিং (১.৫ rs) ও স্থান-কাল শ্যাডো (২.৬ rs)। ${isDisk ? 'ঘূর্ণায়মান গ্যাসীয় ডিস্কে তাপমাত্রা গ্রেডিয়েন্ট ও ডপলার বিমিং প্রতিভাত।' : 'বিশুদ্ধ ভ্যাকিউমে স্থান-কালের গ্র্যাভিটেশনাল লেন্সিং ও আলো বাঁকার দৃশ্য দৃশ্যমান।'}`
           : `Gravitational collapse compressed "${name}" into a Schwarzschild black hole. General relativity bends light into a photon ring (1.5 rs) and shadow (2.6 rs). ${isDisk ? 'Relativistic Doppler beaming and temperature gradient visible on accretion disk.' : 'Pure vacuum curvature shows pristine gravitational light deflection without matter.'}`;
       }
     }
 
     if (this.bhDisclaimerText) {
-      this.bhDisclaimerText.textContent = this.lang === 'bn'
+      this.bhDisclaimerText.textContent = isBn
         ? '[তাত্ত্বিক সরলীকৃত ২ডি মডেল] | আসল ফোটন রিং এর চেয়েও সূক্ষ্ম ও ঝাপসা।'
         : '[Simplified 2D Theoretical Model] | Physical photon ring is sharper and fainter.';
     }
 
     // Screen reader live announcement
     if (this.bhSrAnnouncements) {
-      this.bhSrAnnouncements.textContent = this.lang === 'bn'
+      this.bhSrAnnouncements.textContent = isBn
         ? `শোয়ার্জশিল্ড ব্ল্যাকহোল সক্রিয়। সংকুচিত ভর: ${name}, শোয়ার্জশিল্ড ব্যাসার্ধ: ${this.formatDistance(bh.rs, true)}`
         : `Schwarzschild black hole active. Collapsed mass: ${name}, Event horizon radius: ${this.formatDistance(bh.rs, false)}`;
     }
