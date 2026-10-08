@@ -184,10 +184,10 @@ class CosmicApp {
       }
       if (this.blackholeOverlay) {
         this.blackholeOverlay.classList.add('active');
-        this.blackholeOverlay.classList.remove('card-minimized');
+        this.blackholeOverlay.classList.add('card-minimized');
       }
       if (this.bhRestoreCardPill) {
-        this.bhRestoreCardPill.style.display = 'none';
+        this.bhRestoreCardPill.style.display = 'inline-flex';
       }
       if (this.collapseBtn) this.collapseBtn.classList.add('active');
       this.updateBlackHoleStats();
@@ -439,46 +439,10 @@ class CosmicApp {
       }
     });
 
-    // Mouse Press & Hold Gravitational Compression on Canvas
+    // Press/Touch Gravitational Collapse is disabled per user requirements.
+    // Exploring scales and pinch-zooming on mobile/desktop must never trigger a black hole.
     this.isMouseDown = false;
     this.mousePos = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
-
-    this.canvas.addEventListener('mousedown', (e) => {
-      if (this.renderEngine.blackHoleState === 'active') return;
-      this.isMouseDown = true;
-      this.mousePos = { x: e.clientX, y: e.clientY };
-      this.renderEngine.startCompression(e.clientX, e.clientY);
-      this.audioEngine.playSpacetimeStress(0.2);
-    });
-
-    window.addEventListener('mousemove', (e) => {
-      this.mousePos = { x: e.clientX, y: e.clientY };
-      if (this.isMouseDown && this.renderEngine.blackHoleState === 'charging') {
-        this.audioEngine.playSpacetimeStress(this.renderEngine.blackHoleCharge);
-      }
-    });
-
-    window.addEventListener('mouseup', () => {
-      if (this.isMouseDown) {
-        this.isMouseDown = false;
-        this.renderEngine.cancelCompression();
-      }
-    });
-
-    this.canvas.addEventListener('touchstart', (e) => {
-      if (e.touches.length === 1 && this.renderEngine.blackHoleState !== 'active') {
-        this.isMouseDown = true;
-        this.mousePos = { x: e.touches[0].clientX, y: e.touches[0].clientY };
-        this.renderEngine.startCompression(e.touches[0].clientX, e.touches[0].clientY);
-      }
-    }, { passive: true });
-
-    window.addEventListener('touchend', () => {
-      if (this.isMouseDown) {
-        this.isMouseDown = false;
-        this.renderEngine.cancelCompression();
-      }
-    });
 
     // Mouse Wheel / Trackpad smooth zooming & Trans-Planckian Over-Zoom Strain Collapse
     window.addEventListener('wheel', (e) => {
@@ -517,9 +481,7 @@ class CosmicApp {
         this.renderEngine.strainShakeIntensity = this.planckStrainCount * 2.8;
 
         if (this.planckStrainCount >= 7) {
-          this.planckStrainCount = 0;
-          if (this.strainContainer) this.strainContainer.style.display = 'none';
-          this.renderEngine.triggerBlackHoleCollapse(window.innerWidth / 2, window.innerHeight / 2);
+          this.planckStrainCount = 7;
           return;
         }
 
@@ -592,10 +554,6 @@ class CosmicApp {
     // Zoom Buttons (+ / -)
     document.getElementById('zoom-in-btn').addEventListener('click', () => {
       this.stopTour();
-      if (this.renderEngine.currentOrder <= -34.8) {
-        this.renderEngine.triggerBlackHoleCollapse(window.innerWidth / 2, window.innerHeight / 2);
-        return;
-      }
       this.renderEngine.addZoomDelta(-1.5);
       this.audioEngine.playZoomPulse(-1);
     });
@@ -841,9 +799,7 @@ class CosmicApp {
           this.audioEngine.playSpacetimeStress(this.planckStrainCount / 7);
           this.renderEngine.strainShakeIntensity = this.planckStrainCount * 2.8;
           if (this.planckStrainCount >= 7) {
-            this.planckStrainCount = 0;
-            if (this.strainContainer) this.strainContainer.style.display = 'none';
-            this.renderEngine.triggerBlackHoleCollapse(window.innerWidth / 2, window.innerHeight / 2);
+            this.planckStrainCount = 7;
             return;
           }
           this.strainDecayTimer = setTimeout(() => this.dischargeStrain(), 1800);
@@ -1307,11 +1263,6 @@ class CosmicApp {
           this.cruiseDirection = -1;
         }
         this.renderEngine.setTargetOrder(nextOrder);
-      }
-
-      // Handle Gravitational Compression Charging while Mouse / Touch is held
-      if (this.isMouseDown && this.renderEngine.blackHoleState === 'charging') {
-        this.renderEngine.updateCompression(dt, true, this.mousePos.x, this.mousePos.y);
       }
 
       // Update 2D Render Engine

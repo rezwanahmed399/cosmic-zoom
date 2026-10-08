@@ -1748,10 +1748,8 @@ export class CosmicRenderEngine {
   // =========================================================================
 
   startCompression(x, y) {
-    if (this.blackHoleState === 'active' || this.blackHoleState === 'shattering') return;
-    this.blackHoleState = 'charging';
-    this.blackHoleCharge = 0.05;
-    this.blackHoleCenter = { x, y };
+    // Press/Touch Gravitational Collapse disabled per user requirement: Black hole simulation is only triggered via the dedicated button.
+    return;
   }
 
   updateCompression(dt, isHolding, x, y) {
