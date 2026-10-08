@@ -41,7 +41,7 @@ function formatLightTransitEn(s) {
   if (s >= 1e-18) return `${(s * 1e18).toFixed(1)} as`;
   if (s >= 1e-21) return `${(s * 1e21).toFixed(1)} zs`;
   if (s >= 1e-24) return `${(s * 1e24).toFixed(1)} ys`;
-  return `${s.toExponential(2)} s (Planck Time Order)`;
+  return `${s.toExponential(2)} s (Planck Time)`;
 }
 
 for (let ord = -35; ord <= 27; ord += 0.5) {
@@ -76,12 +76,12 @@ const enStrings = [
   'Show Info Card [C]',
   'Governing Forces [F]',
   'Hide Forces Panel [F]',
-  'Governing Force Dominance',
+  'Governing Forces',
   'Gravity & Dark Energy',
-  'Electromagnetism',
+  'Electromagnetic Force',
   'Strong Nuclear Force',
-  'Weak Nuclear / Electroweak',
-  'Quantum Gravity / Planck Scale',
+  'Weak Nuclear Force',
+  'Quantum Gravity (Planck)',
   'Observation Technology (Instrument Ladder):',
   'Human Travel Time Equivalent:',
   'Walk (5 km/h):',

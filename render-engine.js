@@ -1668,16 +1668,24 @@ export class CosmicRenderEngine {
     ctx.save();
     ctx.globalAlpha = Math.min(1, alpha * 1.2);
 
-    // Callout line from object to side tag
-    const tagX = cx + Math.min(this.width * 0.35, Math.max(r + 40, 160));
-    const tagY = cy - 40;
+    const nameStr = this.lang === 'bn' ? (obj.nameBn || obj.nameEn) : obj.nameEn;
+    const sizeStr = this.lang === 'bn' ? (obj.sizeFormattedBn || obj.sizeFormatted) : obj.sizeFormatted;
+
+    // Callout line from object to side tag - keep safely clear of right HUD panel (width 260px + 20px)
+    ctx.font = '600 13px system-ui';
+    const textWidth = Math.max(ctx.measureText(nameStr).width, 130);
+
+    const maxSafeTagX = Math.max(cx + 60, this.width - 300 - textWidth);
+    const tagX = Math.min(maxSafeTagX, cx + Math.min(this.width * 0.32, Math.max(r + 40, 150)));
+    const tagY = Math.max(120, Math.min(this.height - 180, cy - 40));
+    const lineEnd = tagX + textWidth + 10;
 
     ctx.strokeStyle = obj.accentColor;
     ctx.lineWidth = 1.2;
     ctx.beginPath();
     ctx.moveTo(cx, cy);
     ctx.lineTo(tagX - 15, tagY);
-    ctx.lineTo(tagX + 130, tagY);
+    ctx.lineTo(lineEnd, tagY);
     ctx.stroke();
 
     // Callout Dot
@@ -1686,14 +1694,16 @@ export class CosmicRenderEngine {
     ctx.arc(cx, cy, 3, 0, Math.PI * 2);
     ctx.fill();
 
-    // Callout text
+    // Callout text with subtle dark shadow for crystal clarity against quantum foam & filaments
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.85)';
+    ctx.shadowBlur = 6;
     ctx.fillStyle = '#ffffff';
     ctx.font = '600 13px system-ui';
-    ctx.fillText(this.lang === 'bn' ? (obj.nameBn || obj.nameEn) : obj.nameEn, tagX, tagY - 14);
+    ctx.fillText(nameStr, tagX, tagY - 14);
 
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
     ctx.font = '500 11px system-ui';
-    ctx.fillText(this.lang === 'bn' ? (obj.sizeFormattedBn || obj.sizeFormatted) : obj.sizeFormatted, tagX, tagY + 16);
+    ctx.fillText(sizeStr, tagX, tagY + 16);
 
     ctx.restore();
   }

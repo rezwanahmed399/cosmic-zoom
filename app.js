@@ -940,22 +940,22 @@ class CosmicApp {
     if (this.forceRestoreLabel) this.forceRestoreLabel.textContent = isBn ? 'মৌলিক বল [F]' : 'Governing Forces [F]';
     if (this.forceRestorePill) this.forceRestorePill.title = isBn ? 'মৌলিক বল দেখুন [F]' : 'Show Governing Forces [F]';
     if (this.forcePanelHeading) {
-      this.forcePanelHeading.textContent = isBn ? 'মৌলিক বলের প্রভাব (Governing Force)' : 'Governing Force Dominance';
+      this.forcePanelHeading.textContent = isBn ? 'মৌলিক বলের প্রভাব' : 'Governing Forces';
     }
     if (this.forceNameGravity) {
-      this.forceNameGravity.textContent = isBn ? 'মহাকর্ষ ও ডার্ক এনার্জি (Gravity & Dark Energy)' : 'Gravity & Dark Energy';
+      this.forceNameGravity.textContent = isBn ? 'মহাকর্ষ ও ডার্ক এনার্জি' : 'Gravity & Dark Energy';
     }
     if (this.forceNameElectromagnetism) {
-      this.forceNameElectromagnetism.textContent = isBn ? 'তড়িৎচৌম্বক বল (Electromagnetism)' : 'Electromagnetism';
+      this.forceNameElectromagnetism.textContent = isBn ? 'তড়িৎচৌম্বক বল' : 'Electromagnetic Force';
     }
     if (this.forceNameStrong) {
-      this.forceNameStrong.textContent = isBn ? 'সবল নিউক্লীয় বল (Strong Nuclear Force)' : 'Strong Nuclear Force';
+      this.forceNameStrong.textContent = isBn ? 'সবল নিউক্লীয় বল' : 'Strong Nuclear Force';
     }
     if (this.forceNameWeak) {
-      this.forceNameWeak.textContent = isBn ? 'দুর্বল ও ইলেকট্রোউইক (Weak / Electroweak)' : 'Weak Nuclear / Electroweak';
+      this.forceNameWeak.textContent = isBn ? 'দুর্বল নিউক্লীয় বল' : 'Weak Nuclear Force';
     }
     if (this.forceNameQuantumGravity) {
-      this.forceNameQuantumGravity.textContent = isBn ? 'কোয়ান্টাম গ্র্যাভিটি (Quantum Gravity / Planck)' : 'Quantum Gravity / Planck Scale';
+      this.forceNameQuantumGravity.textContent = isBn ? 'কোয়ান্টাম গ্র্যাভিটি (প্ল্যাঙ্ক)' : 'Quantum Gravity (Planck)';
     }
 
     // Card section headers and labels
@@ -1005,12 +1005,9 @@ class CosmicApp {
           <span style="left: 0%;">+27<br>মহাবিশ্ব</span>
           <span style="left: 9.7%;">+21<br>ছায়াপথ</span>
           <span style="left: 25.8%;">+11<br>সৌরজগৎ</span>
-          <span style="left: 32.3%;">+7<br>পৃথিবী</span>
           <span style="left: 43.5%;">0<br>মানুষ</span>
-          <span style="left: 51.6%;">-5<br>রক্তকোষ</span>
           <span style="left: 58.1%;">-9<br>ডিএনএ</span>
           <span style="left: 67.7%;">-15<br>প্রোটন</span>
-          <span style="left: 88.7%;">-28<br>GUT</span>
           <span style="left: 100%;">-35<br>প্ল্যাঙ্ক</span>
         `;
       } else {
@@ -1018,12 +1015,9 @@ class CosmicApp {
           <span style="left: 0%;">+27<br>Universe</span>
           <span style="left: 9.7%;">+21<br>Galaxy</span>
           <span style="left: 25.8%;">+11<br>Solar Sys</span>
-          <span style="left: 32.3%;">+7<br>Earth</span>
           <span style="left: 43.5%;">0<br>Human</span>
-          <span style="left: 51.6%;">-5<br>Cell</span>
           <span style="left: 58.1%;">-9<br>DNA</span>
           <span style="left: 67.7%;">-15<br>Proton</span>
-          <span style="left: 88.7%;">-28<br>GUT</span>
           <span style="left: 100%;">-35<br>Planck</span>
         `;
       }
@@ -1327,7 +1321,7 @@ class CosmicApp {
 
     // Calculate Light Travel Time: t = d / c with comoving universe exception
     if (currentOrder >= 26.5) {
-      this.lightTimeEl.textContent = this.lang === 'bn' ? 'N/A (প্রসারণশীল মহাবিশ্বের কো-মুভিং দূরত্ব)' : 'N/A (Comoving Distance)';
+      this.lightTimeEl.textContent = this.lang === 'bn' ? 'N/A (কো-মুভিং দূরত্ব)' : 'N/A (Comoving Distance)';
     } else {
       const lightSeconds = meters / 299792458;
       this.lightTimeEl.textContent = this.formatLightTransit(lightSeconds);
@@ -1491,7 +1485,7 @@ class CosmicApp {
     if (s >= 1e-18) return this.lang === 'bn' ? `${(s * 1e18).toFixed(1)} অ্যাটোসেকেন্ড` : `${(s * 1e18).toFixed(1)} as`;
     if (s >= 1e-21) return this.lang === 'bn' ? `${(s * 1e21).toFixed(1)} জেপ্টোসেকেন্ড` : `${(s * 1e21).toFixed(1)} zs`;
     if (s >= 1e-24) return this.lang === 'bn' ? `${(s * 1e24).toFixed(1)} ইয়োক্টোসেকেন্ড` : `${(s * 1e24).toFixed(1)} ys`;
-    return `${s.toExponential(2)} s (Planck Time Order)`;
+    return `${s.toExponential(2)} s (Planck Time)`;
   }
 
   calculateBlackHolePhysics(object) {
