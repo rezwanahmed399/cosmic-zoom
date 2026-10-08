@@ -219,6 +219,11 @@ class CosmicApp {
     this.populateQuickJumps();
     this.populateComparisons();
     this.populateQuiz();
+
+    // Mobile initial state: minimize forces panel by default so canvas is clear
+    if (window.innerWidth <= 768) {
+      this.setForcesPanelVisible(false);
+    }
   }
 
   populateQuickJumps() {
@@ -1126,6 +1131,9 @@ class CosmicApp {
     if (visible) {
       this.objectCardContainer.classList.remove('minimized');
       if (this.cardRestorePill) this.cardRestorePill.style.display = 'none';
+      if (window.innerWidth <= 768 && this.forceDominancePanel && !this.forceDominancePanel.classList.contains('minimized')) {
+        this.setForcesPanelVisible(false);
+      }
       this.audioEngine.playChime(640);
     } else {
       this.objectCardContainer.classList.add('minimized');
@@ -1149,6 +1157,9 @@ class CosmicApp {
     if (visible) {
       this.forceDominancePanel.classList.remove('minimized');
       if (this.forceRestorePill) this.forceRestorePill.style.display = 'none';
+      if (window.innerWidth <= 768 && this.objectCardContainer && !this.objectCardContainer.classList.contains('minimized')) {
+        this.setObjectCardVisible(false);
+      }
       this.audioEngine.playChime(640);
     } else {
       this.forceDominancePanel.classList.add('minimized');
