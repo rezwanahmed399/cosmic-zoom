@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-const files = ['index.html', 'style.css', 'app.js', 'science-data.js', 'icons.js', 'audio-engine.js', 'render-engine.js', 'render-engine-3d.js', 'README.md'];
+const files = ['index.html', 'style.css', 'app.js', 'science-data.js', 'icons.js', 'audio-engine.js', 'render-engine.js', 'README.md'];
 
 // Comprehensive unicode emoji regex range
 const emojiRegex = /[\u{1F300}-\u{1F6FF}\u{1F900}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F1E6}-\u{1F1FF}\u{1F004}\u{1F0CF}\u{1F170}-\u{1F251}]/u;

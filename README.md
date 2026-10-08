@@ -8,11 +8,9 @@ Built with Vanilla JavaScript, HTML5 Canvas, Web Audio API, and pure SVG iconogr
 
 ## Key Features
 
-1. **Dual-Engine Architecture: 2D Canvas & 3D WebGL (Three.js)**
-   - Seamless live toggling between 2D Canvas and 3D WebGL via the HUD button `[ 2D / 3D ]` or keyboard shortcut `[3]`.
-   - Full 360-degree free orbital navigation: drag to orbit around cosmic, atomic, and quantum bodies in three dimensions with logarithmic depth buffering (`logarithmicDepthBuffer: true`).
-   - True 3D Schwarzschild Black Hole: pure pitch-black shadow sphere, razor photon ring, 3D accretion disk with real-time Doppler beaming reacting to camera orbit angle, 3D relativistic polar jets, and isotropic 3D Hawking radiation particle swarm.
-   - 100% self-hosted native browser ES Modules in `lib/` with browser `importmap` support.
+1. **High-Performance 2D Canvas Engine**
+   - Pure HTML5 2D Canvas rendering with buttery smooth 60/120fps procedural generation.
+   - Cinematic relativistic rendering: gravitational lensing, accretion disk with Doppler beaming, and quantum foam.
 
 2. **Continuous 62 Orders of Magnitude Zoom Engine**
    - Seamless logarithmic camera transitions spanning from $+27.0$ down to $-35.0$.
@@ -70,7 +68,6 @@ Built with Vanilla JavaScript, HTML5 Canvas, Web Audio API, and pure SVG iconogr
 - **Keyboard Shortcuts:**
   - `Arrow Up` / `Page Up` / `-`: Zoom out towards Cosmic scale
   - `Arrow Down` / `Page Down` / `+`: Zoom in towards Planck scale
-  - `3`: Toggle 2D Canvas / 3D WebGL mode
   - `0`: Reset to Human scale ($10^0\text{ m}$)
   - `B`: Trigger Gravitational Collapse on current object / toggle black hole
   - `O`: Toggle Schwarzschild 3-ring educational geometry overlay

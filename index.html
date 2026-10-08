@@ -9,22 +9,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Hind+Siliguri:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <script type="importmap">
-  {
-    "imports": {
-      "three": "./lib/three.module.js",
-      "three/addons/": "./lib/jsm/"
-    }
-  }
-  </script>
 </head>
 <body>
 
   <!-- Fullscreen 2D Viewport Canvas -->
   <canvas id="viewport-canvas"></canvas>
-
-  <!-- Fullscreen 3D WebGL (Three.js) Viewport Canvas -->
-  <canvas id="canvas-3d" class="webgl-canvas"></canvas>
 
   <!-- Sci-Fi Vignette and Ambient Scanline Overlay -->
   <div class="hud-overlay"></div>
@@ -105,17 +94,6 @@
           </svg>
         </span>
         <span class="btn-label" id="collapse-btn-label">ব্ল্যাকহোল</span>
-      </button>
-
-      <button class="hud-btn dimension-btn" id="dimension-toggle-btn" title="2D / 3D ডাইমেনশন মোড সুইচ (Toggle 2D/3D Mode) [3]">
-        <span class="btn-icon">
-          <svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-            <line x1="12" y1="22.08" x2="12" y2="12"></line>
-          </svg>
-        </span>
-        <span class="btn-label" id="dimension-label">3D মোড</span>
       </button>
 
       <button class="hud-btn" id="audio-toggle-btn" title="কোয়ান্টাম-কসমিক অডিও (Sound Synth)">
@@ -581,51 +559,12 @@
     </button>
   </div>
 
-  <!-- FLOATING 3D INTERACTION TOOLBAR (Active in 3D Mode) -->
-  <div class="hud-3d-toolbar" id="hud-3d-toolbar" style="display: none;">
-    <div class="hud-3d-toolbar-inner">
-      <button class="hud-3d-btn active" id="btn-3d-autorotate" type="button" title="৩৬০° অটো-ঘূর্ণন চালু/বন্ধ">
-        <svg class="svg-icon mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21.5 2v6h-6"></path>
-          <path d="M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-1.19"></path>
-        </svg>
-        <span id="label-3d-autorotate">অটো-ঘূর্ণন</span>
-      </button>
-      <button class="hud-3d-btn" id="btn-3d-reset" type="button" title="ক্যামেরা ভিউ রিসেট">
-        <svg class="svg-icon mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
-          <path d="M3 3v5h5"></path>
-        </svg>
-        <span id="label-3d-reset">ভিউ রিসেট</span>
-      </button>
-      <button class="hud-3d-btn" id="btn-3d-toggle-card" type="button" title="তথ্য কার্ড লুকান / দেখান">
-        <svg class="svg-icon mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-          <circle cx="12" cy="12" r="3"></circle>
-        </svg>
-        <span id="label-3d-toggle-card">কার্ড লুকান</span>
-      </button>
-    </div>
-  </div>
-
-  <!-- FLOATING 3D INTERACTION HINT TOAST -->
-  <div class="hud-3d-hint" id="hud-3d-hint" style="display: none;">
-    <div class="hud-3d-hint-icon">
-      <svg class="svg-icon mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="10"></circle>
-        <line x1="12" y1="16" x2="12" y2="12"></line>
-        <line x1="12" y1="8" x2="12.01" y2="8"></line>
-      </svg>
-    </div>
-    <span id="text-3d-hint">৩D মোড: মাউস ড্র্যাগ করে ৩৬০° স্পেস ঘোরান | হুইল স্ক্রোলে ক্যামেরা জুম করুন</span>
-  </div>
-
   <!-- Permanent Canvas Corner Disclaimer -->
   <div class="canvas-corner-disclaimer" id="canvas-corner-disclaimer">সরলীকৃত ২ডি আপেক্ষিকীয় মডেল, আসল ছবি নয়</div>
 
   <!-- Accessibility Screen Reader Live Region -->
   <div id="bh-sr-announcements" class="sr-only" aria-live="polite"></div>
 
-  <script type="module" src="app.js?v=2.2.1"></script>
+  <script type="module" src="app.js?v=3.0.0"></script>
 </body>
 </html>

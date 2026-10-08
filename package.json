@@ -17,8 +17,5 @@
     "web-audio"
   ],
   "author": "rezwanahmed399",
-  "license": "MIT",
-  "dependencies": {
-    "three": "^0.186.1"
-  }
+  "license": "MIT"
 }

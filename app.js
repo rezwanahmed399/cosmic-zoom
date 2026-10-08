@@ -7,18 +7,13 @@
 import { COSMIC_OBJECTS, SCALE_DOMAINS, SCALE_COMPARISONS, SCALE_QUIZ_QUESTIONS } from './science-data.js';
 import { CosmicAudioEngine } from './audio-engine.js';
 import { CosmicRenderEngine } from './render-engine.js';
-import { CosmicRenderEngine3D } from './render-engine-3d.js';
 import { getIcon } from './icons.js';
 
 class CosmicApp {
   constructor() {
     this.canvas = document.getElementById('viewport-canvas');
     this.renderEngine = new CosmicRenderEngine(this.canvas);
-    this.canvas3D = document.getElementById('canvas-3d');
-    this.renderEngine3D = new CosmicRenderEngine3D(this.canvas3D);
     this.audioEngine = new CosmicAudioEngine();
-
-    this.dimensionMode = '2d'; // '2d' | '3d'
     this.lang = 'bn'; // Default to Bengali as requested by the user, toggleable to 'en'
     this.isAutoCruising = false;
     this.cruiseSpeed = 0.04; // orders per frame
@@ -58,8 +53,6 @@ class CosmicApp {
     this.sliderEl = document.getElementById('scale-slider');
     this.audioBtn = document.getElementById('audio-toggle-btn');
     this.audioWave = document.getElementById('audio-wave');
-    this.dimensionBtn = document.getElementById('dimension-toggle-btn');
-    this.dimensionLabel = document.getElementById('dimension-label');
     this.cornerDisclaimerEl = document.getElementById('canvas-corner-disclaimer');
     this.tourBtn = document.getElementById('tour-toggle-btn');
     this.langBtn = document.getElementById('lang-toggle-btn');
@@ -121,17 +114,6 @@ class CosmicApp {
     this.bhDisclaimerText = document.getElementById('bh-disclaimer-text');
     this.bhSrAnnouncements = document.getElementById('bh-sr-announcements');
 
-    // 3D Mode Navigation & Guidance Elements
-    this.hud3DToolbar = document.getElementById('hud-3d-toolbar');
-    this.btn3DAutorotate = document.getElementById('btn-3d-autorotate');
-    this.label3DAutorotate = document.getElementById('label-3d-autorotate');
-    this.btn3DReset = document.getElementById('btn-3d-reset');
-    this.label3DReset = document.getElementById('label-3d-reset');
-    this.btn3DToggleCard = document.getElementById('btn-3d-toggle-card');
-    this.label3DToggleCard = document.getElementById('label-3d-toggle-card');
-    this.hud3DHint = document.getElementById('hud-3d-hint');
-    this.text3DHint = document.getElementById('text-3d-hint');
-
     // Spacetime Strain Meter Elements (Trans-Planckian Over-Zoom)
     this.strainContainer = document.getElementById('spacetime-strain-container');
     this.strainTitleText = document.getElementById('strain-title-text');
@@ -143,7 +125,6 @@ class CosmicApp {
 
     // Connect Render Engine Black Hole Callbacks
     this.renderEngine.onBlackHoleTriggered = () => {
-      this.renderEngine3D.triggerBlackHoleCollapse();
       this.audioEngine.playBlackHoleCollapse();
       this.stopTour();
       document.body.classList.add('black-hole-mode');
@@ -159,7 +140,6 @@ class CosmicApp {
     };
 
     this.renderEngine.onBlackHoleEvaporated = () => {
-      this.renderEngine3D.triggerBlackHoleEvaporation();
       this.audioEngine.playBlackHoleEvaporate();
       document.body.classList.remove('black-hole-mode');
       if (this.blackholeOverlay) {
@@ -207,7 +187,6 @@ class CosmicApp {
         this.stopTour();
         this.audioEngine.playChime(600);
         this.renderEngine.setTargetOrder(m.order);
-        this.renderEngine3D.setTargetOrder(m.order);
       });
       this.quickJumpContainer.appendChild(btn);
       this.jumpButtons.push({ btn, order: m.order });
@@ -238,7 +217,6 @@ class CosmicApp {
         const targetObj = COSMIC_OBJECTS.find(o => o.id === comp.targetA);
         if (targetObj) {
           this.renderEngine.setTargetOrder(targetObj.order);
-          this.renderEngine3D.setTargetOrder(targetObj.order);
           this.closeModals();
         }
       });
@@ -313,7 +291,6 @@ class CosmicApp {
           jumpBtn.addEventListener('click', () => {
             this.stopTour();
             this.renderEngine.setTargetOrder(q.targetOrder);
-            this.renderEngine3D.setTargetOrder(q.targetOrder);
             this.closeModals();
             this.audioEngine.playChime(640);
           });
@@ -366,7 +343,6 @@ class CosmicApp {
     // Window Resize
     window.addEventListener('resize', () => {
       this.renderEngine.resize();
-      this.renderEngine3D.onWindowResize();
     });
 
     // Page Visibility: Pause tour and cancel compression if tab is hidden
@@ -429,26 +405,7 @@ class CosmicApp {
       if (this.renderEngine.blackHoleState === 'active' || this.renderEngine.blackHoleState === 'shattering') {
         if (e.deltaY < 0) {
           this.renderEngine.triggerBlackHoleEvaporation();
-          this.renderEngine3D.triggerBlackHoleEvaporation();
         }
-        return;
-      }
-
-      // 3D Spatial Navigation Coordination:
-      if (this.dimensionMode === '3d') {
-        const isCanvas = (e.target === this.canvas3D);
-        const dist = this.renderEngine3D.controls.getDistance();
-
-        // While scrolling on canvas in 3D without Shift/Alt, OrbitControls handles smooth camera dollying
-        if (isCanvas && !e.shiftKey && !e.altKey && dist > 15 && dist < 115) {
-          return;
-        }
-
-        // At zoom limits (<15 or >115) or holding Shift: step between the 62 scale orders!
-        const delta = (e.deltaY > 0 ? -1 : 1) * Math.min(Math.abs(e.deltaY) * 0.0035, 0.9);
-        this.renderEngine.addZoomDelta(delta);
-        this.renderEngine3D.addZoomDelta(delta);
-        this.audioEngine.playZoomPulse(delta > 0 ? 1 : -1);
         return;
       }
 
@@ -474,7 +431,6 @@ class CosmicApp {
           this.planckStrainCount = 0;
           if (this.strainContainer) this.strainContainer.style.display = 'none';
           this.renderEngine.triggerBlackHoleCollapse(window.innerWidth / 2, window.innerHeight / 2);
-          this.renderEngine3D.triggerBlackHoleCollapse();
           return;
         }
 
@@ -492,7 +448,6 @@ class CosmicApp {
       // Normalized delta
       const delta = (e.deltaY > 0 ? -1 : 1) * Math.min(Math.abs(e.deltaY) * 0.0035, 0.9);
       this.renderEngine.addZoomDelta(delta);
-      this.renderEngine3D.addZoomDelta(delta);
       this.audioEngine.playZoomPulse(delta > 0 ? 1 : -1);
     }, { passive: true });
 
@@ -501,7 +456,6 @@ class CosmicApp {
     let touchStartDist = 0;
 
     window.addEventListener('touchstart', (e) => {
-      if (this.dimensionMode === '3d') return;
       if (e.touches.length === 1) {
         touchStartY = e.touches[0].clientY;
       } else if (e.touches.length === 2) {
@@ -513,11 +467,9 @@ class CosmicApp {
 
     window.addEventListener('touchmove', (e) => {
       this.stopTour();
-      if (this.dimensionMode === '3d') return;
       if (this.renderEngine.blackHoleState === 'active') {
         if (e.touches.length === 1 && e.touches[0].clientY - touchStartY > 20) {
           this.renderEngine.triggerBlackHoleEvaporation();
-          this.renderEngine3D.triggerBlackHoleEvaporation();
         }
         return;
       }
@@ -525,7 +477,6 @@ class CosmicApp {
         const diffY = e.touches[0].clientY - touchStartY;
         touchStartY = e.touches[0].clientY;
         this.renderEngine.addZoomDelta(diffY * 0.02);
-        this.renderEngine3D.addZoomDelta(diffY * 0.02);
       } else if (e.touches.length === 2) {
         const dx = e.touches[0].clientX - e.touches[1].clientX;
         const dy = e.touches[0].clientY - e.touches[1].clientY;
@@ -533,7 +484,6 @@ class CosmicApp {
         const pinchDelta = (dist - touchStartDist) * 0.03;
         touchStartDist = dist;
         this.renderEngine.addZoomDelta(pinchDelta);
-        this.renderEngine3D.addZoomDelta(pinchDelta);
       }
     }, { passive: true });
 
@@ -542,7 +492,6 @@ class CosmicApp {
       this.stopTour();
       const val = parseFloat(e.target.value);
       this.renderEngine.setTargetOrder(27 - val);
-      this.renderEngine3D.setTargetOrder(27 - val);
     });
 
     // Zoom Buttons (+ / -)
@@ -550,18 +499,15 @@ class CosmicApp {
       this.stopTour();
       if (this.renderEngine.currentOrder <= -34.8) {
         this.renderEngine.triggerBlackHoleCollapse(window.innerWidth / 2, window.innerHeight / 2);
-        this.renderEngine3D.triggerBlackHoleCollapse();
         return;
       }
       this.renderEngine.addZoomDelta(-1.5);
-      this.renderEngine3D.addZoomDelta(-1.5);
       this.audioEngine.playZoomPulse(-1);
     });
 
     document.getElementById('zoom-out-btn').addEventListener('click', () => {
       this.stopTour();
       this.renderEngine.addZoomDelta(1.5);
-      this.renderEngine3D.addZoomDelta(1.5);
       this.audioEngine.playZoomPulse(1);
     });
 
@@ -572,50 +518,6 @@ class CosmicApp {
       this.audioWave.style.opacity = active ? '1' : '0.3';
     });
 
-    // 2D / 3D Dimension Switcher
-    if (this.dimensionBtn) {
-      this.dimensionBtn.addEventListener('click', () => {
-        this.toggleDimension();
-      });
-    }
-
-    // 3D Navigation Toolbar Button Listeners
-    if (this.btn3DAutorotate) {
-      this.btn3DAutorotate.addEventListener('click', () => {
-        const active = this.renderEngine3D.toggleAutoRotate();
-        this.btn3DAutorotate.classList.toggle('active', active);
-        if (this.label3DAutorotate) {
-          this.label3DAutorotate.textContent = active
-            ? (this.lang === 'bn' ? 'অটো-ঘূর্ণন' : 'Auto-Rotate')
-            : (this.lang === 'bn' ? 'অটো-ঘূর্ণন বন্ধ' : 'Rotate Paused');
-        }
-        this.audioEngine.playChime(active ? 720 : 480);
-      });
-    }
-
-    if (this.btn3DReset) {
-      this.btn3DReset.addEventListener('click', () => {
-        this.renderEngine3D.resetCamera();
-        this.audioEngine.playChime(660);
-      });
-    }
-
-    if (this.btn3DToggleCard) {
-      this.btn3DToggleCard.addEventListener('click', () => {
-        const cardContainer = document.querySelector('.object-card-container');
-        const forcePanel = document.querySelector('.force-dominance-panel');
-        const isMin = cardContainer ? cardContainer.classList.toggle('minimized') : false;
-        if (forcePanel) forcePanel.classList.toggle('minimized', isMin);
-        this.btn3DToggleCard.classList.toggle('active', isMin);
-        if (this.label3DToggleCard) {
-          this.label3DToggleCard.textContent = isMin
-            ? (this.lang === 'bn' ? 'কার্ড দেখান' : 'Show Card')
-            : (this.lang === 'bn' ? 'কার্ড লুকান' : 'Hide Card');
-        }
-        this.audioEngine.playChime(isMin ? 440 : 640);
-      });
-    }
-
     // Auto-Tour Toggle
     this.tourBtn.addEventListener('click', () => {
       this.toggleTour();
@@ -625,31 +527,6 @@ class CosmicApp {
     this.langBtn.addEventListener('click', () => {
       this.lang = this.lang === 'bn' ? 'en' : 'bn';
       this.langBtn.textContent = this.lang === 'bn' ? 'বাংলা' : 'EN';
-      if (this.dimensionLabel) {
-        this.dimensionLabel.textContent = this.dimensionMode === '3d'
-          ? (this.lang === 'bn' ? '২D মোড' : '2D Mode')
-          : (this.lang === 'bn' ? '৩D মোড' : '3D Mode');
-      }
-      if (this.label3DAutorotate) {
-        this.label3DAutorotate.textContent = this.renderEngine3D.autoRotateEnabled
-          ? (this.lang === 'bn' ? 'অটো-ঘূর্ণন' : 'Auto-Rotate')
-          : (this.lang === 'bn' ? 'অটো-ঘূর্ণন বন্ধ' : 'Rotate Paused');
-      }
-      if (this.label3DReset) {
-        this.label3DReset.textContent = this.lang === 'bn' ? 'ভিউ রিসেট' : 'Reset View';
-      }
-      if (this.label3DToggleCard) {
-        const cardContainer = document.querySelector('.object-card-container');
-        const isMin = cardContainer && cardContainer.classList.contains('minimized');
-        this.label3DToggleCard.textContent = isMin
-          ? (this.lang === 'bn' ? 'কার্ড দেখান' : 'Show Card')
-          : (this.lang === 'bn' ? 'কার্ড লুকান' : 'Hide Card');
-      }
-      if (this.text3DHint) {
-        this.text3DHint.textContent = this.lang === 'bn'
-          ? '৩D মোড: মাউস ড্র্যাগ করে ৩৬০° স্পেস ঘোরান | হুইল স্ক্রোলে ক্যামেরা জুম করুন'
-          : '3D Mode: Drag mouse to orbit 360° | Scroll wheel to zoom camera';
-      }
       this.updateCornerDisclaimer();
       if (this.collapseBtnLabel) {
         this.collapseBtnLabel.textContent = this.lang === 'bn' ? 'ব্ল্যাকহোল' : 'Black Hole';
@@ -737,13 +614,10 @@ class CosmicApp {
         e.stopPropagation();
         if (this.renderEngine.blackHoleState === 'active' || this.renderEngine.blackHoleState === 'shattering') {
           this.renderEngine.triggerBlackHoleEvaporation();
-          this.renderEngine3D.triggerBlackHoleEvaporation();
         } else {
           this.stopTour();
           this.renderEngine.setTargetOrder(-35.0);
-          this.renderEngine3D.setTargetOrder(-35.0);
           this.renderEngine.triggerBlackHoleCollapse(window.innerWidth / 2, window.innerHeight / 2);
-          this.renderEngine3D.triggerBlackHoleCollapse();
         }
       });
     }
@@ -752,7 +626,6 @@ class CosmicApp {
       this.evaporateBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         this.renderEngine.triggerBlackHoleEvaporation();
-        this.renderEngine3D.triggerBlackHoleEvaporation();
       });
     }
 
@@ -760,7 +633,6 @@ class CosmicApp {
       this.bhModeToggleBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         this.renderEngine.blackHoleAccretionMode = this.renderEngine.blackHoleAccretionMode === 'disk' ? 'vacuum' : 'disk';
-        this.renderEngine3D.blackHoleAccretionMode = this.renderEngine.blackHoleAccretionMode;
         const isDisk = this.renderEngine.blackHoleAccretionMode === 'disk';
         if (this.bhModeLabel) {
           this.bhModeLabel.textContent = this.lang === 'bn'
@@ -777,7 +649,6 @@ class CosmicApp {
       this.bhOverlayToggleBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         this.renderEngine.showGeometryOverlay = !this.renderEngine.showGeometryOverlay;
-        this.renderEngine3D.showGeometryOverlay = this.renderEngine.showGeometryOverlay;
         this.bhOverlayToggleBtn.classList.toggle('active', this.renderEngine.showGeometryOverlay);
         this.audioEngine.playChime(this.renderEngine.showGeometryOverlay ? 720 : 540);
       });
@@ -790,7 +661,6 @@ class CosmicApp {
           e.stopPropagation();
           const mass = chip.getAttribute('data-mass');
           this.renderEngine.blackHoleMassType = mass;
-          this.renderEngine3D.blackHoleMassType = mass;
           this.bhMassChips.forEach(c => c.classList.toggle('active', c === chip));
           this.updateBlackHoleStats();
           this.audioEngine.playChime(620);
@@ -895,8 +765,6 @@ class CosmicApp {
         }
         this.renderEngine.setTargetOrder(0.23); // Reset to human scale
         this.audioEngine.playChime(500);
-      } else if (e.key === '3') {
-        this.toggleDimension();
       } else if (e.key === 'b' || e.key === 'B') {
         if (this.renderEngine.blackHoleState === 'active') {
           this.renderEngine.triggerBlackHoleEvaporation();
@@ -920,76 +788,11 @@ class CosmicApp {
     });
   }
 
-  toggleDimension() {
-    this.dimensionMode = this.dimensionMode === '2d' ? '3d' : '2d';
-    document.body.classList.toggle('mode-3d', this.dimensionMode === '3d');
-
-    if (this.dimensionBtn) {
-      this.dimensionBtn.classList.toggle('active', this.dimensionMode === '3d');
-    }
-    if (this.dimensionLabel) {
-      this.dimensionLabel.textContent = this.dimensionMode === '3d'
-        ? (this.lang === 'bn' ? '২D মোড' : '2D Mode')
-        : (this.lang === 'bn' ? '৩D মোড' : '3D Mode');
-    }
-
-    if (this.dimensionMode === '3d') {
-      if (this.hud3DToolbar) this.hud3DToolbar.style.display = 'block';
-      if (this.hud3DHint) {
-        this.hud3DHint.style.display = 'flex';
-        this.hud3DHint.style.opacity = '1';
-        clearTimeout(this.hint3DTimer);
-        this.hint3DTimer = setTimeout(() => {
-          if (this.hud3DHint) {
-            this.hud3DHint.style.opacity = '0';
-            setTimeout(() => {
-              if (this.dimensionMode === '3d' && this.hud3DHint) {
-                this.hud3DHint.style.display = 'none';
-              }
-            }, 400);
-          }
-        }, 5000);
-      }
-      this.renderEngine3D.setTargetOrder(this.renderEngine.currentOrder);
-      this.renderEngine3D.currentOrder = this.renderEngine.currentOrder;
-      this.renderEngine3D.blackHoleState = this.renderEngine.blackHoleState;
-      this.renderEngine3D.blackHoleMassType = this.renderEngine.blackHoleMassType;
-      this.renderEngine3D.blackHoleAccretionMode = this.renderEngine.blackHoleAccretionMode;
-      this.renderEngine3D.showGeometryOverlay = this.renderEngine.showGeometryOverlay;
-      this.renderEngine3D.onWindowResize();
-    } else {
-      if (this.hud3DToolbar) this.hud3DToolbar.style.display = 'none';
-      if (this.hud3DHint) this.hud3DHint.style.display = 'none';
-      const cardContainer = document.querySelector('.object-card-container');
-      if (cardContainer) cardContainer.classList.remove('minimized');
-      const forcePanel = document.querySelector('.force-dominance-panel');
-      if (forcePanel) forcePanel.classList.remove('minimized');
-      if (this.btn3DToggleCard) this.btn3DToggleCard.classList.remove('active');
-
-      this.renderEngine.setTargetOrder(this.renderEngine3D.currentOrder);
-      this.renderEngine.currentOrder = this.renderEngine3D.currentOrder;
-      this.renderEngine.blackHoleState = this.renderEngine3D.blackHoleState;
-      this.renderEngine.blackHoleMassType = this.renderEngine3D.blackHoleMassType;
-      this.renderEngine.blackHoleAccretionMode = this.renderEngine3D.blackHoleAccretionMode;
-      this.renderEngine.showGeometryOverlay = this.renderEngine3D.showGeometryOverlay;
-      this.renderEngine.resize();
-    }
-
-    this.audioEngine.playChime(this.dimensionMode === '3d' ? 880 : 440);
-    this.updateCornerDisclaimer();
-  }
-
   updateCornerDisclaimer() {
     if (!this.cornerDisclaimerEl) return;
-    if (this.dimensionMode === '3d') {
-      this.cornerDisclaimerEl.textContent = this.lang === 'bn'
-        ? 'সরলীকৃত ৩ডি আপেক্ষিকীয় মডেল (Three.js WebGL)'
-        : 'Simplified 3D Relativistic Model (Three.js WebGL)';
-    } else {
-      this.cornerDisclaimerEl.textContent = this.lang === 'bn'
-        ? 'সরলীকৃত ২ডি আপেক্ষিকীয় মডেল, আসল ছবি নয়'
-        : 'Simplified 2D Relativistic Model, Not Real Image';
-    }
+    this.cornerDisclaimerEl.textContent = this.lang === 'bn'
+      ? 'সরলীকৃত ২ডি আপেক্ষিকীয় মডেল, আসল ছবি নয়'
+      : 'Simplified 2D Relativistic Model, Not Real Image';
   }
 
   toBanglaNum(num) {
@@ -1054,7 +857,6 @@ class CosmicApp {
       `;
       row.addEventListener('click', () => {
         this.renderEngine.setTargetOrder(obj.order);
-        this.renderEngine3D.setTargetOrder(obj.order);
         this.closeModals();
         this.audioEngine.playChime(640);
       });
@@ -1103,7 +905,6 @@ class CosmicApp {
           this.cruiseDirection = -1;
         }
         this.renderEngine.setTargetOrder(nextOrder);
-        this.renderEngine3D.setTargetOrder(nextOrder);
       }
 
       // Handle Gravitational Compression Charging while Mouse / Touch is held
@@ -1111,22 +912,9 @@ class CosmicApp {
         this.renderEngine.updateCompression(dt, true, this.mousePos.x, this.mousePos.y);
       }
 
-      // Update Render Engine according to active dimension
-      if (this.dimensionMode === '3d') {
-        this.renderEngine3D.update(dt);
-        this.renderEngine3D.render();
-        // Sync 2D engine's scale orders
-        this.renderEngine.currentOrder = this.renderEngine3D.currentOrder;
-        this.renderEngine.targetOrder = this.renderEngine3D.targetOrder;
-        this.renderEngine.zoomVelocity = this.renderEngine3D.zoomVelocity;
-      } else {
-        this.renderEngine.update(dt);
-        this.renderEngine.render();
-        // Sync 3D engine's scale orders
-        this.renderEngine3D.currentOrder = this.renderEngine.currentOrder;
-        this.renderEngine3D.targetOrder = this.renderEngine.targetOrder;
-        this.renderEngine3D.zoomVelocity = this.renderEngine.zoomVelocity;
-      }
+      // Update 2D Render Engine
+      this.renderEngine.update(dt);
+      this.renderEngine.render();
 
       // Update UI Telemetry & Audio
       this.updateHUD();

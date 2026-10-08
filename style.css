@@ -59,31 +59,6 @@ html, body {
   transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-#canvas-3d,
-.webgl-canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 1;
-  display: block;
-  opacity: 0;
-  pointer-events: none;
-  touch-action: none;
-  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-body.mode-3d #viewport-canvas {
-  opacity: 0;
-  pointer-events: none;
-}
-
-body.mode-3d #canvas-3d,
-body.mode-3d .webgl-canvas {
-  opacity: 1;
-  pointer-events: auto;
-}
 
 /* Sci-Fi Vignette & Vignette Mask */
 .hud-overlay {
@@ -1529,26 +1504,6 @@ body.mode-3d .webgl-canvas {
   }
 }
 
-/* 2D / 3D Dimension Mode Switcher Button */
-.dimension-btn {
-  background: rgba(14, 165, 233, 0.1);
-  border-color: rgba(56, 189, 248, 0.35);
-  color: #bae6fd;
-}
-
-.dimension-btn:hover {
-  background: rgba(14, 165, 233, 0.25);
-  border-color: #38bdf8;
-  box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
-  color: #ffffff;
-}
-
-.dimension-btn.active {
-  background: linear-gradient(135deg, rgba(14, 165, 233, 0.35), rgba(99, 102, 241, 0.35));
-  border-color: #38bdf8;
-  color: #38bdf8;
-  box-shadow: 0 0 20px rgba(56, 189, 248, 0.55);
-}
 
 /* ================= BLACK HOLE CINEMATIC IMMERSION MODE ================= */
 body.black-hole-mode .hud-top,
@@ -2022,121 +1977,4 @@ body.black-hole-mode .force-dominance-panel {
   }
 }
 
-/* ================= 3D MODE TOOLBAR & GUIDANCE HUD ================= */
-.hud-3d-toolbar {
-  position: absolute;
-  top: 76px;
-  right: 24px;
-  z-index: 15;
-  pointer-events: auto;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.hud-3d-toolbar-inner {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(8, 14, 28, 0.88);
-  backdrop-filter: blur(20px);
-  padding: 6px 12px;
-  border-radius: 20px;
-  border: 1px solid rgba(56, 189, 248, 0.3);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6), 0 0 15px rgba(56, 189, 248, 0.15);
-}
-
-.hud-3d-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: rgba(15, 23, 42, 0.7);
-  color: var(--text-dim);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 6px 12px;
-  border-radius: 12px;
-  font-family: var(--font-bn);
-  font-size: 12.5px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.hud-3d-btn:hover {
-  background: rgba(56, 189, 248, 0.15);
-  color: #ffffff;
-  border-color: rgba(56, 189, 248, 0.5);
-  transform: translateY(-1px);
-}
-
-.hud-3d-btn.active {
-  background: rgba(56, 189, 248, 0.25);
-  color: #38bdf8;
-  border-color: #38bdf8;
-  box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
-}
-
-/* 3D Interaction Hint Toast */
-.hud-3d-hint {
-  position: absolute;
-  top: 130px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 20;
-  pointer-events: none;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: rgba(8, 14, 28, 0.94);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(56, 189, 248, 0.4);
-  padding: 8px 20px;
-  border-radius: 24px;
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.7), 0 0 20px rgba(56, 189, 248, 0.25);
-  animation: hud3dHintPulse 3s infinite ease-in-out;
-  transition: opacity 0.4s ease, transform 0.4s ease;
-}
-
-.hud-3d-hint-icon {
-  color: #38bdf8;
-  display: flex;
-  align-items: center;
-}
-
-#text-3d-hint {
-  font-family: var(--font-bn);
-  font-size: 13px;
-  font-weight: 600;
-  color: #f0f9ff;
-  letter-spacing: 0.3px;
-}
-
-@keyframes hud3dHintPulse {
-  0%, 100% {
-    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.7), 0 0 15px rgba(56, 189, 248, 0.2);
-  }
-  50% {
-    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.7), 0 0 30px rgba(56, 189, 248, 0.5);
-  }
-}
-
-/* 3D Mode Canvas Grab Cursors */
-body.mode-3d #canvas-3d {
-  cursor: grab !important;
-}
-
-body.mode-3d #canvas-3d:active {
-  cursor: grabbing !important;
-}
-
-/* 3D Mode Card Minimizing */
-body.mode-3d .object-card-container.minimized {
-  transform: translateX(-120%);
-  opacity: 0;
-  pointer-events: none;
-}
-
-body.mode-3d .force-dominance-panel.minimized {
-  transform: translateX(120%);
-  opacity: 0;
-  pointer-events: none;
-}
 
