@@ -13,6 +13,7 @@ import { Chapter3ColorLab } from './chapter-3.js';
 import { Chapter4FluxTubeLab } from './chapter-4.js';
 import { Chapter5StringBreaking } from './chapter-5.js';
 import { Chapter6HadronBuilder } from './chapter-6.js';
+import { Chapter7MassOrigin } from './chapter-7.js';
 
 export const CHAPTER_LIST = [
   {
@@ -97,6 +98,18 @@ export const CHAPTER_LIST = [
     subtitleBn: 'কোয়ার্ক স্লট, কালার-সিঙ্গলেট যাচাই ও এক্সোটিক গ্যালারি',
     subtitleEn: 'Quark Slots, Color-Singlet Validation & Exotic Gallery',
     tier: 'T1',
+    isAvailable: true
+  },
+  {
+    id: 'chapter-7',
+    hash: '#/quarks/chapter-7',
+    numberBn: '৭',
+    numberEn: '7',
+    titleBn: 'ভর কোথা থেকে আসে',
+    titleEn: 'Origin of Mass',
+    subtitleBn: 'প্রোটন ভর বিভাজন, হিগস বনাম QCD কনফাইনমেন্ট শক্তি (E = mc²)',
+    subtitleEn: 'Proton Mass Decomposition, Higgs vs QCD Confinement (E = mc²)',
+    tier: 'T2',
     isAvailable: true
   }
 ];
@@ -363,6 +376,14 @@ export class QuarkApp {
     } else if (chMeta.isAvailable && chapterId === 'chapter-6') {
       // Mount Chapter 6 Hadron Builder!
       this.currentChapterInstance = new Chapter6HadronBuilder({
+        container: viewport,
+        lang: this.lang,
+        level: this.level,
+        infoDrawer: this.infoDrawer
+      });
+    } else if (chMeta.isAvailable && chapterId === 'chapter-7') {
+      // Mount Chapter 7 Origin of Mass!
+      this.currentChapterInstance = new Chapter7MassOrigin({
         container: viewport,
         lang: this.lang,
         level: this.level,

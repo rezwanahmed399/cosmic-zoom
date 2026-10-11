@@ -36,6 +36,32 @@ export function getHadronSizes() {
 }
 
 /**
+ * Returns Proton Ji Mass Decomposition data (Yang et al. PRL 2018)
+ */
+export function getJiMassDecomposition() {
+  return PROTON.jiMassDecomposition;
+}
+
+/**
+ * Returns complete Proton mass origin dataset including valence sum vs Ji decomposition
+ */
+export function getProtonMassOrigin() {
+  const total = PROTON.mass.value;
+  const val = PROTON.valenceQuarkMassSum.value;
+  return {
+    totalProtonMass: PROTON.mass,
+    valenceSum: PROTON.valenceQuarkMassSum,
+    missingDynamicalEnergy: {
+      value: +(total - val).toFixed(3),
+      unit: 'MeV/c^2',
+      fractionOfProtonMass: +((total - val) / total).toFixed(4),
+      percentageApprox: 99
+    },
+    jiDecomposition: PROTON.jiMassDecomposition
+  };
+}
+
+/**
  * Returns the scale ladder steps (Atom, Nucleus, Proton, Quark)
  */
 export function getScaleLadderSteps() {

@@ -58,6 +58,7 @@ const ICON_MINUS_SVG = '<svg class="c6-icon-badge" viewBox="0 0 24 24" fill="non
 const ICON_TRASH_SVG = '<svg class="c6-icon-badge" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>';
 const ICON_SPARK_SVG = '<svg class="c6-icon-badge" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"></path></svg>';
 const ICON_ARROW_LEFT_SVG = '<svg class="c6-icon-badge" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>';
+const ICON_ARROW_RIGHT_SVG = '<svg class="c6-icon-badge" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>';
 
 // Geometric glyphs for flavors (HUE-INDEPENDENT)
 const GLYPHS = {
@@ -301,11 +302,19 @@ export class Chapter6HadronBuilder {
           </a>
 
           <div class="c6-nav-summary-box">
-            <span class="c6-nav-tag">কোয়ার্ক ভ্রমণ সমাপ্তি</span>
+            <span class="c6-nav-tag">হ্যাড্রন গঠন সফল</span>
             <p class="c6-nav-summary-desc">
-              আপনি স্কেল-সিঁড়ি থেকে প্রোটনের শরীর, ফ্লেভার, কালার, ফ্লাক্স টিউব, স্ট্রিং ভাঙা ও হ্যাড্রন বিল্ডার পর্যন্ত সফলভাবে অনুসন্ধান করেছেন।
+              আপনি স্কেল-সিঁড়ি থেকে হ্যাড্রন বিল্ডার পর্যন্ত সফলভাবে অনুসন্ধান করেছেন। এবার জানুন হ্যাড্রনের ভর কোথা থেকে আসে।
             </p>
           </div>
+
+          <a class="c6-nav-btn next" href="#/quarks/chapter-7" id="c6-btn-next">
+            <div class="c6-nav-btn-text" style="text-align: right;">
+              <span class="c6-nav-btn-sub">পরবর্তী অধ্যায়</span>
+              <span class="c6-nav-btn-title">অধ্যায় ৭: ভর কোথা থেকে আসে</span>
+            </div>
+            ${ICON_ARROW_RIGHT_SVG}
+          </a>
         </div>
       </section>
     `;

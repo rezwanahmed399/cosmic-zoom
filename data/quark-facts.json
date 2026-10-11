@@ -136,16 +136,73 @@
     "valenceQuarkMassSum": { "value": 9.0, "unit": "MeV/c^2", "fractionOfProtonMass": 0.0096, "percentageApprox": 1, "tier": "T2", "source": "Lattice QCD", "retrievedOn": "2026-10-11" },
     "jiMassDecomposition": {
       "scheme": "Lattice QCD (MS-bar mu = 2 GeV)",
+      "scaleGeV": 2.0,
       "tier": "T2",
-      "source": "X. Ji / Lattice QCD Collaborations",
+      "paperCitation": "Yang et al., PRL 121, 212001 (2018)",
+      "referencePaper": {
+        "author": "Yang et al.",
+        "journal": "PRL",
+        "volume": 121,
+        "page": 212001,
+        "year": 2018
+      },
+      "fullCitation": "Y.-B. Yang, J. Liang, Y.-J. Bi, Y. Chen, T. Draper, K.-F. Liu, Z. Liu (chiQCD Collaboration), 'Proton Mass Decomposition from the QCD Energy-Momentum Tensor', Phys. Rev. Lett. 121, 212001 (2018)",
       "retrievedOn": "2026-10-11",
       "verify": true,
-      "quarkEnergy": { "value": 0.32, "percentage": 32, "unit": "%" },
-      "glueEnergy": { "value": 0.36, "percentage": 36, "unit": "%" },
-      "traceAnomaly": { "value": 0.23, "percentage": 23, "unit": "%" },
-      "quarkMassContribution": { "value": 0.09, "percentage": 9, "unit": "%" },
-      "caveatEn": "Decomposition is scheme and scale dependent (approximate). Never state '99% without Higgs'.",
-      "caveatBn": "ভর বিভাজন স্কিম ও স্কেল-নির্ভর (আনুমানিক)। '৯৯% হিগস ছাড়া' লেখা নিষেধ।"
+      "components": {
+        "quarkEnergy": {
+          "id": "quarkEnergy",
+          "percentage": 32,
+          "statUncertainty": 4,
+          "systUncertainty": 4,
+          "notation": "32(4)(4)%",
+          "nameBn": "কোয়ার্ক গতিশক্তি (Quark Energy)",
+          "nameEn": "Quark Energy",
+          "colorHex": "#38bdf8",
+          "descriptionBn": "প্রোটনের অভ্যন্তরে আবদ্ধ কোয়ার্কগুলোর তীব্র অতি-আপেক্ষিক (ultra-relativistic) গতিশক্তি ও ভরহীন কোয়ার্ক ফিল্ডের গতিশীল চাপ。",
+          "descriptionEn": "Ultra-relativistic kinetic energy and pressure of relativistic quarks bound inside the proton."
+        },
+        "glueEnergy": {
+          "id": "glueEnergy",
+          "percentage": 36,
+          "statUncertainty": 5,
+          "systUncertainty": 4,
+          "notation": "36(5)(4)%",
+          "nameBn": "গ্লুয়ন ক্ষেত্রশক্তি (Glue Energy)",
+          "nameEn": "Glue Energy",
+          "colorHex": "#818cf8",
+          "descriptionBn": "কনফাইনমেন্ট সৃষ্টিকারী তীব্র কালার-ইলেকট্রিক ও কালার-ম্যাগনেটিক ফিল্ডের সঞ্চিত শক্তি (গ্লুয়ন ক্ষেত্ররেখার শক্তি)।",
+          "descriptionEn": "Energy stored within color-electric and color-magnetic gluon fields forming the confinement flux."
+        },
+        "traceAnomaly": {
+          "id": "traceAnomaly",
+          "percentage": 23,
+          "statUncertainty": 1,
+          "systUncertainty": 1,
+          "notation": "23(1)(1)%",
+          "nameBn": "কোয়ান্টাম ট্রেস অ্যানোমালি (Trace Anomaly)",
+          "nameEn": "Quantum Trace Anomaly",
+          "colorHex": "#c084fc",
+          "descriptionBn": "ক্লাসিক্যাল স্কেল ইনভ্যারিয়েন্সের কোয়ান্টাম ভঙ্গুরতা (QCD কনফর্মাল অ্যানোমালি ও রানিং কাপলিং বিটা ফাংশন) থেকে উদ্ভূত স্বতঃস্ফূর্ত ভর।",
+          "descriptionEn": "Spontaneous mass generation arising from quantum breaking of classical scale invariance (QCD trace anomaly)."
+        },
+        "quarkMassContribution": {
+          "id": "quarkMassContribution",
+          "percentage": 9,
+          "statUncertainty": 2,
+          "systUncertainty": 1,
+          "notation": "9(2)(1)%",
+          "nameBn": "কোয়ার্ক-ভর অংশ (Quark Mass / Higgs)",
+          "nameEn": "Quark Mass Contribution",
+          "colorHex": "#34d399",
+          "descriptionBn": "হিগস মেকানিজম থেকে সরাসরি উদ্ভূত কোয়ার্ক কারেন্ট ভর এবং ভ্যাকুয়াম কাইরাল কনডেনসেটের সামগ্রিক অবদান।",
+          "descriptionEn": "Direct contribution of Higgs-generated current quark masses and vacuum chiral condensate."
+        }
+      },
+      "comparisonDifferenceBn": "(a) তিন ভ্যালেন্স কোয়ার্কের নিজস্ব কারেন্ট ভর (~৯ MeV ≈ ১%) কেবল শূন্যস্থানে মুক্ত তিনটি ভ্যালেন্স কোয়ার্কের হিসাব। কিন্তু (b) Ji-বিভাজনে ফুল ল্যাটিস QCD এনার্জি-মোমেন্টাম টেনসরে কোয়ান্টাম ভ্যাকুয়াম ফ্লাকচুয়েশন, সি-কোয়ার্ক (sea quarks: u ū, d d̄, s s̄) এবং কাইরাল কনডেনসেট অন্তর্ভুক্ত থাকে, যার কারণে কোয়ার্ক-ভরের সামগ্রিক অবদান দাঁড়ায় প্রায় ৯%। ভরের অবশিষ্ট প্রায় ৯০% সরাসরি QCD ক্ষেত্র ও আপেক্ষিক গতিশক্তি থেকে উদ্ভূত (E = mc²)।",
+      "comparisonDifferenceEn": "(a) Valence quark mass sum (~9 MeV ≈ 1%) accounts only for tree-level bare current masses in vacuum. However, (b) Ji decomposition evaluates the full energy-momentum tensor in dynamical lattice QCD, including sea quarks and chiral condensate, yielding ~9% for the mass term. The remaining ~90% originates from QCD field energy and relativistic motion (E = mc^2).",
+      "warningBadge": "আনুমানিক, স্কিম-নির্ভর (T2)",
+      "bannedStatementRule": "'৯৯% Higgs ছাড়া' ধরনের বক্তব্য কঠোরভাবে নিষিদ্ধ কারণ ল্যাটিস বিশ্লেষণে সি-কোয়ার্ক ও কনডেনসেটসহ হিগস-সংশ্লিষ্ট ভর অংশ প্রায় ৯%।"
     },
     "seaQuarkAsymmetry": {
       "relation": "d_bar > u_bar",
