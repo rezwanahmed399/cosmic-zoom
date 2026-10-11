@@ -93,7 +93,7 @@ const enStrings = [
   'Planck Wall Reached (Quantum Limit):',
   'The fundamental threshold of modern physics. Probing beyond this creates a micro black hole that conceals spacetime!',
   'Spacetime Gravitational Strain (TRANS-PLANCKIAN)',
-  'Scroll mouse wheel more to force gravitational collapse...',
+  'Scroll, swipe, or tap Zoom In [+] to force gravitational collapse...',
   'Zoom In',
   'Zoom Out',
   'Auto Tour',

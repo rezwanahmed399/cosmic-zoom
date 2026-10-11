@@ -449,30 +449,7 @@ class CosmicApp {
 
       // Trans-Planckian Over-Zoom: If user forces past the Planck limit, accumulate strain
       if (this.renderEngine.currentOrder <= -34.5 && e.deltaY > 0) {
-        clearTimeout(this.strainDecayTimer);
-        this.planckStrainCount = Math.min(7, (this.planckStrainCount || 0) + 1);
-
-        if (this.strainContainer) {
-          this.strainContainer.style.display = 'flex';
-          this.strainContainer.style.opacity = '1';
-        }
-        const pct = Math.round((this.planckStrainCount / 7) * 100);
-        if (this.strainFillBar) this.strainFillBar.style.width = `${pct}%`;
-        if (this.strainPercentText) {
-          this.strainPercentText.textContent = `${this.lang === 'bn' ? this.toBanglaNum(pct) : pct}%`;
-        }
-
-        this.audioEngine.playSpacetimeStress(this.planckStrainCount / 7);
-        this.renderEngine.strainShakeIntensity = this.planckStrainCount * 2.8;
-
-        if (this.planckStrainCount >= 7) {
-          this.planckStrainCount = 7;
-          return;
-        }
-
-        this.strainDecayTimer = setTimeout(() => {
-          this.dischargeStrain();
-        }, 1800);
+        this.accumulatePlanckStrain(1);
         return;
       } else {
         if (this.planckStrainCount > 0 && e.deltaY < 0) {
@@ -490,6 +467,7 @@ class CosmicApp {
     // Touch Support (Pinch and Swipe)
     let touchStartY = 0;
     let touchStartDist = 0;
+    let accumulatedTouchStrain = 0;
 
     window.addEventListener('touchstart', (e) => {
       if (e.target && e.target.closest && e.target.closest('.object-card, .object-card-container, .force-dominance-panel, .modal-card, .modal-inner, .modal-dialog, #compare-modal, #search-modal, #quiz-modal, .blackhole-telemetry-panel')) {
@@ -497,10 +475,12 @@ class CosmicApp {
       }
       if (e.touches.length === 1) {
         touchStartY = e.touches[0].clientY;
+        accumulatedTouchStrain = 0;
       } else if (e.touches.length === 2) {
         const dx = e.touches[0].clientX - e.touches[1].clientX;
         const dy = e.touches[0].clientY - e.touches[1].clientY;
         touchStartDist = Math.sqrt(dx * dx + dy * dy);
+        accumulatedTouchStrain = 0;
       }
     }, { passive: true });
 
@@ -515,6 +495,40 @@ class CosmicApp {
         }
         return;
       }
+
+      // Mobile Trans-Planckian Over-Zoom: Touch swipe and pinch to collapse at Planck scale
+      if (this.renderEngine.currentOrder <= -34.5) {
+        if (e.touches.length === 1) {
+          const diffY = e.touches[0].clientY - touchStartY;
+          touchStartY = e.touches[0].clientY;
+          if (diffY < 0) { // Swiping up = trying to zoom in deeper
+            accumulatedTouchStrain += Math.abs(diffY);
+            if (accumulatedTouchStrain >= 26) {
+              accumulatedTouchStrain = 0;
+              this.accumulatePlanckStrain(1);
+            }
+            return;
+          } else if (diffY > 15 && this.planckStrainCount > 0) {
+            this.planckStrainCount = 0;
+            if (this.strainContainer) this.strainContainer.style.display = 'none';
+          }
+        } else if (e.touches.length === 2) {
+          const dx = e.touches[0].clientX - e.touches[1].clientX;
+          const dy = e.touches[0].clientY - e.touches[1].clientY;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          const pinchDelta = dist - touchStartDist;
+          touchStartDist = dist;
+          if (pinchDelta < 0) { // Pinching in = trying to zoom deeper
+            accumulatedTouchStrain += Math.abs(pinchDelta);
+            if (accumulatedTouchStrain >= 22) {
+              accumulatedTouchStrain = 0;
+              this.accumulatePlanckStrain(1);
+            }
+            return;
+          }
+        }
+      }
+
       if (e.touches.length === 1) {
         const diffY = e.touches[0].clientY - touchStartY;
         touchStartY = e.touches[0].clientY;
@@ -539,6 +553,11 @@ class CosmicApp {
     // Zoom Buttons (+ / -)
     document.getElementById('zoom-in-btn').addEventListener('click', () => {
       this.stopTour();
+      if (this.renderEngine.blackHoleState === 'active') return;
+      if (this.renderEngine.currentOrder <= -34.5) {
+        this.accumulatePlanckStrain(2);
+        return;
+      }
       this.renderEngine.addZoomDelta(-1.5);
       this.audioEngine.playZoomPulse(-1);
     });
@@ -598,6 +617,21 @@ class CosmicApp {
       this.audioBtn.classList.toggle('active', active);
       this.audioWave.style.opacity = active ? '1' : '0.3';
     });
+
+    // Planck Wall Paradox Banner & Strain Gauge Interactive Taps (Mobile / Desktop)
+    if (this.planckWallBannerEl) {
+      this.planckWallBannerEl.addEventListener('click', () => {
+        if (this.renderEngine.currentOrder <= -34.5) {
+          this.accumulatePlanckStrain(2);
+        }
+      });
+    }
+
+    if (this.strainContainer) {
+      this.strainContainer.addEventListener('click', () => {
+        this.accumulatePlanckStrain(2);
+      });
+    }
 
     // Auto-Tour Toggle
     this.tourBtn.addEventListener('click', () => {
@@ -769,25 +803,8 @@ class CosmicApp {
       } else if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === '+' || e.key === '=') {
         this.stopTour();
         if (this.renderEngine.blackHoleState === 'active') return;
-        if (this.renderEngine.currentOrder <= -34.75) {
-          clearTimeout(this.strainDecayTimer);
-          this.planckStrainCount = Math.min(7, (this.planckStrainCount || 0) + 1);
-          if (this.strainContainer) {
-            this.strainContainer.style.display = 'flex';
-            this.strainContainer.style.opacity = '1';
-          }
-          const pct = Math.round((this.planckStrainCount / 7) * 100);
-          if (this.strainFillBar) this.strainFillBar.style.width = `${pct}%`;
-          if (this.strainPercentText) {
-            this.strainPercentText.textContent = `${this.lang === 'bn' ? this.toBanglaNum(pct) : pct}%`;
-          }
-          this.audioEngine.playSpacetimeStress(this.planckStrainCount / 7);
-          this.renderEngine.strainShakeIntensity = this.planckStrainCount * 2.8;
-          if (this.planckStrainCount >= 7) {
-            this.planckStrainCount = 7;
-            return;
-          }
-          this.strainDecayTimer = setTimeout(() => this.dischargeStrain(), 1800);
+        if (this.renderEngine.currentOrder <= -34.5) {
+          this.accumulatePlanckStrain(1);
           return;
         }
         this.renderEngine.addZoomDelta(-1.0);
@@ -956,8 +973,8 @@ class CosmicApp {
     }
     if (this.strainSubText) {
       this.strainSubText.textContent = isBn
-        ? 'মাউস হুইল দিয়ে আরো স্ক্রোল করে মহাকর্ষীয় পতন ঘটান... (Scroll more to force collapse)'
-        : 'Scroll mouse wheel more to force gravitational collapse...';
+        ? 'স্ক্রোল, সোয়াইপ বা [+] চেপে মহাকর্ষীয় পতন ঘটান... (Scroll / swipe to force collapse)'
+        : 'Scroll, swipe, or tap Zoom In [+] to force gravitational collapse...';
     }
 
     // Slider domain markers
@@ -1133,6 +1150,38 @@ class CosmicApp {
     if (this.renderEngine && (this.renderEngine.blackHoleState === 'active' || this.renderEngine.blackHoleState === 'shattering')) return;
     const isMin = this.forceDominancePanel.classList.contains('minimized');
     this.setForcesPanelVisible(isMin);
+  }
+
+  accumulatePlanckStrain(amount = 1) {
+    if (!this.renderEngine) return;
+    if (this.renderEngine.blackHoleState === 'active' || this.renderEngine.blackHoleState === 'shattering') return;
+
+    clearTimeout(this.strainDecayTimer);
+    this.planckStrainCount = (this.planckStrainCount || 0) + amount;
+
+    if (this.strainContainer) {
+      this.strainContainer.style.display = 'flex';
+      this.strainContainer.style.opacity = '1';
+    }
+    const pct = Math.min(100, Math.round((this.planckStrainCount / 7) * 100));
+    if (this.strainFillBar) this.strainFillBar.style.width = `${pct}%`;
+    if (this.strainPercentText) {
+      this.strainPercentText.textContent = `${this.lang === 'bn' ? this.toBanglaNum(pct) : pct}%`;
+    }
+
+    this.audioEngine.playSpacetimeStress(Math.min(1, this.planckStrainCount / 7));
+    this.renderEngine.strainShakeIntensity = this.planckStrainCount * 3.5;
+
+    if (this.planckStrainCount >= 7) {
+      this.planckStrainCount = 0;
+      if (this.strainContainer) this.strainContainer.style.display = 'none';
+      this.renderEngine.triggerBlackHoleCollapse(window.innerWidth / 2, window.innerHeight / 2);
+      return;
+    }
+
+    this.strainDecayTimer = setTimeout(() => {
+      this.dischargeStrain();
+    }, 2200);
   }
 
   toBanglaNum(num) {

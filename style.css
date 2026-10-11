@@ -972,6 +972,8 @@ html, body {
 .planck-wall-banner.active {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+  cursor: pointer;
 }
 
 .planck-banner-content {
@@ -1610,6 +1612,27 @@ html, body {
     gap: 6px;
   }
 
+  /* Spacetime Strain Gauge on Mobile */
+  .spacetime-strain-container {
+    bottom: max(145px, calc(env(safe-area-inset-bottom) + 140px));
+    width: calc(100vw - 20px);
+    max-width: 360px;
+  }
+
+  .strain-card {
+    padding: 10px 14px;
+    gap: 6px;
+    font-size: 11px;
+  }
+
+  .strain-title {
+    font-size: 10.5px;
+  }
+
+  .strain-sub {
+    font-size: 10px;
+  }
+
   /* Bottom Controls on Mobile */
   .hud-bottom {
     bottom: max(6px, env(safe-area-inset-bottom));
@@ -2157,6 +2180,8 @@ body.black-hole-mode .force-dominance-panel {
   flex-direction: column;
   gap: 8px;
   animation: strainPulseBorder 1.5s infinite ease-in-out;
+  pointer-events: auto;
+  cursor: pointer;
 }
 
 @keyframes strainPulseBorder {
