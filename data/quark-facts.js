@@ -16,6 +16,8 @@ export const STRING_BREAKING = QUARK_FACTS.stringBreaking;
 export const HADRONS = QUARK_FACTS.hadrons;
 export const TIME_SCALES = QUARK_FACTS.timeScales;
 export const SCALE_LADDER = QUARK_FACTS.scaleLadder;
+export const NEUTRON_DECAY = QUARK_FACTS.neutronDecay;
+export const CKM_MATRIX = QUARK_FACTS.ckmMatrix;
 
 /**
  * Returns the scale ladder steps (Atom, Nucleus, Proton, Quark)
@@ -29,6 +31,27 @@ export function getScaleLadderSteps() {
  */
 export function getPlanckGapInfo() {
   return SCALE_LADDER.planckGap;
+}
+
+/**
+ * Returns Neutron Decay specifications and conservation ledger
+ */
+export function getNeutronDecayInfo() {
+  return NEUTRON_DECAY;
+}
+
+/**
+ * Returns CKM Quark-Mixing Matrix
+ */
+export function getCkmMatrix() {
+  return CKM_MATRIX;
+}
+
+/**
+ * Returns array of 6 quarks ordered by generation (u, d, c, s, t, b)
+ */
+export function getSixQuarksList() {
+  return [QUARKS.u, QUARKS.d, QUARKS.c, QUARKS.s, QUARKS.t, QUARKS.b];
 }
 
 /**

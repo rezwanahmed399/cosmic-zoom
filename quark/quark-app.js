@@ -8,6 +8,7 @@ import { InfoDrawer } from '../components/info-drawer.js';
 import { createTierBadge } from '../components/tier-badge.js';
 import { Chapter0ScaleLadder } from './chapter-0.js';
 import { Chapter1Proton } from './chapter-1.js';
+import { Chapter2FlavorLab } from './chapter-2.js';
 import { Chapter3ColorLab } from './chapter-3.js';
 import { Chapter4FluxTubeLab } from './chapter-4.js';
 import { Chapter5StringBreaking } from './chapter-5.js';
@@ -42,12 +43,12 @@ export const CHAPTER_LIST = [
     hash: '#/quarks/chapter-2',
     numberBn: '২',
     numberEn: '2',
-    titleBn: 'কনফাইনমেন্ট ও স্ট্রিং টান',
-    titleEn: 'Confinement & String Tension',
-    subtitleBn: 'দূরত্বহীন ধ্রুব বল এবং স্ট্রিং ভাঙার রহস্য',
-    subtitleEn: 'Distance-Independent Force & String Breaking',
-    tier: 'T2',
-    isAvailable: false
+    titleBn: 'Flavor ল্যাব',
+    titleEn: 'Flavor Lab',
+    subtitleBn: '৬ কোয়ার্ক, ৮ ঘাতের ভর ব্যবধান ও নিউট্রন ক্ষয়',
+    subtitleEn: '6 Quarks, 8-Order Mass Span & Neutron Decay',
+    tier: 'T1',
+    isAvailable: true
   },
   {
     id: 'chapter-3',
@@ -309,6 +310,14 @@ export class QuarkApp {
     } else if (chMeta.isAvailable && chapterId === 'chapter-1') {
       // Mount Chapter 1 Proton Hero Interactive!
       this.currentChapterInstance = new Chapter1Proton({
+        container: viewport,
+        lang: this.lang,
+        level: this.level,
+        infoDrawer: this.infoDrawer
+      });
+    } else if (chMeta.isAvailable && chapterId === 'chapter-2') {
+      // Mount Chapter 2 Flavor Lab!
+      this.currentChapterInstance = new Chapter2FlavorLab({
         container: viewport,
         lang: this.lang,
         level: this.level,
