@@ -1063,3 +1063,739 @@
   width: 16px;
   height: 16px;
 }
+
+/* ==========================================================================
+   9. CHAPTER 3: COLOR LAB STYLES
+   ========================================================================== */
+
+.chapter3-colorlab-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 1380px;
+  margin: 0 auto;
+  width: 100%;
+  animation: quarkFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.c3-disclaimer-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  background: rgba(192, 132, 252, 0.08);
+  border: 1px solid rgba(192, 132, 252, 0.3);
+  border-radius: 12px;
+  gap: 16px;
+}
+
+.c3-disclaimer-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.c3-disclaimer-tag-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.c3-disclaimer-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #d8b4fe;
+  text-transform: uppercase;
+}
+
+.c3-disclaimer-text {
+  margin: 0;
+  font-size: 13.5px;
+  color: #e9d5ff;
+  line-height: 1.45;
+}
+
+.c3-disclaimer-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.c3-btn-proof {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(56, 189, 248, 0.15);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  color: #7dd3fc;
+  padding: 7px 14px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.c3-btn-proof:hover {
+  background: rgba(56, 189, 248, 0.28);
+  border-color: #38bdf8;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.c3-lab-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.22fr) minmax(360px, 0.98fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.c3-column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.c3-card {
+  background: rgba(13, 18, 36, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 16px 18px;
+}
+
+.c3-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.c3-card-title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: #f8fafc;
+  letter-spacing: -0.01em;
+}
+
+/* Colorblind Mode Switch */
+.c3-cb-toggle-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.c3-cb-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.c3-cb-track {
+  width: 34px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.c3-cb-thumb {
+  width: 14px;
+  height: 14px;
+  background: #ffffff;
+  border-radius: 50%;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.c3-cb-input:checked + .c3-cb-track {
+  background: #0284c7;
+}
+
+.c3-cb-input:checked + .c3-cb-track .c3-cb-thumb {
+  transform: translateX(14px);
+}
+
+.c3-cb-text {
+  font-size: 12.5px;
+  color: #94a3b8;
+}
+
+/* SU(3) Wheel Layout */
+.c3-wheel-layout {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.c3-wheel-canvas-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.25);
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.c3-wheel-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  min-width: 200px;
+}
+
+.c3-legend-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 12.5px;
+  color: #cbd5e1;
+  line-height: 1.4;
+}
+
+.c3-legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+.c3-legend-dot.r { background: linear-gradient(135deg, #ff2d55, #00e676 50%, #00b0ff); }
+.c3-legend-dot.anti-r { background: linear-gradient(135deg, #00e5ff, #ff007f 50%, #ffd600); }
+.c3-legend-dot.white { background: #ffffff; box-shadow: 0 0 6px rgba(255, 255, 255, 0.8); }
+
+/* Presets Row */
+.c3-presets-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.c3-presets-lbl {
+  font-size: 11.5px;
+  color: #94a3b8;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-right: 2px;
+}
+
+.c3-preset-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #e2e8f0;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.c3-preset-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+.c3-preset-btn.invalid {
+  border-color: rgba(239, 68, 68, 0.35);
+  color: #fca5a5;
+}
+
+.c3-preset-btn.invalid:hover {
+  background: rgba(239, 68, 68, 0.15);
+}
+
+/* Palette Tray */
+.c3-palette-tray {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: rgba(0, 0, 0, 0.25);
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  margin-bottom: 12px;
+}
+
+.c3-palette-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.c3-palette-title {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #94a3b8;
+}
+
+.c3-palette-btns {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.c3-particle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 9px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.04);
+  color: #ffffff;
+  transition: all 0.18s ease;
+}
+
+.c3-particle-btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.25);
+}
+
+.c3-particle-btn.r { border-color: #ff2d55; color: #ff8097; }
+.c3-particle-btn.g { border-color: #00e676; color: #69f0ae; }
+.c3-particle-btn.b { border-color: #00b0ff; color: #80d8ff; }
+.c3-particle-btn.anti-r { border-color: #00e5ff; color: #84ffff; }
+.c3-particle-btn.anti-g { border-color: #ff007f; color: #ff80bf; }
+.c3-particle-btn.anti-b { border-color: #ffd600; color: #ffff8d; }
+
+/* Reaction Vessel */
+.c3-vessel-area {
+  min-height: 70px;
+  background: #020408;
+  border: 1px dashed rgba(255, 255, 255, 0.16);
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.c3-vessel-dropzone {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.c3-vessel-empty-prompt {
+  font-size: 12.5px;
+  color: #64748b;
+  font-style: italic;
+}
+
+.c3-chamber-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid var(--pill-color, #38bdf8);
+  color: #f8fafc;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12.5px;
+  font-weight: 600;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+.c3-pill-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.c3-pill-remove {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0 2px;
+  line-height: 1;
+}
+
+.c3-pill-remove:hover {
+  color: #ef4444;
+}
+
+/* Confinement Ledger Audit Result Box */
+.c3-audit-result-box {
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 10px;
+  padding: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: all 0.25s ease;
+}
+
+.c3-audit-result-box.valid {
+  border-color: rgba(16, 185, 129, 0.5);
+  background: rgba(16, 185, 129, 0.08);
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.12);
+}
+
+.c3-audit-result-box.invalid {
+  border-color: rgba(239, 68, 68, 0.5);
+  background: rgba(239, 68, 68, 0.08);
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.12);
+}
+
+.c3-result-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.c3-result-badge {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 999px;
+  letter-spacing: 0.02em;
+}
+
+.c3-result-badge.valid {
+  background: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.45);
+}
+
+.c3-result-badge.invalid {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.45);
+}
+
+.c3-icon-badge {
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 2px 2px 2px;
+}
+
+.c3-icon-badge.mini {
+  width: 12px;
+  height: 12px;
+  margin: 0 1px 2px 1px;
+}
+
+.c3-result-formula {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  font-weight: 700;
+  color: #f1f5f9;
+}
+
+.c3-result-telemetry {
+  display: flex;
+  gap: 16px;
+  font-size: 12.5px;
+  color: #cbd5e1;
+  font-family: 'JetBrains Mono', monospace;
+  flex-wrap: wrap;
+}
+
+.c3-result-telemetry strong.danger {
+  color: #f87171;
+}
+
+.c3-result-desc {
+  margin: 0;
+  font-size: 13px;
+  color: #94a3b8;
+  line-height: 1.45;
+}
+
+.c3-result-hadron-id {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 12.5px;
+  color: #e2e8f0;
+}
+
+/* 3. The 8 Gluon Cards */
+.c3-gluon-intro {
+  margin: 0 0 10px 0;
+  font-size: 13px;
+  color: #94a3b8;
+  line-height: 1.45;
+}
+
+.c3-header-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.c3-gluon-count-tag {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  padding: 2px 7px;
+  border-radius: 4px;
+  letter-spacing: 0.05em;
+}
+
+.c3-btn-ninth {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  color: #fbbf24;
+  padding: 5px 11px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.c3-btn-ninth:hover {
+  background: rgba(245, 158, 11, 0.22);
+  color: #ffffff;
+}
+
+.c3-gluon-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.c3-gluon-item {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+  text-align: center;
+}
+
+.c3-gluon-item.diagonal {
+  grid-column: span 2;
+  border-color: rgba(192, 132, 252, 0.3);
+  background: rgba(192, 132, 252, 0.06);
+}
+
+.c3-gluon-symbol {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #f1f5f9;
+}
+
+.c3-gluon-desc {
+  font-size: 10.5px;
+  color: #94a3b8;
+}
+
+/* 4. Gluon Exchange Simulator */
+.c3-exchange-rule {
+  margin: 0 0 12px 0;
+  font-size: 12.5px;
+  color: #cbd5e1;
+  font-style: italic;
+}
+
+.c3-exchange-stage {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: #020307;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 20px 10px;
+  margin-bottom: 12px;
+}
+
+.c3-stage-quark {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.c3-quark-orb {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.15);
+  transition: background 0.4s ease;
+}
+
+.c3-orb-lbl {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.c3-stage-caption {
+  font-size: 11.5px;
+  color: #94a3b8;
+}
+
+.c3-stage-tunnel {
+  position: relative;
+  width: 140px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.c3-tunnel-line {
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 2px;
+}
+
+.c3-gluon-packet-transit {
+  position: absolute;
+  background: #38bdf8;
+  color: #030712;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  box-shadow: 0 0 10px #38bdf8;
+  opacity: 0;
+  transform: translateX(-50px);
+}
+
+.c3-gluon-packet-transit.animating {
+  animation: gluonFly 0.7s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes gluonFly {
+  0% { opacity: 0; transform: translateX(-50px); }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(50px); }
+}
+
+.c3-exchange-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.c3-select-gluon-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #cbd5e1;
+}
+
+.c3-gluon-select {
+  background: rgba(10, 15, 29, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #f1f5f9;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12.5px;
+}
+
+.c3-exchange-ledger {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12.5px;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.c3-ledger-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.c3-ledger-tag {
+  color: #94a3b8;
+  font-size: 11px;
+  font-weight: 700;
+  width: 55px;
+  flex-shrink: 0;
+}
+
+.c3-ledger-status.ok {
+  color: #34d399;
+  font-weight: 600;
+}
+
+.c3-ledger-action {
+  color: #cbd5e1;
+}
+
+.c3-svg-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.c3-svg-icon.mini {
+  width: 15px;
+  height: 15px;
+}
+
+@media (max-width: 960px) {
+  .c3-lab-grid {
+    grid-template-columns: 1fr;
+  }
+  .c3-gluon-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+

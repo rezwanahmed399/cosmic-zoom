@@ -7,6 +7,7 @@
 import { InfoDrawer } from '../components/info-drawer.js';
 import { createTierBadge } from '../components/tier-badge.js';
 import { Chapter1Proton } from './chapter-1.js';
+import { Chapter3ColorLab } from './chapter-3.js';
 
 export const CHAPTER_LIST = [
   {
@@ -38,12 +39,12 @@ export const CHAPTER_LIST = [
     hash: '#/quarks/chapter-3',
     numberBn: '৩',
     numberEn: '3',
-    titleBn: 'এসিম্পটোটিক ফ্রিডম ও কালার চার্জ',
-    titleEn: 'Asymptotic Freedom & Color Charge',
-    subtitleBn: 'উচ্চ শক্তিতে মুক্ত কোয়ার্ক ও ৮টি গ্লুয়ন স্টেট',
-    subtitleEn: 'Quark Freedom at High Energy & 8 Gluon States',
+    titleBn: 'কালার ল্যাব',
+    titleEn: 'Color Lab',
+    subtitleBn: 'রঙ-চাকা, সাদা বানাও খেলা ও ৮টি গ্লুয়ন',
+    subtitleEn: 'Color Wheel, Make White Lab & 8 Gluons',
     tier: 'T1',
-    isAvailable: false
+    isAvailable: true
   },
   {
     id: 'chapter-4',
@@ -283,6 +284,14 @@ export class QuarkApp {
     if (chMeta.isAvailable && chapterId === 'chapter-1') {
       // Mount Chapter 1 Proton Hero Interactive!
       this.currentChapterInstance = new Chapter1Proton({
+        container: viewport,
+        lang: this.lang,
+        level: this.level,
+        infoDrawer: this.infoDrawer
+      });
+    } else if (chMeta.isAvailable && chapterId === 'chapter-3') {
+      // Mount Chapter 3 Color Lab!
+      this.currentChapterInstance = new Chapter3ColorLab({
         container: viewport,
         lang: this.lang,
         level: this.level,
