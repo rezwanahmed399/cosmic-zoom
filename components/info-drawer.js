@@ -264,25 +264,41 @@ export class InfoDrawer {
   triggerErrorReport() {
     const isBn = this.lang === 'bn';
     const claim = this.activeData ? (isBn ? this.activeData.claimBn : this.activeData.claimEn) : '';
+    const tier = this.activeData ? (this.activeData.tier || 'T3') : 'T3';
 
     if (typeof this.onReportError === 'function') {
       this.onReportError(this.activeData);
       return;
     }
 
-    // Accessible fallback prompt dialog
-    const reason = window.prompt(
+    const title = encodeURIComponent(`[Scientific Errata] ${tier}: ${claim ? claim.slice(0, 45) : 'General Discrepancy'}...`);
+    const body = encodeURIComponent(
+      `### Scientific Claim\n- Truth Tier: ${tier}\n- Claim: ${claim}\n\n### Scientific Discrepancy\n[Please describe the theoretical or numerical discrepancy]\n\n### Counter-Evidence / Citation\n[PDG 2026 / DOI / arXiv paper reference]`
+    );
+    const githubUrl = `https://github.com/cosmic-zoom/cosmoplanck/issues/new?title=${title}&body=${body}&labels=scientific-audit`;
+
+    const openGithub = window.confirm(
       isBn 
-        ? `দাবি: "${claim}"\nঅনুগ্রহ করে বৈজ্ঞানিক অসঙ্গতি বা সূত্রের ভুলটি সংক্ষেপে লিখুন:` 
-        : `Claim: "${claim}"\nPlease briefly describe the scientific discrepancy or counter-evidence:`
+        ? `দাবি: "${claim}"\n\nআপনি কি GitHub-এ বৈজ্ঞানিক Errata রিপোর্ট খুলতে চান? (Cancel চাপলে ব্রাউজারে সরাসরি বার্তা দিতে পারবেন)`
+        : `Claim: "${claim}"\n\nWould you like to open a GitHub Scientific Errata issue? (Click Cancel to report directly in-browser)`
     );
 
-    if (reason && reason.trim()) {
-      alert(
-        isBn
-          ? `ধন্যবাদ! আপনার রিপোর্টটি গৃহীত হয়েছে:\n"${reason.trim()}"`
-          : `Thank you! Your scientific report has been logged:\n"${reason.trim()}"`
+    if (openGithub) {
+      window.open(githubUrl, '_blank', 'noopener,noreferrer');
+    } else {
+      const reason = window.prompt(
+        isBn 
+          ? `দাবি: "${claim}"\nঅনুগ্রহ করে বৈজ্ঞানিক অসঙ্গতি বা সূত্রের ভুলটি সংক্ষেপে লিখুন:` 
+          : `Claim: "${claim}"\nPlease briefly describe the scientific discrepancy or counter-evidence:`
       );
+
+      if (reason && reason.trim()) {
+        alert(
+          isBn
+            ? `ধন্যবাদ! আপনার রিপোর্টটি Errata পর্যালোচনার জন্য গৃহীত হয়েছে:\n"${reason.trim()}"`
+            : `Thank you! Your scientific report has been logged for Errata review:\n"${reason.trim()}"`
+        );
+      }
     }
   }
 }

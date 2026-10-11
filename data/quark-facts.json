@@ -603,19 +603,22 @@
         "value": 0,
         "unit": "MeV/c^2",
         "tier": "T1",
-        "source": "PDG 2024/2026"
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-12"
       },
       "spin": {
         "value": 1,
         "unit": "hbar",
         "tier": "T1",
-        "source": "PDG 2024/2026"
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-12"
       },
       "charge": {
         "value": 0,
         "unit": "e",
         "tier": "T1",
-        "source": "PDG 2024/2026"
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-12"
       },
       "basisStates": [
         "r g_bar",
@@ -669,13 +672,16 @@
       "approxMetricTons": 15.5,
       "distanceIndependence": "constant with distance",
       "tier": "T2",
-      "source": "Lattice QCD string tension conversion"
+      "source": "Lattice QCD string tension conversion",
+      "retrievedOn": "2026-10-12"
     },
     "energyStored": {
       "value": 0.95,
       "unit": "GeV/fm",
       "formula": "E = sigma * L",
-      "tier": "T2"
+      "tier": "T2",
+      "source": "PDG 2024/2026 / Lattice QCD",
+      "retrievedOn": "2026-10-12"
     },
     "mesonCornellPotential": {
       "formula": "V(r) = -(4/3) * alpha_s * hbar * c / r + sigma * r",
@@ -687,13 +693,16 @@
         ],
         "tier": "T3",
         "description": "Cornell-type effective coupling constant alpha_s at hadronic scales",
-        "verify": true
+        "verify": true,
+        "source": "E. Eichten et al. (Cornell Model, Phys. Rev. D 17, 3090, 1978)",
+        "retrievedOn": "2026-10-12"
       },
       "hbarCGeVFm": {
         "value": 0.19732698,
         "unit": "GeV*fm",
         "tier": "T1",
-        "source": "CODATA 2022 / PDG"
+        "source": "CODATA 2022 / PDG",
+        "retrievedOn": "2026-10-12"
       },
       "tier": "T3",
       "source": "E. Eichten et al. (Cornell Model, Phys. Rev. D 17, 3090, 1978)"
@@ -727,7 +736,8 @@
       "noteEn": "Varies by scheme (~0.3-0.5 fm)",
       "boundary": "fuzzy / gaussian profile",
       "tier": "T2",
-      "source": "Lattice QCD flux tube profiles"
+      "source": "Lattice QCD flux tube profiles",
+      "retrievedOn": "2026-10-12"
     },
     "openMathProblem": {
       "title": "Yang-Mills Existence and Mass Gap Problem",
@@ -778,7 +788,8 @@
       ],
       "unit": "fm",
       "tier": "T3",
-      "source": "Lund Model tunneling parameter"
+      "source": "Lund Model tunneling parameter",
+      "retrievedOn": "2026-10-12"
     },
     "gammaS": {
       "value": 0.22,
@@ -789,14 +800,16 @@
       "unit": "dimensionless",
       "description": "Strange quark suppression factor gamma_s in string breaking",
       "tier": "T2",
-      "source": "PDG / PYTHIA 8 tuning"
+      "source": "PDG / PYTHIA 8 tuning",
+      "retrievedOn": "2026-10-12"
     },
     "breakingWidthFm": {
       "value": 0.12,
       "unit": "fm",
       "description": "Transition width for string snapping error function",
       "tier": "T3",
-      "source": "Lund string breaking phenomenological model"
+      "source": "Lund string breaking phenomenological model",
+      "retrievedOn": "2026-10-12"
     },
     "colorAccounting": {
       "newAntiquarkColor": "takes anti-color of pulled quark",
@@ -820,7 +833,8 @@
           "symbol": "a",
           "description": "Lund symmetric fragmentation function parameter a",
           "source": "PYTHIA 8 Monash 2013 Tune (Skands et al., EPJC 74, 3024)",
-          "tier": "T3"
+          "tier": "T3",
+          "retrievedOn": "2026-10-12"
         },
         "bLund": {
           "value": 0.98,
@@ -828,7 +842,8 @@
           "unit": "GeV^-2",
           "description": "Lund symmetric fragmentation function parameter b",
           "source": "PYTHIA 8 Monash 2013 Tune (Skands et al., EPJC 74, 3024)",
-          "tier": "T3"
+          "tier": "T3",
+          "retrievedOn": "2026-10-12"
         },
         "sigmaPT": {
           "value": 0.335,
@@ -836,7 +851,8 @@
           "unit": "GeV",
           "description": "Gaussian transverse momentum dispersion for created quark pairs",
           "source": "PYTHIA 8 Monash 2013 Tune (StringPT:sigma)",
-          "tier": "T3"
+          "tier": "T3",
+          "retrievedOn": "2026-10-12"
         },
         "gammaS": {
           "value": 0.217,
@@ -844,7 +860,8 @@
           "unit": "dimensionless",
           "description": "Strangeness tunneling suppression factor P(ss_bar)/P(uu_bar)",
           "source": "PYTHIA 8 Monash 2013 Tune (StringFlav:probStoUD)",
-          "tier": "T3"
+          "tier": "T3",
+          "retrievedOn": "2026-10-12"
         },
         "diquarkWeight": {
           "value": 0.081,
@@ -852,12 +869,13 @@
           "unit": "dimensionless",
           "description": "Diquark-antidiquark tunneling probability for baryon creation",
           "source": "PYTHIA 8 Monash 2013 Tune (StringFlav:probQQtoQ)",
-          "tier": "T3"
+          "tier": "T3",
+          "retrievedOn": "2026-10-12"
         },
         "heavyQuarkSuppression": {
-          "c": 0.0,
-          "b": 0.0,
-          "t": 0.0,
+          "c": 0,
+          "b": 0,
+          "t": 0,
           "description": "Charm, bottom, and top creation probability is virtually zero due to heavy mass Schwinger suppression exp(-pi * m^2 / kappa)",
           "tier": "T1"
         }
@@ -915,7 +933,8 @@
         "unit": "MeV/c^2",
         "uncertainty": "+- 0.000058",
         "tier": "T1",
-        "source": "PDG 2024/2026"
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-12"
       },
       "lifetime": {
         "value": "stable",
@@ -944,14 +963,16 @@
         "unit": "MeV/c^2",
         "uncertainty": "+- 0.000060",
         "tier": "T1",
-        "source": "PDG 2024/2026"
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-12"
       },
       "lifetime": {
         "value": 878.4,
         "unit": "s",
         "uncertainty": "+- 0.5",
         "tier": "T1",
-        "source": "PDG 2024/2026"
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-12"
       }
     },
     "pi0": {
@@ -979,14 +1000,16 @@
         "unit": "MeV/c^2",
         "uncertainty": "+- 0.0005",
         "tier": "T1",
-        "source": "PDG 2024/2026"
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-12"
       },
       "lifetime": {
         "value": 8.52e-17,
         "unit": "s",
         "decay": "gamma + gamma (98.8%)",
         "tier": "T1",
-        "source": "PDG 2024/2026"
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-12"
       }
     },
     "pi_plus": {
@@ -1007,13 +1030,15 @@
         "unit": "MeV/c^2",
         "uncertainty": "+- 0.00018",
         "tier": "T1",
-        "source": "PDG 2024/2026"
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-12"
       },
       "lifetime": {
         "value": 2.6033e-8,
         "unit": "s",
         "tier": "T1",
-        "source": "PDG 2024/2026"
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-12"
       },
       "chargeRadiusFm": 0.659
     },
@@ -1035,13 +1060,15 @@
         "unit": "MeV/c^2",
         "uncertainty": "+- 0.00018",
         "tier": "T1",
-        "source": "PDG 2024/2026"
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-12"
       },
       "lifetime": {
         "value": 2.6033e-8,
         "unit": "s",
         "tier": "T1",
-        "source": "PDG 2024/2026"
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-12"
       },
       "chargeRadiusFm": 0.659
     },
@@ -1063,13 +1090,15 @@
         "unit": "MeV/c^2",
         "uncertainty": "+- 0.016",
         "tier": "T1",
-        "source": "PDG 2024/2026"
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-12"
       },
       "lifetime": {
         "value": 1.238e-8,
         "unit": "s",
         "tier": "T1",
-        "source": "PDG 2024/2026"
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-12"
       },
       "chargeRadiusFm": 0.56
     },
@@ -1091,7 +1120,8 @@
         "unit": "MeV/c^2",
         "uncertainty": "+- 0.013",
         "tier": "T1",
-        "source": "PDG 2024/2026"
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-12"
       }
     },
     "lambda": {
@@ -1114,13 +1144,15 @@
         "unit": "MeV/c^2",
         "uncertainty": "+- 0.006",
         "tier": "T1",
-        "source": "PDG 2024/2026"
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-12"
       },
       "lifetime": {
         "value": 2.632e-10,
         "unit": "s",
         "tier": "T1",
-        "source": "PDG 2024/2026"
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-12"
       }
     },
     "sigma_plus": {
@@ -1142,13 +1174,15 @@
         "unit": "MeV/c^2",
         "uncertainty": "+- 0.07",
         "tier": "T1",
-        "source": "PDG 2024/2026"
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-12"
       },
       "lifetime": {
         "value": 8.018e-11,
         "unit": "s",
         "tier": "T1",
-        "source": "PDG 2024/2026"
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-12"
       }
     },
     "delta_plus_plus": {
@@ -1170,14 +1204,16 @@
         "unit": "MeV/c^2",
         "uncertainty": "+- 2.0",
         "tier": "T1",
-        "source": "PDG 2024/2026"
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-12"
       },
       "lifetime": {
         "value": 5.63e-24,
         "unit": "s",
         "decay": "p + pi^+ (~100%)",
         "tier": "T1",
-        "source": "PDG 2024/2026"
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-12"
       }
     },
     "delta_plus": {
@@ -1199,7 +1235,8 @@
         "unit": "MeV/c^2",
         "uncertainty": "+- 2.0",
         "tier": "T1",
-        "source": "PDG 2024/2026"
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-12"
       }
     },
     "delta_0": {
@@ -1221,7 +1258,8 @@
         "unit": "MeV/c^2",
         "uncertainty": "+- 2.0",
         "tier": "T1",
-        "source": "PDG 2024/2026"
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-12"
       }
     },
     "sigma_0": {
@@ -1244,13 +1282,15 @@
         "unit": "MeV/c^2",
         "uncertainty": "+- 0.024",
         "tier": "T1",
-        "source": "PDG 2024/2026"
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-12"
       },
       "lifetime": {
         "value": 7.4e-20,
         "unit": "s",
         "tier": "T1",
-        "source": "PDG 2024/2026"
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-12"
       }
     },
     "omega_minus": {
@@ -1272,13 +1312,15 @@
         "unit": "MeV/c^2",
         "uncertainty": "+- 0.29",
         "tier": "T1",
-        "source": "PDG 2024/2026"
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-12"
       },
       "lifetime": {
         "value": 8.21e-11,
         "unit": "s",
         "tier": "T1",
-        "source": "PDG 2024/2026"
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-12"
       }
     },
     "j_psi": {
@@ -1299,13 +1341,15 @@
         "unit": "MeV/c^2",
         "uncertainty": "+- 0.006",
         "tier": "T1",
-        "source": "PDG 2024/2026"
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-12"
       },
       "lifetime": {
         "value": 7.1e-21,
         "unit": "s",
         "tier": "T1",
-        "source": "PDG 2024/2026"
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-12"
       }
     },
     "upsilon_1s": {
@@ -1326,13 +1370,15 @@
         "unit": "MeV/c^2",
         "uncertainty": "+- 0.26",
         "tier": "T1",
-        "source": "PDG 2024/2026"
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-12"
       },
       "lifetime": {
         "value": 1.2e-20,
         "unit": "s",
         "tier": "T1",
-        "source": "PDG 2024/2026"
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-12"
       }
     },
     "k_minus": {
@@ -1353,13 +1399,15 @@
         "unit": "MeV/c^2",
         "uncertainty": "+- 0.016",
         "tier": "T1",
-        "source": "PDG 2024/2026"
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-12"
       },
       "lifetime": {
         "value": 1.238e-8,
         "unit": "s",
         "tier": "T1",
-        "source": "PDG 2024/2026"
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-12"
       },
       "chargeRadiusFm": 0.56
     },
@@ -1381,7 +1429,8 @@
         "unit": "MeV/c^2",
         "uncertainty": "+- 0.013",
         "tier": "T1",
-        "source": "PDG 2024/2026"
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-12"
       }
     }
   },
@@ -1403,7 +1452,8 @@
         "uncertainty": "+- 0.06",
         "unit": "MeV/c^2",
         "tier": "T1",
-        "source": "PDG 2024 / Belle 2003"
+        "source": "PDG 2024 / Belle 2003",
+        "retrievedOn": "2026-10-12"
       },
       "spin": 1,
       "parity": "+",
@@ -1437,12 +1487,15 @@
         "uncertainty": "+- 0.7",
         "unit": "MeV/c^2",
         "tier": "T1",
-        "source": "PDG 2024 / LHCb 2019"
+        "source": "PDG 2024 / LHCb 2019",
+        "retrievedOn": "2026-10-12"
       },
       "widthMeV": {
         "value": 9.8,
         "uncertainty": "+- 2.7",
-        "unit": "MeV"
+        "unit": "MeV",
+        "source": "PDG 2024/2026 / Lattice QCD",
+        "retrievedOn": "2026-10-12"
       },
       "spin": 0.5,
       "charge": 1,
@@ -1475,12 +1528,15 @@
         "uncertainty": "+- 1.3",
         "unit": "MeV/c^2",
         "tier": "T1",
-        "source": "PDG 2024 / LHCb 2019"
+        "source": "PDG 2024 / LHCb 2019",
+        "retrievedOn": "2026-10-12"
       },
       "widthMeV": {
         "value": 20.6,
         "uncertainty": "+- 4.7",
-        "unit": "MeV"
+        "unit": "MeV",
+        "source": "PDG 2024/2026 / Lattice QCD",
+        "retrievedOn": "2026-10-12"
       },
       "spin": 0.5,
       "charge": 1,
@@ -1513,12 +1569,15 @@
         "uncertainty": "+- 1.1",
         "unit": "MeV/c^2",
         "tier": "T1",
-        "source": "PDG 2024 / LHCb 2019"
+        "source": "PDG 2024 / LHCb 2019",
+        "retrievedOn": "2026-10-12"
       },
       "widthMeV": {
         "value": 6.4,
         "uncertainty": "+- 2.0",
-        "unit": "MeV"
+        "unit": "MeV",
+        "source": "PDG 2024/2026 / Lattice QCD",
+        "retrievedOn": "2026-10-12"
       },
       "spin": 1.5,
       "charge": 1,
@@ -1550,13 +1609,16 @@
         "uncertainty": "+- 0.04",
         "unit": "MeV/c^2",
         "tier": "T1",
-        "source": "PDG 2024 / LHCb 2021"
+        "source": "PDG 2024 / LHCb 2021",
+        "retrievedOn": "2026-10-12"
       },
       "bindingEnergyKeV": {
         "value": -273,
         "uncertainty": "+- 61",
         "unit": "keV",
-        "belowThreshold": "D*^+ D^0"
+        "belowThreshold": "D*^+ D^0",
+        "source": "PDG 2024/2026 / Lattice QCD",
+        "retrievedOn": "2026-10-12"
       },
       "spin": 1,
       "charge": 1,
@@ -1642,13 +1704,16 @@
       "unit": "fm/c",
       "seconds": 3.33564e-24,
       "tier": "T1",
-      "source": "c = 299792458 m/s definition"
+      "source": "c = 299792458 m/s definition",
+      "retrievedOn": "2026-10-12"
     },
     "visualizationSlowdownFactor": {
       "value": 1e+24,
       "unit": "x slower",
       "tier": "T4",
-      "note": "Symbolic animation slowdown factor for human visual perception"
+      "note": "Symbolic animation slowdown factor for human visual perception",
+      "source": "PDG 2024/2026 / Lattice QCD",
+      "retrievedOn": "2026-10-12"
     }
   },
   "scaleLadder": {
@@ -1777,13 +1842,15 @@
       "unit": "s",
       "minutes": 14.64,
       "tier": "T1",
-      "source": "PDG 2024/2026"
+      "source": "PDG 2024/2026",
+      "retrievedOn": "2026-10-12"
     },
     "qValueMeV": {
       "value": 0.782343,
       "unit": "MeV",
       "tier": "T1",
-      "source": "m_n - m_p - m_e = 939.565420 - 938.272088 - 0.5109989 MeV"
+      "source": "m_n - m_p - m_e = 939.565420 - 938.272088 - 0.5109989 MeV",
+      "retrievedOn": "2026-10-12"
     },
     "conservationLedger": {
       "electricCharge": {
@@ -1854,7 +1921,9 @@
         "orderOfMagnitude": 1,
         "processEn": "Superallowed 0+ -> 0+ beta decays, free neutron beta decay",
         "processBn": "সুপার-অ্যালাউড ০⁺ -> ০⁺ নিউক্লীয় বিটা ক্ষয় ও মুক্ত নিউট্রন ক্ষয়",
-        "tier": "T1"
+        "tier": "T1",
+        "source": "PDG 2024 (Phys. Rev. D 110, 030001, 2024)",
+        "retrievedOn": "2026-10-12"
       },
       "V_us": {
         "symbol": "|V_us|",
@@ -1867,7 +1936,9 @@
         "orderOfMagnitude": 0.22,
         "processEn": "Semileptonic kaon decays (K -> pi l nu), tau lepton decays",
         "processBn": "সেমিলেপ্টনিক কেয়ন ক্ষয় (K -> pi l nu) ও টাউ লেপ্টন ক্ষয়",
-        "tier": "T1"
+        "tier": "T1",
+        "source": "PDG 2024 (Phys. Rev. D 110, 030001, 2024)",
+        "retrievedOn": "2026-10-12"
       },
       "V_ub": {
         "symbol": "|V_ub|",
@@ -1881,7 +1952,9 @@
         "scientificNotation": "3.82 x 10^-3",
         "processEn": "Semileptonic charmless B meson decays (B -> pi l nu)",
         "processBn": "চার্মহীন সেমিলেপ্টনিক B মেসন ক্ষয় (B -> pi l nu)",
-        "tier": "T1"
+        "tier": "T1",
+        "source": "PDG 2024 (Phys. Rev. D 110, 030001, 2024)",
+        "retrievedOn": "2026-10-12"
       },
       "V_cd": {
         "symbol": "|V_cd|",
@@ -1894,7 +1967,9 @@
         "orderOfMagnitude": 0.22,
         "processEn": "Semileptonic D meson decays (D -> pi l nu), neutrino-induced charm production",
         "processBn": "সেমিলেপ্টনিক D মেসন ক্ষয় (D -> pi l nu) ও নিউট্রিনো চালিত চার্ম উৎপাদন",
-        "tier": "T1"
+        "tier": "T1",
+        "source": "PDG 2024 (Phys. Rev. D 110, 030001, 2024)",
+        "retrievedOn": "2026-10-12"
       },
       "V_cs": {
         "symbol": "|V_cs|",
@@ -1907,7 +1982,9 @@
         "orderOfMagnitude": 1,
         "processEn": "Semileptonic D meson decays (D -> K l nu), leptonic D_s decays",
         "processBn": "সেমিলেপ্টনিক D মেসন ক্ষয় (D -> K l nu) ও লেপ্টনিক D_s ক্ষয়",
-        "tier": "T1"
+        "tier": "T1",
+        "source": "PDG 2024 (Phys. Rev. D 110, 030001, 2024)",
+        "retrievedOn": "2026-10-12"
       },
       "V_cb": {
         "symbol": "|V_cb|",
@@ -1920,7 +1997,9 @@
         "orderOfMagnitude": 0.04,
         "processEn": "Semileptonic B decays to charm (B -> D(*) l nu)",
         "processBn": "চার্মযুক্ত সেমিলেপ্টনিক B মেসন ক্ষয় (B -> D(*) l nu)",
-        "tier": "T1"
+        "tier": "T1",
+        "source": "PDG 2024 (Phys. Rev. D 110, 030001, 2024)",
+        "retrievedOn": "2026-10-12"
       },
       "V_td": {
         "symbol": "|V_td|",
@@ -1934,7 +2013,9 @@
         "scientificNotation": "8.60 x 10^-3",
         "processEn": "B^0 - B^0_bar box oscillation, rare kaon decays (K^+ -> pi^+ nu nu_bar)",
         "processBn": "B⁰ - B̄⁰ অসিলেশন ও বিরল কেয়ন ক্ষয় (K⁺ -> π⁺ ν ν̄)",
-        "tier": "T1"
+        "tier": "T1",
+        "source": "PDG 2024 (Phys. Rev. D 110, 030001, 2024)",
+        "retrievedOn": "2026-10-12"
       },
       "V_ts": {
         "symbol": "|V_ts|",
@@ -1947,7 +2028,9 @@
         "orderOfMagnitude": 0.04,
         "processEn": "B_s^0 - B_s^0_bar oscillation, radiative penguin transitions (b -> s gamma)",
         "processBn": "B_s⁰ - B̄_s⁰ অসিলেশন ও পেঙ্গুইন লুপ ক্ষয় (b -> s gamma)",
-        "tier": "T1"
+        "tier": "T1",
+        "source": "PDG 2024 (Phys. Rev. D 110, 030001, 2024)",
+        "retrievedOn": "2026-10-12"
       },
       "V_tb": {
         "symbol": "|V_tb|",
@@ -1961,7 +2044,9 @@
         "orderOfMagnitude": 1,
         "processEn": "Single top quark electroweak production cross section, top decay width (t -> W b)",
         "processBn": "একক টপ কোয়ার্ক উৎপাদন এবং টপ ক্ষয় বিস্তার (t -> W b)",
-        "tier": "T1"
+        "tier": "T1",
+        "source": "PDG 2024 (Phys. Rev. D 110, 030001, 2024)",
+        "retrievedOn": "2026-10-12"
       }
     }
   },
@@ -1972,7 +2057,8 @@
       "uncertainty": "+- 0.0009",
       "scaleGeV": 91.1876,
       "source": "PDG 2024 / 2026 World Average",
-      "tier": "T1"
+      "tier": "T1",
+      "retrievedOn": "2026-10-12"
     },
     "nonPerturbativeLimitGeV": 1,
     "betaFunction": {
@@ -1984,12 +2070,16 @@
       "qedCoupling_0": {
         "fraction": "1/137.036",
         "value": 0.007297,
-        "scaleGeV": 0
+        "scaleGeV": 0,
+        "source": "PDG 2024/2026 / Lattice QCD",
+        "retrievedOn": "2026-10-12"
       },
       "qedCoupling_MZ": {
         "fraction": "1/128.0",
         "value": 0.0078125,
-        "scaleGeV": 91.2
+        "scaleGeV": 91.2,
+        "source": "PDG 2024/2026 / Lattice QCD",
+        "retrievedOn": "2026-10-12"
       },
       "comparisonTextBn": "QED-তে ভার্চুয়াল ইলেকট্রন-পজিট্রন জোড় ভ্যাকুয়াম পোলারাইজেশনের মাধ্যমে মূল চার্জকে ঢেকে (screen) রাখে; তাই উচ্চ শক্তিতে কাছে গেলে কার্যকরী আধান বাড়ে (১/১৩৭ থেকে ১/১২৮)। কিন্তু QCD-তে গ্লুয়নের স্ব-মিথস্ক্রিয়া চার্জ ছড়ায় (anti-screening), তাই কাছে গেলে কাপলিং কমে যায়!"
     },
@@ -2379,7 +2469,8 @@
       "uncertainty": 1.5,
       "kelvin": 1816000000000,
       "source": "HotQCD Collaboration (Bazavov et al., Phys. Lett. B 795 (2019) 15); Wuppertal-Budapest (JHEP 1009 (2010) 073)",
-      "tier": "T2"
+      "tier": "T2",
+      "retrievedOn": "2026-10-12"
     },
     "universeAgeMicroseconds": {
       "range": [
@@ -2425,7 +2516,9 @@
           35
         ],
         "sources": "EMC (CERN 1987), COMPASS, HERMES, NNPDFpol, Lattice QCD (ETMC, PNDME)",
-        "tier": "T2"
+        "tier": "T2",
+        "source": "PDG 2024/2026 / Lattice QCD",
+        "retrievedOn": "2026-10-12"
       },
       {
         "id": "gluon_spin",
@@ -2439,7 +2532,9 @@
           48
         ],
         "sources": "RHIC Spin Program (STAR, PHENIX polarized pp), DSSV global fit",
-        "tier": "T2"
+        "tier": "T2",
+        "source": "PDG 2024/2026 / Lattice QCD",
+        "retrievedOn": "2026-10-12"
       },
       {
         "id": "quark_orbital",
@@ -2453,7 +2548,9 @@
           28
         ],
         "sources": "Generalized Parton Distributions (GPD), JLab 12 GeV, Lattice QCD",
-        "tier": "T2"
+        "tier": "T2",
+        "source": "PDG 2024/2026 / Lattice QCD",
+        "retrievedOn": "2026-10-12"
       },
       {
         "id": "gluon_orbital",
@@ -2467,7 +2564,9 @@
           17
         ],
         "sources": "Lattice QCD & theoretical Ji sum rule constraint",
-        "tier": "T2"
+        "tier": "T2",
+        "source": "PDG 2024/2026 / Lattice QCD",
+        "retrievedOn": "2026-10-12"
       }
     ],
     "mythBusting": {

@@ -12303,9 +12303,79 @@
   }
 }
 
+/* ==========================================================================
+   ACCESSIBILITY (A11Y) AUDIT RULES: KEYBOARD, REDUCED-MOTION, COLORBLIND, A11Y
+   ========================================================================== */
 
+/* Screen reader utility */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
 
+/* Keyboard navigation & focus-visible enhancements */
+.quark-app button:focus-visible,
+.quark-app input:focus-visible,
+.quark-app select:focus-visible,
+.quark-app a:focus-visible,
+.quark-app [role="button"]:focus-visible,
+.quark-app [tabindex="0"]:focus-visible,
+.c-nav-tab:focus-visible,
+.c-drawer-btn:focus-visible {
+  outline: 2px solid #38bdf8 !important;
+  outline-offset: 3px !important;
+  box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.3) !important;
+}
 
+/* prefers-reduced-motion support */
+@media (prefers-reduced-motion: reduce) {
+  .quark-app *,
+  .quark-app *::before,
+  .quark-app *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 
+  .c3-gluon-packet-transit,
+  .c1-gluon-particle,
+  .c4-flux-pulse,
+  .c5-sparkle,
+  .c11-plasma-bubble,
+  .c1-canvas-hint,
+  .c5-pulse-badge {
+    animation: none !important;
+  }
+}
 
+/* High contrast & colorblind accessibility helpers */
+.quark-colorblind-mode .c-badge-t1,
+.quark-colorblind-mode .c-badge-t2,
+.quark-colorblind-mode .c-badge-t3,
+.quark-colorblind-mode .c-badge-t4 {
+  border-width: 2px !important;
+  text-decoration: underline !important;
+}
 
+.quark-colorblind-mode .c5-hadron-tag.pion {
+  border-style: solid !important;
+  border-width: 2px !important;
+}
+
+.quark-colorblind-mode .c5-hadron-tag.kaon {
+  border-style: dashed !important;
+  border-width: 2px !important;
+}
+
+.quark-colorblind-mode .c5-hadron-tag.baryon {
+  border-style: double !important;
+  border-width: 3px !important;
+}
