@@ -8,6 +8,7 @@ import { InfoDrawer } from '../components/info-drawer.js';
 import { createTierBadge } from '../components/tier-badge.js';
 import { Chapter1Proton } from './chapter-1.js';
 import { Chapter3ColorLab } from './chapter-3.js';
+import { Chapter4FluxTubeLab } from './chapter-4.js';
 
 export const CHAPTER_LIST = [
   {
@@ -51,12 +52,12 @@ export const CHAPTER_LIST = [
     hash: '#/quarks/chapter-4',
     numberBn: '৪',
     numberEn: '4',
-    titleBn: 'সি-কোয়ার্ক ও কাইরাল প্রতিসাম্য',
-    titleEn: 'Sea Quarks & Chiral Symmetry',
-    subtitleBn: 'ভার্চুয়াল কোয়ান্টাম ফোম ও ট্রেস অ্যানোমালি',
-    subtitleEn: 'Virtual Quantum Foam & Trace Anomaly',
+    titleBn: 'Flux Tube ল্যাব',
+    titleEn: 'Flux Tube Lab',
+    subtitleBn: 'ক্ষেত্ররেখা সংকোচন, মেসন V(r) ও ব্যারিয়ন Y-ল্যাব',
+    subtitleEn: 'Field Line Compression, Meson V(r) & Baryon Y-Lab',
     tier: 'T2',
-    isAvailable: false
+    isAvailable: true
   },
   {
     id: 'chapter-5',
@@ -243,10 +244,12 @@ export class QuarkApp {
   }
 
   show() {
+    if (this.mountPoint) this.mountPoint.style.display = 'block';
     this.container.style.display = 'flex';
   }
 
   hide() {
+    if (this.mountPoint) this.mountPoint.style.display = 'none';
     this.container.style.display = 'none';
   }
 
@@ -292,6 +295,14 @@ export class QuarkApp {
     } else if (chMeta.isAvailable && chapterId === 'chapter-3') {
       // Mount Chapter 3 Color Lab!
       this.currentChapterInstance = new Chapter3ColorLab({
+        container: viewport,
+        lang: this.lang,
+        level: this.level,
+        infoDrawer: this.infoDrawer
+      });
+    } else if (chMeta.isAvailable && chapterId === 'chapter-4') {
+      // Mount Chapter 4 Flux Tube Lab!
+      this.currentChapterInstance = new Chapter4FluxTubeLab({
         container: viewport,
         lang: this.lang,
         level: this.level,

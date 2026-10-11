@@ -191,19 +191,46 @@
     },
     "mesonCornellPotential": {
       "formula": "V(r) = -(4/3) * alpha_s * hbar * c / r + sigma * r",
+      "alphaSEffective": {
+        "value": 0.35,
+        "range": [0.30, 0.40],
+        "tier": "T3",
+        "description": "Cornell-type effective coupling constant alpha_s at hadronic scales",
+        "verify": true
+      },
+      "hbarCGeVFm": {
+        "value": 0.19732698,
+        "unit": "GeV*fm",
+        "tier": "T1",
+        "source": "CODATA 2022 / PDG"
+      },
       "tier": "T3",
-      "source": "E. Eichten et al. (Cornell Model)"
+      "source": "E. Eichten et al. (Cornell Model, Phys. Rev. D 17, 3090, 1978)"
+    },
+    "dualSuperconductorModel": {
+      "titleBn": "ডুয়াল সুপারকন্ডাক্টর মডেল",
+      "titleEn": "Dual Superconductor Model",
+      "authors": "G. 't Hooft (1975), S. Mandelstam (1976)",
+      "mechanism": "Condensation of color-magnetic monopoles expels color-electric flux via dual Meissner effect, compressing flux into thin Abrikosov-type vortices.",
+      "tier": "T3",
+      "source": "G. 't Hooft, High Energy Physics (1975); S. Mandelstam, Phys. Rep. 23, 245 (1976)"
     },
     "baryonFluxTubeGeometry": {
       "shape": "Y-shaped flux tubes meeting at Fermat-Torricelli junction",
+      "takahashiSuganumaPaper": "T. T. Takahashi, H. Matsufuru, Y. Nemoto, H. Suganuma (Phys. Rev. Lett. 86, 18, 2001; Phys. Rev. D 65, 114509, 2002)",
+      "supportYLaw": true,
+      "deltaLawDisfavored": true,
+      "deltaLawFormula": "L_Delta = (a + b + c) / 2",
       "tier": "T2",
-      "source": "Lattice QCD, T. Takahashi et al. 2001",
+      "source": "Lattice QCD 3-quark static potential V_3Q",
       "retrievedOn": "2026-10-11"
     },
     "fluxTubeDiameter": {
       "value": 0.4,
       "range": [0.3, 0.5],
       "unit": "fm",
+      "noteBn": "পদ্ধতিভেদে ভিন্ন (~0.3-0.5 fm)",
+      "noteEn": "Varies by scheme (~0.3-0.5 fm)",
       "boundary": "fuzzy / gaussian profile",
       "tier": "T2",
       "source": "Lattice QCD flux tube profiles"

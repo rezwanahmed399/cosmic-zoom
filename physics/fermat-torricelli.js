@@ -176,3 +176,66 @@ export function calculateFermatTorricelliJunction(p1, p2, p3, customSigma = null
     raw: res
   };
 }
+
+/**
+ * Computes Delta-type flux tube geometry for comparison (half-perimeter model).
+ * Disfavored by Lattice QCD (Takahashi & Suganuma et al. 2001/2002) in favor of the Y-law.
+ * Formula: L_Delta = 0.5 * (a + b + c), E_Delta = sigma * L_Delta
+ */
+export function computeDeltaGeometry(A, B, C, customSigma = null) {
+  const sigma = customSigma ?? CONFINEMENT.stringTensionSigma.value;
+  const a = distance(B, C);
+  const b = distance(C, A);
+  const c = distance(A, B);
+  const perimeter = a + b + c;
+  const totalLength = perimeter / 2; // Delta-law effective flux length
+  const energyGeV = sigma * totalLength;
+
+  return {
+    sides: { a, b, c },
+    perimeter,
+    totalLength,
+    energyGeV,
+    tier: 'T2'
+  };
+}
+
+/**
+ * Computes Cornell Potential for Mesons:
+ * V(r) = -(4/3) * (alpha_s * hbar * c) / r + sigma * r
+ *
+ * @param {number} rFm - Quark-antiquark distance in femtometers (fm)
+ * @param {Object} [options]
+ * @returns {Object} Potential breakdown (Coulombic, Linear, Total in GeV, Force in N)
+ */
+export function calculateCornellPotential(rFm, options = {}) {
+  const sigma = options.sigma ?? CONFINEMENT.stringTensionSigma.value;
+  const alphaS = options.alphaS ?? CONFINEMENT.mesonCornellPotential.alphaSEffective.value;
+  const hbarC = options.hbarC ?? CONFINEMENT.mesonCornellPotential.hbarCGeVFm.value;
+
+  if (rFm <= 0) {
+    return {
+      rFm: 0,
+      coulombGeV: -Infinity,
+      linearGeV: 0,
+      totalGeV: -Infinity,
+      forceN: CONFINEMENT.forceConstantN.value,
+      forceTonWeight: CONFINEMENT.forceConstantN.approxMetricTons,
+      tier: 'T3'
+    };
+  }
+
+  const coulombGeV = -(4 / 3) * (alphaS * hbarC) / rFm;
+  const linearGeV = sigma * rFm;
+  const totalGeV = coulombGeV + linearGeV;
+
+  return {
+    rFm,
+    coulombGeV,
+    linearGeV,
+    totalGeV,
+    forceN: CONFINEMENT.forceConstantN.value,
+    forceTonWeight: CONFINEMENT.forceConstantN.approxMetricTons,
+    tier: 'T3'
+  };
+}
