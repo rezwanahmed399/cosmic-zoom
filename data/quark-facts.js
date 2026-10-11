@@ -313,6 +313,11 @@ export function getPdfAtQ2(q2_GeV2) {
 
 export const QGP_COSMOLOGY = QUARK_FACTS.qgpCosmology;
 export const PROTON_SPIN_PUZZLE = QUARK_FACTS.protonSpinPuzzle;
+export const UNSOLVED_MYSTERIES = QUARK_FACTS.unsolvedMysteries;
+export const QUARK_HISTORY_TIMELINE = QUARK_FACTS.quarkHistoryTimeline;
+export const MYTHS_VS_FACTS = QUARK_FACTS.mythsVsFacts;
+export const QUARK_QUIZ = QUARK_FACTS.quarkQuiz;
+export const QUARK_GLOSSARY = QUARK_FACTS.quarkGlossary;
 
 /**
  * Returns Quark-Gluon Plasma and early universe hadronization data
@@ -326,5 +331,40 @@ export function getQgpCosmologyData() {
  */
 export function getProtonSpinPuzzleData() {
   return QUARK_FACTS.protonSpinPuzzle;
+}
+
+/**
+ * Returns Unsolved Mysteries and QCD Frontiers data (Chapter 13)
+ */
+export function getUnsolvedMysteriesData() {
+  return QUARK_FACTS.unsolvedMysteries;
+}
+
+/**
+ * Returns Historical Timeline of Quarks & QCD (Chapter 14)
+ */
+export function getQuarkHistoryTimeline() {
+  return QUARK_FACTS.quarkHistoryTimeline;
+}
+
+/**
+ * Returns 13 Myths vs Scientific Facts cards data (Chapter 14)
+ */
+export function getMythsVsFactsData() {
+  return QUARK_FACTS.mythsVsFacts;
+}
+
+/**
+ * Returns Multi-chapter Quark Quiz data (Chapter 14)
+ */
+export function getQuarkQuizData() {
+  return QUARK_FACTS.quarkQuiz;
+}
+
+/**
+ * Returns comprehensive Quark and Particle Physics Glossary (Chapter 14)
+ */
+export function getQuarkGlossaryData() {
+  return QUARK_FACTS.quarkGlossary;
 }
 

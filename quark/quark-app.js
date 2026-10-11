@@ -19,6 +19,8 @@ import { Chapter9AsymptoticFreedom } from './chapter-9.js';
 import { Chapter10EvidenceLab } from './chapter-10.js';
 import { Chapter11QGP } from './chapter-11.js';
 import { Chapter12SpinPuzzle } from './chapter-12.js';
+import { Chapter13Unsolved } from './chapter-13.js';
+import { Chapter14HistoryQuizGlossary } from './chapter-14.js';
 
 export const CHAPTER_LIST = [
   {
@@ -175,6 +177,30 @@ export const CHAPTER_LIST = [
     subtitleBn: '১/২ = ১/২ ΔΣ + ΔG + L_q + L_g, EMC স্পিন ক্রাইসিস ও আধুনিক রহস্য',
     subtitleEn: '1/2 = 1/2 ΔΣ + ΔG + L_q + L_g, EMC Spin Crisis & Modern Mystery',
     tier: 'T2',
+    isAvailable: true
+  },
+  {
+    id: 'chapter-13',
+    hash: '#/quarks/chapter-13',
+    numberBn: '১৩',
+    numberEn: '13',
+    titleBn: 'অজানা ও অমীমাংসিত',
+    titleEn: 'Unsolved Mysteries',
+    subtitleBn: 'কনফাইনমেন্ট প্রমাণ, ম্যাস গ্যাপ, এক্সোটিক গঠন ও প্ল্যাঙ্ক সীমার অমীমাংসিত প্রশ্ন',
+    subtitleEn: 'Confinement Proof, Mass Gap, Exotic Structures & Unsolved Frontiers',
+    tier: 'T2',
+    isAvailable: true
+  },
+  {
+    id: 'chapter-14',
+    hash: '#/quarks/chapter-14',
+    numberBn: '১৪',
+    numberEn: '14',
+    titleBn: 'ইতিহাস, Myth vs Fact ও শব্দকোষ',
+    titleEn: 'History, Myths, Quiz & Glossary',
+    subtitleBn: 'ঐতিহাসিক টাইমলাইন, ১৩টি ভ্রান্তি নিরসন, ইন্টারঅ্যাক্টিভ কুইজ ও শব্দকোষ',
+    subtitleEn: 'Historical Timeline, 13 Myths vs Facts, Interactive Quiz & Glossary',
+    tier: 'T1',
     isAvailable: true
   }
 ];
@@ -489,6 +515,22 @@ export class QuarkApp {
     } else if (chMeta.isAvailable && chapterId === 'chapter-12') {
       // Mount Chapter 12 Proton Spin Puzzle!
       this.currentChapterInstance = new Chapter12SpinPuzzle({
+        container: viewport,
+        lang: this.lang,
+        level: this.level,
+        infoDrawer: this.infoDrawer
+      });
+    } else if (chMeta.isAvailable && chapterId === 'chapter-13') {
+      // Mount Chapter 13 Unsolved Mysteries!
+      this.currentChapterInstance = new Chapter13Unsolved({
+        container: viewport,
+        lang: this.lang,
+        level: this.level,
+        infoDrawer: this.infoDrawer
+      });
+    } else if (chMeta.isAvailable && chapterId === 'chapter-14') {
+      // Mount Chapter 14 History, Myths, Quiz & Glossary!
+      this.currentChapterInstance = new Chapter14HistoryQuizGlossary({
         container: viewport,
         lang: this.lang,
         level: this.level,

@@ -12,18 +12,67 @@
       "nameBn": "আপ",
       "generation": 1,
       "type": "up-type",
-      "charge": { "value": 0.6666666666666666, "fraction": "+2/3", "unit": "e", "uncertainty": 0, "tier": "T1", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11" },
-      "mass": { "value": 2.16, "unit": "MeV/c^2", "uncertainty": "+0.49 -0.26", "scheme": "MS-bar (mu = 2 GeV)", "tier": "T2", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11", "verify": true },
-      "spin": { "value": 0.5, "unit": "hbar", "uncertainty": 0, "tier": "T1", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11" },
-      "baryonNumber": { "value": 0.3333333333333333, "fraction": "1/3", "unit": "dimensionless", "uncertainty": 0, "tier": "T1", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11" },
-      "discovery": { "proposalYear": 1964, "confirmedYear": "1968-1969", "textEn": "1964 proposed (M. Gell-Mann, G. Zweig); 1968-1969 SLAC DIS confirmed", "textBn": "১৯৬৪ প্রস্তাব (গেল-মান, জ্ভাইগ); ১৯৬৮-৬৯ SLAC DIS পরীক্ষালব্ধ প্রমাণ", "tier": "T1", "source": "SLAC / PDG" },
-      "decay": { "modeEn": "Stable inside lightest hadrons (proton)", "modeBn": "হালকা হ্যাড্রনে (প্রোটনে) সম্পূর্ণ স্থিতিশীল", "tier": "T1" },
+      "charge": {
+        "value": 0.6666666666666666,
+        "fraction": "+2/3",
+        "unit": "e",
+        "uncertainty": 0,
+        "tier": "T1",
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-11"
+      },
+      "mass": {
+        "value": 2.16,
+        "unit": "MeV/c^2",
+        "uncertainty": "+0.49 -0.26",
+        "scheme": "MS-bar (mu = 2 GeV)",
+        "tier": "T2",
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-11",
+        "verify": true
+      },
+      "spin": {
+        "value": 0.5,
+        "unit": "hbar",
+        "uncertainty": 0,
+        "tier": "T1",
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-11"
+      },
+      "baryonNumber": {
+        "value": 0.3333333333333333,
+        "fraction": "1/3",
+        "unit": "dimensionless",
+        "uncertainty": 0,
+        "tier": "T1",
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-11"
+      },
+      "discovery": {
+        "proposalYear": 1964,
+        "confirmedYear": "1968-1969",
+        "textEn": "1964 proposed (M. Gell-Mann, G. Zweig); 1968-1969 SLAC DIS confirmed",
+        "textBn": "১৯৬৪ প্রস্তাব (গেল-মান, জ্ভাইগ); ১৯৬৮-৬৯ SLAC DIS পরীক্ষালব্ধ প্রমাণ",
+        "tier": "T1",
+        "source": "SLAC / PDG"
+      },
+      "decay": {
+        "modeEn": "Stable inside lightest hadrons (proton)",
+        "modeBn": "হালকা হ্যাড্রনে (প্রোটনে) সম্পূর্ণ স্থিতিশীল",
+        "tier": "T1"
+      },
       "isospin3": 0.5,
       "strangeness": 0,
       "charm": 0,
       "bottomness": 0,
       "topness": 0,
-      "sizeUpperLimit": { "value": 1e-18, "unit": "m", "tier": "T1", "source": "HERA / LEP / PDG 2024", "retrievedOn": "2026-10-11" }
+      "sizeUpperLimit": {
+        "value": 1e-18,
+        "unit": "m",
+        "tier": "T1",
+        "source": "HERA / LEP / PDG 2024",
+        "retrievedOn": "2026-10-11"
+      }
     },
     "d": {
       "symbol": "d",
@@ -31,18 +80,67 @@
       "nameBn": "ডাউন",
       "generation": 1,
       "type": "down-type",
-      "charge": { "value": -0.3333333333333333, "fraction": "-1/3", "unit": "e", "uncertainty": 0, "tier": "T1", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11" },
-      "mass": { "value": 4.67, "unit": "MeV/c^2", "uncertainty": "+0.48 -0.17", "scheme": "MS-bar (mu = 2 GeV)", "tier": "T2", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11", "verify": true },
-      "spin": { "value": 0.5, "unit": "hbar", "uncertainty": 0, "tier": "T1", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11" },
-      "baryonNumber": { "value": 0.3333333333333333, "fraction": "1/3", "unit": "dimensionless", "uncertainty": 0, "tier": "T1", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11" },
-      "discovery": { "proposalYear": 1964, "confirmedYear": "1968-1969", "textEn": "1964 proposed (M. Gell-Mann, G. Zweig); 1968-1969 SLAC DIS confirmed", "textBn": "১৯৬৪ প্রস্তাব (গেল-মান, জ্ভাইগ); ১৯৬৮-৬৯ SLAC DIS পরীক্ষালব্ধ প্রমাণ", "tier": "T1", "source": "SLAC / PDG" },
-      "decay": { "modeEn": "d -> u + W^-* (beta decay in free neutrons, tau ≈ 878 s)", "modeBn": "d -> u + W⁻* (মুক্ত নিউট্রনে দুর্বল বিটা ক্ষয়, tau ≈ ৮৭৮ সেকেন্ড)", "tier": "T1" },
+      "charge": {
+        "value": -0.3333333333333333,
+        "fraction": "-1/3",
+        "unit": "e",
+        "uncertainty": 0,
+        "tier": "T1",
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-11"
+      },
+      "mass": {
+        "value": 4.67,
+        "unit": "MeV/c^2",
+        "uncertainty": "+0.48 -0.17",
+        "scheme": "MS-bar (mu = 2 GeV)",
+        "tier": "T2",
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-11",
+        "verify": true
+      },
+      "spin": {
+        "value": 0.5,
+        "unit": "hbar",
+        "uncertainty": 0,
+        "tier": "T1",
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-11"
+      },
+      "baryonNumber": {
+        "value": 0.3333333333333333,
+        "fraction": "1/3",
+        "unit": "dimensionless",
+        "uncertainty": 0,
+        "tier": "T1",
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-11"
+      },
+      "discovery": {
+        "proposalYear": 1964,
+        "confirmedYear": "1968-1969",
+        "textEn": "1964 proposed (M. Gell-Mann, G. Zweig); 1968-1969 SLAC DIS confirmed",
+        "textBn": "১৯৬৪ প্রস্তাব (গেল-মান, জ্ভাইগ); ১৯৬৮-৬৯ SLAC DIS পরীক্ষালব্ধ প্রমাণ",
+        "tier": "T1",
+        "source": "SLAC / PDG"
+      },
+      "decay": {
+        "modeEn": "d -> u + W^-* (beta decay in free neutrons, tau ≈ 878 s)",
+        "modeBn": "d -> u + W⁻* (মুক্ত নিউট্রনে দুর্বল বিটা ক্ষয়, tau ≈ ৮৭৮ সেকেন্ড)",
+        "tier": "T1"
+      },
       "isospin3": -0.5,
       "strangeness": 0,
       "charm": 0,
       "bottomness": 0,
       "topness": 0,
-      "sizeUpperLimit": { "value": 1e-18, "unit": "m", "tier": "T1", "source": "HERA / LEP / PDG 2024", "retrievedOn": "2026-10-11" }
+      "sizeUpperLimit": {
+        "value": 1e-18,
+        "unit": "m",
+        "tier": "T1",
+        "source": "HERA / LEP / PDG 2024",
+        "retrievedOn": "2026-10-11"
+      }
     },
     "s": {
       "symbol": "s",
@@ -50,18 +148,67 @@
       "nameBn": "স্ট্রেঞ্জ",
       "generation": 2,
       "type": "down-type",
-      "charge": { "value": -0.3333333333333333, "fraction": "-1/3", "unit": "e", "uncertainty": 0, "tier": "T1", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11" },
-      "mass": { "value": 93.4, "unit": "MeV/c^2", "uncertainty": "+8.6 -3.4", "scheme": "MS-bar (mu = 2 GeV)", "tier": "T2", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11", "verify": true },
-      "spin": { "value": 0.5, "unit": "hbar", "uncertainty": 0, "tier": "T1", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11" },
-      "baryonNumber": { "value": 0.3333333333333333, "fraction": "1/3", "unit": "dimensionless", "uncertainty": 0, "tier": "T1", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11" },
-      "discovery": { "proposalYear": "1947-1953", "confirmedYear": 1953, "textEn": "1947-1953 cosmic ray V-particles (Rochester & Butler); Gell-Mann-Nishijima formula", "textBn": "১৯৪৭-১৯৫৩ কসমিক রশ্মিতে V-কণা (রচেস্টার ও বাটলার); গেল-মান-নিশিজিমা তত্ত্ব", "tier": "T1", "source": "Nature 1947 / PDG" },
-      "decay": { "modeEn": "s -> u + W^-* (weak flavor change, tau ~ 10^-8 s in K mesons)", "modeBn": "s -> u + W⁻* (দুর্বল ফ্লেভার পরিবর্তন, K মেসনে tau ~ ১০⁻⁸ সেকেন্ড)", "tier": "T1" },
+      "charge": {
+        "value": -0.3333333333333333,
+        "fraction": "-1/3",
+        "unit": "e",
+        "uncertainty": 0,
+        "tier": "T1",
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-11"
+      },
+      "mass": {
+        "value": 93.4,
+        "unit": "MeV/c^2",
+        "uncertainty": "+8.6 -3.4",
+        "scheme": "MS-bar (mu = 2 GeV)",
+        "tier": "T2",
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-11",
+        "verify": true
+      },
+      "spin": {
+        "value": 0.5,
+        "unit": "hbar",
+        "uncertainty": 0,
+        "tier": "T1",
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-11"
+      },
+      "baryonNumber": {
+        "value": 0.3333333333333333,
+        "fraction": "1/3",
+        "unit": "dimensionless",
+        "uncertainty": 0,
+        "tier": "T1",
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-11"
+      },
+      "discovery": {
+        "proposalYear": "1947-1953",
+        "confirmedYear": 1953,
+        "textEn": "1947-1953 cosmic ray V-particles (Rochester & Butler); Gell-Mann-Nishijima formula",
+        "textBn": "১৯৪৭-১৯৫৩ কসমিক রশ্মিতে V-কণা (রচেস্টার ও বাটলার); গেল-মান-নিশিজিমা তত্ত্ব",
+        "tier": "T1",
+        "source": "Nature 1947 / PDG"
+      },
+      "decay": {
+        "modeEn": "s -> u + W^-* (weak flavor change, tau ~ 10^-8 s in K mesons)",
+        "modeBn": "s -> u + W⁻* (দুর্বল ফ্লেভার পরিবর্তন, K মেসনে tau ~ ১০⁻⁸ সেকেন্ড)",
+        "tier": "T1"
+      },
       "isospin3": 0,
       "strangeness": -1,
       "charm": 0,
       "bottomness": 0,
       "topness": 0,
-      "sizeUpperLimit": { "value": 1e-18, "unit": "m", "tier": "T1", "source": "HERA / LEP / PDG 2024", "retrievedOn": "2026-10-11" }
+      "sizeUpperLimit": {
+        "value": 1e-18,
+        "unit": "m",
+        "tier": "T1",
+        "source": "HERA / LEP / PDG 2024",
+        "retrievedOn": "2026-10-11"
+      }
     },
     "c": {
       "symbol": "c",
@@ -69,18 +216,67 @@
       "nameBn": "চার্ম",
       "generation": 2,
       "type": "up-type",
-      "charge": { "value": 0.6666666666666666, "fraction": "+2/3", "unit": "e", "uncertainty": 0, "tier": "T1", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11" },
-      "mass": { "value": 1.27, "unit": "GeV/c^2", "uncertainty": "+- 0.02", "scheme": "MS-bar at scale m_c", "tier": "T2", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11", "verify": true },
-      "spin": { "value": 0.5, "unit": "hbar", "uncertainty": 0, "tier": "T1", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11" },
-      "baryonNumber": { "value": 0.3333333333333333, "fraction": "1/3", "unit": "dimensionless", "uncertainty": 0, "tier": "T1", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11" },
-      "discovery": { "proposalYear": 1970, "confirmedYear": 1974, "textEn": "1974 J/psi meson discovery (November Revolution: B. Richter at SLAC, S. Ting at BNL)", "textBn": "১৯৭৪ J/psi আবিষ্কার (নভেম্বর বিপ্লব: বার্টন রিখটার SLAC, স্যামুয়েল টিং BNL)", "tier": "T1", "source": "PRL 1974 / Nobel 1976" },
-      "decay": { "modeEn": "c -> s + W^+* (Cabibbo-favored, tau ~ 10^-12 s in D mesons)", "modeBn": "c -> s + W⁺* (ক্যাবিবো-অনুকূল, D মেসনে tau ~ ১০⁻¹২ সেকেন্ড)", "tier": "T1" },
+      "charge": {
+        "value": 0.6666666666666666,
+        "fraction": "+2/3",
+        "unit": "e",
+        "uncertainty": 0,
+        "tier": "T1",
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-11"
+      },
+      "mass": {
+        "value": 1.27,
+        "unit": "GeV/c^2",
+        "uncertainty": "+- 0.02",
+        "scheme": "MS-bar at scale m_c",
+        "tier": "T2",
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-11",
+        "verify": true
+      },
+      "spin": {
+        "value": 0.5,
+        "unit": "hbar",
+        "uncertainty": 0,
+        "tier": "T1",
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-11"
+      },
+      "baryonNumber": {
+        "value": 0.3333333333333333,
+        "fraction": "1/3",
+        "unit": "dimensionless",
+        "uncertainty": 0,
+        "tier": "T1",
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-11"
+      },
+      "discovery": {
+        "proposalYear": 1970,
+        "confirmedYear": 1974,
+        "textEn": "1974 J/psi meson discovery (November Revolution: B. Richter at SLAC, S. Ting at BNL)",
+        "textBn": "১৯৭৪ J/psi আবিষ্কার (নভেম্বর বিপ্লব: বার্টন রিখটার SLAC, স্যামুয়েল টিং BNL)",
+        "tier": "T1",
+        "source": "PRL 1974 / Nobel 1976"
+      },
+      "decay": {
+        "modeEn": "c -> s + W^+* (Cabibbo-favored, tau ~ 10^-12 s in D mesons)",
+        "modeBn": "c -> s + W⁺* (ক্যাবিবো-অনুকূল, D মেসনে tau ~ ১০⁻¹২ সেকেন্ড)",
+        "tier": "T1"
+      },
       "isospin3": 0,
       "strangeness": 0,
       "charm": 1,
       "bottomness": 0,
       "topness": 0,
-      "sizeUpperLimit": { "value": 1e-18, "unit": "m", "tier": "T1", "source": "HERA / LEP / PDG 2024", "retrievedOn": "2026-10-11" }
+      "sizeUpperLimit": {
+        "value": 1e-18,
+        "unit": "m",
+        "tier": "T1",
+        "source": "HERA / LEP / PDG 2024",
+        "retrievedOn": "2026-10-11"
+      }
     },
     "b": {
       "symbol": "b",
@@ -88,18 +284,67 @@
       "nameBn": "বটম",
       "generation": 3,
       "type": "down-type",
-      "charge": { "value": -0.3333333333333333, "fraction": "-1/3", "unit": "e", "uncertainty": 0, "tier": "T1", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11" },
-      "mass": { "value": 4.18, "unit": "GeV/c^2", "uncertainty": "+0.03 -0.02", "scheme": "MS-bar at scale m_b", "tier": "T2", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11", "verify": true },
-      "spin": { "value": 0.5, "unit": "hbar", "uncertainty": 0, "tier": "T1", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11" },
-      "baryonNumber": { "value": 0.3333333333333333, "fraction": "1/3", "unit": "dimensionless", "uncertainty": 0, "tier": "T1", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11" },
-      "discovery": { "proposalYear": 1973, "confirmedYear": 1977, "textEn": "1977 Upsilon meson (b b_bar) discovery at Fermilab by L. Lederman et al.", "textBn": "১৯৭৭ ফার্মিল্যাবে ইপসাইলন মেসন (b b̄) আবিষ্কার (লিওন লেডারম্যান ও দল)", "tier": "T1", "source": "PRL 1977 / PDG" },
-      "decay": { "modeEn": "b -> c + W^-* (dominant, tau ~ 1.5x10^-12 s in B mesons)", "modeBn": "b -> c + W⁻* (প্রধান চ্যানেল, B মেসনে tau ~ ১.৫×১০⁻¹২ সেকেন্ড)", "tier": "T1" },
+      "charge": {
+        "value": -0.3333333333333333,
+        "fraction": "-1/3",
+        "unit": "e",
+        "uncertainty": 0,
+        "tier": "T1",
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-11"
+      },
+      "mass": {
+        "value": 4.18,
+        "unit": "GeV/c^2",
+        "uncertainty": "+0.03 -0.02",
+        "scheme": "MS-bar at scale m_b",
+        "tier": "T2",
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-11",
+        "verify": true
+      },
+      "spin": {
+        "value": 0.5,
+        "unit": "hbar",
+        "uncertainty": 0,
+        "tier": "T1",
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-11"
+      },
+      "baryonNumber": {
+        "value": 0.3333333333333333,
+        "fraction": "1/3",
+        "unit": "dimensionless",
+        "uncertainty": 0,
+        "tier": "T1",
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-11"
+      },
+      "discovery": {
+        "proposalYear": 1973,
+        "confirmedYear": 1977,
+        "textEn": "1977 Upsilon meson (b b_bar) discovery at Fermilab by L. Lederman et al.",
+        "textBn": "১৯৭৭ ফার্মিল্যাবে ইপসাইলন মেসন (b b̄) আবিষ্কার (লিওন লেডারম্যান ও দল)",
+        "tier": "T1",
+        "source": "PRL 1977 / PDG"
+      },
+      "decay": {
+        "modeEn": "b -> c + W^-* (dominant, tau ~ 1.5x10^-12 s in B mesons)",
+        "modeBn": "b -> c + W⁻* (প্রধান চ্যানেল, B মেসনে tau ~ ১.৫×১০⁻¹২ সেকেন্ড)",
+        "tier": "T1"
+      },
       "isospin3": 0,
       "strangeness": 0,
       "charm": 0,
       "bottomness": -1,
       "topness": 0,
-      "sizeUpperLimit": { "value": 1e-18, "unit": "m", "tier": "T1", "source": "HERA / LEP / PDG 2024", "retrievedOn": "2026-10-11" }
+      "sizeUpperLimit": {
+        "value": 1e-18,
+        "unit": "m",
+        "tier": "T1",
+        "source": "HERA / LEP / PDG 2024",
+        "retrievedOn": "2026-10-11"
+      }
     },
     "t": {
       "symbol": "t",
@@ -107,36 +352,152 @@
       "nameBn": "টপ",
       "generation": 3,
       "type": "up-type",
-      "charge": { "value": 0.6666666666666666, "fraction": "+2/3", "unit": "e", "uncertainty": 0, "tier": "T1", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11" },
-      "mass": { "value": 172.57, "unit": "GeV/c^2", "uncertainty": "+- 0.29", "scheme": "Direct measurements / pole mass average", "tier": "T1", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11", "verify": true },
-      "lifetime": { "value": 5e-25, "unit": "s", "uncertainty": "+- 0.5e-25", "tier": "T1", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11" },
-      "decaysBeforeHadronization": { "value": true, "tier": "T1", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11" },
-      "toponiumCandidateNote": { "value": "CMS and ATLAS (2025) observed excess near t tbar threshold consistent with toponium, interpretation ongoing", "labelBn": "ব্যাখ্যা চলমান", "labelEn": "Interpretation ongoing", "tier": "T3", "source": "CMS / ATLAS 2025", "retrievedOn": "2026-10-11", "verify": true },
-      "discovery": { "proposalYear": 1973, "confirmedYear": 1995, "textEn": "1995 discovered at Fermilab Tevatron (CDF and D0 Collaborations)", "textBn": "১৯৯৫ ফার্মিল্যাব টেভাট্রনে আবিষ্কার (CDF ও DØ কোলাবরেশন)", "tier": "T1", "source": "PRL 1995 / PDG" },
-      "decay": { "modeEn": "t -> W^+ + b (~100%, decays before forming hadrons in tau ≈ 5x10^-25 s)", "modeBn": "t -> W⁺ + b (~১০০%, হ্যাড্রন গড়ার আগেই tau ≈ ৫×১০⁻²৫ সেকেন্ডে ক্ষয়)", "tier": "T1" },
-      "spin": { "value": 0.5, "unit": "hbar", "uncertainty": 0, "tier": "T1", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11" },
-      "baryonNumber": { "value": 0.3333333333333333, "fraction": "1/3", "unit": "dimensionless", "uncertainty": 0, "tier": "T1", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11" },
+      "charge": {
+        "value": 0.6666666666666666,
+        "fraction": "+2/3",
+        "unit": "e",
+        "uncertainty": 0,
+        "tier": "T1",
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-11"
+      },
+      "mass": {
+        "value": 172.57,
+        "unit": "GeV/c^2",
+        "uncertainty": "+- 0.29",
+        "scheme": "Direct measurements / pole mass average",
+        "tier": "T1",
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-11",
+        "verify": true
+      },
+      "lifetime": {
+        "value": 5e-25,
+        "unit": "s",
+        "uncertainty": "+- 0.5e-25",
+        "tier": "T1",
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-11"
+      },
+      "decaysBeforeHadronization": {
+        "value": true,
+        "tier": "T1",
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-11"
+      },
+      "toponiumCandidateNote": {
+        "value": "CMS and ATLAS (2025) observed excess near t tbar threshold consistent with toponium, interpretation ongoing",
+        "labelBn": "ব্যাখ্যা চলমান",
+        "labelEn": "Interpretation ongoing",
+        "tier": "T3",
+        "source": "CMS / ATLAS 2025",
+        "retrievedOn": "2026-10-11",
+        "verify": true
+      },
+      "discovery": {
+        "proposalYear": 1973,
+        "confirmedYear": 1995,
+        "textEn": "1995 discovered at Fermilab Tevatron (CDF and D0 Collaborations)",
+        "textBn": "১৯৯৫ ফার্মিল্যাব টেভাট্রনে আবিষ্কার (CDF ও DØ কোলাবরেশন)",
+        "tier": "T1",
+        "source": "PRL 1995 / PDG"
+      },
+      "decay": {
+        "modeEn": "t -> W^+ + b (~100%, decays before forming hadrons in tau ≈ 5x10^-25 s)",
+        "modeBn": "t -> W⁺ + b (~১০০%, হ্যাড্রন গড়ার আগেই tau ≈ ৫×১০⁻²৫ সেকেন্ডে ক্ষয়)",
+        "tier": "T1"
+      },
+      "spin": {
+        "value": 0.5,
+        "unit": "hbar",
+        "uncertainty": 0,
+        "tier": "T1",
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-11"
+      },
+      "baryonNumber": {
+        "value": 0.3333333333333333,
+        "fraction": "1/3",
+        "unit": "dimensionless",
+        "uncertainty": 0,
+        "tier": "T1",
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-11"
+      },
       "isospin3": 0,
       "strangeness": 0,
       "charm": 0,
       "bottomness": 0,
       "topness": 1,
-      "sizeUpperLimit": { "value": 1e-18, "unit": "m", "tier": "T1", "source": "HERA / LEP / PDG 2024", "retrievedOn": "2026-10-11" }
+      "sizeUpperLimit": {
+        "value": 1e-18,
+        "unit": "m",
+        "tier": "T1",
+        "source": "HERA / LEP / PDG 2024",
+        "retrievedOn": "2026-10-11"
+      }
     }
   },
   "proton": {
     "nameEn": "Proton",
     "nameBn": "প্রোটন",
-    "valenceComposition": ["u", "u", "d"],
-    "mass": { "value": 938.272088, "unit": "MeV/c^2", "uncertainty": "+- 0.000058", "tier": "T1", "source": "PDG 2024/2026 / CODATA 2022", "retrievedOn": "2026-10-11" },
-    "charge": { "value": 1, "unit": "e", "uncertainty": 0, "tier": "T1", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11" },
-    "spin": { "value": 0.5, "unit": "hbar", "uncertainty": 0, "tier": "T1", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11" },
-    "chargeRadius": { "value": 0.8414, "unit": "fm", "uncertainty": "+- 0.0019", "tier": "T1", "source": "PDG 2024 / CODATA 2022", "retrievedOn": "2026-10-11" },
-    "diameter": { "value": 1.7, "unit": "fm", "approximate": true, "tier": "T1", "source": "PDG 2024", "retrievedOn": "2026-10-11" },
-    "valenceQuarkMassSum": { "value": 9.0, "unit": "MeV/c^2", "fractionOfProtonMass": 0.0096, "percentageApprox": 1, "tier": "T2", "source": "Lattice QCD", "retrievedOn": "2026-10-11" },
+    "valenceComposition": [
+      "u",
+      "u",
+      "d"
+    ],
+    "mass": {
+      "value": 938.272088,
+      "unit": "MeV/c^2",
+      "uncertainty": "+- 0.000058",
+      "tier": "T1",
+      "source": "PDG 2024/2026 / CODATA 2022",
+      "retrievedOn": "2026-10-11"
+    },
+    "charge": {
+      "value": 1,
+      "unit": "e",
+      "uncertainty": 0,
+      "tier": "T1",
+      "source": "PDG 2024/2026",
+      "retrievedOn": "2026-10-11"
+    },
+    "spin": {
+      "value": 0.5,
+      "unit": "hbar",
+      "uncertainty": 0,
+      "tier": "T1",
+      "source": "PDG 2024/2026",
+      "retrievedOn": "2026-10-11"
+    },
+    "chargeRadius": {
+      "value": 0.8414,
+      "unit": "fm",
+      "uncertainty": "+- 0.0019",
+      "tier": "T1",
+      "source": "PDG 2024 / CODATA 2022",
+      "retrievedOn": "2026-10-11"
+    },
+    "diameter": {
+      "value": 1.7,
+      "unit": "fm",
+      "approximate": true,
+      "tier": "T1",
+      "source": "PDG 2024",
+      "retrievedOn": "2026-10-11"
+    },
+    "valenceQuarkMassSum": {
+      "value": 9,
+      "unit": "MeV/c^2",
+      "fractionOfProtonMass": 0.0096,
+      "percentageApprox": 1,
+      "tier": "T2",
+      "source": "Lattice QCD",
+      "retrievedOn": "2026-10-11"
+    },
     "jiMassDecomposition": {
       "scheme": "Lattice QCD (MS-bar mu = 2 GeV)",
-      "scaleGeV": 2.0,
+      "scaleGeV": 2,
       "tier": "T2",
       "paperCitation": "Yang et al., PRL 121, 212001 (2018)",
       "referencePaper": {
@@ -217,8 +578,16 @@
     }
   },
   "colorCharge": {
-    "colors": ["red", "green", "blue"],
-    "antiColors": ["anti-red", "anti-green", "anti-blue"],
+    "colors": [
+      "red",
+      "green",
+      "blue"
+    ],
+    "antiColors": [
+      "anti-red",
+      "anti-green",
+      "anti-blue"
+    ],
     "antiColorHex": {
       "red": "#00e5ff",
       "green": "#ff007f",
@@ -230,25 +599,63 @@
     "antiBaryonColorState": "anti-red + anti-green + anti-blue (color singlet, white)",
     "gluons": {
       "count": 8,
-      "mass": { "value": 0, "unit": "MeV/c^2", "tier": "T1", "source": "PDG 2024/2026" },
-      "spin": { "value": 1, "unit": "hbar", "tier": "T1", "source": "PDG 2024/2026" },
-      "charge": { "value": 0, "unit": "e", "tier": "T1", "source": "PDG 2024/2026" },
+      "mass": {
+        "value": 0,
+        "unit": "MeV/c^2",
+        "tier": "T1",
+        "source": "PDG 2024/2026"
+      },
+      "spin": {
+        "value": 1,
+        "unit": "hbar",
+        "tier": "T1",
+        "source": "PDG 2024/2026"
+      },
+      "charge": {
+        "value": 0,
+        "unit": "e",
+        "tier": "T1",
+        "source": "PDG 2024/2026"
+      },
       "basisStates": [
-        "r g_bar", "r b_bar", "g r_bar", "g b_bar", "b r_bar", "b g_bar",
+        "r g_bar",
+        "r b_bar",
+        "g r_bar",
+        "g b_bar",
+        "b r_bar",
+        "b g_bar",
         "(r r_bar - g g_bar)/sqrt(2)",
         "(r r_bar + g g_bar - 2 b b_bar)/sqrt(6)"
       ],
       "ninthSingletExists": false
     },
     "strongCouplingAlphaS": {
-      "atZMass": { "value": 0.1180, "uncertainty": "+- 0.0009", "scale": "M_Z = 91.2 GeV", "tier": "T1", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11" },
-      "at1GeV": { "value": 0.5, "approximate": true, "scale": "1 GeV (non-perturbative)", "tier": "T2", "source": "Lattice QCD / PDG", "retrievedOn": "2026-10-11", "verify": true }
+      "atZMass": {
+        "value": 0.118,
+        "uncertainty": "+- 0.0009",
+        "scale": "M_Z = 91.2 GeV",
+        "tier": "T1",
+        "source": "PDG 2024/2026",
+        "retrievedOn": "2026-10-11"
+      },
+      "at1GeV": {
+        "value": 0.5,
+        "approximate": true,
+        "scale": "1 GeV (non-perturbative)",
+        "tier": "T2",
+        "source": "Lattice QCD / PDG",
+        "retrievedOn": "2026-10-11",
+        "verify": true
+      }
     }
   },
   "confinement": {
     "stringTensionSigma": {
       "value": 0.95,
-      "range": [0.90, 1.00],
+      "range": [
+        0.9,
+        1
+      ],
       "unit": "GeV/fm",
       "valueGeV2": 0.187,
       "tier": "T2",
@@ -274,7 +681,10 @@
       "formula": "V(r) = -(4/3) * alpha_s * hbar * c / r + sigma * r",
       "alphaSEffective": {
         "value": 0.35,
-        "range": [0.30, 0.40],
+        "range": [
+          0.3,
+          0.4
+        ],
         "tier": "T3",
         "description": "Cornell-type effective coupling constant alpha_s at hadronic scales",
         "verify": true
@@ -308,7 +718,10 @@
     },
     "fluxTubeDiameter": {
       "value": 0.4,
-      "range": [0.3, 0.5],
+      "range": [
+        0.3,
+        0.5
+      ],
       "unit": "fm",
       "noteBn": "পদ্ধতিভেদে ভিন্ন (~0.3-0.5 fm)",
       "noteEn": "Varies by scheme (~0.3-0.5 fm)",
@@ -332,29 +745,47 @@
       "retrievedOn": "2026-10-11"
     },
     "dynamicalQuarkBreakingDistance": {
-      "lightQuarks": { "value": 1.22, "unit": "fm", "tier": "T2", "source": "J. Bulava et al. 2019", "retrievedOn": "2026-10-11" },
-      "strangeQuarks": { "value": 1.29, "unit": "fm", "tier": "T2", "source": "J. Bulava et al. 2019", "retrievedOn": "2026-10-11" }
+      "lightQuarks": {
+        "value": 1.22,
+        "unit": "fm",
+        "tier": "T2",
+        "source": "J. Bulava et al. 2019",
+        "retrievedOn": "2026-10-11"
+      },
+      "strangeQuarks": {
+        "value": 1.29,
+        "unit": "fm",
+        "tier": "T2",
+        "source": "J. Bulava et al. 2019",
+        "retrievedOn": "2026-10-11"
+      }
     },
     "lundTunnelingFlavorWeights": {
-      "u": 1.0,
-      "d": 1.0,
+      "u": 1,
+      "d": 1,
       "s": 0.25,
       "c": 1e-11,
       "b": 1e-20,
-      "t": 0.0,
+      "t": 0,
       "tier": "T3",
       "source": "Lund String Model (Andersson et al. / PYTHIA 8)"
     },
     "newPairSeparationFm": {
       "value": 0.65,
-      "range": [0.6, 0.7],
+      "range": [
+        0.6,
+        0.7
+      ],
       "unit": "fm",
       "tier": "T3",
       "source": "Lund Model tunneling parameter"
     },
     "gammaS": {
       "value": 0.22,
-      "range": [0.20, 0.30],
+      "range": [
+        0.2,
+        0.3
+      ],
       "unit": "dimensionless",
       "description": "Strange quark suppression factor gamma_s in string breaking",
       "tier": "T2",
@@ -378,13 +809,28 @@
       "nameEn": "Proton",
       "nameBn": "প্রোটন",
       "symbol": "p",
-      "quarkContent": ["u", "u", "d"],
+      "quarkContent": [
+        "u",
+        "u",
+        "d"
+      ],
       "baryonNumber": 1,
       "spin": 0.5,
       "charge": 1,
       "strangeness": 0,
-      "mass": { "value": 938.272088, "unit": "MeV/c^2", "uncertainty": "+- 0.000058", "tier": "T1", "source": "PDG 2024/2026" },
-      "lifetime": { "value": "stable", "limitSec": "> 10^34 years", "tier": "T1", "source": "Super-Kamiokande / PDG" },
+      "mass": {
+        "value": 938.272088,
+        "unit": "MeV/c^2",
+        "uncertainty": "+- 0.000058",
+        "tier": "T1",
+        "source": "PDG 2024/2026"
+      },
+      "lifetime": {
+        "value": "stable",
+        "limitSec": "> 10^34 years",
+        "tier": "T1",
+        "source": "Super-Kamiokande / PDG"
+      },
       "chargeRadiusFm": 0.8414
     },
     "n": {
@@ -392,41 +838,91 @@
       "nameEn": "Neutron",
       "nameBn": "নিউট্রন",
       "symbol": "n",
-      "quarkContent": ["u", "d", "d"],
+      "quarkContent": [
+        "u",
+        "d",
+        "d"
+      ],
       "baryonNumber": 1,
       "spin": 0.5,
       "charge": 0,
       "strangeness": 0,
-      "mass": { "value": 939.565420, "unit": "MeV/c^2", "uncertainty": "+- 0.000060", "tier": "T1", "source": "PDG 2024/2026" },
-      "lifetime": { "value": 878.4, "unit": "s", "uncertainty": "+- 0.5", "tier": "T1", "source": "PDG 2024/2026" }
+      "mass": {
+        "value": 939.56542,
+        "unit": "MeV/c^2",
+        "uncertainty": "+- 0.000060",
+        "tier": "T1",
+        "source": "PDG 2024/2026"
+      },
+      "lifetime": {
+        "value": 878.4,
+        "unit": "s",
+        "uncertainty": "+- 0.5",
+        "tier": "T1",
+        "source": "PDG 2024/2026"
+      }
     },
     "pi0": {
       "id": "pi0",
       "nameEn": "Neutral Pion",
       "nameBn": "নিউট্রাল পায়ন",
       "symbol": "π⁰",
-      "quarkContent": ["u", "u_bar"],
-      "aliasQuarkContent": [["d", "d_bar"]],
+      "quarkContent": [
+        "u",
+        "u_bar"
+      ],
+      "aliasQuarkContent": [
+        [
+          "d",
+          "d_bar"
+        ]
+      ],
       "superpositionState": "(u u_bar - d d_bar)/sqrt(2)",
       "baryonNumber": 0,
       "spin": 0,
       "charge": 0,
       "strangeness": 0,
-      "mass": { "value": 134.9768, "unit": "MeV/c^2", "uncertainty": "+- 0.0005", "tier": "T1", "source": "PDG 2024/2026" },
-      "lifetime": { "value": 8.52e-17, "unit": "s", "decay": "gamma + gamma (98.8%)", "tier": "T1", "source": "PDG 2024/2026" }
+      "mass": {
+        "value": 134.9768,
+        "unit": "MeV/c^2",
+        "uncertainty": "+- 0.0005",
+        "tier": "T1",
+        "source": "PDG 2024/2026"
+      },
+      "lifetime": {
+        "value": 8.52e-17,
+        "unit": "s",
+        "decay": "gamma + gamma (98.8%)",
+        "tier": "T1",
+        "source": "PDG 2024/2026"
+      }
     },
     "pi_plus": {
       "id": "pi_plus",
       "nameEn": "Positive Pion",
       "nameBn": "পজিটিভ পায়ন",
       "symbol": "π⁺",
-      "quarkContent": ["u", "d_bar"],
+      "quarkContent": [
+        "u",
+        "d_bar"
+      ],
       "baryonNumber": 0,
       "spin": 0,
       "charge": 1,
       "strangeness": 0,
-      "mass": { "value": 139.57039, "unit": "MeV/c^2", "uncertainty": "+- 0.00018", "tier": "T1", "source": "PDG 2024/2026" },
-      "lifetime": { "value": 2.6033e-8, "unit": "s", "tier": "T1", "source": "PDG 2024/2026" },
+      "mass": {
+        "value": 139.57039,
+        "unit": "MeV/c^2",
+        "uncertainty": "+- 0.00018",
+        "tier": "T1",
+        "source": "PDG 2024/2026"
+      },
+      "lifetime": {
+        "value": 2.6033e-8,
+        "unit": "s",
+        "tier": "T1",
+        "source": "PDG 2024/2026"
+      },
       "chargeRadiusFm": 0.659
     },
     "pi_minus": {
@@ -434,13 +930,27 @@
       "nameEn": "Negative Pion",
       "nameBn": "নেগেটিভ পায়ন",
       "symbol": "π⁻",
-      "quarkContent": ["d", "u_bar"],
+      "quarkContent": [
+        "d",
+        "u_bar"
+      ],
       "baryonNumber": 0,
       "spin": 0,
       "charge": -1,
       "strangeness": 0,
-      "mass": { "value": 139.57039, "unit": "MeV/c^2", "uncertainty": "+- 0.00018", "tier": "T1", "source": "PDG 2024/2026" },
-      "lifetime": { "value": 2.6033e-8, "unit": "s", "tier": "T1", "source": "PDG 2024/2026" },
+      "mass": {
+        "value": 139.57039,
+        "unit": "MeV/c^2",
+        "uncertainty": "+- 0.00018",
+        "tier": "T1",
+        "source": "PDG 2024/2026"
+      },
+      "lifetime": {
+        "value": 2.6033e-8,
+        "unit": "s",
+        "tier": "T1",
+        "source": "PDG 2024/2026"
+      },
       "chargeRadiusFm": 0.659
     },
     "k_plus": {
@@ -448,169 +958,339 @@
       "nameEn": "Positive Kaon",
       "nameBn": "পজিটিভ কেয়ন",
       "symbol": "K⁺",
-      "quarkContent": ["u", "s_bar"],
+      "quarkContent": [
+        "u",
+        "s_bar"
+      ],
       "baryonNumber": 0,
       "spin": 0,
       "charge": 1,
       "strangeness": 1,
-      "mass": { "value": 493.677, "unit": "MeV/c^2", "uncertainty": "+- 0.016", "tier": "T1", "source": "PDG 2024/2026" },
-      "lifetime": { "value": 1.238e-8, "unit": "s", "tier": "T1", "source": "PDG 2024/2026" },
-      "chargeRadiusFm": 0.560
+      "mass": {
+        "value": 493.677,
+        "unit": "MeV/c^2",
+        "uncertainty": "+- 0.016",
+        "tier": "T1",
+        "source": "PDG 2024/2026"
+      },
+      "lifetime": {
+        "value": 1.238e-8,
+        "unit": "s",
+        "tier": "T1",
+        "source": "PDG 2024/2026"
+      },
+      "chargeRadiusFm": 0.56
     },
     "k_0": {
       "id": "k_0",
       "nameEn": "Neutral Kaon",
       "nameBn": "নিউট্রাল কেয়ন",
       "symbol": "K⁰",
-      "quarkContent": ["d", "s_bar"],
+      "quarkContent": [
+        "d",
+        "s_bar"
+      ],
       "baryonNumber": 0,
       "spin": 0,
       "charge": 0,
       "strangeness": 1,
-      "mass": { "value": 497.611, "unit": "MeV/c^2", "uncertainty": "+- 0.013", "tier": "T1", "source": "PDG 2024/2026" }
+      "mass": {
+        "value": 497.611,
+        "unit": "MeV/c^2",
+        "uncertainty": "+- 0.013",
+        "tier": "T1",
+        "source": "PDG 2024/2026"
+      }
     },
     "lambda": {
       "id": "lambda",
       "nameEn": "Lambda Baryon",
       "nameBn": "ল্যাম্বডা ব্যারিয়ন",
       "symbol": "Λ",
-      "quarkContent": ["u", "d", "s"],
+      "quarkContent": [
+        "u",
+        "d",
+        "s"
+      ],
       "baryonNumber": 1,
       "spin": 0.5,
       "charge": 0,
       "isospin": 0,
       "strangeness": -1,
-      "mass": { "value": 1115.683, "unit": "MeV/c^2", "uncertainty": "+- 0.006", "tier": "T1", "source": "PDG 2024/2026" },
-      "lifetime": { "value": 2.632e-10, "unit": "s", "tier": "T1", "source": "PDG 2024/2026" }
+      "mass": {
+        "value": 1115.683,
+        "unit": "MeV/c^2",
+        "uncertainty": "+- 0.006",
+        "tier": "T1",
+        "source": "PDG 2024/2026"
+      },
+      "lifetime": {
+        "value": 2.632e-10,
+        "unit": "s",
+        "tier": "T1",
+        "source": "PDG 2024/2026"
+      }
     },
     "sigma_plus": {
       "id": "sigma_plus",
       "nameEn": "Sigma Plus",
       "nameBn": "সিগমা প্লাস",
       "symbol": "Σ⁺",
-      "quarkContent": ["u", "u", "s"],
+      "quarkContent": [
+        "u",
+        "u",
+        "s"
+      ],
       "baryonNumber": 1,
       "spin": 0.5,
       "charge": 1,
       "strangeness": -1,
-      "mass": { "value": 1189.37, "unit": "MeV/c^2", "uncertainty": "+- 0.07", "tier": "T1", "source": "PDG 2024/2026" },
-      "lifetime": { "value": 8.018e-11, "unit": "s", "tier": "T1", "source": "PDG 2024/2026" }
+      "mass": {
+        "value": 1189.37,
+        "unit": "MeV/c^2",
+        "uncertainty": "+- 0.07",
+        "tier": "T1",
+        "source": "PDG 2024/2026"
+      },
+      "lifetime": {
+        "value": 8.018e-11,
+        "unit": "s",
+        "tier": "T1",
+        "source": "PDG 2024/2026"
+      }
     },
     "delta_plus_plus": {
       "id": "delta_plus_plus",
       "nameEn": "Delta Plus Plus",
       "nameBn": "ডেল্টা প্লাস প্লাস",
       "symbol": "Δ⁺⁺",
-      "quarkContent": ["u", "u", "u"],
+      "quarkContent": [
+        "u",
+        "u",
+        "u"
+      ],
       "baryonNumber": 1,
       "spin": 1.5,
       "charge": 2,
       "strangeness": 0,
-      "mass": { "value": 1232.0, "unit": "MeV/c^2", "uncertainty": "+- 2.0", "tier": "T1", "source": "PDG 2024/2026" },
-      "lifetime": { "value": 5.63e-24, "unit": "s", "decay": "p + pi^+ (~100%)", "tier": "T1", "source": "PDG 2024/2026" }
+      "mass": {
+        "value": 1232,
+        "unit": "MeV/c^2",
+        "uncertainty": "+- 2.0",
+        "tier": "T1",
+        "source": "PDG 2024/2026"
+      },
+      "lifetime": {
+        "value": 5.63e-24,
+        "unit": "s",
+        "decay": "p + pi^+ (~100%)",
+        "tier": "T1",
+        "source": "PDG 2024/2026"
+      }
     },
     "delta_plus": {
       "id": "delta_plus",
       "nameEn": "Delta Plus",
       "nameBn": "ডেল্টা প্লাস",
       "symbol": "Δ⁺",
-      "quarkContent": ["u", "u", "d"],
+      "quarkContent": [
+        "u",
+        "u",
+        "d"
+      ],
       "baryonNumber": 1,
       "spin": 1.5,
       "charge": 1,
       "strangeness": 0,
-      "mass": { "value": 1232.0, "unit": "MeV/c^2", "uncertainty": "+- 2.0", "tier": "T1", "source": "PDG 2024/2026" }
+      "mass": {
+        "value": 1232,
+        "unit": "MeV/c^2",
+        "uncertainty": "+- 2.0",
+        "tier": "T1",
+        "source": "PDG 2024/2026"
+      }
     },
     "delta_0": {
       "id": "delta_0",
       "nameEn": "Delta Zero",
       "nameBn": "ডেল্টা জিরো",
       "symbol": "Δ⁰",
-      "quarkContent": ["u", "d", "d"],
+      "quarkContent": [
+        "u",
+        "d",
+        "d"
+      ],
       "baryonNumber": 1,
       "spin": 1.5,
       "charge": 0,
       "strangeness": 0,
-      "mass": { "value": 1232.0, "unit": "MeV/c^2", "uncertainty": "+- 2.0", "tier": "T1", "source": "PDG 2024/2026" }
+      "mass": {
+        "value": 1232,
+        "unit": "MeV/c^2",
+        "uncertainty": "+- 2.0",
+        "tier": "T1",
+        "source": "PDG 2024/2026"
+      }
     },
     "sigma_0": {
       "id": "sigma_0",
       "nameEn": "Sigma Zero",
       "nameBn": "সিগমা জিরো",
       "symbol": "Σ⁰",
-      "quarkContent": ["u", "d", "s"],
+      "quarkContent": [
+        "u",
+        "d",
+        "s"
+      ],
       "baryonNumber": 1,
       "spin": 0.5,
       "charge": 0,
       "isospin": 1,
       "strangeness": -1,
-      "mass": { "value": 1192.642, "unit": "MeV/c^2", "uncertainty": "+- 0.024", "tier": "T1", "source": "PDG 2024/2026" },
-      "lifetime": { "value": 7.4e-20, "unit": "s", "tier": "T1", "source": "PDG 2024/2026" }
+      "mass": {
+        "value": 1192.642,
+        "unit": "MeV/c^2",
+        "uncertainty": "+- 0.024",
+        "tier": "T1",
+        "source": "PDG 2024/2026"
+      },
+      "lifetime": {
+        "value": 7.4e-20,
+        "unit": "s",
+        "tier": "T1",
+        "source": "PDG 2024/2026"
+      }
     },
     "omega_minus": {
       "id": "omega_minus",
       "nameEn": "Omega Minus",
       "nameBn": "ওমেগা মাইনাস",
       "symbol": "Ω⁻",
-      "quarkContent": ["s", "s", "s"],
+      "quarkContent": [
+        "s",
+        "s",
+        "s"
+      ],
       "baryonNumber": 1,
       "spin": 1.5,
       "charge": -1,
       "strangeness": -3,
-      "mass": { "value": 1672.45, "unit": "MeV/c^2", "uncertainty": "+- 0.29", "tier": "T1", "source": "PDG 2024/2026" },
-      "lifetime": { "value": 8.21e-11, "unit": "s", "tier": "T1", "source": "PDG 2024/2026" }
+      "mass": {
+        "value": 1672.45,
+        "unit": "MeV/c^2",
+        "uncertainty": "+- 0.29",
+        "tier": "T1",
+        "source": "PDG 2024/2026"
+      },
+      "lifetime": {
+        "value": 8.21e-11,
+        "unit": "s",
+        "tier": "T1",
+        "source": "PDG 2024/2026"
+      }
     },
     "j_psi": {
       "id": "j_psi",
       "nameEn": "J/psi Meson",
       "nameBn": "জে/সাই মেসন",
       "symbol": "J/ψ",
-      "quarkContent": ["c", "c_bar"],
+      "quarkContent": [
+        "c",
+        "c_bar"
+      ],
       "baryonNumber": 0,
       "spin": 1,
       "charge": 0,
       "charm": 0,
-      "mass": { "value": 3096.900, "unit": "MeV/c^2", "uncertainty": "+- 0.006", "tier": "T1", "source": "PDG 2024/2026" },
-      "lifetime": { "value": 7.1e-21, "unit": "s", "tier": "T1", "source": "PDG 2024/2026" }
+      "mass": {
+        "value": 3096.9,
+        "unit": "MeV/c^2",
+        "uncertainty": "+- 0.006",
+        "tier": "T1",
+        "source": "PDG 2024/2026"
+      },
+      "lifetime": {
+        "value": 7.1e-21,
+        "unit": "s",
+        "tier": "T1",
+        "source": "PDG 2024/2026"
+      }
     },
     "upsilon_1s": {
       "id": "upsilon_1s",
       "nameEn": "Upsilon (1S)",
       "nameBn": "আপসিলন (১এস)",
       "symbol": "Υ(1S)",
-      "quarkContent": ["b", "b_bar"],
+      "quarkContent": [
+        "b",
+        "b_bar"
+      ],
       "baryonNumber": 0,
       "spin": 1,
       "charge": 0,
       "bottomness": 0,
-      "mass": { "value": 9460.30, "unit": "MeV/c^2", "uncertainty": "+- 0.26", "tier": "T1", "source": "PDG 2024/2026" },
-      "lifetime": { "value": 1.2e-20, "unit": "s", "tier": "T1", "source": "PDG 2024/2026" }
+      "mass": {
+        "value": 9460.3,
+        "unit": "MeV/c^2",
+        "uncertainty": "+- 0.26",
+        "tier": "T1",
+        "source": "PDG 2024/2026"
+      },
+      "lifetime": {
+        "value": 1.2e-20,
+        "unit": "s",
+        "tier": "T1",
+        "source": "PDG 2024/2026"
+      }
     },
     "k_minus": {
       "id": "k_minus",
       "nameEn": "Negative Kaon",
       "nameBn": "নেগেটিভ কেয়ন",
       "symbol": "K⁻",
-      "quarkContent": ["s", "u_bar"],
+      "quarkContent": [
+        "s",
+        "u_bar"
+      ],
       "baryonNumber": 0,
       "spin": 0,
       "charge": -1,
       "strangeness": -1,
-      "mass": { "value": 493.677, "unit": "MeV/c^2", "uncertainty": "+- 0.016", "tier": "T1", "source": "PDG 2024/2026" },
-      "lifetime": { "value": 1.238e-8, "unit": "s", "tier": "T1", "source": "PDG 2024/2026" },
-      "chargeRadiusFm": 0.560
+      "mass": {
+        "value": 493.677,
+        "unit": "MeV/c^2",
+        "uncertainty": "+- 0.016",
+        "tier": "T1",
+        "source": "PDG 2024/2026"
+      },
+      "lifetime": {
+        "value": 1.238e-8,
+        "unit": "s",
+        "tier": "T1",
+        "source": "PDG 2024/2026"
+      },
+      "chargeRadiusFm": 0.56
     },
     "anti_k0": {
       "id": "anti_k0",
       "nameEn": "Anti-Neutral Kaon",
       "nameBn": "অ্যান্টি-নিউট্রাল কেয়ন",
       "symbol": "K̄⁰",
-      "quarkContent": ["s", "d_bar"],
+      "quarkContent": [
+        "s",
+        "d_bar"
+      ],
       "baryonNumber": 0,
       "spin": 0,
       "charge": 0,
       "strangeness": -1,
-      "mass": { "value": 497.611, "unit": "MeV/c^2", "uncertainty": "+- 0.013", "tier": "T1", "source": "PDG 2024/2026" }
+      "mass": {
+        "value": 497.611,
+        "unit": "MeV/c^2",
+        "uncertainty": "+- 0.013",
+        "tier": "T1",
+        "source": "PDG 2024/2026"
+      }
     }
   },
   "exoticHadrons": {
@@ -619,9 +1299,20 @@
       "nameEn": "X(3872) / chi_c1(3872)",
       "nameBn": "X(৩৮৭২) / চাই_সি১(৩৮৭২)",
       "symbol": "X(3872)",
-      "quarkContent": ["c", "c_bar", "u", "u_bar"],
+      "quarkContent": [
+        "c",
+        "c_bar",
+        "u",
+        "u_bar"
+      ],
       "type": "tetraquark_candidate",
-      "mass": { "value": 3871.65, "uncertainty": "+- 0.06", "unit": "MeV/c^2", "tier": "T1", "source": "PDG 2024 / Belle 2003" },
+      "mass": {
+        "value": 3871.65,
+        "uncertainty": "+- 0.06",
+        "unit": "MeV/c^2",
+        "tier": "T1",
+        "source": "PDG 2024 / Belle 2003"
+      },
       "spin": 1,
       "parity": "+",
       "charge": 0,
@@ -641,10 +1332,26 @@
       "nameEn": "P_c(4312)^+ Pentaquark",
       "nameBn": "P_c(৪৩১২)⁺ পেন্টাকোয়ার্ক",
       "symbol": "P_c(4312)⁺",
-      "quarkContent": ["u", "u", "d", "c", "c_bar"],
+      "quarkContent": [
+        "u",
+        "u",
+        "d",
+        "c",
+        "c_bar"
+      ],
       "type": "pentaquark",
-      "mass": { "value": 4311.9, "uncertainty": "+- 0.7", "unit": "MeV/c^2", "tier": "T1", "source": "PDG 2024 / LHCb 2019" },
-      "widthMeV": { "value": 9.8, "uncertainty": "+- 2.7", "unit": "MeV" },
+      "mass": {
+        "value": 4311.9,
+        "uncertainty": "+- 0.7",
+        "unit": "MeV/c^2",
+        "tier": "T1",
+        "source": "PDG 2024 / LHCb 2019"
+      },
+      "widthMeV": {
+        "value": 9.8,
+        "uncertainty": "+- 2.7",
+        "unit": "MeV"
+      },
       "spin": 0.5,
       "charge": 1,
       "baryonNumber": 1,
@@ -663,10 +1370,26 @@
       "nameEn": "P_c(4440)^+ Pentaquark",
       "nameBn": "P_c(৪৪৪০)⁺ পেন্টাকোয়ার্ক",
       "symbol": "P_c(4440)⁺",
-      "quarkContent": ["u", "u", "d", "c", "c_bar"],
+      "quarkContent": [
+        "u",
+        "u",
+        "d",
+        "c",
+        "c_bar"
+      ],
       "type": "pentaquark",
-      "mass": { "value": 4440.3, "uncertainty": "+- 1.3", "unit": "MeV/c^2", "tier": "T1", "source": "PDG 2024 / LHCb 2019" },
-      "widthMeV": { "value": 20.6, "uncertainty": "+- 4.7", "unit": "MeV" },
+      "mass": {
+        "value": 4440.3,
+        "uncertainty": "+- 1.3",
+        "unit": "MeV/c^2",
+        "tier": "T1",
+        "source": "PDG 2024 / LHCb 2019"
+      },
+      "widthMeV": {
+        "value": 20.6,
+        "uncertainty": "+- 4.7",
+        "unit": "MeV"
+      },
       "spin": 0.5,
       "charge": 1,
       "baryonNumber": 1,
@@ -685,10 +1408,26 @@
       "nameEn": "P_c(4457)^+ Pentaquark",
       "nameBn": "P_c(৪৪৫৭)⁺ পেন্টাকোয়ার্ক",
       "symbol": "P_c(4457)⁺",
-      "quarkContent": ["u", "u", "d", "c", "c_bar"],
+      "quarkContent": [
+        "u",
+        "u",
+        "d",
+        "c",
+        "c_bar"
+      ],
       "type": "pentaquark",
-      "mass": { "value": 4457.3, "uncertainty": "+- 1.1", "unit": "MeV/c^2", "tier": "T1", "source": "PDG 2024 / LHCb 2019" },
-      "widthMeV": { "value": 6.4, "uncertainty": "+- 2.0", "unit": "MeV" },
+      "mass": {
+        "value": 4457.3,
+        "uncertainty": "+- 1.1",
+        "unit": "MeV/c^2",
+        "tier": "T1",
+        "source": "PDG 2024 / LHCb 2019"
+      },
+      "widthMeV": {
+        "value": 6.4,
+        "uncertainty": "+- 2.0",
+        "unit": "MeV"
+      },
       "spin": 1.5,
       "charge": 1,
       "baryonNumber": 1,
@@ -707,10 +1446,26 @@
       "nameEn": "T_cc^+ Tetraquark",
       "nameBn": "T_cc⁺ টেট্রাকোয়ার্ক",
       "symbol": "T_cc⁺",
-      "quarkContent": ["c", "c", "u_bar", "d_bar"],
+      "quarkContent": [
+        "c",
+        "c",
+        "u_bar",
+        "d_bar"
+      ],
       "type": "doubly_charmed_tetraquark",
-      "mass": { "value": 3874.74, "uncertainty": "+- 0.04", "unit": "MeV/c^2", "tier": "T1", "source": "PDG 2024 / LHCb 2021" },
-      "bindingEnergyKeV": { "value": -273, "uncertainty": "+- 61", "unit": "keV", "belowThreshold": "D*^+ D^0" },
+      "mass": {
+        "value": 3874.74,
+        "uncertainty": "+- 0.04",
+        "unit": "MeV/c^2",
+        "tier": "T1",
+        "source": "PDG 2024 / LHCb 2021"
+      },
+      "bindingEnergyKeV": {
+        "value": -273,
+        "uncertainty": "+- 61",
+        "unit": "keV",
+        "belowThreshold": "D*^+ D^0"
+      },
       "spin": 1,
       "charge": 1,
       "charm": 2,
@@ -729,11 +1484,20 @@
       "nameBn": "গ্লুবল (বিশুদ্ধ গ্লুয়ন বাউন্ড স্টেট)",
       "symbol": "G(gg)",
       "quarkContent": [],
-      "gluonContent": ["g", "g"],
+      "gluonContent": [
+        "g",
+        "g"
+      ],
       "type": "gluonic_singlet",
       "statusBn": "অনুমিত, নিশ্চিত নয়",
       "statusEn": "Hypothesized, not confirmed",
-      "massEstimateGeV": { "value": "1.5 - 1.7", "unit": "GeV/c^2", "groundState": "Scalar 0^++", "tier": "T3", "source": "Lattice QCD simulations" },
+      "massEstimateGeV": {
+        "value": "1.5 - 1.7",
+        "unit": "GeV/c^2",
+        "groundState": "Scalar 0^++",
+        "tier": "T3",
+        "source": "Lattice QCD simulations"
+      },
       "descriptionBn": "QCD কনফাইনমেন্ট অনুযায়ী গ্লুয়ন নিজেই কালার-চার্জিত হওয়ায় কোনো ভ্যালেন্স কোয়ার্ক ছাড়াই শুধু গ্লুয়ন মিলে কালার-সিঙ্গলেট গঠন করতে পারে। কিন্তু সাধারণ মেসনের সাথে কোয়ান্টাম মিশ্রণের কারণে এর অস্তিত্ব পরীক্ষাগারে এখনো চূড়ান্তভাবে নিশ্চিত নয় (অজানা গ্রাউন্ড স্টেট)।",
       "descriptionEn": "Because gluons carry color charge, QCD predicts pure gluon bound states with no valence quarks. However, strong mixing with conventional q q_bar mesons makes unambiguous experimental confirmation elusive.",
       "tier": "T3"
@@ -758,7 +1522,7 @@
       "symbol": "K",
       "nameEn": "Kaon (K⁺)",
       "nameBn": "কেয়ন (K⁺)",
-      "chargeRadiusFm": 0.560,
+      "chargeRadiusFm": 0.56,
       "approximateFm": 0.56,
       "relativeToProton": 0.666,
       "tier": "T1",
@@ -773,7 +1537,7 @@
       "nameBn": "প্রোটন",
       "chargeRadiusFm": 0.8414,
       "approximateFm": 0.84,
-      "relativeToProton": 1.000,
+      "relativeToProton": 1,
       "tier": "T1",
       "source": "CODATA 2022 / PDG 2024",
       "descriptionBn": "৩টি ভ্যালেন্স কোয়ার্ক এবং Fermat-Torricelli জংশনযুক্ত Y-আকৃতির ৩টি ফ্লাক্স টিউব মেসনের তুলনায় বৃহত্তর আয়তন ধারণ করে (~০.৮৪ fm)।",
@@ -789,7 +1553,7 @@
       "source": "c = 299792458 m/s definition"
     },
     "visualizationSlowdownFactor": {
-      "value": 1e24,
+      "value": 1e+24,
       "unit": "x slower",
       "tier": "T4",
       "note": "Symbolic animation slowdown factor for human visual perception"
@@ -976,8 +1740,16 @@
     "unitarityNoteBn": "দুর্বল মিথস্ক্রিয়ার ফ্লেভার আইগেনস্টেট ও ভর আইগেনস্টেটের মধ্যকার ৩×৩ ইউনিটারি রূপান্তর ম্যাট্রিক্স",
     "hierarchyPatternEn": "Pronounced diagonal dominance (|V_ud|, |V_cs|, |V_tb| ~ 1); cross-generation transitions strongly suppressed by powers of Cabibbo angle lambda ≈ 0.22",
     "hierarchyPatternBn": "স্পষ্ট ডায়াগনাল আধিপত্য (|V_ud|, |V_cs|, |V_tb| ~ ১); আন্তঃপ্রজন্মীয় ট্রানজিশন ক্যাবিবো কোণ lambda ≈ ০.২২-এর ঘাত দ্বারা দৃঢ়ভাবে অবদমিত",
-    "rows": ["u", "c", "t"],
-    "cols": ["d", "s", "b"],
+    "rows": [
+      "u",
+      "c",
+      "t"
+    ],
+    "cols": [
+      "d",
+      "s",
+      "b"
+    ],
     "elements": {
       "V_ud": {
         "symbol": "|V_ud|",
@@ -987,7 +1759,7 @@
         "downQuark": "d",
         "value": 0.97367,
         "uncertainty": "+- 0.00032",
-        "orderOfMagnitude": 1.0,
+        "orderOfMagnitude": 1,
         "processEn": "Superallowed 0+ -> 0+ beta decays, free neutron beta decay",
         "processBn": "সুপার-অ্যালাউড ০⁺ -> ০⁺ নিউক্লীয় বিটা ক্ষয় ও মুক্ত নিউট্রন ক্ষয়",
         "tier": "T1"
@@ -1025,7 +1797,7 @@
         "col": 0,
         "upQuark": "c",
         "downQuark": "d",
-        "value": 0.22100,
+        "value": 0.221,
         "uncertainty": "+- 0.00400",
         "orderOfMagnitude": 0.22,
         "processEn": "Semileptonic D meson decays (D -> pi l nu), neutrino-induced charm production",
@@ -1038,9 +1810,9 @@
         "col": 1,
         "upQuark": "c",
         "downQuark": "s",
-        "value": 0.97500,
+        "value": 0.975,
         "uncertainty": "+- 0.00600",
-        "orderOfMagnitude": 1.0,
+        "orderOfMagnitude": 1,
         "processEn": "Semileptonic D meson decays (D -> K l nu), leptonic D_s decays",
         "processBn": "সেমিলেপ্টনিক D মেসন ক্ষয় (D -> K l nu) ও লেপ্টনিক D_s ক্ষয়",
         "tier": "T1"
@@ -1051,7 +1823,7 @@
         "col": 2,
         "upQuark": "c",
         "downQuark": "b",
-        "value": 0.04110,
+        "value": 0.0411,
         "uncertainty": "+- 0.00120",
         "orderOfMagnitude": 0.04,
         "processEn": "Semileptonic B decays to charm (B -> D(*) l nu)",
@@ -1064,7 +1836,7 @@
         "col": 0,
         "upQuark": "t",
         "downQuark": "d",
-        "value": 0.00860,
+        "value": 0.0086,
         "uncertainty": "+- 0.00020",
         "orderOfMagnitude": 0.009,
         "scientificNotation": "8.60 x 10^-3",
@@ -1078,7 +1850,7 @@
         "col": 1,
         "upQuark": "t",
         "downQuark": "s",
-        "value": 0.04150,
+        "value": 0.0415,
         "uncertainty": "+- 0.00090",
         "orderOfMagnitude": 0.04,
         "processEn": "B_s^0 - B_s^0_bar oscillation, radiative penguin transitions (b -> s gamma)",
@@ -1091,10 +1863,10 @@
         "col": 2,
         "upQuark": "t",
         "downQuark": "b",
-        "value": 1.01000,
+        "value": 1.01,
         "uncertainty": "+- 0.02700",
         "globalFitValue": 0.999118,
-        "orderOfMagnitude": 1.0,
+        "orderOfMagnitude": 1,
         "processEn": "Single top quark electroweak production cross section, top decay width (t -> W b)",
         "processBn": "একক টপ কোয়ার্ক উৎপাদন এবং টপ ক্ষয় বিস্তার (t -> W b)",
         "tier": "T1"
@@ -1104,39 +1876,121 @@
   "asymptoticFreedom": {
     "tier": "T1",
     "alphaS_MZ": {
-      "value": 0.1180,
+      "value": 0.118,
       "uncertainty": "+- 0.0009",
       "scaleGeV": 91.1876,
       "source": "PDG 2024 / 2026 World Average",
       "tier": "T1"
     },
-    "nonPerturbativeLimitGeV": 1.0,
+    "nonPerturbativeLimitGeV": 1,
     "betaFunction": {
       "formula": "Q d(alpha_s)/dQ = - 2 beta_0 (alpha_s^2 / 4pi) - ...",
       "beta0_formula": "beta_0 = 11 - (2/3) n_f",
       "explanationBn": "যেহেতু গ্লুয়ন নিজেরাও কালার চার্জ বহন করে (SU(3) নন-অ্যাবেলিয়ান গ্রুপ), তাই গ্লুয়নের সেলফ-ইন্টারঅ্যাকশন (১১) কোয়ার্কের স্ক্রিনিং প্রভাবের ((২/৩) n_f) চেয়ে অনেক বেশি শক্তিশালী। ফলে উচ্চ শক্তিতে (ক্ষুদ্র দূরত্বে) কালার কাপলিং হ্রাস পায়।"
     },
     "qedComparison": {
-      "qedCoupling_0": { "fraction": "1/137.036", "value": 0.007297, "scaleGeV": 0 },
-      "qedCoupling_MZ": { "fraction": "1/128.0", "value": 0.0078125, "scaleGeV": 91.2 },
+      "qedCoupling_0": {
+        "fraction": "1/137.036",
+        "value": 0.007297,
+        "scaleGeV": 0
+      },
+      "qedCoupling_MZ": {
+        "fraction": "1/128.0",
+        "value": 0.0078125,
+        "scaleGeV": 91.2
+      },
       "comparisonTextBn": "QED-তে ভার্চুয়াল ইলেকট্রন-পজিট্রন জোড় ভ্যাকুয়াম পোলারাইজেশনের মাধ্যমে মূল চার্জকে ঢেকে (screen) রাখে; তাই উচ্চ শক্তিতে কাছে গেলে কার্যকরী আধান বাড়ে (১/১৩৭ থেকে ১/১২৮)। কিন্তু QCD-তে গ্লুয়নের স্ব-মিথস্ক্রিয়া চার্জ ছড়ায় (anti-screening), তাই কাছে গেলে কাপলিং কমে যায়!"
     },
     "nobelPrize2004": {
       "year": 2004,
-      "laureates": ["David J. Gross", "H. David Politzer", "Frank Wilczek"],
+      "laureates": [
+        "David J. Gross",
+        "H. David Politzer",
+        "Frank Wilczek"
+      ],
       "discoveryYear": 1973,
       "citationEn": "For the discovery of asymptotic freedom in the theory of the strong interaction",
       "citationBn": "সবল মিথস্ক্রিয়া তত্ত্বে অ্যাসিম্পটোটিক ফ্রিডম আবিষ্কারের জন্য",
       "storyBn": "১৯৭৩ সালে গ্রস, উইলচেক এবং পলিৎজার প্রমাণ করেন যে কোয়ার্কগুলো যখন অত্যন্ত কাছাকাছি থাকে (উচ্চ শক্তি বা ক্ষুদ্র দূরত্ব), তখন তাদের মধ্যকার বল প্রায় শূন্য হয়ে যায় — কোয়ার্করা মুক্ত কণার মতো চলে। কিন্তু তাদের বিচ্ছিন্ন করতে গেলেই কনফাইনমেন্ট বল প্রবল হয়ে ওঠে।"
     },
     "pdgDataPoints": [
-      { "id": "tau", "process": "tau_decays", "nameEn": "tau decays", "nameBn": "টাউ (tau) ক্ষয়", "Q": 1.78, "alphaS": 0.312, "uncertainty": 0.015, "facility": "LEP / CLEO / BaBar", "tier": "T1" },
-      { "id": "upsilon", "process": "upsilon_decays", "nameEn": "Upsilon decays", "nameBn": "আপসাইলন (Upsilon) ক্ষয়", "Q": 9.46, "alphaS": 0.184, "uncertainty": 0.009, "facility": "CLEO", "tier": "T1" },
-      { "id": "dis", "process": "dis_hera", "nameEn": "DIS (ep)", "nameBn": "গভীর অস্থিতিস্থাপক বিক্ষেপণ (DIS)", "Q": 15.0, "alphaS": 0.150, "uncertainty": 0.007, "facility": "HERA (H1/ZEUS)", "tier": "T1" },
-      { "id": "petra", "process": "ee_jets_petra", "nameEn": "e+e- jets (35 GeV)", "nameBn": "e+e- জেট শেপ", "Q": 35.0, "alphaS": 0.140, "uncertainty": 0.006, "facility": "PETRA / JADE", "tier": "T1" },
-      { "id": "zpole", "process": "z_pole", "nameEn": "Z pole decays", "nameBn": "Z বোসন ইলেকট্রোউইক ক্ষয়", "Q": 91.2, "alphaS": 0.1187, "uncertainty": 0.0016, "facility": "LEP / SLD", "tier": "T1" },
-      { "id": "toppair", "process": "top_pair", "nameEn": "tt_bar production", "nameBn": "টপ কোয়ার্ক জোড় উৎপাদন", "Q": 173.0, "alphaS": 0.109, "uncertainty": 0.004, "facility": "LHC / Tevatron", "tier": "T1" },
-      { "id": "lhcjets", "process": "jets_lhc", "nameEn": "Inclusive jets (300 GeV)", "nameBn": "ইনক্লুসিভ জেট (৩০০ GeV)", "Q": 300.0, "alphaS": 0.103, "uncertainty": 0.003, "facility": "LHC (ATLAS / CMS)", "tier": "T1" }
+      {
+        "id": "tau",
+        "process": "tau_decays",
+        "nameEn": "tau decays",
+        "nameBn": "টাউ (tau) ক্ষয়",
+        "Q": 1.78,
+        "alphaS": 0.312,
+        "uncertainty": 0.015,
+        "facility": "LEP / CLEO / BaBar",
+        "tier": "T1"
+      },
+      {
+        "id": "upsilon",
+        "process": "upsilon_decays",
+        "nameEn": "Upsilon decays",
+        "nameBn": "আপসাইলন (Upsilon) ক্ষয়",
+        "Q": 9.46,
+        "alphaS": 0.184,
+        "uncertainty": 0.009,
+        "facility": "CLEO",
+        "tier": "T1"
+      },
+      {
+        "id": "dis",
+        "process": "dis_hera",
+        "nameEn": "DIS (ep)",
+        "nameBn": "গভীর অস্থিতিস্থাপক বিক্ষেপণ (DIS)",
+        "Q": 15,
+        "alphaS": 0.15,
+        "uncertainty": 0.007,
+        "facility": "HERA (H1/ZEUS)",
+        "tier": "T1"
+      },
+      {
+        "id": "petra",
+        "process": "ee_jets_petra",
+        "nameEn": "e+e- jets (35 GeV)",
+        "nameBn": "e+e- জেট শেপ",
+        "Q": 35,
+        "alphaS": 0.14,
+        "uncertainty": 0.006,
+        "facility": "PETRA / JADE",
+        "tier": "T1"
+      },
+      {
+        "id": "zpole",
+        "process": "z_pole",
+        "nameEn": "Z pole decays",
+        "nameBn": "Z বোসন ইলেকট্রোউইক ক্ষয়",
+        "Q": 91.2,
+        "alphaS": 0.1187,
+        "uncertainty": 0.0016,
+        "facility": "LEP / SLD",
+        "tier": "T1"
+      },
+      {
+        "id": "toppair",
+        "process": "top_pair",
+        "nameEn": "tt_bar production",
+        "nameBn": "টপ কোয়ার্ক জোড় উৎপাদন",
+        "Q": 173,
+        "alphaS": 0.109,
+        "uncertainty": 0.004,
+        "facility": "LHC / Tevatron",
+        "tier": "T1"
+      },
+      {
+        "id": "lhcjets",
+        "process": "jets_lhc",
+        "nameEn": "Inclusive jets (300 GeV)",
+        "nameBn": "ইনক্লুসিভ জেট (৩০০ GeV)",
+        "Q": 300,
+        "alphaS": 0.103,
+        "uncertainty": 0.003,
+        "facility": "LHC (ATLAS / CMS)",
+        "tier": "T1"
+      }
     ]
   },
   "evidenceLab": {
@@ -1148,11 +2002,18 @@
       "theoreticalSteps": [
         {
           "step": 1,
-          "rangeGeV": [1.0, 3.7],
+          "rangeGeV": [
+            1,
+            3.7
+          ],
           "labelEn": "u, d, s (< 3.7 GeV)",
           "labelBn": "u, d, s (< ৩.৭ GeV)",
-          "flavors": ["u", "d", "s"],
-          "Nc3_value": 2.0,
+          "flavors": [
+            "u",
+            "d",
+            "s"
+          ],
+          "Nc3_value": 2,
           "Nc3_fraction": "2",
           "Nc1_value": 0.667,
           "Nc1_fraction": "2/3",
@@ -1160,10 +2021,18 @@
         },
         {
           "step": 2,
-          "rangeGeV": [3.7, 10.5],
+          "rangeGeV": [
+            3.7,
+            10.5
+          ],
           "labelEn": "u, d, s, c (3.7 - 10.5 GeV)",
           "labelBn": "u, d, s, c (৩.৭ - ১০.৫ GeV)",
-          "flavors": ["u", "d", "s", "c"],
+          "flavors": [
+            "u",
+            "d",
+            "s",
+            "c"
+          ],
           "Nc3_value": 3.333,
           "Nc3_fraction": "10/3",
           "Nc1_value": 1.111,
@@ -1172,10 +2041,19 @@
         },
         {
           "step": 3,
-          "rangeGeV": [10.5, 40.0],
+          "rangeGeV": [
+            10.5,
+            40
+          ],
           "labelEn": "u, d, s, c, b (> 10.5 GeV)",
           "labelBn": "u, d, s, c, b (> ১০.৫ GeV)",
-          "flavors": ["u", "d", "s", "c", "b"],
+          "flavors": [
+            "u",
+            "d",
+            "s",
+            "c",
+            "b"
+          ],
           "Nc3_value": 3.667,
           "Nc3_fraction": "11/3",
           "Nc1_value": 1.222,
@@ -1184,24 +2062,126 @@
         }
       ],
       "resonances": [
-        { "symbol": "rho", "name": "rho(770)", "massGeV": 0.775, "widthGeV": 0.150, "quarks": "ud_bar / du_bar", "tier": "T1" },
-        { "symbol": "omega", "name": "omega(782)", "massGeV": 0.782, "widthGeV": 0.0085, "quarks": "uu_bar + dd_bar", "tier": "T1" },
-        { "symbol": "phi", "name": "phi(1020)", "massGeV": 1.020, "widthGeV": 0.0042, "quarks": "ss_bar", "tier": "T1" },
-        { "symbol": "J/psi", "name": "J/psi", "massGeV": 3.097, "widthGeV": 0.000093, "quarks": "cc_bar", "tier": "T1" },
-        { "symbol": "psi(2S)", "name": "psi(2S)", "massGeV": 3.686, "widthGeV": 0.00029, "quarks": "cc_bar", "tier": "T1" },
-        { "symbol": "Upsilon", "name": "Upsilon(1S)", "massGeV": 9.460, "widthGeV": 0.000054, "quarks": "bb_bar", "tier": "T1" }
+        {
+          "symbol": "rho",
+          "name": "rho(770)",
+          "massGeV": 0.775,
+          "widthGeV": 0.15,
+          "quarks": "ud_bar / du_bar",
+          "tier": "T1"
+        },
+        {
+          "symbol": "omega",
+          "name": "omega(782)",
+          "massGeV": 0.782,
+          "widthGeV": 0.0085,
+          "quarks": "uu_bar + dd_bar",
+          "tier": "T1"
+        },
+        {
+          "symbol": "phi",
+          "name": "phi(1020)",
+          "massGeV": 1.02,
+          "widthGeV": 0.0042,
+          "quarks": "ss_bar",
+          "tier": "T1"
+        },
+        {
+          "symbol": "J/psi",
+          "name": "J/psi",
+          "massGeV": 3.097,
+          "widthGeV": 0.000093,
+          "quarks": "cc_bar",
+          "tier": "T1"
+        },
+        {
+          "symbol": "psi(2S)",
+          "name": "psi(2S)",
+          "massGeV": 3.686,
+          "widthGeV": 0.00029,
+          "quarks": "cc_bar",
+          "tier": "T1"
+        },
+        {
+          "symbol": "Upsilon",
+          "name": "Upsilon(1S)",
+          "massGeV": 9.46,
+          "widthGeV": 0.000054,
+          "quarks": "bb_bar",
+          "tier": "T1"
+        }
       ],
       "pdgMeasuredPoints": [
-        { "sqrt_s": 1.5, "R": 2.15, "uncertainty": 0.12, "facility": "CMD-2 / SND", "tier": "T1" },
-        { "sqrt_s": 2.2, "R": 2.18, "uncertainty": 0.10, "facility": "BES", "tier": "T1" },
-        { "sqrt_s": 3.4, "R": 2.16, "uncertainty": 0.09, "facility": "BES", "tier": "T1" },
-        { "sqrt_s": 4.5, "R": 3.60, "uncertainty": 0.14, "facility": "BES / CLEO", "tier": "T1" },
-        { "sqrt_s": 6.0, "R": 3.52, "uncertainty": 0.12, "facility": "CLEO", "tier": "T1" },
-        { "sqrt_s": 8.0, "R": 3.48, "uncertainty": 0.11, "facility": "MD-1", "tier": "T1" },
-        { "sqrt_s": 10.0, "R": 3.55, "uncertainty": 0.13, "facility": "CLEO", "tier": "T1" },
-        { "sqrt_s": 12.0, "R": 3.95, "uncertainty": 0.15, "facility": "CESR / PETRA", "tier": "T1" },
-        { "sqrt_s": 22.0, "R": 3.88, "uncertainty": 0.14, "facility": "PETRA (JADE/TASSO)", "tier": "T1" },
-        { "sqrt_s": 34.0, "R": 3.92, "uncertainty": 0.12, "facility": "PETRA", "tier": "T1" }
+        {
+          "sqrt_s": 1.5,
+          "R": 2.15,
+          "uncertainty": 0.12,
+          "facility": "CMD-2 / SND",
+          "tier": "T1"
+        },
+        {
+          "sqrt_s": 2.2,
+          "R": 2.18,
+          "uncertainty": 0.1,
+          "facility": "BES",
+          "tier": "T1"
+        },
+        {
+          "sqrt_s": 3.4,
+          "R": 2.16,
+          "uncertainty": 0.09,
+          "facility": "BES",
+          "tier": "T1"
+        },
+        {
+          "sqrt_s": 4.5,
+          "R": 3.6,
+          "uncertainty": 0.14,
+          "facility": "BES / CLEO",
+          "tier": "T1"
+        },
+        {
+          "sqrt_s": 6,
+          "R": 3.52,
+          "uncertainty": 0.12,
+          "facility": "CLEO",
+          "tier": "T1"
+        },
+        {
+          "sqrt_s": 8,
+          "R": 3.48,
+          "uncertainty": 0.11,
+          "facility": "MD-1",
+          "tier": "T1"
+        },
+        {
+          "sqrt_s": 10,
+          "R": 3.55,
+          "uncertainty": 0.13,
+          "facility": "CLEO",
+          "tier": "T1"
+        },
+        {
+          "sqrt_s": 12,
+          "R": 3.95,
+          "uncertainty": 0.15,
+          "facility": "CESR / PETRA",
+          "tier": "T1"
+        },
+        {
+          "sqrt_s": 22,
+          "R": 3.88,
+          "uncertainty": 0.14,
+          "facility": "PETRA (JADE/TASSO)",
+          "tier": "T1"
+        },
+        {
+          "sqrt_s": 34,
+          "R": 3.92,
+          "uncertainty": 0.12,
+          "facility": "PETRA",
+          "tier": "T1"
+        }
       ]
     },
     "evidenceCards": [
@@ -1211,7 +2191,11 @@
         "titleEn": "1. Deep Inelastic Scattering (DIS) & Partons",
         "experiment": "SLAC (1968-1969)",
         "nobelYear": 1990,
-        "nobelLaureates": ["Jerome I. Friedman", "Henry W. Kendall", "Richard E. Taylor"],
+        "nobelLaureates": [
+          "Jerome I. Friedman",
+          "Henry W. Kendall",
+          "Richard E. Taylor"
+        ],
         "tier": "T1",
         "keyDiscoveryBn": "উচ্চশক্তির ইলেকট্রন দিয়ে প্রোটনে আঘাত করে দেখা যায় প্রোটন কোনো নরম অবিভাজ্য বল নয়; ভেতরে অতি-ক্ষুদ্র, শক্ত, বিন্দুসদৃশ চার্জিত কণা (পার্টন বা কোয়ার্ক) রয়েছে যা বজরকেন স্কেলিং (Bjorken scaling) মেনে চলে।",
         "physicsProofBn": "F_2(x, Q^2) স্কেলিং প্রমাণ করে বিক্ষেপণকারী কেন্দ্রগুলো স্থানিকভাবে বিন্দুসদৃশ (< 10^-18 m)।"
@@ -1264,14 +2248,33 @@
     "authors": "T.-J. Hou, K. Xie, J. Gao, S. Dulat, M. Guzzi, T. J. Hobbs, J. Huston, P. Nadolsky, J. Pumplin, C. Schmidt, I. Sitiwaldi, D. Stump, C.-P. Yuan",
     "citation": "Phys. Rev. D 103, 014013 (2021) [arXiv:1908.11394]; CERN LHAPDF",
     "orderQCD": "NNLO (3-loop DGLAP evolution)",
-    "alphaS_MZ": 0.1180,
-    "validRangeQ2_GeV2": [2.145, 228248642.41],
-    "nonPerturbativeLimitQ2_GeV2": 2.0,
+    "alphaS_MZ": 0.118,
+    "validRangeQ2_GeV2": [
+      2.145,
+      228248642.41
+    ],
+    "nonPerturbativeLimitQ2_GeV2": 2,
     "sumRules": {
-      "valenceUpIntegral": { "target": 2.0, "tolerance": 0.02, "verified": true },
-      "valenceDownIntegral": { "target": 1.0, "tolerance": 0.015, "verified": true },
-      "strangeAsymmetryIntegral": { "target": 0.0, "tolerance": 0.005, "verified": true },
-      "momentumSumRule": { "target": 1.0, "tolerance": 0.015, "verified": true }
+      "valenceUpIntegral": {
+        "target": 2,
+        "tolerance": 0.02,
+        "verified": true
+      },
+      "valenceDownIntegral": {
+        "target": 1,
+        "tolerance": 0.015,
+        "verified": true
+      },
+      "strangeAsymmetryIntegral": {
+        "target": 0,
+        "tolerance": 0.005,
+        "verified": true
+      },
+      "momentumSumRule": {
+        "target": 1,
+        "tolerance": 0.015,
+        "verified": true
+      }
     },
     "asymptoticMomentumLimitFormula": "16 / (16 + 3 * n_f)",
     "asymptoticMomentumLimit_nf5": 0.5161,
@@ -1282,14 +2285,17 @@
     "transitionTemperatureMeV": {
       "value": 156.5,
       "uncertainty": 1.5,
-      "kelvin": 1.816e12,
+      "kelvin": 1816000000000,
       "source": "HotQCD Collaboration (Bazavov et al., Phys. Lett. B 795 (2019) 15); Wuppertal-Budapest (JHEP 1009 (2010) 073)",
       "tier": "T2"
     },
     "universeAgeMicroseconds": {
-      "range": [10.0, 30.0],
-      "nominal": 15.0,
-      "seconds": 1.5e-5,
+      "range": [
+        10,
+        30
+      ],
+      "nominal": 15,
+      "seconds": 0.000015,
       "era": "কসমিক হ্যাড্রোনাইজেশন যুগ (Cosmic Hadronization Era)"
     },
     "transitionNature": {
@@ -1319,10 +2325,13 @@
         "id": "quark_spin",
         "symbol": "(1/2)ΔΣ",
         "nameBn": "কোয়ার্ক স্পিন (Quark Intrinsic Spin)",
-        "percentage": 30.0,
-        "uncertainty": 4.0,
+        "percentage": 30,
+        "uncertainty": 4,
         "value": 0.15,
-        "rangePercent": [25.0, 35.0],
+        "rangePercent": [
+          25,
+          35
+        ],
         "sources": "EMC (CERN 1987), COMPASS, HERMES, NNPDFpol, Lattice QCD (ETMC, PNDME)",
         "tier": "T2"
       },
@@ -1330,10 +2339,13 @@
         "id": "gluon_spin",
         "symbol": "ΔG",
         "nameBn": "গ্লুয়ন স্পিন (Gluon Polarization)",
-        "percentage": 40.0,
-        "uncertainty": 8.0,
-        "value": 0.20,
-        "rangePercent": [32.0, 48.0],
+        "percentage": 40,
+        "uncertainty": 8,
+        "value": 0.2,
+        "rangePercent": [
+          32,
+          48
+        ],
         "sources": "RHIC Spin Program (STAR, PHENIX polarized pp), DSSV global fit",
         "tier": "T2"
       },
@@ -1341,10 +2353,13 @@
         "id": "quark_orbital",
         "symbol": "L_q",
         "nameBn": "কোয়ার্কের কক্ষীয় কৌণিক ভরবেগ (Quark OAM)",
-        "percentage": 20.0,
-        "uncertainty": 8.0,
-        "value": 0.10,
-        "rangePercent": [12.0, 28.0],
+        "percentage": 20,
+        "uncertainty": 8,
+        "value": 0.1,
+        "rangePercent": [
+          12,
+          28
+        ],
         "sources": "Generalized Parton Distributions (GPD), JLab 12 GeV, Lattice QCD",
         "tier": "T2"
       },
@@ -1352,10 +2367,13 @@
         "id": "gluon_orbital",
         "symbol": "L_g",
         "nameBn": "গ্লুয়নের কক্ষীয় কৌণিক ভরবেগ (Gluon OAM)",
-        "percentage": 10.0,
-        "uncertainty": 7.0,
+        "percentage": 10,
+        "uncertainty": 7,
         "value": 0.05,
-        "rangePercent": [3.0, 17.0],
+        "rangePercent": [
+          3,
+          17
+        ],
         "sources": "Lattice QCD & theoretical Ji sum rule constraint",
         "tier": "T2"
       }
@@ -1364,6 +2382,947 @@
       "naiveModelBn": "সরল কোয়ার্ক মডেলের অনুমান: দুইটি আপ কোয়ার্ক স্পিন-আপ (+1/2, +1/2) এবং একটি ডাউন কোয়ার্ক স্পিন-ডাউন (-1/2) হলেই মোট স্পিন 1/2 হয়ে যাবে।",
       "realityBn": "প্রকৃত বৈজ্ঞানিক সত্য: ১৯৮৭ সালে ইউরোপিয়ান মিউয়ন কোলাবোরেশন (EMC, CERN) প্রোটনে পোলারাইজড ডিপ-ইনইলাস্টিক বিক্ষেপণে পরীক্ষা করে আবিষ্কার করে যে ৩টি ভ্যালেন্স কোয়ার্কের নিজস্ব স্পিন মোট স্পিনের মাত্র প্রায় ২৫-৩৫% বহন করে! বাকি ৭০% স্পিন আসে গ্লুয়নের পোলারাইজেশন ও কোয়ার্ক-গ্লুয়নদের প্রচণ্ড গতিবেগের কক্ষীয় ঘূর্ণন (OAM) থেকে।"
     }
+  },
+  "unsolvedMysteries": {
+    "tier": "T2",
+    "titleBn": "অজানা ও অমীমাংসিত রহস্য (Frontiers of QCD)",
+    "titleEn": "Unsolved Mysteries & Frontiers of QCD",
+    "descriptionBn": "স্ট্যান্ডার্ড মডেল অতি সূক্ষ্মভাবে পরীক্ষিত হলেও কোয়ান্টাম ক্রোমোডাইনামিক্সের গভীরে এমন কিছু মৌলিক প্রশ্ন রয়েছে যার উত্তর মানবজাতির কাছে এখনো অজানা।",
+    "items": [
+      {
+        "id": "confinement_mass_gap",
+        "num": "০১",
+        "titleBn": "Confinement-এর কঠোর প্রমাণ ও Mass Gap",
+        "titleEn": "Color Confinement & Yang-Mills Mass Gap",
+        "statusBn": "অমীমাংসিত",
+        "statusEn": "Unsolved (Millennium Prize)",
+        "statusTag": "unsolved",
+        "tier": "T2",
+        "institution": "Clay Mathematics Institute",
+        "bounty": "$1,000,000 Millennium Prize",
+        "descriptionBn": "পরীক্ষাগারে এবং ল্যাটিস QCD সিমুলেশনে কনফাইনমেন্ট ও নন-জিরো ম্যাস গ্যাপ সুস্পষ্টভাবে দেখা গেলেও চার মাত্রিক অবিচ্ছিন্ন স্থান-কালে ইয়াং-মিলস তত্ত্ব থেকে এর কোনো রিগোরাস গাণিতিক প্রমাণ এখনো পাওয়া যায়নি।",
+        "physicsDetailsBn": "কেন গ্লুয়নরা ভরহীন বোসন হওয়া সত্ত্বেও সবল বলের সর্বনিম্ন বাউন্ড স্টেট (গ্লুবল বা হ্যাড্রন)-এর একটি সুনির্দিষ্ট ধনাত্মক ভর (> 0) থাকে? গণিতের ৭টি মিলেনিয়াম প্রাইজের একটি।"
+      },
+      {
+        "id": "proton_spin_puzzle",
+        "num": "০২",
+        "titleBn": "প্রোটন-spin বণ্টন",
+        "titleEn": "Proton Spin Decomposition",
+        "statusBn": "আংশিক জানা",
+        "statusEn": "Partially Known",
+        "statusTag": "partially_known",
+        "tier": "T2",
+        "institution": "CERN (EMC, COMPASS) & BNL (RHIC Spin)",
+        "descriptionBn": "প্রোটনের মোট স্পিন ১/২-এর মধ্যে কোয়ার্কদের স্পিন অবদান মাত্র প্রায় ২৫-৩৫%। গ্লুয়ন পোলারাইজেশন ΔG প্রায় ৪০% জানা গেলেও কোয়ার্ক ও গ্লুয়নের কক্ষীয় কৌণিক ভরবেগ (L_q ও L_g) সরাসরি মাপা অত্যন্ত জটিল।",
+        "physicsDetailsBn": "ভবিষ্যতের Electron-Ion Collider (EIC, BNL) প্রোটনের ত্রিমাত্রিক পার্টন টমোগ্রাফি (GPDs) করে এই স্পিন ধাঁধার সমাধান করবে বলে আশা করা হচ্ছে।"
+      },
+      {
+        "id": "exotic_hadron_structure",
+        "num": "০৩",
+        "titleBn": "Exotic হ্যাড্রনের গঠন (টেট্রাকোয়ার্ক ও পেন্টাকোয়ার্ক)",
+        "titleEn": "Nature of Exotic Hadrons (Molecular vs Compact)",
+        "statusBn": "বিতর্কিত",
+        "statusEn": "Debated",
+        "statusTag": "debated",
+        "tier": "T1",
+        "institution": "LHCb, BESIII, Belle II",
+        "descriptionBn": "X(3872), P_c পেন্টাকোয়ার্ক বা T_cc^+ টেট্রাকোয়ার্কের মতো কণাগুলো কি দুটি মেসনের দুর্বল আণবিক বাউন্ড স্টেট (হাইড্রোলাইক মেসন-অণু), নাকি একটি ক্ষুদ্র পরিসরে আবদ্ধ টাইট কম্প্যাক্ট টেট্রাকোয়ার্ক/পেন্টাকোয়ার্ক?",
+        "physicsDetailsBn": "উভয় মডেলই পরীক্ষালব্ধ ভর ও বিস্তার আংশিক ব্যাখ্যা করতে পারে, কিন্তু চূড়ান্ত অভ্যন্তরীণ বিন্যাস নিয়ে বিশ্বব্যাপী তাত্ত্বিক পদার্থবিজ্ঞানীদের মধ্যে তীব্র বিতর্ক বিদ্যমান।"
+      },
+      {
+        "id": "glueball",
+        "num": "০৪",
+        "titleBn": "Glueball (বিশুদ্ধ গ্লুয়ন বাউন্ড স্টেট)",
+        "titleEn": "Glueball States (Pure Yang-Mills Bound States)",
+        "statusBn": "অনুমিত",
+        "statusEn": "Hypothesized",
+        "statusTag": "hypothesized",
+        "tier": "T3",
+        "institution": "Lattice QCD & BESIII",
+        "descriptionBn": "যেহেতু গ্লুয়ন নিজেরাই কালার চার্জিত, কোনো কোয়ার্ক ছাড়াই শুধু গ্লুয়ন মিলে কালার-সিঙ্গলেট গঠন করতে পারে। ল্যাটিস QCD ১.৫ - ১.৭ GeV ভর ভবিষ্যদ্বাণী করে।",
+        "physicsDetailsBn": "পরীক্ষাগারে f_0(1500) বা f_0(1710) মেসনগুলোতে গ্লুবল উপাদান থাকার সম্ভাবনা থাকলেও সাধারণ কোয়ার্ক-অ্যান্টিকোয়ার্ক মেসনদের সাথে কোয়ান্টাম মিশ্রণের কারণে বিশুদ্ধ গ্লুবল শনাক্তকরণ এখনো নিশ্চিত নয়।"
+      },
+      {
+        "id": "qcd_critical_point",
+        "num": "০৫",
+        "titleBn": "QCD Phase Diagram-এর Critical Point",
+        "titleEn": "QCD Critical End Point",
+        "statusBn": "অজানা",
+        "statusEn": "Unknown",
+        "statusTag": "unknown",
+        "tier": "T2",
+        "institution": "RHIC Beam Energy Scan (BES-II) & FAIR (GSI)",
+        "descriptionBn": "উচ্চ তাপমাত্রা ও শূন্য বেরিয়ন ঘনত্বে রূপান্তরটি মসৃণ ক্রসওভার। কিন্তু উচ্চ বেরিয়ন ঘনত্ব ও নিম্ন তাপমাত্রায় ১ম ক্রমের ট্রানজিশন লাইন যেখানে শেষ হয়, সেই সংকট বিন্দুর (Critical Point) অস্তিত্ব ও স্থানাঙ্ক এখনো অজানা।",
+        "physicsDetailsBn": "RHIC-এর বিম এনার্জি স্ক্যান এবং জার্মানির FAIR ফ্যাসিলিটিতে চরম ঘনত্বের সংঘর্ষ ঘটিয়ে ফ্ল্যাকচুয়েশনের মাধ্যমে সংকট বিন্দু খোঁজা হচ্ছে।"
+      },
+      {
+        "id": "strong_cp_axion",
+        "num": "০৬",
+        "titleBn": "Strong CP সমস্যা ও Axion প্রস্তাব",
+        "titleEn": "The Strong CP Problem & The Axion",
+        "statusBn": "অমীমাংসিত",
+        "statusEn": "Unsolved",
+        "statusTag": "unsolved",
+        "tier": "T2",
+        "institution": "Neutron EDM Experiments & Axion Searches (ADMX)",
+        "descriptionBn": "তাত্ত্বিকভাবে QCD ল্যাগ্রাঞ্জিয়ানে CP লঙ্ঘনকারী θ-টার্ম থাকার কথা, যা নিউট্রনের বৈদ্যুতিক ডাইপোল মোমেন্ট (EDM) সৃষ্টি করত। কিন্তু বাস্তবে পরিমাপ দেখায় |θ| < 10^-10 — অর্থাৎ সবল মিথস্ক্রিয়া কঠোরভাবে CP সংরক্ষণ করে!",
+        "physicsDetailsBn": "কেন এই সূক্ষ্ম সমন্বয়? পেচ্চেই-কুইন প্রতিসাম্য ও অনুমিত অদৃশ্য কণা 'অ্যাক্সিয়ন' (যা ডার্ক ম্যাটারের অন্যতম প্রধান প্রার্থী) এর সমাধান দিতে পারে, কিন্তু তা এখনো অনাবিষ্কৃত।"
+      },
+      {
+        "id": "quark_substructure",
+        "num": "০৭",
+        "titleBn": "কোয়ার্কে কি আরও গভীর গঠন আছে?",
+        "titleEn": "Quark Substructure & Compositeness Limits",
+        "statusBn": "অজানা",
+        "statusEn": "Unknown (< 10^-18 m)",
+        "statusTag": "unknown",
+        "tier": "T1",
+        "institution": "CERN LHC (ATLAS / CMS), HERA",
+        "descriptionBn": "বর্তমান পরীক্ষালব্ধ সীমা পর্যন্ত (< ১০⁻¹⁸ মি) কোয়ার্ক পুরোপুরি বিন্দুসদৃশ ফার্মিয়ন। কোনো অভ্যন্তরীণ সাব-স্ট্রাকচার বা আকারের প্রমাণ মেলেনি।",
+        "physicsDetailsBn": "কোয়ার্ক কি কোনো অতি-ক্ষুদ্র কণার (Preon) সমষ্টি, নাকি মৌলিক স্থান-কালের কম্পনশীল স্ট্রিং? ১০⁻১৮ মি থেকে ১০⁻³⁵ মি প্ল্যাঙ্ক স্কেলের বিশাল মরুভূমিতে কী লুকিয়ে আছে তা সম্পূর্ণ অজ্ঞাত।"
+      },
+      {
+        "id": "dense_quark_matter",
+        "num": "০৮",
+        "titleBn": "চরম ঘন কোয়ার্ক পদার্থ ও কালার সুপারকন্ডাক্টিভিটি",
+        "titleEn": "Cold Dense Quark Matter & Color Superconductivity (CFL)",
+        "statusBn": "অনুমান",
+        "statusEn": "Speculative",
+        "statusTag": "speculative",
+        "tier": "T3",
+        "institution": "NICER (NASA), LIGO/Virgo Gravitational Waves",
+        "descriptionBn": "নিউট্রন তারার অতি-ঘন ও বরফশীতল কেন্দ্রে চাপ এত বেশি যে নিউট্রনগুলো ভেঙে গিয়ে ডিকনফাইন্ড কোয়ার্ক তরলে পরিণত হয় কিনা তা একটি মৌলিক রহস্য।",
+        "physicsDetailsBn": "তত্ত্ব অনুযায়ী চরম বেরিয়ন ঘনত্বে কুপার পেয়ার গঠনের মাধ্যমে কালার-ফ্লেভার লকিং (CFL) কালার সুপারকন্ডাক্টিং অবস্থা তৈরি হতে পারে, যা মহাকর্ষীয় তরঙ্গ ও পালসার ব্যাসার্ধ পর্যবেক্ষণ দিয়ে পরখ করা হচ্ছে।"
+      },
+      {
+        "id": "toponium",
+        "num": "০৯",
+        "titleBn": "Toponium-ব্যাখ্যা (CMS / ATLAS 2025)",
+        "titleEn": "Toponium Bound State Candidate",
+        "statusBn": "চলমান",
+        "statusEn": "Ongoing / Active Investigation",
+        "statusTag": "ongoing",
+        "tier": "T1",
+        "institution": "CERN LHC (CMS & ATLAS Collaborations, 2024-2025)",
+        "descriptionBn": "টপ কোয়ার্কের আয়ুষ্কাল (~5×10^-25 s) হ্যাড্রোনাইজেশন সময়ের চেয়ে কম হওয়ায় প্রথাগত টপ-হ্যাড্রন তৈরি অসম্ভব মনে করা হতো। কিন্তু ২০২৪-২০২৫ সালে CMS ও ATLAS কোলাবোরেশন tt̄ থ্রেশহোল্ডে অতিরিক্ত ইভেন্ট পর্যবেক্ষণ করেছে।",
+        "physicsDetailsBn": "এই উদ্বৃত্ত ঘটনাগুলো কি ক্ষণস্থায়ী কুলম্ব বাউন্ড স্টেট 'টপোনিয়াম' (Toponium), নাকি স্ট্যান্ডার্ড মডেলের উচ্চ-ক্রমের ইন্টারফেয়ারেন্স প্রভাব—তা নিয়ে বর্তমানে নিবিড় গবেষণা চলছে।"
+      },
+      {
+        "id": "intrinsic_charm",
+        "num": "১০",
+        "titleBn": "Intrinsic Charm (প্রোটনের ভেতরে স্থায়ী চার্ম কোয়ার্ক)",
+        "titleEn": "Intrinsic Charm in the Proton",
+        "statusBn": "ইঙ্গিত / বিতর্কিত",
+        "statusEn": "Evidence / Debated",
+        "statusTag": "debated",
+        "tier": "T2",
+        "institution": "NNPDF Collaboration (Nature 608, 483, 2022) & LHCb",
+        "descriptionBn": "সাধারণত মনে করা হয় প্রোটনের সি-কোয়ার্ক কেবল গ্লুয়ন স্প্লিটিং (Extrinsic) থেকে আসে। কিন্তু ২০২২ সালে নেচার জার্নালে NNPDF প্রমাণ উপস্থাপন করে যে প্রোটনের নন-পার্টারবেটিভ তরঙ্গফাংশনে প্রায় ০.৫% স্থায়ী চার্ম কোয়ার্ক জোড় (Intrinsic Charm) রয়েছে।",
+        "physicsDetailsBn": "গ্লোবাল ফিটে ৩ সিগমার বেশি তাৎপর্য পাওয়া গেলেও বিভিন্ন ল্যাবরেটরির ডেটাসেট ও তাত্ত্বিক ফ্রেমওয়ার্কের মধ্যে এখনো এটি সম্পূর্ণ ঐকমত্যে পৌঁছায়নি।"
+      }
+    ]
+  },
+  "quarkHistoryTimeline": {
+    "tier": "T1",
+    "titleBn": "কোয়ার্ক ও QCD আবিষ্কারের ঐতিহাসিক টাইমলাইন",
+    "titleEn": "Historical Timeline of Quarks & QCD",
+    "milestones": [
+      {
+        "year": 1964,
+        "titleBn": "কোয়ার্ক মডেলের প্রস্তাব",
+        "titleEn": "The Quark Model Proposal",
+        "scientists": "Murray Gell-Mann ও George Zweig",
+        "citation": "Phys. Lett. 8 (1964) 214; CERN preprint 8182/TH.401",
+        "tier": "T1",
+        "discoveryBn": "হ্যাড্রনদের অগণিত ভিড় (Hadron Zoo) শৃঙ্খলাবদ্ধ করতে আপ, ডাউন ও স্ট্রেঞ্জ—এই ৩টি ভগ্নাংশ-চার্জযুক্ত মৌলিক কণার অস্তিত্ব প্রস্তাব করা হয়।"
+      },
+      {
+        "year": "1964–65",
+        "titleBn": "কালার চার্জের ধারণা প্রবর্তন",
+        "titleEn": "Introduction of Color Charge",
+        "scientists": "O.W. Greenberg (1964); M. Han ও Y. Nambu (1965)",
+        "citation": "Phys. Rev. Lett. 13 (1964) 598; Phys. Rev. 139 (1965) B1006",
+        "tier": "T2",
+        "discoveryBn": "ডেল্টা++ (uuu) ব্যারিয়নে পাউলির অপবর্জন নীতি রক্ষা করতে প্রতিটি কোয়ার্ক ফ্লেভারে ৩টি করে গোপন কালার চার্জ (SU(3)) প্রস্তাব করা হয়।"
+      },
+      {
+        "year": "1968–69",
+        "titleBn": "SLAC-MIT ডিপ ইনইলাস্টিক বিক্ষেপণ (DIS)",
+        "titleEn": "Discovery of Partons at SLAC-MIT",
+        "scientists": "J. Friedman, H. Kendall, R. Taylor (Nobel 1990); J. Bjorken, R. Feynman",
+        "citation": "Phys. Rev. Lett. 23 (1969) 935; Phys. Rev. 179 (1969) 1547",
+        "tier": "T1",
+        "discoveryBn": "উচ্চশক্তির ইলেকট্রন বিচ্ছুরণে বজরকেন স্কেলিং পর্যবেক্ষণ করে প্রমাণিত হয় যে প্রোটন অবিভাজ্য নয়, বরং তার ভেতরে বিন্দুসদৃশ কণা (পার্টন/কোয়ার্ক) রয়েছে।"
+      },
+      {
+        "year": 1973,
+        "titleBn": "অ্যাসিম্পটোটিক ফ্রিডম ও QCD তত্ত্ব",
+        "titleEn": "Asymptotic Freedom & Formulation of QCD",
+        "scientists": "David Gross, Frank Wilczek, David Politzer (Nobel 2004)",
+        "citation": "Phys. Rev. Lett. 30 (1973) 1343; Phys. Rev. Lett. 30 (1973) 1346",
+        "tier": "T1",
+        "discoveryBn": "নন-অ্যাবেলিয়ান গেজ তত্ত্বে আবিষ্কৃত হয় যে ক্ষুদ্র দূরত্বে সবল বল দুর্বল হয়ে যায়—কোয়ান্টাম ক্রোমোডাইনামিক্স (QCD) সবল বলের নিখুঁত তত্ত্বে রূপ নেয়।"
+      },
+      {
+        "year": 1974,
+        "titleBn": "নভেম্বর বিপ্লব: J/ψ আবিষ্কার ও Charm কোয়ার্ক",
+        "titleEn": "November Revolution: Discovery of J/psi & Charm",
+        "scientists": "Burton Richter (SLAC) ও Samuel Ting (BNL) (Nobel 1976)",
+        "citation": "Phys. Rev. Lett. 33 (1974) 1404; Phys. Rev. Lett. 33 (1974) 1406",
+        "tier": "T1",
+        "discoveryBn": "অপ্রত্যাশিত দীর্ঘায়ুর ভারী J/ψ মেসন (cc̄) আবিষ্কারের মাধ্যমে স্ট্যান্ডার্ড মডেলের চতুর্থ ফ্লেভার 'চার্ম' কোয়ার্ক নিঃসংশয়ে প্রমাণিত হয়।"
+      },
+      {
+        "year": 1977,
+        "titleBn": "Υ (Upsilon) মেসন ও Bottom কোয়ার্ক",
+        "titleEn": "Discovery of the Upsilon Meson & Bottom Quark",
+        "scientists": "Leon Lederman ও সহকর্মীগণ (Fermilab)",
+        "citation": "Phys. Rev. Lett. 39 (1977) 252",
+        "tier": "T1",
+        "discoveryBn": "ফার্মিল্যাবে ৯.৪৬ GeV ভরের আপসাইলন মেসন (bb̄) আবিষ্কার করে তৃতীয় প্রজন্মের প্রথম কোয়ার্ক—'বটম' (বা বিউটি) কোয়ার্কের দরজা উন্মোচন করা হয়।"
+      },
+      {
+        "year": 1979,
+        "titleBn": "PETRA-তে গ্লুয়নের প্রথম প্রত্যক্ষ আবিষ্কার",
+        "titleEn": "Direct Observation of Gluons (Three-Jet Events)",
+        "scientists": "TASSO, JADE, MARK-J, PLUTO (PETRA, DESY Hamburg)",
+        "citation": "Phys. Lett. B 86 (1979) 243; Phys. Rev. Lett. 43 (1979) 830",
+        "tier": "T1",
+        "discoveryBn": "ইলেকট্রন-পজিট্রন সংঘর্ষে সমতলীয় ৩-জেট (q q̄ g) ইভেন্ট দেখে সবল বলের বলবাহক কণা গ্লুয়নের প্রত্যক্ষ প্রমাণ পাওয়া যায়।"
+      },
+      {
+        "year": 1995,
+        "titleBn": "টপ কোয়ার্কের আবিষ্কার (সবচেয়ে ভারী কোয়ার্ক)",
+        "titleEn": "Discovery of the Top Quark",
+        "scientists": "CDF ও D0 Collaborations (Fermilab Tevatron)",
+        "citation": "Phys. Rev. Lett. 74 (1995) 2626; Phys. Rev. Lett. 74 (1995) 2632",
+        "tier": "T1",
+        "discoveryBn": "সোনার পরমাণুর সমান দানবীয় ভরের (~১৭৩ GeV) ৬ষ্ঠ ও সর্বশেষ কোয়ার্ক 'টপ' আবিষ্কৃত হয়, যা হ্যাড্রন গড়ার আগেই ক্ষয়প্রাপ্ত হয়।"
+      },
+      {
+        "year": 2005,
+        "titleBn": "ল্যাটিস QCD-তে স্ট্রিং ব্রেকিংয়ের প্রত্যক্ষ গণনা",
+        "titleEn": "Ab Initio String Breaking on the Lattice",
+        "scientists": "G.S. Bali et al. (SESAM / Wuppertal)",
+        "citation": "Phys. Rev. D 71 (2005) 114513",
+        "tier": "T2",
+        "discoveryBn": "ডাইনামিক্যাল কোয়ার্কযুক্ত সুপারকম্পিউটার সিমুলেশনে স্থানিক দূরত্ব r_c ≈ ১.২৫ fm-এ ফ্লাক্স টিউব ছিঁড়ে নতুন q q̄ জোড়া তৈরি প্রথমবারের মতো নির্ভুলভাবে সমাধান করা হয়।"
+      },
+      {
+        "year": 2015,
+        "titleBn": "পেন্টাকোয়ার্কের আবিষ্কার",
+        "titleEn": "Observation of Pentaquark States",
+        "scientists": "LHCb Collaboration (CERN LHC)",
+        "citation": "Phys. Rev. Lett. 115 (2015) 072001; Phys. Rev. Lett. 122 (2019) 222001",
+        "tier": "T1",
+        "discoveryBn": "Λ_b ক্ষয়ে P_c(4380)^+ ও P_c(4450)^+ চিহ্নিত করে ৫টি কোয়ার্কের (uudcc̄) আবদ্ধ অবস্থার প্রথম সুনিশ্চিত প্রমাণ মিলে।"
+      },
+      {
+        "year": 2025,
+        "titleBn": "Toponium-সংকেত / tt̄ থ্রেশহোল্ড পর্যবেক্ষণ",
+        "titleEn": "Evidence for Toponium Bound States",
+        "scientists": "CMS ও ATLAS Collaborations (CERN LHC)",
+        "citation": "CMS-PAS-TOP-24-001; ATLAS-CONF-2025-002",
+        "tier": "T1",
+        "discoveryBn": "টপ কোয়ার্ক ক্ষয়ের চরম গতি সত্ত্বেও tt̄ উৎপাদন থ্রেশহোল্ডে কুলম্ব-আবদ্ধ অবস্থার অতিরিক্ত সিগন্যাল ধরা পড়ে, যা আধুনিক গবেষণার কেন্দ্রবিন্দু।"
+      }
+    ]
+  },
+  "mythsVsFacts": [
+    {
+      "id": "myth_01",
+      "num": "০১",
+      "misconceptionBn": "প্রোটন মানে শুধু তিনটি কোয়ার্ক (u, u, d)।",
+      "misconceptionEn": "The proton is made of just three quarks (uud).",
+      "realityBn": "প্রোটন হলো তিনটি ভ্যালেন্স কোয়ার্কের সাথে অসংখ্য ভার্চুয়াল সি-কোয়ার্ক জোড় ও গ্লুয়নের এক উত্তাল কোয়ান্টাম সমুদ্র; 'uud' হলো কেবল নেট কোয়ান্টাম সংখ্যা।",
+      "realityEn": "The proton contains valence quarks surrounded by a fluctuating sea of gluons and quark-antiquark pairs.",
+      "explanationBn": "ডিপ ইনইলাস্টিক বিক্ষেপণে দেখা যায় প্রোটনের ভেতর অবিরাম গ্লুয়ন নির্গত হচ্ছে এবং তা ভেঙে uū, dd̄, ss̄ কোয়ার্ক-অ্যান্টিকোয়ার্ক জোড় তৈরি হচ্ছে। uud হলো ভ্যালেন্স নিয়ম: (u - ū) = ২ এবং (d - d̄) = ১।",
+      "proofCitation": "HERA (H1 / ZEUS) DIS Measurements; CT18 / NNPDF Global Fits"
+    },
+    {
+      "id": "myth_02",
+      "num": "০২",
+      "misconceptionBn": "প্রোটনের ভর তার তিনটি কোয়ার্কের ভরের যোগফল।",
+      "misconceptionEn": "The proton's mass is simply the sum of its three quark masses.",
+      "realityBn": "ভ্যালেন্স কোয়ার্কের হিগস-প্রদত্ত ভর প্রোটনের মোট ভরের মাত্র প্রায় ১% (~৯ MeV); বাকি ৯৯% ভর আসে মূলত QCD-র গতিশক্তি ও আবদ্ধ ফিল্ড শক্তি থেকে (E = mc²)।",
+      "realityEn": "Valence quark masses contribute ~1% (~9 MeV); ~99% comes from dynamical QCD energy and gluon fields.",
+      "explanationBn": "আপ কোয়ার্ক (~২.২ MeV) এবং ডাউন কোয়ার্ক (~৪.৭ MeV)-এর ভর যোগ করলে হয় প্রায় ৯.১ MeV। কিন্তু প্রোটনের ভর ৯৩৮.৩ MeV! আইনস্টাইনের সমীকরণ E = mc² অনুযায়ী আবদ্ধ গ্লুয়ন ও কোয়ার্কের গতিশক্তিই ভরের মূল রূপকার।",
+      "proofCitation": "Budapest-Marseille-Wuppertal (BMW), Science 322 (2008) 1224; PDG 2024"
+    },
+    {
+      "id": "myth_03",
+      "num": "০৩",
+      "misconceptionBn": "কোয়ার্কের রঙ দৃশ্যমান আলোর আসল লাল, সবুজ বা নীল রঙের মতো।",
+      "misconceptionEn": "Quark colors correspond to real visual colors like red, green, and blue.",
+      "realityBn": "কালার-চার্জ কেবল সবল বলের ৩-মাত্রিক গেজ চার্জের (SU(3)) একটি কাল্পনিক নামমাত্র রূপক; দৃশ্যমান আলোর রঙের সাথে এর কোনো বাস্তব সম্পর্ক নেই।",
+      "realityEn": "Color charge is merely a mathematical label for the SU(3) strong interaction charge.",
+      "explanationBn": "তড়িৎচৌম্বক বলের চার্জ ১ মাত্রিক (ধনাত্মক বা ঋণাত্মক)। কিন্তু সবল মিথস্ক্রিয়ায় চার্জ ৩ প্রকার, যা একত্রে মিশলে চার্জহীন (সাদা) অবস্থা দেয়। মানুষের চোখের তিনটি প্রাথমিক রঙের মিশ্রণে সাদা হওয়ার সাথে মিল থাকায় এই নাম দেওয়া হয়েছে।",
+      "proofCitation": "O.W. Greenberg, Phys. Rev. Lett. 13 (1964) 598; Gell-Mann (1972)"
+    },
+    {
+      "id": "myth_04",
+      "num": "০৪",
+      "misconceptionBn": "কোয়ার্ক ছোট শক্ত গোলক, যা নিউক্লিয়াসের ভেতর গ্রহের মতো কক্ষপথে ঘোরে।",
+      "misconceptionEn": "Quarks are tiny solid spheres orbiting like miniature planets.",
+      "realityBn": "কোয়ার্ক স্থানিকভাবে বিন্দুসদৃশ (< ১০⁻¹⁸ মি) কোয়ান্টাম ফার্মিয়ন; এদের কোনো কঠিন পৃষ্ঠ নেই এবং এরা কক্ষপথে না ঘুরে সম্ভাব্যতা তরঙ্গে অবস্থান করে।",
+      "realityEn": "Quarks are point-like quantum fields (< 10^-18 m) described by wavefunctions, not orbital planets.",
+      "explanationBn": "১০⁻¹৮ মিটার স্কেল পর্যন্ত ইলেকট্রন বিক্ষেপণে কোয়ার্কের কোনো অভ্যন্তরীণ ব্যাসার্ধ পাওয়া যায়নি। হাইজেনবার্গের অনিশ্চয়তা নীতি অনুযায়ী এরা প্রোটনের সীমানায় কোয়ান্টাম ফ্ল্যাকচুয়েশন নিয়ে বিরাজ করে।",
+      "proofCitation": "HERA & LEP Experimental Limits on Quark Compositeness, PDG 2024"
+    },
+    {
+      "id": "myth_05",
+      "num": "০৫",
+      "misconceptionBn": "প্রতিটি কোয়ার্কের একটি নির্দিষ্ট ও স্থায়ী রঙ থাকে (যেমন একটি চিরকাল লাল)।",
+      "misconceptionEn": "Each quark has a fixed, permanent color (e.g. one is always red).",
+      "realityBn": "প্রতি সেকেন্ডে ট্রিলিয়ন ট্রিলিয়ন বার গ্লুয়ন বিনিময়ের মাধ্যমে কোয়ার্করা ক্রমাগত নিজেদের রঙ অদলবদল করে; কেবল সামগ্রিক অবস্থাটি সবসময় বর্ণহীন সাদা থাকে।",
+      "realityEn": "Quarks continuously exchange color charge via gluons; only the composite state remains a white singlet.",
+      "explanationBn": "একটি লাল কোয়ার্ক rḡ গ্লুয়ন ত্যাগ করে সবুজ হয়ে যায়, এবং সবুজ কোয়ার্ক সেটি গ্রহণ করে লাল হয়ে যায়। কালার কনফাইনমেন্টের একমাত্র শর্ত হলো যেকোনো মুহূর্তে প্রোটনের সার্বিক অবস্থা কালার-সিঙ্গলেট (r+g+b) হতে হবে।",
+      "proofCitation": "Quantum Chromodynamics SU(3) Gauge Symmetry"
+    },
+    {
+      "id": "myth_06",
+      "num": "০৬",
+      "misconceptionBn": "ফ্লাক্স টিউব সাধারণ স্প্রিং-এর মতো, যত দূরে টানা হয় টানার বল তত বাড়ে।",
+      "misconceptionEn": "Flux tubes act like springs where the pulling force increases with distance.",
+      "realityBn": "ফ্লাক্স টিউবের টান বল দূরত্বের সাথে বাড়ে না, সম্পূর্ণ ধ্রুব থাকে (F ≈ ১.৫×১০⁵ N বা ১৫ টন-ওজন); কেবল মোট জমা শক্তি দূরত্বের সাথে রৈখিকভাবে বাড়ে (E = σL)।",
+      "realityEn": "The tension force is strictly distance-independent (F ≈ 1.5x10^5 N); stored energy scales linearly.",
+      "explanationBn": "মহাকর্ষ বা কুলম্ব বল দূরত্বের বর্গের ব্যস্তানুপাতে কমে। কিন্তু গ্লুয়নের স্ব-মিথস্ক্রিয়ার কারণে ক্ষেত্ররেখা সরু নলে সংকুচিত থাকে, ফলে প্রতি ফেমটোমিটারে প্রায় ১ GeV ধ্রুব হারে শক্তি জমা হয় কিন্তু বল একই থাকে।",
+      "proofCitation": "Lattice QCD Static Quark Potential V(r) = -4/3 alpha_s/r + sigma*r; Bali (2000)"
+    },
+    {
+      "id": "myth_07",
+      "num": "০৭",
+      "misconceptionBn": "ফ্লাক্স টিউব অত্যন্ত জোরে টানলে কোয়ার্কটি আলাদা হয়ে মুক্ত কণায় পরিণত হয়।",
+      "misconceptionEn": "Pulling a quark hard enough breaks it free into an isolated free particle.",
+      "realityBn": "টিউব ছিঁড়লে জমা শক্তি থেকে শূন্যস্থান ফুঁড়ে নতুন কোয়ার্ক-অ্যান্টিকোয়ার্ক জোড় জন্ম নেয় এবং নতুন হ্যাড্রন তৈরি হয়; মহাবিশ্বে একা মুক্ত কোয়ার্ক কখনো পাওয়া যায় না।",
+      "realityEn": "String breaking creates new quark-antiquark pairs from the vacuum; free isolated quarks never emerge.",
+      "explanationBn": "দূরত্ব প্রায় ১.২৫ ফেমটোমিটার অতিক্রম করলেই টিউবের শক্তি দুটি কোয়ার্কের ভরের চেয়ে বেশি হয়ে যায়। প্রকৃতি শক্তি কমাতে টিউব ভেঙে নতুন মেসন তৈরি করে ফেলে। একেই কালার কনফাইনমেন্ট বলে।",
+      "proofCitation": "Lattice QCD Dynamical Quarks String Breaking, Bali et al. (2005)"
+    },
+    {
+      "id": "myth_08",
+      "num": "০৮",
+      "misconceptionBn": "গ্লুয়ন হলো নির্জীব আঠার মতো, যা কেবল কোয়ার্কদের একসাথে জুড়ে রাখে।",
+      "misconceptionEn": "Gluons are just inert glue holding quarks together.",
+      "realityBn": "গ্লুয়ন হলো স্পিন-১ ভরহীন সক্রিয় কোয়ান্টাম বলবাহক বোসন, যা নিজেরাও কালার চার্জ বহন করে এবং নিজেদের সাথে তীব্রভাবে মিথস্ক্রিয়া করে।",
+      "realityEn": "Gluons are active spin-1 gauge bosons carrying color and anti-color that strongly self-interact.",
+      "explanationBn": "ফোটনের কোনো বৈদ্যুতিক চার্জ নেই, তাই ফোটন ফোটনের সাথে সরাসরি ধাক্কা খায় না। কিন্তু গ্লুয়নের কালার চার্জ থাকায় ৩-গ্লুয়ন ও ৪-গ্লুয়ন ভার্টেক্স তৈরি হয়, যা কনফাইনমেন্ট ও অ্যাসিম্পটোটিক ফ্রিডমের মূল কারণ।",
+      "proofCitation": "PETRA Discovery (1979); Non-Abelian SU(3) Gauge Field Theory"
+    },
+    {
+      "id": "myth_09",
+      "num": "০৯",
+      "misconceptionBn": "u মানে স্থানিকভাবে 'উপরে' আর d মানে স্থানিকভাবে 'নিচে'।",
+      "misconceptionEn": "'Up' and 'down' indicate physical spatial directions inside the proton.",
+      "realityBn": "আপ ও ডাউন নামের সাথে ত্রিমাত্রিক স্থানের কোনো সম্পর্ক নেই; এটি হাইজেনবার্গের আইসোস্পিন প্রতিসাম্যের গাণিতিক অভিক্ষেপ (+১/২ ও -১/২) থেকে ধার করা রূপক নাম।",
+      "realityEn": "Up and down denote isospin projections (+1/2, -1/2), with zero spatial directional meaning.",
+      "explanationBn": "প্রোটন ও নিউট্রনের ভর প্রায় সমান হওয়ায় তাদের একই কণার দুটি অবস্থা ধরা হয়েছিল (আইসোস্পিন স্পেসের 'আপ' ও 'ডাউন')। পরবর্তীতে কোয়ার্কের নামকরণও এই আইসোস্পিন কোয়ান্টাম সংখ্যা থেকে নেওয়া হয়।",
+      "proofCitation": "Heisenberg Isospin (1932); Gell-Mann / Zweig (1964)"
+    },
+    {
+      "id": "myth_10",
+      "num": "১০",
+      "misconceptionBn": "ফ্লাক্স টিউব ছিঁড়ে গেলে তার টান শক্তি মহাবিশ্ব থেকে হারিয়ে যায়।",
+      "misconceptionEn": "When a flux tube breaks, the stored pulling energy disappears into nothing.",
+      "realityBn": "শক্তি কখনো ধ্বংস হয় না; টিউবের স্থিতিশক্তি সরাসরি নতুন কোয়ার্ক জোড়ের ভর (E = mc²) এবং নির্গত কণাগুলোর উচ্চ গতিশক্তিতে রূপান্তরিত হয়।",
+      "realityEn": "Energy is strictly conserved: string tension converts into new quark rest mass and kinetic energy.",
+      "explanationBn": "সংঘর্ষ ল্যাবরেটরিতে ইলেকট্রন-পজিট্রন সংঘর্ষে যখন কোয়ার্করা দূরে ছিটকে যায়, তখন স্ট্রিং ব্রেকিংয়ের মাধ্যমে অজস্র মেসন ও ব্যারিয়নের কণা-ঝাঁক (হ্যাড্রনিক জেট) জন্ম নেয়।",
+      "proofCitation": "Relativistic Kinematics; e+e- Collider Jet Fragmentation (LEP / PETRA)"
+    },
+    {
+      "id": "myth_11",
+      "num": "১১",
+      "misconceptionBn": "স্ট্রিং ভাঙার সময় চার্ম, বটম বা টপ কোয়ার্কও সহজে তৈরি হতে পারে।",
+      "misconceptionEn": "Heavy quarks like charm, bottom, or top can easily be produced when a string breaks.",
+      "realityBn": "উচ্চ ভরের কারণে কোয়ান্টাম টানেলিং সূচকীয়ভাবে অবদমিত; ভাঙনে চার্ম সৃষ্টির সম্ভাবনা মাত্র ~১০⁻¹¹ বা তার কম, আর টপ কোয়ার্ক কার্যত কখনোই তৈরি হয় না।",
+      "realityEn": "Massive quarks are exponentially suppressed by quantum tunneling: charm is ~10^-11, top is practically impossible.",
+      "explanationBn": "লুন্ড স্ট্রিং ব্রেকিং মডেল অনুযায়ী নতুন জোড় তৈরির সম্ভাবনা exp(-π m_q² / σ)। হালকা u ও d-এর অনুপাত ১:১, স্ট্রেঞ্জ কোয়ার্ক প্রায় ০.২-০.৩, কিন্তু ভারী কোয়ার্ক তৈরি হওয়ার মতো শক্তি এক লহমায় টানেল করা অসম্ভব।",
+      "proofCitation": "Lund String Fragmentation Model (Andersson et al., Phys. Rep. 97 (1983) 31)"
+    },
+    {
+      "id": "myth_12",
+      "num": "১২",
+      "misconceptionBn": "হ্যাড্রনের ভেতর কোয়ার্ক টানা ও রূপান্তরের ঘটনা মানুষের সেকেন্ডের স্কেলে ঘটে।",
+      "misconceptionEn": "Quark interactions inside hadrons take place over normal human seconds.",
+      "realityBn": "হ্যাড্রন প্রক্রিয়ার প্রাকৃতিক সময় মাত্র প্রায় ১০⁻²⁴ সেকেন্ড (১ fm/c); আমাদের চোখে দেখার জন্য কম্পিউটার অ্যানিমেশনকে ১০²⁴ গুণ ধীর করে দেখানো হয়!",
+      "realityEn": "Hadronic processes take ~10^-24 s (1 fm/c); animations are slowed down by 10^24x for human perception.",
+      "explanationBn": "আলোর গতিতে (৩×১০⁸ মি/সে) প্রোটনের ব্যাস (১.৭ fm) পার হতে সময় লাগে মাত্র ৫.৭×১০⁻²⁴ সেকেন্ড। এই চরম দ্রুততার কারণে মানুষ সরাসরি চোখে কখনো হ্যাড্রন ভাঙা দেখতে পারে না, কেবল ডিটেক্টরে সংকেত মাপে।",
+      "proofCitation": "Natural Units: 1 fm / c = 3.33564 x 10^-24 seconds"
+    },
+    {
+      "id": "myth_13",
+      "num": "১৩",
+      "misconceptionBn": "কোয়ার্কের চার্জ ভগ্নাংশ (+২/৩, -১/৩), তাই মুক্ত প্রকৃতিতেও ভগ্নাংশ চার্জের কণা ঘুরে বেড়ায়।",
+      "misconceptionEn": "Because quarks have fractional charges, free particles in nature can have fractional charges.",
+      "realityBn": "কালার কনফাইনমেন্টের কারণে মুক্তভাবে কেবল কালার-সিঙ্গলেট যৌগিক কণা থাকতে পারে, যাদের সার্বিক বৈদ্যুতিক চার্জ সবসময় মৌলিক আধান e-র পূর্ণসংখ্যা গুণিতক (০, ±১, ±২)।",
+      "realityEn": "Color confinement ensures all observable free particles are white singlets with integer electric charge.",
+      "explanationBn": "মিলিকানের তৈলবিন্দু পরীক্ষা থেকে শুরু করে আজকের LHC পর্যন্ত কোনো মুক্ত ভগ্নাংশ চার্জিত কণা মেলেনি। ৩টি কোয়ার্ক (ব্যারিয়ন) বা কোয়ার্ক-অ্যান্টিকোয়ার্ক (মেসন) মিলে সবসময় ০ বা পূর্ণসংখ্যার চার্জ তৈরি করে।",
+      "proofCitation": "Millikan Oil Drop Experiment; Particle Data Group (PDG 2024 Search for Free Quarks)"
+    }
+  ],
+  "quarkQuiz": {
+    "titleBn": "কোয়ার্ক জগত সমন্বিত কুইজ",
+    "titleEn": "Quark Realm Comprehensive Quiz",
+    "descriptionBn": "কোয়ার্কের স্কেল, ফ্লেভার, কালার, কনফাইনমেন্ট, ভর ও রহস্য নিয়ে আপনার বৈজ্ঞানিক বোধগম্যতা যাচাই করুন।",
+    "questions": [
+      {
+        "id": "q1",
+        "chapterId": "chapter-0",
+        "chapterBn": "অধ্যায় ০: স্কেল-সিঁড়ি",
+        "questionBn": "কোয়ার্কের বর্তমান পরীক্ষালব্ধ আকারের ঊর্ধ্বসীমা কত?",
+        "questionEn": "What is the current experimental upper limit on quark size?",
+        "options": [
+          {
+            "id": "a",
+            "textBn": "১০⁻¹⁵ মিটার (১ fm)",
+            "textEn": "10^-15 m (1 fm)"
+          },
+          {
+            "id": "b",
+            "textBn": "< ১০⁻¹৮ মিটার",
+            "textEn": "< 10^-18 m",
+            "isCorrect": true
+          },
+          {
+            "id": "c",
+            "textBn": "১০⁻¹০ মিটার (পরমাণুর আকার)",
+            "textEn": "10^-10 m"
+          },
+          {
+            "id": "d",
+            "textBn": "১.৬ × ১০⁻³৫ মিটার (প্ল্যাঙ্ক দৈর্ঘ্য)",
+            "textEn": "1.6 x 10^-35 m"
+          }
+        ],
+        "explanationBn": "HERA এবং LEP ত্বরকযন্ত্রের ডিপ ইনইলাস্টিক বিক্ষেপণে প্রমাণিত হয়েছে যে কোয়ার্কের কোনো অভ্যন্তরীণ আকার ধরা পড়েনি; বর্তমান পরীক্ষালব্ধ সীমা হলো r_q < ১০⁻¹৮ মি।",
+        "citation": "HERA / LEP / PDG 2024"
+      },
+      {
+        "id": "q2",
+        "chapterId": "chapter-1",
+        "chapterBn": "অধ্যায় ১: প্রোটনের শরীর",
+        "questionBn": "প্রোটনের ৩টি ফ্লাক্স টিউব ভেতরে কোন জ্যামিতিক বিন্দুতে মিলিত হয়?",
+        "questionEn": "At which geometric point do the proton's 3 flux tubes meet?",
+        "options": [
+          {
+            "id": "a",
+            "textBn": "ভরকেন্দ্রে (Centroid)",
+            "textEn": "Centroid"
+          },
+          {
+            "id": "b",
+            "textBn": "অন্তঃকেন্দ্রে (Incenter)",
+            "textEn": "Incenter"
+          },
+          {
+            "id": "c",
+            "textBn": "ফার্মা-তোরিচেলি বিন্দুতে (Fermat-Torricelli point)",
+            "textEn": "Fermat-Torricelli point",
+            "isCorrect": true
+          },
+          {
+            "id": "d",
+            "textBn": "পরিকেন্দ্রে (Circumcenter)",
+            "textEn": "Circumcenter"
+          }
+        ],
+        "explanationBn": "ফ্লাক্স টিউবের দৈর্ঘ্য ও শক্তি সর্বনিম্ন করতে ত্রিভুজের তিনটি শীর্ষ থেকে দূরত্বের যোগফল যেখানে সর্বনিম্ন, ঠিক সেই ফার্মা-তোরিচেলি বিন্দুতে Y-টিউব জংশন গঠিত হয় (যেখানে সব কোণ ১২০°)।",
+        "citation": "Lattice QCD Baryon Potential; Takahashi et al., PRL 86 (2001) 18"
+      },
+      {
+        "id": "q3",
+        "chapterId": "chapter-2",
+        "chapterBn": "অধ্যায় ২: Flavor ল্যাব",
+        "questionBn": "মুক্ত নিউট্রন বিটা ক্ষয়ে (n -> p + e⁻ + ν̄_e) কোন কোয়ার্ক ট্রানজিশন ঘটে?",
+        "questionEn": "Which quark transition occurs during free neutron beta decay?",
+        "options": [
+          {
+            "id": "a",
+            "textBn": "u -> d + W⁺",
+            "textEn": "u -> d + W+"
+          },
+          {
+            "id": "b",
+            "textBn": "d -> u + W⁻*",
+            "textEn": "d -> u + W-*",
+            "isCorrect": true
+          },
+          {
+            "id": "c",
+            "textBn": "d -> s + গ্লুয়ন",
+            "textEn": "d -> s + gluon"
+          },
+          {
+            "id": "d",
+            "textBn": "u -> c + Z⁰",
+            "textEn": "u -> c + Z0"
+          }
+        ],
+        "explanationBn": "দুর্বল নিউক্লীয় বলের মাধ্যমে একটি ডাউন কোয়ার্ক (-১/৩ e) ভার্চুয়াল W⁻ বোসন নির্গমন করে আপ কোয়ার্কে (+২/৩ e) রূপান্তরিত হয়, এবং W⁻ ক্ষয়প্রাপ্ত হয়ে ইলেকট্রন ও অ্যান্টিনিউট্রিনো তৈরি করে।",
+        "citation": "Fermi Theory of Beta Decay; PDG 2024"
+      },
+      {
+        "id": "q4",
+        "chapterId": "chapter-3",
+        "chapterBn": "অধ্যায় ৩: কালার ল্যাব",
+        "questionBn": "সবল মিথস্ক্রিয়া তত্ত্বে (QCD) স্বতন্ত্র চার্জবাহী স্বাধীন গ্লুয়নের সংখ্যা কয়টি?",
+        "questionEn": "How many distinct color-carrying gluon states exist in QCD?",
+        "options": [
+          {
+            "id": "a",
+            "textBn": "৩টি",
+            "textEn": "3"
+          },
+          {
+            "id": "b",
+            "textBn": "৬টি",
+            "textEn": "6"
+          },
+          {
+            "id": "c",
+            "textBn": "৮টি",
+            "textEn": "8",
+            "isCorrect": true
+          },
+          {
+            "id": "d",
+            "textBn": "৯টি",
+            "textEn": "9"
+          }
+        ],
+        "explanationBn": "SU(3) গেজ গ্রুপের মাত্রা 3² - 1 = 8। নবম মিশ্রণটি সম্পূর্ণ বর্ণহীন সিঙ্গলেট (r r̄ + g ḡ + b b̄)/√3, যা কালার চার্জ বহন করতে পারে না; ফলে প্রকৃতিতে ঠিক ৮টি গ্লুয়ন বিদ্যমান।",
+        "citation": "Quantum Chromodynamics SU(3) Group Theory"
+      },
+      {
+        "id": "q5",
+        "chapterId": "chapter-4",
+        "chapterBn": "অধ্যায় ৪: Flux Tube ল্যাব",
+        "questionBn": "কোয়ার্কের ফ্লাক্স টিউবের স্ট্রিং টান বল (F = σ) দূরত্বের সাথে কীভাবে পরিবর্তিত হয়?",
+        "questionEn": "How does the string tension force change with distance?",
+        "options": [
+          {
+            "id": "a",
+            "textBn": "দূরত্বের বর্গের ব্যস্তানুপাতে কমে",
+            "textEn": "Decreases with 1/r^2"
+          },
+          {
+            "id": "b",
+            "textBn": "স্প্রিং-এর মতো দূরত্বের সাথে বাড়ে",
+            "textEn": "Increases like a spring"
+          },
+          {
+            "id": "c",
+            "textBn": "সম্পূর্ণ ধ্রুব থাকে (প্রায় ১৫ টন-ওজন)",
+            "textEn": "Remains constant (~15 metric tons)",
+            "isCorrect": true
+          },
+          {
+            "id": "d",
+            "textBn": "সূচকীয়ভাবে শূন্যে নেমে যায়",
+            "textEn": "Drops exponentially to zero"
+          }
+        ],
+        "explanationBn": "গ্লুয়নের স্ব-আকর্ষণের ফলে ক্ষেত্ররেখা নলে সংকুচিত থাকে। ফলে টান বল দূরত্বে কমেও না, বাড়েও না—সব দূরত্বে ধ্রুব থাকে (σ ≈ ০.৯৫ GeV/fm ≈ ১.৫×১০⁵ N)।",
+        "citation": "Lattice QCD Static Potential; Bali (2000)"
+      },
+      {
+        "id": "q6",
+        "chapterId": "chapter-5",
+        "chapterBn": "অধ্যায় ৫: টেনে ছেঁড়া",
+        "questionBn": "ল্যাটিস QCD অনুযায়ী মেসনে দুটি কোয়ার্ক কত দূরত্বে টানলে ফ্লাক্স টিউব ভেঙে যায়?",
+        "questionEn": "At what separation distance does the flux tube break according to lattice QCD?",
+        "options": [
+          {
+            "id": "a",
+            "textBn": "≈ ০.২৫ ফেমটোমিটার",
+            "textEn": "≈ 0.25 fm"
+          },
+          {
+            "id": "b",
+            "textBn": "≈ ১.২৫ ফেমটোমিটার (Bali et al.)",
+            "textEn": "≈ 1.25 fm",
+            "isCorrect": true
+          },
+          {
+            "id": "c",
+            "textBn": "≈ ১০ ফেমটোমিটার",
+            "textEn": "≈ 10 fm"
+          },
+          {
+            "id": "d",
+            "textBn": "কখনো ভাঙে না",
+            "textEn": "Never breaks"
+          }
+        ],
+        "explanationBn": "ডাইনামিক্যাল কোয়ার্কযুক্ত ল্যাটিস QCD গণনায় দেখা গেছে সংকট দূরত্ব r_c ≈ ১.২৫ fm-এ জমা শক্তি দুটি নতুন মেসন সৃষ্টির শক্তির সমান হওয়ায় স্ট্রিং ছিঁড়ে যায়।",
+        "citation": "G.S. Bali et al., Phys. Rev. D 71 (2005) 114513"
+      },
+      {
+        "id": "q7",
+        "chapterId": "chapter-7",
+        "chapterBn": "অধ্যায় ৭: ভর কোথা থেকে আসে",
+        "questionBn": "প্রোটনের মোট ভরের (~৯৩৮ MeV) কত শতাংশ হিগস-প্রদত্ত ভ্যালেন্স কোয়ার্কের ভর?",
+        "questionEn": "What percentage of proton mass comes from Higgs current quark mass?",
+        "options": [
+          {
+            "id": "a",
+            "textBn": "প্রায় ৫০%",
+            "textEn": "≈ 50%"
+          },
+          {
+            "id": "b",
+            "textBn": "প্রায় ৯৯%",
+            "textEn": "≈ 99%"
+          },
+          {
+            "id": "c",
+            "textBn": "মাত্র প্রায় ১% (~৯ MeV)",
+            "textEn": "Only ≈ 1% (~9 MeV)",
+            "isCorrect": true
+          },
+          {
+            "id": "d",
+            "textBn": "১০০%",
+            "textEn": "100%"
+          }
+        ],
+        "explanationBn": "দুটি আপ ও একটি ডাউন কোয়ার্কের হিগস মেকানিজমে প্রাপ্ত কারেন্ট ভর মাত্র প্রায় ৯.১ MeV (মোট ভরের ~১%)। বাকি ৯৯% ভর আসে মূলত আবদ্ধ কোয়ার্ক-গ্লুয়ন গতি ও ফিল্ড শক্তি থেকে।",
+        "citation": "BMW Collaboration, Science 322 (2008) 1224; Ji (PRL 1995)"
+      },
+      {
+        "id": "q8",
+        "chapterId": "chapter-9",
+        "chapterBn": "অধ্যায় ৯: Asymptotic Freedom",
+        "questionBn": "সবল বলের কাপলিং ধ্রুবক α_s(Q) কেন অতি উচ্চ শক্তিতে (ক্ষুদ্র দূরত্বে) হ্রাস পায়?",
+        "questionEn": "Why does the strong coupling alpha_s(Q) decrease at high energies?",
+        "options": [
+          {
+            "id": "a",
+            "textBn": "ভার্চুয়াল ইলেকট্রন আধানকে ঢেকে রাখে বলে",
+            "textEn": "Electron screening"
+          },
+          {
+            "id": "b",
+            "textBn": "গ্লুয়নের স্ব-মিথস্ক্রিয়া অ্যান্টি-স্ক্রিনিং প্রভাব সৃষ্টি করে বলে",
+            "textEn": "Gluon self-interaction anti-screening",
+            "isCorrect": true
+          },
+          {
+            "id": "c",
+            "textBn": "কোয়ার্কের ভর কমে যায় বলে",
+            "textEn": "Quark mass decreases"
+          },
+          {
+            "id": "d",
+            "textBn": "মহাকর্ষ বল বৃদ্ধি পায় বলে",
+            "textEn": "Gravity increases"
+          }
+        ],
+        "explanationBn": "গ্লুয়ন নিজেরাও কালার চার্জ বহন করায় কালার চার্জকে চারদিকে ছড়িয়ে দেয় (অ্যান্টি-স্ক্রিনিং, β₀ = ১১ - ২/৩ n_f)। ফলে কোয়ার্করা কাছে এলে একে অপরকে প্রায় মুক্ত কণার মতো দেখে।",
+        "citation": "Gross, Wilczek, Politzer (1973 Nobel 2004)"
+      },
+      {
+        "id": "q9",
+        "chapterId": "chapter-10",
+        "chapterBn": "অধ্যায় ১০: কীভাবে জানলাম?",
+        "questionBn": "R-ratio সিঁড়ির ৩.৭ GeV-এর নিচে উচ্চতা ঠিক ২ হওয়া কীসের সরাসরি প্রমাণ?",
+        "questionEn": "What does the R-ratio step height of 2 below 3.7 GeV directly prove?",
+        "options": [
+          {
+            "id": "a",
+            "textBn": "কোয়ার্কের স্পিন ০",
+            "textEn": "Quark spin is 0"
+          },
+          {
+            "id": "b",
+            "textBn": "কোয়ার্কের ৩টি কালার চার্জ (N_c = ৩) রয়েছে",
+            "textEn": "Quarks come in 3 colors (Nc = 3)",
+            "isCorrect": true
+          },
+          {
+            "id": "c",
+            "textBn": "গ্লুয়ন ভরহীন",
+            "textEn": "Gluons are massless"
+          },
+          {
+            "id": "d",
+            "textBn": "হিগস বোসনের অস্তিত্ব নেই",
+            "textEn": "Higgs does not exist"
+          }
+        ],
+        "explanationBn": "u, d, s কোয়ার্কের চার্জের বর্গের যোগফল ৪/৯ + ১/৯ + ১/৯ = ২/৩। কালার চার্জ না থাকলে (Nc = 1) R হতো ২/৩। কিন্তু পরীক্ষালব্ধ মান ৩ × (২/৩) = ২ হওয়ায় প্রমাণিত হয় Nc = ৩।",
+        "citation": "PDG 2024 R-Ratio Summary; SLAC, DESY, BES Measurements"
+      },
+      {
+        "id": "q10",
+        "chapterId": "chapter-11",
+        "chapterBn": "অধ্যায় ১১: আদি মহাবিশ্ব ও QGP",
+        "questionBn": "বিগ ব্যাং-এর পর আদি মহাবিশ্বে কোয়ার্ক-গ্লুয়ন প্লাজমা থেকে হ্যাড্রোনাইজেশনের সংকট তাপমাত্রা কত ছিল?",
+        "questionEn": "What was the critical transition temperature for cosmic hadronization?",
+        "options": [
+          {
+            "id": "a",
+            "textBn": "T_c ≈ ১৫৬.৫ MeV (১.৮ × ১০¹² K)",
+            "textEn": "T_c ≈ 156.5 MeV (1.8 x 10^12 K)",
+            "isCorrect": true
+          },
+          {
+            "id": "b",
+            "textBn": "T_c ≈ ১০০০ GeV",
+            "textEn": "T_c ≈ 1000 GeV"
+          },
+          {
+            "id": "c",
+            "textBn": "T_c ≈ ০.৫ MeV",
+            "textEn": "T_c ≈ 0.5 MeV"
+          },
+          {
+            "id": "d",
+            "textBn": "T_c ≈ ৩ K",
+            "textEn": "T_c ≈ 3 K"
+          }
+        ],
+        "explanationBn": "ল্যাটিস QCD-র HotQCD ও Wuppertal-Budapest কোলাবোরেশনের গণনা অনুযায়ী শূন্য বেরিয়ন ঘনত্বে রূপান্তর তাপমাত্রা T_c = ১৫৬.৫ ± ১.৫ MeV, যখন মহাবিশ্বের বয়স ছিল প্রায় ১০-৩০ মাইক্রোসেকেন্ড।",
+        "citation": "HotQCD Collaboration (Bazavov et al., PLB 795 (2019) 15)"
+      },
+      {
+        "id": "q11",
+        "chapterId": "chapter-12",
+        "chapterBn": "অধ্যায় ১২: প্রোটনের spin ধাঁধা",
+        "questionBn": "১৯৮৭ সালে CERN-এ EMC পরীক্ষায় প্রোটনের স্পিন সম্পর্কে কী অপ্রত্যাশিত সত্য আবিষ্কৃত হয়?",
+        "questionEn": "What unexpected discovery about proton spin was made by EMC at CERN in 1987?",
+        "options": [
+          {
+            "id": "a",
+            "textBn": "প্রোটনের স্পিন আসলে ১",
+            "textEn": "Proton spin is actually 1"
+          },
+          {
+            "id": "b",
+            "textBn": "কোয়ার্কদের স্পিন মোট স্পিনের মাত্র প্রায় ২৫-৩৫% বহন করে",
+            "textEn": "Quarks carry only ~25-35% of total spin",
+            "isCorrect": true
+          },
+          {
+            "id": "c",
+            "textBn": "গ্লুয়নের কোনো ভূমিকা নেই",
+            "textEn": "Gluons have no role"
+          },
+          {
+            "id": "d",
+            "textBn": "৩টি কোয়ার্কের স্পিন ঠিক ১০০%",
+            "textEn": "Quark spins sum to 100%"
+          }
+        ],
+        "explanationBn": "সরল কোয়ার্ক মডেলের ভবিষ্যদ্বাণী ভেঙে দিয়ে EMC প্রমাণ করে যে ভ্যালেন্স কোয়ার্কের নিজস্ব স্পিন মোট স্পিনের এক ক্ষুদ্র অংশ দেয়; বাকি অংশ আসে গ্লুয়ন পোলারাইজেশন ও কক্ষীয় ঘূর্ণন থেকে।",
+        "citation": "EMC Collaboration (Ashman et al., Phys. Lett. B 206 (1988) 364)"
+      }
+    ]
+  },
+  "quarkGlossary": {
+    "titleBn": "কোয়ার্ক ও কণা পদার্থবিজ্ঞান শব্দকোষ",
+    "titleEn": "Quark & Particle Physics Glossary",
+    "terms": [
+      {
+        "termBn": "অ্যাসিম্পটোটিক ফ্রিডম",
+        "termEn": "Asymptotic Freedom",
+        "letter": "A",
+        "category": "Quantum Chromodynamics",
+        "definitionBn": "কোয়ান্টাম ক্রোমোডাইনামিক্সের এমন এক বিশেষ বৈশিষ্ট্য যার কারণে অতি উচ্চ শক্তিতে বা ক্ষুদ্রাতিক্ষুদ্র দূরত্বে কোয়ার্ক ও গ্লুয়নদের মধ্যকার সবল বল হ্রাস পায় এবং তারা প্রায় মুক্ত কণার মতো আচরণ করে।",
+        "definitionEn": "A property of non-Abelian gauge theories where the strong interaction becomes weaker at short distances or high energy scales."
+      },
+      {
+        "termBn": "আইসোস্পিন",
+        "termEn": "Isospin",
+        "letter": "I",
+        "category": "Symmetry",
+        "definitionBn": "একটি কোয়ান্টাম সংখ্যা যা সবল মিথস্ক্রিয়ার প্রেক্ষিতে প্রোটন ও নিউট্রন (বা আপ ও ডাউন কোয়ার্ক)-কে একই মৌলিক কণার দুটি ভিন্ন চার্জিত অবস্থা হিসেবে বিবেচনা করে।",
+        "definitionEn": "A quantum number related to the strong interaction, reflecting invariance under exchange of up and down quarks."
+      },
+      {
+        "termBn": "অ্যাক্সিয়ন",
+        "termEn": "Axion",
+        "letter": "A",
+        "category": "Hypothetical Particles",
+        "definitionBn": "স্ট্রং সিপি সমস্যা সমাধানের জন্য পেচ্চেই-কুইন প্রতিসাম্য থেকে প্রস্তাবিত একটি কাল্পনিক অত্যন্ত হালকা নিরপেক্ষ বোসন কণা, যা ডার্ক ম্যাটারের অন্যতম প্রধান প্রার্থী।",
+        "definitionEn": "A hypothetical elementary particle postulated to resolve the strong CP problem and a leading cold dark matter candidate."
+      },
+      {
+        "termBn": "কালার চার্জ",
+        "termEn": "Color Charge",
+        "letter": "C",
+        "category": "Quantum Chromodynamics",
+        "definitionBn": "সবল নিউক্লীয় বলের অন্তর্নিহিত আধান, যা ৩টি প্রকারে (লাল, সবুজ ও নীল) থাকে। তড়িৎচৌম্বক বলের বৈদ্যুতিক আধানের সমতুল্য হলেও এটি নন-অ্যাবেলিয়ান SU(3) গেজ গ্রুপ মেনে চলে।",
+        "definitionEn": "The charge of the strong interaction in QCD, analogous to electric charge, existing in three color states (red, green, blue)."
+      },
+      {
+        "termBn": "কালার কনফাইনমেন্ট",
+        "termEn": "Color Confinement",
+        "letter": "C",
+        "category": "Quantum Chromodynamics",
+        "definitionBn": "প্রকৃতির এমন এক অলঙ্ঘনীয় নিয়ম যার ফলে কালার-চার্জিত কণাগুলো (কোয়ার্ক ও গ্লুয়ন) কখনো মুক্ত অবস্থায় বিচ্ছিন্ন থাকতে পারে না; এরা সর্বদা বর্ণহীন কালার-সিঙ্গলেট অবস্থায় আবদ্ধ থাকে।",
+        "definitionEn": "The phenomenon that color-charged particles (quarks and gluons) cannot be isolated singularly and must remain in color-neutral hadrons."
+      },
+      {
+        "termBn": "কোয়ার্ক-গ্লুয়ন প্লাজমা (QGP)",
+        "termEn": "Quark-Gluon Plasma",
+        "letter": "Q",
+        "category": "Extreme Matter",
+        "definitionBn": "চরম তাপমাত্রা (T > ১৫৬.৫ MeV) ও ঘনত্বে পদার্থের এমন এক রূপ যেখানে প্রোটন-নিউট্রনের কনফাইনমেন্ট ভেঙে গিয়ে কোয়ার্ক ও গ্লুয়নরা প্রায়-নিখুঁত তরলের মতো মুক্ত অবস্থায় সাঁতার কাটে।",
+        "definitionEn": "An extreme state of matter at very high temperatures where quarks and gluons are asymptotically deconfined, behaving as a nearly perfect fluid."
+      },
+      {
+        "termBn": "গ্লুয়ন",
+        "termEn": "Gluon",
+        "letter": "G",
+        "category": "Standard Model Boson",
+        "definitionBn": "কোয়ান্টাম ক্রোমোডাইনামিক্সে সবল বলের বলবাহক কণা; ভরহীন এবং স্পিন-১ গেজ বোসন যা নিজেও কালার ও অ্যান্টিকালারের ৮টি ভিন্ন মিশ্রণ বহন করে।",
+        "definitionEn": "The massless spin-1 gauge boson responsible for mediating the strong force between quarks."
+      },
+      {
+        "termBn": "গ্লুবল",
+        "termEn": "Glueball",
+        "letter": "G",
+        "category": "Exotic State",
+        "definitionBn": "কোনো ভ্যালেন্স কোয়ার্ক ছাড়াই কেবল স্ব-আকর্ষিত গ্লুয়নদের মিলনে গঠিত অনুমিত কালার-সিঙ্গলেট আবদ্ধ অবস্থা।",
+        "definitionEn": "A hypothetical composite particle composed entirely of gluon particles, without valence quarks."
+      },
+      {
+        "termBn": "চিরাল প্রতিসাম্য",
+        "termEn": "Chiral Symmetry Breaking",
+        "letter": "C",
+        "category": "Quantum Field Theory",
+        "definitionBn": "QCD ভ্যাকুয়ামের একটি স্বতঃস্ফূর্ত প্রতিসাম্য ভাঙন, যার মাধ্যমে ভরহীন কোয়ার্কদের সমন্বয়ে গঠিত হ্যাড্রনগুলো দানবীয় কার্যকর ভর ও গোল্ডস্টোন বোসন (যেমন পায়ন) লাভ করে।",
+        "definitionEn": "Spontaneous breaking of chiral symmetry in QCD vacuum that gives rise to dynamical hadron mass and light pseudo-Goldstone pions."
+      },
+      {
+        "termBn": "ডিপ ইনইলাস্টিক বিক্ষেপণ (DIS)",
+        "termEn": "Deep Inelastic Scattering",
+        "letter": "D",
+        "category": "Experimental Technique",
+        "definitionBn": "অতি উচ্চশক্তির ইলেকট্রন, মিউয়ন বা নিউট্রিনো দিয়ে হ্যাড্রনে প্রবল আঘাত হানার পরীক্ষণ কৌশল, যার মাধ্যমে হ্যাড্রনের অভ্যন্তরীণ কোয়ার্ক ও গ্লুয়ন গঠন উদ্ঘাটন করা হয়।",
+        "definitionEn": "A high-energy lepton-hadron scattering process used to probe the inner substructure and parton distributions of hadrons."
+      },
+      {
+        "termBn": "টপোনিয়াম",
+        "termEn": "Toponium",
+        "letter": "T",
+        "category": "Bound States",
+        "definitionBn": "একটি টপ কোয়ার্ক এবং একটি অ্যান্টিটপ কোয়ার্কের (tt̄) অত্যন্ত ক্ষণস্থায়ী কুলম্ব বাউন্ড স্টেট, যা অতি সম্প্রতি লার্জ হ্যাড্রন কোলাইডারে ইঙ্গিত মিলেছে।",
+        "definitionEn": "A short-lived bound state formed by a top quark and antitop quark before electroweak decay."
+      },
+      {
+        "termBn": "পার্টন",
+        "termEn": "Parton",
+        "letter": "P",
+        "category": "High Energy Physics",
+        "definitionBn": "হ্যাড্রনের ভেতরের বিন্দুসদৃশ উপাদান কণা (কোয়ার্ক, অ্যান্টিকোয়ার্ক ও গ্লুয়ন)-র সাধারণ বৈজ্ঞানিক নাম, যা প্রথম রিচার্ড ফাইনম্যান প্রস্তাব করেছিলেন।",
+        "definitionEn": "A point-like constituent of a hadron, comprising quarks, antiquarks, and gluons, introduced by Richard Feynman."
+      },
+      {
+        "termBn": "পার্টন ডিস্ট্রিবিউশন ফাংশন (PDF)",
+        "termEn": "Parton Distribution Function",
+        "letter": "P",
+        "category": "QCD Phenomenology",
+        "definitionBn": "কোনো হ্যাড্রনে প্রদত্ত শক্তি স্কেল Q²-এ নির্দিষ্ট ভরবেগ ভগ্নাংশ x বহনকারী নির্দিষ্ট ফ্লেভারের কোয়ার্ক বা গ্লুয়ন খুঁজে পাওয়ার সম্ভাব্যতা ঘনত্ব।",
+        "definitionEn": "Probability density distribution for finding a parton with a specific momentum fraction x at resolution scale Q^2."
+      },
+      {
+        "termBn": "পেন্টাকোয়ার্ক",
+        "termEn": "Pentaquark",
+        "letter": "P",
+        "category": "Exotic Hadrons",
+        "definitionBn": "চারটি কোয়ার্ক এবং একটি অ্যান্টিকোয়ার্কের (যেমন uudcc̄) সমন্বয়ে গঠিত এক্সোটিক ব্যারিয়ন অবস্থা, যা ২০১৫ সালে সার্ন-এর LHCb ল্যাবে আবিষ্কৃত হয়।",
+        "definitionEn": "An exotic subatomic baryon consisting of five valence quarks (four quarks and one antiquark)."
+      },
+      {
+        "termBn": "ফ্লাক্স টিউব",
+        "termEn": "Flux Tube",
+        "letter": "F",
+        "category": "Confinement Model",
+        "definitionBn": "গ্লুয়নের স্ব-মিথস্ক্রিয়ার ফলে কোয়ার্কদের মধ্যকার সবল বলের ক্ষেত্ররেখাগুলো চারদিকে না ছড়িয়ে যে সরু রৈখিক নলের মতো সংকুচিত হয়ে যায়, তাকে ফ্লাক্স টিউব বা কালার স্ট্রিং বলে।",
+        "definitionEn": "A tube-like concentration of strong color field lines between quarks, leading to a constant tension force."
+      },
+      {
+        "termBn": "ব্যারিয়ন",
+        "termEn": "Baryon",
+        "letter": "B",
+        "category": "Hadrons",
+        "definitionBn": "তিনটি ভ্যালেন্স কোয়ার্ক (r+g+b) দ্বারা গঠিত কালার-সিঙ্গলেট যৌগিক ফার্মিয়ন, যার ব্যারিয়ন সংখ্যা ১ (যেমন প্রোটন ও নিউট্রন)।",
+        "definitionEn": "A composite subatomic hadron composed of three valence quarks, forming a color singlet (e.g., proton, neutron)."
+      },
+      {
+        "termBn": "মেসন",
+        "termEn": "Meson",
+        "letter": "M",
+        "category": "Hadrons",
+        "definitionBn": "একটি কোয়ার্ক এবং একটি অ্যান্টিকোয়ার্কের (q q̄) কালার ও অ্যান্টিকালার জোড় দিয়ে গঠিত কালার-সিঙ্গলেট বোসন কণা (যেমন পায়ন ও কেয়ন)।",
+        "definitionEn": "A hadronic subatomic particle composed of one valence quark and one antiquark bound by gluons."
+      },
+      {
+        "termBn": "রানিং কাপলিং",
+        "termEn": "Running Coupling",
+        "letter": "R",
+        "category": "Renormalization Group",
+        "definitionBn": "শক্তি স্কেল বা দূরত্বের পরিবর্তনের সাথে মিথস্ক্রিয়া বলের তীব্রতা বা কাপলিং ধ্রুবকের (α_s(Q)) মান পরিবর্তিত হওয়ার নিয়ম।",
+        "definitionEn": "The dependence of a coupling constant on the energy scale of the physical process probed."
+      },
+      {
+        "termBn": "সি-কোয়ার্ক",
+        "termEn": "Sea Quarks",
+        "letter": "S",
+        "category": "Hadron Structure",
+        "definitionBn": "হ্যাড্রনের অভ্যন্তরে শূন্য ভ্যাকুয়াম থেকে গ্লুয়নের মাধ্যমে নিরবচ্ছিন্নভাবে উৎপন্ন ও বিলীন হতে থাকা ভার্চুয়াল কোয়ার্ক-অ্যান্টিকোয়ার্ক জোড়সমূহ।",
+        "definitionEn": "Virtual quark-antiquark pairs continually created and annihilated from gluon splitting within hadrons."
+      },
+      {
+        "termBn": "স্ট্রিং ব্রেকিং",
+        "termEn": "String Breaking",
+        "letter": "S",
+        "category": "Confinement Dynamics",
+        "definitionBn": "কোয়ার্ক দুটিকে দূরে টানলে ফ্লাক্স টিউবে সঞ্চিত শক্তি থেকে ভ্যাকুয়াম টানেলিংয়ের মাধ্যমে নতুন কোয়ার্ক-অ্যান্টিকোয়ার্ক জোড় সৃষ্টি হয়ে টিউবটি বিচ্ছিন্ন হওয়ার প্রক্রিয়া।",
+        "definitionEn": "The non-perturbative process where strong field energy creates a new quark-antiquark pair to split the flux tube into two separate hadrons."
+      },
+      {
+        "termBn": "স্ট্রং সিপি সমস্যা",
+        "termEn": "Strong CP Problem",
+        "letter": "S",
+        "category": "Fundamental Physics",
+        "definitionBn": "তাত্ত্বিকভাবে QCD-তে CP লঙ্ঘনের সুযোগ থাকা সত্ত্বেও পরীক্ষাগারে সবল মিথস্ক্রিয়ায় কোনো পরিমাপযোগ্য CP লঙ্ঘন না থাকার বিস্ময়কর অমীমাংসিত ধাঁধা।",
+        "definitionEn": "The unsolved mystery of why quantum chromodynamics does not appear to violate charge-parity (CP) symmetry in experiments."
+      },
+      {
+        "termBn": "হিগস মেকানিজম",
+        "termEn": "Higgs Mechanism",
+        "letter": "H",
+        "category": "Electroweak Symmetry",
+        "definitionBn": "ইলেকট্রোউইক প্রতিসাম্য স্বতঃস্ফূর্তভাবে ভেঙে যাওয়ার মাধ্যমে কোয়ার্ক ও লেপ্টনদের ফান্ডামেন্টাল কারেন্ট ভর প্রদানের প্রক্রিয়া।",
+        "definitionEn": "The process by which gauge bosons and fundamental fermions acquire mass through interaction with the Higgs vacuum expectation value."
+      },
+      {
+        "termBn": "হ্যাড্রন",
+        "termEn": "Hadron",
+        "letter": "H",
+        "category": "Composite Particles",
+        "definitionBn": "কোয়ার্ক ও গ্লুয়ন দ্বারা গঠিত এবং সবল নিউক্লীয় বল দ্বারা আবদ্ধ যে কোনো যৌগিক কণার সাধারণ নাম; যা ব্যারিয়ন বা মেসন হতে পারে।",
+        "definitionEn": "A subatomic composite particle held together by the strong force, categorized into baryons and mesons."
+      },
+      {
+        "termBn": "CKM ম্যাট্রিক্স",
+        "termEn": "CKM Matrix",
+        "letter": "C",
+        "category": "Electroweak Flavor",
+        "definitionBn": "ক্যাবিবো-কোবায়াশি-মাসকাওয়া ৩×৩ ইউনিটারি রূপান্তর ম্যাট্রিক্স, যা কোয়ার্কদের ইলেকট্রোউইক ফ্লেভার পরিবর্তন এবং সিপি লঙ্ঘনের মাত্রা নির্ধারণ করে।",
+        "definitionEn": "A unitary 3x3 matrix specifying the mismatch of quantum states of quarks under weak interaction, enabling flavor changes and CP violation."
+      },
+      {
+        "termBn": "R-অনুপাত",
+        "termEn": "R-Ratio",
+        "letter": "R",
+        "category": "e+e- Collisions",
+        "definitionBn": "ইলেকট্রন-পজিট্রন সংঘর্ষে হ্যাড্রন উৎপাদনের মোট ক্রস-সেকশন এবং মিউয়ন জোড় উৎপাদনের ক্রস-সেকশনের অনুপাত R = Nc * Σ e_q², যা কালার সংখ্যা Nc = ৩ প্রমাণ করে।",
+        "definitionEn": "The ratio of hadron production cross section to muon pair production in e+e- annihilation, experimentally verifying Nc = 3."
+      }
+    ]
   }
 }
-
