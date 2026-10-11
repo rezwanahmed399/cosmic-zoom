@@ -36,6 +36,7 @@ const ICON_ATOM_SVG = '<svg class="c7-icon-badge" viewBox="0 0 24 24" fill="none
 const ICON_SPARK_SVG = '<svg class="c7-icon-badge" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"></path></svg>';
 const ICON_ALERT_SVG = '<svg class="c7-icon-badge alert" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>';
 const ICON_ARROW_LEFT_SVG = '<svg class="c7-icon-badge" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>';
+const ICON_ARROW_RIGHT_SVG = '<svg class="c7-icon-badge" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>';
 const ICON_CHECK_SVG = '<svg class="c7-icon-badge ok" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
 
 export class Chapter7MassOrigin {
@@ -320,12 +321,19 @@ export class Chapter7MassOrigin {
           </a>
 
           <div class="c7-nav-summary-box">
-            <span class="c7-nav-tag">সম্পূর্ণ কোয়ার্ক ভিজ্যুয়ালাইজেশন সম্পন্ন</span>
+            <span class="c7-nav-tag">ভর বিভাজন সফল</span>
             <p class="c7-nav-summary-desc">
-              স্কেল-সিঁড়ি (০), প্রোটনের শরীর (১), Flavor ল্যাব (২), কালার ল্যাব (৩), Flux Tube ল্যাব (৪), টেনে ছেঁড়া (৫), 
-              Hadron Builder (৬), এবং ভর কোথা থেকে আসে (৭) — সবকয়টি অধ্যায় সক্রিয় ও পরীক্ষিত।
+              প্রোটনের ভরের ৯১% কনফাইনমেন্টের গতিশক্তি ও ফিল্ড এনার্জি থেকে আসে। এবার জানুন কেন উচ্চ শক্তিতে এই বাঁধন শিথিল হয় (Asymptotic Freedom)।
             </p>
           </div>
+
+          <a class="c7-nav-btn next" href="#/quarks/chapter-9" id="c7-btn-next">
+            <div class="c7-nav-btn-text" style="text-align: right;">
+              <span class="c7-nav-btn-sub">পরবর্তী অধ্যায়</span>
+              <span class="c7-nav-btn-title">অধ্যায় ৯: Asymptotic freedom</span>
+            </div>
+            ${ICON_ARROW_RIGHT_SVG}
+          </a>
         </div>
       </section>
     `;

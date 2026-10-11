@@ -153,3 +153,111 @@ export function getStringTension() {
 export function getConfinementForceN() {
   return CONFINEMENT.forceConstantN.value;
 }
+
+/**
+ * Returns Asymptotic Freedom dataset including PDG alpha_s points and QED comparison
+ */
+export function getAsymptoticFreedomData() {
+  return QUARK_FACTS.asymptoticFreedom;
+}
+
+/**
+ * Computes the 1-loop/threshold running coupling alpha_s(Q) in MS-bar scheme
+ * normalized to alpha_s(M_Z = 91.1876 GeV) = 0.1180
+ * @param {number} Q_GeV - Energy scale in GeV
+ * @returns {{ alpha_s: number, alphaS: number, isNonPerturbative: boolean, activeFlavors_nf: number, nf: number, warningBn: string, warningEn: string }}
+ */
+export function getRunningAlphaS(Q_GeV) {
+  if (typeof Q_GeV !== 'number' || Q_GeV <= 0 || isNaN(Q_GeV)) {
+    return {
+      alpha_s: 0.1180,
+      alphaS: 0.1180,
+      isNonPerturbative: false,
+      activeFlavors_nf: 5,
+      nf: 5,
+      warningBn: '',
+      warningEn: ''
+    };
+  }
+
+  const MZ = 91.1876;
+  const alphaS_MZ = 0.1180;
+  const mc = 1.27;
+  const mb = 4.18;
+  const mt = 172.57;
+
+  // nf = 5 reference (mb <= Q < mt)
+  const beta0_5 = 11 - (2 / 3) * 5; // 23/3
+  const calcStep = (alpha0, Q0, beta0, Q) => {
+    const denom = 1 + (beta0 / (2 * Math.PI)) * alpha0 * Math.log(Q / Q0);
+    if (denom <= 0.05) return 2.0; // Perturbative breakdown cap
+    return alpha0 / denom;
+  };
+
+  const alphaS_mb = calcStep(alphaS_MZ, MZ, beta0_5, mb);
+  const alphaS_mt = calcStep(alphaS_MZ, MZ, beta0_5, mt);
+
+  let nf = 5;
+  let alphaS = 0;
+
+  if (Q_GeV >= mt) {
+    nf = 6;
+    const beta0_6 = 11 - (2 / 3) * 6; // 7
+    alphaS = calcStep(alphaS_mt, mt, beta0_6, Q_GeV);
+  } else if (Q_GeV >= mb) {
+    nf = 5;
+    alphaS = calcStep(alphaS_MZ, MZ, beta0_5, Q_GeV);
+  } else if (Q_GeV >= mc) {
+    nf = 4;
+    const beta0_4 = 11 - (2 / 3) * 4; // 25/3
+    alphaS = calcStep(alphaS_mb, mb, beta0_4, Q_GeV);
+  } else {
+    nf = 3;
+    const beta0_4 = 11 - (2 / 3) * 4;
+    const alphaS_mc = calcStep(alphaS_mb, mb, beta0_4, mc);
+    const beta0_3 = 11 - (2 / 3) * 3; // 9
+    alphaS = calcStep(alphaS_mc, mc, beta0_3, Q_GeV);
+  }
+
+  const isNonPerturbative = Q_GeV <= 1.0;
+  const val = +alphaS.toFixed(4);
+  return {
+    alpha_s: val,
+    alphaS: val,
+    isNonPerturbative,
+    activeFlavors_nf: nf,
+    nf,
+    warningBn: isNonPerturbative ? 'non-perturbative: সূত্র খাটে না (কনফাইনমেন্ট এলাকা)' : '',
+    warningEn: isNonPerturbative ? 'non-perturbative: perturbation theory breaks down' : ''
+  };
+}
+
+/**
+ * Returns Evidence Lab dataset (R-ratio, resonances, and 5 evidence cards)
+ */
+export function getEvidenceLabData() {
+  return QUARK_FACTS.evidenceLab;
+}
+
+/**
+ * Computes theoretical R-ratio value for a given center-of-mass energy sqrt(s)
+ * R = Nc * sum(e_q^2)
+ * @param {number} sqrt_s_GeV - Center-of-mass energy in GeV
+ * @param {number} [Nc=3] - Number of color charges (default 3)
+ * @returns {number}
+ */
+export function getRRatioTheory(sqrt_s_GeV, Nc = 3) {
+  if (typeof sqrt_s_GeV !== 'number' || isNaN(sqrt_s_GeV)) return 2.0;
+  
+  if (sqrt_s_GeV < 3.7) {
+    // Active flavors: u, d, s -> (4/9 + 1/9 + 1/9) = 6/9 = 2/3
+    return +(Nc * (2 / 3)).toFixed(3);
+  } else if (sqrt_s_GeV < 10.5) {
+    // Active flavors: u, d, s, c -> 2/3 + 4/9 = 10/9
+    return +(Nc * (10 / 9)).toFixed(3);
+  } else {
+    // Active flavors: u, d, s, c, b -> 10/9 + 1/9 = 11/9
+    return +(Nc * (11 / 9)).toFixed(3);
+  }
+}
+

@@ -14,6 +14,8 @@ import { Chapter4FluxTubeLab } from './chapter-4.js';
 import { Chapter5StringBreaking } from './chapter-5.js';
 import { Chapter6HadronBuilder } from './chapter-6.js';
 import { Chapter7MassOrigin } from './chapter-7.js';
+import { Chapter9AsymptoticFreedom } from './chapter-9.js';
+import { Chapter10EvidenceLab } from './chapter-10.js';
 
 export const CHAPTER_LIST = [
   {
@@ -110,6 +112,42 @@ export const CHAPTER_LIST = [
     subtitleBn: 'প্রোটন ভর বিভাজন, হিগস বনাম QCD কনফাইনমেন্ট শক্তি (E = mc²)',
     subtitleEn: 'Proton Mass Decomposition, Higgs vs QCD Confinement (E = mc²)',
     tier: 'T2',
+    isAvailable: true
+  },
+  {
+    id: 'chapter-8',
+    hash: '#/quarks/chapter-8',
+    numberBn: '৮',
+    numberEn: '8',
+    titleBn: 'Sea Quarks ও চরম অবস্থা',
+    titleEn: 'Sea Quarks & Extreme Matter',
+    subtitleBn: 'ভার্চুয়াল জোড় ও কোয়ার্ক-গ্লুয়ন প্লাজমা (শীঘ্রই আসছে)',
+    subtitleEn: 'Virtual Pairs & Quark-Gluon Plasma (Coming Soon)',
+    tier: 'T2',
+    isAvailable: false
+  },
+  {
+    id: 'chapter-9',
+    hash: '#/quarks/chapter-9',
+    numberBn: '৯',
+    numberEn: '9',
+    titleBn: 'Asymptotic freedom',
+    titleEn: 'Asymptotic Freedom',
+    subtitleBn: 'উচ্চ শক্তিতে কোয়ার্কের স্বাধীনতা, রানিং কাপলিং α_s(Q) ও ২০০৪ নোবেল',
+    subtitleEn: 'Quark Freedom at High Energy, Running Coupling alpha_s(Q) & 2004 Nobel',
+    tier: 'T1',
+    isAvailable: true
+  },
+  {
+    id: 'chapter-10',
+    hash: '#/quarks/chapter-10',
+    numberBn: '১০',
+    numberEn: '10',
+    titleBn: 'কীভাবে জানলাম?',
+    titleEn: 'How Do We Know? (Evidence Lab)',
+    subtitleBn: 'R-ratio সিঁড়ি (N_c = ৩ এর প্রমাণ) এবং ৫টি ঐতিহাসিক অকাট্য পরীক্ষা',
+    subtitleEn: 'R-Ratio Staircase (Proof of N_c = 3) & 5 Historic Experiments',
+    tier: 'T1',
     isAvailable: true
   }
 ];
@@ -384,6 +422,22 @@ export class QuarkApp {
     } else if (chMeta.isAvailable && chapterId === 'chapter-7') {
       // Mount Chapter 7 Origin of Mass!
       this.currentChapterInstance = new Chapter7MassOrigin({
+        container: viewport,
+        lang: this.lang,
+        level: this.level,
+        infoDrawer: this.infoDrawer
+      });
+    } else if (chMeta.isAvailable && chapterId === 'chapter-9') {
+      // Mount Chapter 9 Asymptotic Freedom!
+      this.currentChapterInstance = new Chapter9AsymptoticFreedom({
+        container: viewport,
+        lang: this.lang,
+        level: this.level,
+        infoDrawer: this.infoDrawer
+      });
+    } else if (chMeta.isAvailable && chapterId === 'chapter-10') {
+      // Mount Chapter 10 Evidence Lab!
+      this.currentChapterInstance = new Chapter10EvidenceLab({
         container: viewport,
         lang: this.lang,
         level: this.level,

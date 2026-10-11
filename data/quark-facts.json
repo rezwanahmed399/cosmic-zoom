@@ -1100,5 +1100,162 @@
         "tier": "T1"
       }
     }
+  },
+  "asymptoticFreedom": {
+    "tier": "T1",
+    "alphaS_MZ": {
+      "value": 0.1180,
+      "uncertainty": "+- 0.0009",
+      "scaleGeV": 91.1876,
+      "source": "PDG 2024 / 2026 World Average",
+      "tier": "T1"
+    },
+    "nonPerturbativeLimitGeV": 1.0,
+    "betaFunction": {
+      "formula": "Q d(alpha_s)/dQ = - 2 beta_0 (alpha_s^2 / 4pi) - ...",
+      "beta0_formula": "beta_0 = 11 - (2/3) n_f",
+      "explanationBn": "যেহেতু গ্লুয়ন নিজেরাও কালার চার্জ বহন করে (SU(3) নন-অ্যাবেলিয়ান গ্রুপ), তাই গ্লুয়নের সেলফ-ইন্টারঅ্যাকশন (১১) কোয়ার্কের স্ক্রিনিং প্রভাবের ((২/৩) n_f) চেয়ে অনেক বেশি শক্তিশালী। ফলে উচ্চ শক্তিতে (ক্ষুদ্র দূরত্বে) কালার কাপলিং হ্রাস পায়।"
+    },
+    "qedComparison": {
+      "qedCoupling_0": { "fraction": "1/137.036", "value": 0.007297, "scaleGeV": 0 },
+      "qedCoupling_MZ": { "fraction": "1/128.0", "value": 0.0078125, "scaleGeV": 91.2 },
+      "comparisonTextBn": "QED-তে ভার্চুয়াল ইলেকট্রন-পজিট্রন জোড় ভ্যাকুয়াম পোলারাইজেশনের মাধ্যমে মূল চার্জকে ঢেকে (screen) রাখে; তাই উচ্চ শক্তিতে কাছে গেলে কার্যকরী আধান বাড়ে (১/১৩৭ থেকে ১/১২৮)। কিন্তু QCD-তে গ্লুয়নের স্ব-মিথস্ক্রিয়া চার্জ ছড়ায় (anti-screening), তাই কাছে গেলে কাপলিং কমে যায়!"
+    },
+    "nobelPrize2004": {
+      "year": 2004,
+      "laureates": ["David J. Gross", "H. David Politzer", "Frank Wilczek"],
+      "discoveryYear": 1973,
+      "citationEn": "For the discovery of asymptotic freedom in the theory of the strong interaction",
+      "citationBn": "সবল মিথস্ক্রিয়া তত্ত্বে অ্যাসিম্পটোটিক ফ্রিডম আবিষ্কারের জন্য",
+      "storyBn": "১৯৭৩ সালে গ্রস, উইলচেক এবং পলিৎজার প্রমাণ করেন যে কোয়ার্কগুলো যখন অত্যন্ত কাছাকাছি থাকে (উচ্চ শক্তি বা ক্ষুদ্র দূরত্ব), তখন তাদের মধ্যকার বল প্রায় শূন্য হয়ে যায় — কোয়ার্করা মুক্ত কণার মতো চলে। কিন্তু তাদের বিচ্ছিন্ন করতে গেলেই কনফাইনমেন্ট বল প্রবল হয়ে ওঠে।"
+    },
+    "pdgDataPoints": [
+      { "id": "tau", "process": "tau_decays", "nameEn": "tau decays", "nameBn": "টাউ (tau) ক্ষয়", "Q": 1.78, "alphaS": 0.312, "uncertainty": 0.015, "facility": "LEP / CLEO / BaBar", "tier": "T1" },
+      { "id": "upsilon", "process": "upsilon_decays", "nameEn": "Upsilon decays", "nameBn": "আপসাইলন (Upsilon) ক্ষয়", "Q": 9.46, "alphaS": 0.184, "uncertainty": 0.009, "facility": "CLEO", "tier": "T1" },
+      { "id": "dis", "process": "dis_hera", "nameEn": "DIS (ep)", "nameBn": "গভীর অস্থিতিস্থাপক বিক্ষেপণ (DIS)", "Q": 15.0, "alphaS": 0.150, "uncertainty": 0.007, "facility": "HERA (H1/ZEUS)", "tier": "T1" },
+      { "id": "petra", "process": "ee_jets_petra", "nameEn": "e+e- jets (35 GeV)", "nameBn": "e+e- জেট শেপ", "Q": 35.0, "alphaS": 0.140, "uncertainty": 0.006, "facility": "PETRA / JADE", "tier": "T1" },
+      { "id": "zpole", "process": "z_pole", "nameEn": "Z pole decays", "nameBn": "Z বোসন ইলেকট্রোউইক ক্ষয়", "Q": 91.2, "alphaS": 0.1187, "uncertainty": 0.0016, "facility": "LEP / SLD", "tier": "T1" },
+      { "id": "toppair", "process": "top_pair", "nameEn": "tt_bar production", "nameBn": "টপ কোয়ার্ক জোড় উৎপাদন", "Q": 173.0, "alphaS": 0.109, "uncertainty": 0.004, "facility": "LHC / Tevatron", "tier": "T1" },
+      { "id": "lhcjets", "process": "jets_lhc", "nameEn": "Inclusive jets (300 GeV)", "nameBn": "ইনক্লুসিভ জেট (৩০০ GeV)", "Q": 300.0, "alphaS": 0.103, "uncertainty": 0.003, "facility": "LHC (ATLAS / CMS)", "tier": "T1" }
+    ]
+  },
+  "evidenceLab": {
+    "tier": "T1",
+    "rRatio": {
+      "definition": "R(sqrt_s) = sigma(e+e- -> hadrons) / sigma(e+e- -> mu+mu-) = Nc * sum(e_q^2)",
+      "formulaHtml": "R(&radic;s) = &sigma;(e<sup>+</sup>e<sup>-</sup> &rarr; hadrons) / &sigma;(e<sup>+</sup>e<sup>-</sup> &rarr; &mu;<sup>+</sup>&mu;<sup>-</sup>)",
+      "colorProofBn": "যদি কালার চার্জ না থাকত (Nc = 1), তবে ধাপের উচ্চতা হতো ২/৩ (u,d,s), ১০/৯ (+c), এবং ১১/৯ (+b)। কিন্তু বাস্তবে পরীক্ষাগারে ধাপের উচ্চতা ঠিক ২, ১০/৩, এবং ১১/৩ — যা সরাসরি প্রমাণ করে প্রতিটি কোয়ার্ক ঠিক ৩টি রঙে (Nc = 3) অবস্থান করে!",
+      "theoreticalSteps": [
+        {
+          "step": 1,
+          "rangeGeV": [1.0, 3.7],
+          "labelEn": "u, d, s (< 3.7 GeV)",
+          "labelBn": "u, d, s (< ৩.৭ GeV)",
+          "flavors": ["u", "d", "s"],
+          "Nc3_value": 2.0,
+          "Nc3_fraction": "2",
+          "Nc1_value": 0.667,
+          "Nc1_fraction": "2/3",
+          "tier": "T3"
+        },
+        {
+          "step": 2,
+          "rangeGeV": [3.7, 10.5],
+          "labelEn": "u, d, s, c (3.7 - 10.5 GeV)",
+          "labelBn": "u, d, s, c (৩.৭ - ১০.৫ GeV)",
+          "flavors": ["u", "d", "s", "c"],
+          "Nc3_value": 3.333,
+          "Nc3_fraction": "10/3",
+          "Nc1_value": 1.111,
+          "Nc1_fraction": "10/9",
+          "tier": "T3"
+        },
+        {
+          "step": 3,
+          "rangeGeV": [10.5, 40.0],
+          "labelEn": "u, d, s, c, b (> 10.5 GeV)",
+          "labelBn": "u, d, s, c, b (> ১০.৫ GeV)",
+          "flavors": ["u", "d", "s", "c", "b"],
+          "Nc3_value": 3.667,
+          "Nc3_fraction": "11/3",
+          "Nc1_value": 1.222,
+          "Nc1_fraction": "11/9",
+          "tier": "T3"
+        }
+      ],
+      "resonances": [
+        { "symbol": "rho", "name": "rho(770)", "massGeV": 0.775, "widthGeV": 0.150, "quarks": "ud_bar / du_bar", "tier": "T1" },
+        { "symbol": "omega", "name": "omega(782)", "massGeV": 0.782, "widthGeV": 0.0085, "quarks": "uu_bar + dd_bar", "tier": "T1" },
+        { "symbol": "phi", "name": "phi(1020)", "massGeV": 1.020, "widthGeV": 0.0042, "quarks": "ss_bar", "tier": "T1" },
+        { "symbol": "J/psi", "name": "J/psi", "massGeV": 3.097, "widthGeV": 0.000093, "quarks": "cc_bar", "tier": "T1" },
+        { "symbol": "psi(2S)", "name": "psi(2S)", "massGeV": 3.686, "widthGeV": 0.00029, "quarks": "cc_bar", "tier": "T1" },
+        { "symbol": "Upsilon", "name": "Upsilon(1S)", "massGeV": 9.460, "widthGeV": 0.000054, "quarks": "bb_bar", "tier": "T1" }
+      ],
+      "pdgMeasuredPoints": [
+        { "sqrt_s": 1.5, "R": 2.15, "uncertainty": 0.12, "facility": "CMD-2 / SND", "tier": "T1" },
+        { "sqrt_s": 2.2, "R": 2.18, "uncertainty": 0.10, "facility": "BES", "tier": "T1" },
+        { "sqrt_s": 3.4, "R": 2.16, "uncertainty": 0.09, "facility": "BES", "tier": "T1" },
+        { "sqrt_s": 4.5, "R": 3.60, "uncertainty": 0.14, "facility": "BES / CLEO", "tier": "T1" },
+        { "sqrt_s": 6.0, "R": 3.52, "uncertainty": 0.12, "facility": "CLEO", "tier": "T1" },
+        { "sqrt_s": 8.0, "R": 3.48, "uncertainty": 0.11, "facility": "MD-1", "tier": "T1" },
+        { "sqrt_s": 10.0, "R": 3.55, "uncertainty": 0.13, "facility": "CLEO", "tier": "T1" },
+        { "sqrt_s": 12.0, "R": 3.95, "uncertainty": 0.15, "facility": "CESR / PETRA", "tier": "T1" },
+        { "sqrt_s": 22.0, "R": 3.88, "uncertainty": 0.14, "facility": "PETRA (JADE/TASSO)", "tier": "T1" },
+        { "sqrt_s": 34.0, "R": 3.92, "uncertainty": 0.12, "facility": "PETRA", "tier": "T1" }
+      ]
+    },
+    "evidenceCards": [
+      {
+        "id": "dis_scaling",
+        "titleBn": "১. DIS Scaling ও পার্টনের আবিষ্কার",
+        "titleEn": "1. Deep Inelastic Scattering (DIS) & Partons",
+        "experiment": "SLAC (1968-1969)",
+        "nobelYear": 1990,
+        "nobelLaureates": ["Jerome I. Friedman", "Henry W. Kendall", "Richard E. Taylor"],
+        "tier": "T1",
+        "keyDiscoveryBn": "উচ্চশক্তির ইলেকট্রন দিয়ে প্রোটনে আঘাত করে দেখা যায় প্রোটন কোনো নরম অবিভাজ্য বল নয়; ভেতরে অতি-ক্ষুদ্র, শক্ত, বিন্দুসদৃশ চার্জিত কণা (পার্টন বা কোয়ার্ক) রয়েছে যা বজরকেন স্কেলিং (Bjorken scaling) মেনে চলে।",
+        "physicsProofBn": "F_2(x, Q^2) স্কেলিং প্রমাণ করে বিক্ষেপণকারী কেন্দ্রগুলো স্থানিকভাবে বিন্দুসদৃশ (< 10^-18 m)।"
+      },
+      {
+        "id": "two_jet_spin",
+        "titleBn": "২. দুই-জেট কৌণিক বণ্টন: কোয়ার্কের স্পিন-১/২",
+        "titleEn": "2. Two-Jet Angular Distribution: Spin-1/2 Quarks",
+        "experiment": "SLAC SPEAR (1975)",
+        "facility": "Mark I Detector",
+        "tier": "T1",
+        "keyDiscoveryBn": "ইলেকট্রন-পজিট্রন সংঘর্ষে e+e- -> q q_bar প্রক্রিয়ায় সৃষ্ট দুই জেটের কৌণিক বণ্টন ঠিক 1 + cos^2(theta) সমীকরণ মেনে চলে।",
+        "physicsProofBn": "যদি কোয়ার্ক স্পিন-০ বোসন হতো, তবে কৌণিক বণ্টন হতো sin^2(theta) = 1 - cos^2(theta)। 1 + cos^2(theta) সরাসরি প্রমাণ করে কোয়ার্ক স্পিন-১/২ ফার্মিয়ন।"
+      },
+      {
+        "id": "three_jet_gluon",
+        "titleBn": "৩. তিন-জেটে গ্লুয়নের প্রথম প্রত্যক্ষ প্রমাণ",
+        "titleEn": "3. Three-Jet Events: Direct Discovery of Gluons",
+        "experiment": "PETRA, DESY (Hamburg, 1979)",
+        "facility": "TASSO, JADE, MARK-J, PLUTO",
+        "tier": "T1",
+        "keyDiscoveryBn": "PETRA ত্বরকযন্ত্রে e+e- সংঘর্ষে কিছু ইভেন্টে দুইটি নয়, বরং একই সমতলে ৩টি পৃথক কণা-ঝাঁক (জেট) দেখা যায় (e+e- -> q q_bar g)।",
+        "physicsProofBn": "তৃতীয় সমতলীয় প্ল্যানার জেটটি ছিল নির্গত গ্লুয়ন ব্রেকিং রেডিয়েশনের প্রত্যক্ষ রূপ — কোয়ান্টাম ক্রোমোডাইনামিক্সের বলবাহক কণার প্রথম অকাট্য প্রমাণ।"
+      },
+      {
+        "id": "delta_puzzle",
+        "titleBn": "৪. Delta++ ধাঁধা ও ৩টি কালার চার্জের আবশ্যকতা",
+        "titleEn": "4. The Delta++ Puzzle & The Color Hypothesis",
+        "theorists": "O.W. Greenberg (1964), M. Han & Y. Nambu (1965)",
+        "tier": "T2",
+        "keyDiscoveryBn": "Delta++ ব্যারিয়নের গঠন uuu এবং স্পিন J = 3/2 (তিনটি আপ কোয়ার্কেরই স্পিন একই দিকে আপ ↑↑↑)। স্থানিক তরঙ্গফাংশন ও স্পিন উভয়ই সম্পূর্ণ প্রতিসম (symmetric)।",
+        "physicsProofBn": "পাউলির অপবর্জন নীতি অনুযায়ী সার্বিক তরঙ্গফাংশন অবশ্যই প্রতিসম হতে পারে না (অ্যান্টিসিমেট্রিক হতে হবে)। এই ধাঁধা সমাধানের একমাত্র পথ ছিল প্রতিটি কোয়ার্কের জন্য ৩টি অদৃশ্য কালার চার্জ (r, g, b) প্রবর্তন করা, যা সম্পূর্ণ অ্যান্টিসিমেট্রিক সিঙ্গলেট তৈরি করে।"
+      },
+      {
+        "id": "lattice_masses",
+        "titleBn": "৫. ল্যাটিস QCD: শূন্য থেকে হ্যাড্রনের ভর গণনা",
+        "titleEn": "5. Ab Initio Lattice QCD Hadron Mass Spectrum",
+        "collaboration": "Budapest-Marseille-Wuppertal (BMW Collaboration)",
+        "publication": "Science 322, 1224 (2008)",
+        "tier": "T2",
+        "keyDiscoveryBn": "কোনো মুক্ত প্যারামিটার ফিট না করে (ab initio), স্থান-কালকে ৪ মাত্রিক ল্যাটিস গ্রিডে বিভক্ত করে সুপারকম্পিউটারে QCD সমীকরণ সমাধান করা হয়।",
+        "physicsProofBn": "ল্যাটিস QCD গণনা থেকে প্রোটন, নিউট্রন, ল্যাম্বডা, সিগমা ও ডেল্টা হ্যাড্রনের পরীক্ষালব্ধ ভর মাত্র কয়েক শতাংশ সূক্ষ্মতায় হুবহু মিলে যায় — যা প্রমাণ করে QCD-ই হ্যাড্রন ভরের মূল উৎস।"
+      }
+    ]
   }
 }
+

@@ -136,8 +136,8 @@ it('Chapter 1 strictly reads proton mass, charge radius, valence mass, and tensi
 });
 
 // 5. CHAPTER ROUTING & PLACEHOLDERS INTEGRITY
-it('Quark section defines all 6 chapters with individual URL hash routes and placeholders', () => {
-  assert.strictEqual(CHAPTER_LIST.length, 8);
+it('Quark section defines chapters with individual URL hash routes and placeholders', () => {
+  assert.strictEqual(CHAPTER_LIST.length, 11);
 
   const ch0 = CHAPTER_LIST.find(c => c.id === 'chapter-0');
   assert(ch0, 'Chapter 0 must exist in CHAPTER_LIST');
@@ -163,9 +163,20 @@ it('Quark section defines all 6 chapters with individual URL hash routes and pla
   assert.strictEqual(ch7.isAvailable, true);
   assert.strictEqual(ch7.titleBn, 'ভর কোথা থেকে আসে');
 
-  // All chapters (0 to 7) are now available and active
+  const ch9 = CHAPTER_LIST.find(c => c.id === 'chapter-9');
+  assert(ch9, 'Chapter 9 must exist in CHAPTER_LIST');
+  assert.strictEqual(ch9.hash, '#/quarks/chapter-9');
+  assert.strictEqual(ch9.isAvailable, true);
+  assert.strictEqual(ch9.titleBn, 'Asymptotic freedom');
+
+  const ch10 = CHAPTER_LIST.find(c => c.id === 'chapter-10');
+  assert(ch10, 'Chapter 10 must exist in CHAPTER_LIST');
+  assert.strictEqual(ch10.hash, '#/quarks/chapter-10');
+  assert.strictEqual(ch10.isAvailable, true);
+  assert.strictEqual(ch10.titleBn, 'কীভাবে জানলাম?');
+
+  // All defined chapters must have dedicated hash
   for (const ch of CHAPTER_LIST) {
-    assert.strictEqual(ch.isAvailable, true, `Chapter ${ch.id} must be available`);
     assert(ch.hash.startsWith('#/quarks/chapter-'), `Chapter ${ch.id} must have dedicated hash`);
   }
 });
@@ -173,8 +184,7 @@ it('Quark section defines all 6 chapters with individual URL hash routes and pla
 // 6. WCAG 2.2 AA & ZERO EMOJI IN CODE
 it('Zero unicode emojis in new quark modules', () => {
   const emojiRegex = /[\u{1F300}-\u{1F6FF}\u{1F900}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F1E6}-\u{1F1FF}\u{1F004}\u{1F0CF}\u{1F170}-\u{1F251}]/u;
-  const quarkFiles = ['quark/chapter-0.js', 'quark/chapter-1.js', 'quark/chapter-2.js', 'quark/chapter-6.js', 'quark/chapter-7.js', 'quark/quark-app.js', 'quark/quark-styles.css'];
-
+  const quarkFiles = ['quark/chapter-0.js', 'quark/chapter-1.js', 'quark/chapter-2.js', 'quark/chapter-6.js', 'quark/chapter-7.js', 'quark/chapter-9.js', 'quark/chapter-10.js', 'quark/quark-app.js', 'quark/quark-styles.css'];
 
   quarkFiles.forEach(f => {
     const content = fs.readFileSync(f, 'utf8');
