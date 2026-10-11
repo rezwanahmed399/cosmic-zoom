@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "node server.js",
-    "test": "node test_esm.mjs && node check_emojis.js && node verify_ids.js && node test_zero_bengali.js && node test_zero_bengali_app.js && node test_black_hole_pills.js && node test_default_hidden_all_devices.js && node test_planck_collapse.js && node test_mobile_planck_fixes.js && node test_quark_physics.js && node test_chapter0_scale_ladder.js && node test_chapter1_proton.js && node test_chapter2_flavor_lab.js && node test_chapter3_color_lab.js && node test_chapter4_flux_tube.js && node test_chapter5_string_breaking.js"
+    "test": "node test_esm.mjs && node check_emojis.js && node verify_ids.js && node test_zero_bengali.js && node test_zero_bengali_app.js && node test_black_hole_pills.js && node test_default_hidden_all_devices.js && node test_planck_collapse.js && node test_mobile_planck_fixes.js && node test_quark_physics.js && node test_chapter0_scale_ladder.js && node test_chapter1_proton.js && node test_chapter2_flavor_lab.js && node test_chapter3_color_lab.js && node test_chapter4_flux_tube.js && node test_chapter5_string_breaking.js && node test_chapter6_hadron_builder.js"
   },
   "keywords": [
     "cosmology",

@@ -14,10 +14,26 @@ export const COLOR_CHARGE = QUARK_FACTS.colorCharge;
 export const CONFINEMENT = QUARK_FACTS.confinement;
 export const STRING_BREAKING = QUARK_FACTS.stringBreaking;
 export const HADRONS = QUARK_FACTS.hadrons;
+export const EXOTIC_HADRONS = QUARK_FACTS.exoticHadrons;
+export const HADRON_SIZES = QUARK_FACTS.hadronSizes;
 export const TIME_SCALES = QUARK_FACTS.timeScales;
 export const SCALE_LADDER = QUARK_FACTS.scaleLadder;
 export const NEUTRON_DECAY = QUARK_FACTS.neutronDecay;
 export const CKM_MATRIX = QUARK_FACTS.ckmMatrix;
+
+/**
+ * Returns exotic hadrons gallery (X(3872), Pc pentaquarks, T_cc^+, Glueball)
+ */
+export function getExoticHadrons() {
+  return EXOTIC_HADRONS;
+}
+
+/**
+ * Returns hadron charge radius size comparison data (pion, kaon, proton)
+ */
+export function getHadronSizes() {
+  return HADRON_SIZES;
+}
 
 /**
  * Returns the scale ladder steps (Atom, Nucleus, Proton, Quark)

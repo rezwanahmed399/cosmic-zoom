@@ -12,6 +12,7 @@ import { Chapter2FlavorLab } from './chapter-2.js';
 import { Chapter3ColorLab } from './chapter-3.js';
 import { Chapter4FluxTubeLab } from './chapter-4.js';
 import { Chapter5StringBreaking } from './chapter-5.js';
+import { Chapter6HadronBuilder } from './chapter-6.js';
 
 export const CHAPTER_LIST = [
   {
@@ -84,6 +85,18 @@ export const CHAPTER_LIST = [
     subtitleBn: 'ধীর টান, ফ্লাক্স টিউব সংকট ও হ্যাড্রোনাইজেশন',
     subtitleEn: 'Slow Pull, Flux Tube Criticality & Hadronization',
     tier: 'T3',
+    isAvailable: true
+  },
+  {
+    id: 'chapter-6',
+    hash: '#/quarks/chapter-6',
+    numberBn: '৬',
+    numberEn: '6',
+    titleBn: 'Hadron Builder',
+    titleEn: 'Hadron Builder',
+    subtitleBn: 'কোয়ার্ক স্লট, কালার-সিঙ্গলেট যাচাই ও এক্সোটিক গ্যালারি',
+    subtitleEn: 'Quark Slots, Color-Singlet Validation & Exotic Gallery',
+    tier: 'T1',
     isAvailable: true
   }
 ];
@@ -342,6 +355,14 @@ export class QuarkApp {
     } else if (chMeta.isAvailable && chapterId === 'chapter-5') {
       // Mount Chapter 5 String Breaking (Mode A)!
       this.currentChapterInstance = new Chapter5StringBreaking({
+        container: viewport,
+        lang: this.lang,
+        level: this.level,
+        infoDrawer: this.infoDrawer
+      });
+    } else if (chMeta.isAvailable && chapterId === 'chapter-6') {
+      // Mount Chapter 6 Hadron Builder!
+      this.currentChapterInstance = new Chapter6HadronBuilder({
         container: viewport,
         lang: this.lang,
         level: this.level,

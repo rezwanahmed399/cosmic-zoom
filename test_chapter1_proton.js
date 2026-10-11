@@ -137,7 +137,7 @@ it('Chapter 1 strictly reads proton mass, charge radius, valence mass, and tensi
 
 // 5. CHAPTER ROUTING & PLACEHOLDERS INTEGRITY
 it('Quark section defines all 6 chapters with individual URL hash routes and placeholders', () => {
-  assert.strictEqual(CHAPTER_LIST.length, 6);
+  assert.strictEqual(CHAPTER_LIST.length, 7);
 
   const ch0 = CHAPTER_LIST.find(c => c.id === 'chapter-0');
   assert(ch0, 'Chapter 0 must exist in CHAPTER_LIST');
@@ -151,7 +151,13 @@ it('Quark section defines all 6 chapters with individual URL hash routes and pla
   assert.strictEqual(ch1.isAvailable, true);
   assert.strictEqual(ch1.titleBn, 'প্রোটনের শরীর');
 
-  // All chapters (0, 1, 2, 3, 4, 5) are now available and active
+  const ch6 = CHAPTER_LIST.find(c => c.id === 'chapter-6');
+  assert(ch6, 'Chapter 6 must exist in CHAPTER_LIST');
+  assert.strictEqual(ch6.hash, '#/quarks/chapter-6');
+  assert.strictEqual(ch6.isAvailable, true);
+  assert.strictEqual(ch6.titleBn, 'Hadron Builder');
+
+  // All chapters (0, 1, 2, 3, 4, 5, 6) are now available and active
   for (const ch of CHAPTER_LIST) {
     assert.strictEqual(ch.isAvailable, true, `Chapter ${ch.id} must be available`);
     assert(ch.hash.startsWith('#/quarks/chapter-'), `Chapter ${ch.id} must have dedicated hash`);
@@ -161,7 +167,7 @@ it('Quark section defines all 6 chapters with individual URL hash routes and pla
 // 6. WCAG 2.2 AA & ZERO EMOJI IN CODE
 it('Zero unicode emojis in new quark modules', () => {
   const emojiRegex = /[\u{1F300}-\u{1F6FF}\u{1F900}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F1E6}-\u{1F1FF}\u{1F004}\u{1F0CF}\u{1F170}-\u{1F251}]/u;
-  const quarkFiles = ['quark/chapter-0.js', 'quark/chapter-1.js', 'quark/quark-app.js', 'quark/quark-styles.css'];
+  const quarkFiles = ['quark/chapter-0.js', 'quark/chapter-1.js', 'quark/chapter-2.js', 'quark/chapter-6.js', 'quark/quark-app.js', 'quark/quark-styles.css'];
 
 
   quarkFiles.forEach(f => {

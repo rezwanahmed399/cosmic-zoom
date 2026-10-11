@@ -349,6 +349,7 @@
       "nameBn": "নিউট্রাল পায়ন",
       "symbol": "π⁰",
       "quarkContent": ["u", "u_bar"],
+      "aliasQuarkContent": [["d", "d_bar"]],
       "superpositionState": "(u u_bar - d d_bar)/sqrt(2)",
       "baryonNumber": 0,
       "spin": 0,
@@ -527,6 +528,199 @@
       "bottomness": 0,
       "mass": { "value": 9460.30, "unit": "MeV/c^2", "uncertainty": "+- 0.26", "tier": "T1", "source": "PDG 2024/2026" },
       "lifetime": { "value": 1.2e-20, "unit": "s", "tier": "T1", "source": "PDG 2024/2026" }
+    },
+    "k_minus": {
+      "id": "k_minus",
+      "nameEn": "Negative Kaon",
+      "nameBn": "নেগেটিভ কেয়ন",
+      "symbol": "K⁻",
+      "quarkContent": ["s", "u_bar"],
+      "baryonNumber": 0,
+      "spin": 0,
+      "charge": -1,
+      "strangeness": -1,
+      "mass": { "value": 493.677, "unit": "MeV/c^2", "uncertainty": "+- 0.016", "tier": "T1", "source": "PDG 2024/2026" },
+      "lifetime": { "value": 1.238e-8, "unit": "s", "tier": "T1", "source": "PDG 2024/2026" },
+      "chargeRadiusFm": 0.560
+    },
+    "anti_k0": {
+      "id": "anti_k0",
+      "nameEn": "Anti-Neutral Kaon",
+      "nameBn": "অ্যান্টি-নিউট্রাল কেয়ন",
+      "symbol": "K̄⁰",
+      "quarkContent": ["s", "d_bar"],
+      "baryonNumber": 0,
+      "spin": 0,
+      "charge": 0,
+      "strangeness": -1,
+      "mass": { "value": 497.611, "unit": "MeV/c^2", "uncertainty": "+- 0.013", "tier": "T1", "source": "PDG 2024/2026" }
+    }
+  },
+  "exoticHadrons": {
+    "x_3872": {
+      "id": "x_3872",
+      "nameEn": "X(3872) / chi_c1(3872)",
+      "nameBn": "X(৩৮৭২) / চাই_সি১(৩৮৭২)",
+      "symbol": "X(3872)",
+      "quarkContent": ["c", "c_bar", "u", "u_bar"],
+      "type": "tetraquark_candidate",
+      "mass": { "value": 3871.65, "uncertainty": "+- 0.06", "unit": "MeV/c^2", "tier": "T1", "source": "PDG 2024 / Belle 2003" },
+      "spin": 1,
+      "parity": "+",
+      "charge": 0,
+      "baryonNumber": 0,
+      "discovery": {
+        "year": 2003,
+        "experiment": "Belle Collaboration",
+        "citation": "Phys. Rev. Lett. 91, 262001 (2003)",
+        "confirmation": "CDF, D0, BaBar, LHCb"
+      },
+      "structureDebateEn": "Hadronic molecule (D^0 D*^0_bar) vs compact tetraquark (c c_bar u u_bar)",
+      "structureDebateBn": "D⁰ D̄*⁰ আণবিক বাউন্ড স্টেট বনাম কম্প্যাক্ট টেট্রাকোয়ার্ক (c c̄ u ū); গঠনের ব্যাখ্যা বিতর্কিত",
+      "tier": "T1"
+    },
+    "p_c_4312": {
+      "id": "p_c_4312",
+      "nameEn": "P_c(4312)^+ Pentaquark",
+      "nameBn": "P_c(৪৩১২)⁺ পেন্টাকোয়ার্ক",
+      "symbol": "P_c(4312)⁺",
+      "quarkContent": ["u", "u", "d", "c", "c_bar"],
+      "type": "pentaquark",
+      "mass": { "value": 4311.9, "uncertainty": "+- 0.7", "unit": "MeV/c^2", "tier": "T1", "source": "PDG 2024 / LHCb 2019" },
+      "widthMeV": { "value": 9.8, "uncertainty": "+- 2.7", "unit": "MeV" },
+      "spin": 0.5,
+      "charge": 1,
+      "baryonNumber": 1,
+      "discovery": {
+        "initialYear": 2015,
+        "resolvedYear": 2019,
+        "experiment": "LHCb Collaboration",
+        "citation": "Phys. Rev. Lett. 122, 222001 (2019)"
+      },
+      "structureDebateEn": "Sigma_c^+ D^0_bar molecular bound state vs compact pentaquark (u u d c c_bar)",
+      "structureDebateBn": "সিগমা_সি⁺ D̄⁰ আণবিক অবস্থা বনাম কম্প্যাক্ট পেন্টাকোয়ার্ক (u u d c c̄); গঠনের ব্যাখ্যা বিতর্কিত",
+      "tier": "T1"
+    },
+    "p_c_4440": {
+      "id": "p_c_4440",
+      "nameEn": "P_c(4440)^+ Pentaquark",
+      "nameBn": "P_c(৪৪৪০)⁺ পেন্টাকোয়ার্ক",
+      "symbol": "P_c(4440)⁺",
+      "quarkContent": ["u", "u", "d", "c", "c_bar"],
+      "type": "pentaquark",
+      "mass": { "value": 4440.3, "uncertainty": "+- 1.3", "unit": "MeV/c^2", "tier": "T1", "source": "PDG 2024 / LHCb 2019" },
+      "widthMeV": { "value": 20.6, "uncertainty": "+- 4.7", "unit": "MeV" },
+      "spin": 0.5,
+      "charge": 1,
+      "baryonNumber": 1,
+      "discovery": {
+        "initialYear": 2015,
+        "resolvedYear": 2019,
+        "experiment": "LHCb Collaboration",
+        "citation": "Phys. Rev. Lett. 122, 222001 (2019)"
+      },
+      "structureDebateEn": "Sigma_c^+ D*^0_bar molecular state vs compact pentaquark",
+      "structureDebateBn": "সিগমা_সি⁺ D̄*⁰ আণবিক অবস্থা বনাম কম্প্যাক্ট পেন্টাকোয়ার্ক; গঠনের ব্যাখ্যা বিতর্কিত",
+      "tier": "T1"
+    },
+    "p_c_4457": {
+      "id": "p_c_4457",
+      "nameEn": "P_c(4457)^+ Pentaquark",
+      "nameBn": "P_c(৪৪৫৭)⁺ পেন্টাকোয়ার্ক",
+      "symbol": "P_c(4457)⁺",
+      "quarkContent": ["u", "u", "d", "c", "c_bar"],
+      "type": "pentaquark",
+      "mass": { "value": 4457.3, "uncertainty": "+- 1.1", "unit": "MeV/c^2", "tier": "T1", "source": "PDG 2024 / LHCb 2019" },
+      "widthMeV": { "value": 6.4, "uncertainty": "+- 2.0", "unit": "MeV" },
+      "spin": 1.5,
+      "charge": 1,
+      "baryonNumber": 1,
+      "discovery": {
+        "initialYear": 2015,
+        "resolvedYear": 2019,
+        "experiment": "LHCb Collaboration",
+        "citation": "Phys. Rev. Lett. 122, 222001 (2019)"
+      },
+      "structureDebateEn": "Sigma_c^+ D*^0_bar molecular state vs compact pentaquark",
+      "structureDebateBn": "সিগমা_সি⁺ D̄*⁰ আণবিক অবস্থা বনাম কম্প্যাক্ট পেন্টাকোয়ার্ক; গঠনের ব্যাখ্যা বিতর্কিত",
+      "tier": "T1"
+    },
+    "t_cc_plus": {
+      "id": "t_cc_plus",
+      "nameEn": "T_cc^+ Tetraquark",
+      "nameBn": "T_cc⁺ টেট্রাকোয়ার্ক",
+      "symbol": "T_cc⁺",
+      "quarkContent": ["c", "c", "u_bar", "d_bar"],
+      "type": "doubly_charmed_tetraquark",
+      "mass": { "value": 3874.74, "uncertainty": "+- 0.04", "unit": "MeV/c^2", "tier": "T1", "source": "PDG 2024 / LHCb 2021" },
+      "bindingEnergyKeV": { "value": -273, "uncertainty": "+- 61", "unit": "keV", "belowThreshold": "D*^+ D^0" },
+      "spin": 1,
+      "charge": 1,
+      "charm": 2,
+      "discovery": {
+        "year": 2021,
+        "experiment": "LHCb Collaboration",
+        "citation": "Nature Physics 18, 751-754 (2022); Nature Communications 13, 3351 (2022)"
+      },
+      "structureDebateEn": "First doubly-charmed tetraquark. D*^+ D^0 molecular state vs compact tetraquark (c c u_bar d_bar)",
+      "structureDebateBn": "প্রথম আবিষ্কৃত ডাবল-চার্ম টেট্রাকোয়ার্ক (c c ū d̄); D*⁺ D⁰ আণবিক অবস্থা বনাম কম্প্যাক্ট টেট্রাকোয়ার্ক; গঠনের ব্যাখ্যা বিতর্কিত",
+      "tier": "T1"
+    },
+    "glueball": {
+      "id": "glueball",
+      "nameEn": "Glueball (Pure Gluonic State)",
+      "nameBn": "গ্লুবল (বিশুদ্ধ গ্লুয়ন বাউন্ড স্টেট)",
+      "symbol": "G(gg)",
+      "quarkContent": [],
+      "gluonContent": ["g", "g"],
+      "type": "gluonic_singlet",
+      "statusBn": "অনুমিত, নিশ্চিত নয়",
+      "statusEn": "Hypothesized, not confirmed",
+      "massEstimateGeV": { "value": "1.5 - 1.7", "unit": "GeV/c^2", "groundState": "Scalar 0^++", "tier": "T3", "source": "Lattice QCD simulations" },
+      "descriptionBn": "QCD কনফাইনমেন্ট অনুযায়ী গ্লুয়ন নিজেই কালার-চার্জিত হওয়ায় কোনো ভ্যালেন্স কোয়ার্ক ছাড়াই শুধু গ্লুয়ন মিলে কালার-সিঙ্গলেট গঠন করতে পারে। কিন্তু সাধারণ মেসনের সাথে কোয়ান্টাম মিশ্রণের কারণে এর অস্তিত্ব পরীক্ষাগারে এখনো চূড়ান্তভাবে নিশ্চিত নয় (অজানা গ্রাউন্ড স্টেট)।",
+      "descriptionEn": "Because gluons carry color charge, QCD predicts pure gluon bound states with no valence quarks. However, strong mixing with conventional q q_bar mesons makes unambiguous experimental confirmation elusive.",
+      "tier": "T3"
+    }
+  },
+  "hadronSizes": {
+    "pion": {
+      "id": "pion",
+      "symbol": "π",
+      "nameEn": "Pion (π⁺ / π⁻)",
+      "nameBn": "পায়ন (π⁺ / π⁻)",
+      "chargeRadiusFm": 0.659,
+      "approximateFm": 0.66,
+      "relativeToProton": 0.783,
+      "tier": "T1",
+      "source": "PDG 2024",
+      "descriptionBn": "মেসনে কেবল একটি একক q q̄ ফ্লাক্স টিউব থাকে, ফলে এর সামগ্রিক আধান-ব্যাসার্ধ প্রোটনের চেয়ে লক্ষণীয়ভাবে কম (~০.৬৬ fm)।",
+      "descriptionEn": "Mesons consist of a single q q_bar flux tube, resulting in a noticeably smaller charge radius than protons (~0.66 fm)."
+    },
+    "kaon": {
+      "id": "kaon",
+      "symbol": "K",
+      "nameEn": "Kaon (K⁺)",
+      "nameBn": "কেয়ন (K⁺)",
+      "chargeRadiusFm": 0.560,
+      "approximateFm": 0.56,
+      "relativeToProton": 0.666,
+      "tier": "T1",
+      "source": "PDG 2024",
+      "descriptionBn": "ভারী স্ট্রেঞ্জ কোয়ার্কের (s) ভরের কারণে কেয়ন পায়নের চেয়েও সংকুচিত ও ঘনীভূত (~০.৫৬ fm)।",
+      "descriptionEn": "Due to the heavier strange quark, kaons are even more compact than pions (~0.56 fm)."
+    },
+    "proton": {
+      "id": "proton",
+      "symbol": "p",
+      "nameEn": "Proton",
+      "nameBn": "প্রোটন",
+      "chargeRadiusFm": 0.8414,
+      "approximateFm": 0.84,
+      "relativeToProton": 1.000,
+      "tier": "T1",
+      "source": "CODATA 2022 / PDG 2024",
+      "descriptionBn": "৩টি ভ্যালেন্স কোয়ার্ক এবং Fermat-Torricelli জংশনযুক্ত Y-আকৃতির ৩টি ফ্লাক্স টিউব মেসনের তুলনায় বৃহত্তর আয়তন ধারণ করে (~০.৮৪ fm)।",
+      "descriptionEn": "Three valence quarks and Y-shaped 3-tube junction encompass a larger spatial volume than mesons (~0.84 fm)."
     }
   },
   "timeScales": {
