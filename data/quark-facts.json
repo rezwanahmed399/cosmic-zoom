@@ -1,0 +1,476 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "retrievedOn": "2026-10-11",
+    "primarySource": "PDG (Particle Data Group, pdg.lbl.gov, 2024/2026 edition) & Lattice QCD Reviews",
+    "description": "Scientific constants, particle properties, and parameters for CosmoPlanck quark visualizations. Single data source strictly forbidding hardcoded numbers in code."
+  },
+  "quarks": {
+    "u": {
+      "symbol": "u",
+      "nameEn": "Up",
+      "nameBn": "আপ",
+      "charge": { "value": 0.6666666666666666, "fraction": "+2/3", "unit": "e", "uncertainty": 0, "tier": "T1", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11" },
+      "mass": { "value": 2.16, "unit": "MeV/c^2", "uncertainty": "+0.49 -0.26", "scheme": "MS-bar (mu = 2 GeV)", "tier": "T2", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11", "verify": true },
+      "spin": { "value": 0.5, "unit": "hbar", "uncertainty": 0, "tier": "T1", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11" },
+      "baryonNumber": { "value": 0.3333333333333333, "fraction": "1/3", "unit": "dimensionless", "uncertainty": 0, "tier": "T1", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11" },
+      "isospin3": 0.5,
+      "strangeness": 0,
+      "charm": 0,
+      "bottomness": 0,
+      "topness": 0,
+      "sizeUpperLimit": { "value": 1e-18, "unit": "m", "tier": "T1", "source": "HERA / LEP / PDG 2024", "retrievedOn": "2026-10-11" }
+    },
+    "d": {
+      "symbol": "d",
+      "nameEn": "Down",
+      "nameBn": "ডাউন",
+      "charge": { "value": -0.3333333333333333, "fraction": "-1/3", "unit": "e", "uncertainty": 0, "tier": "T1", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11" },
+      "mass": { "value": 4.67, "unit": "MeV/c^2", "uncertainty": "+0.48 -0.17", "scheme": "MS-bar (mu = 2 GeV)", "tier": "T2", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11", "verify": true },
+      "spin": { "value": 0.5, "unit": "hbar", "uncertainty": 0, "tier": "T1", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11" },
+      "baryonNumber": { "value": 0.3333333333333333, "fraction": "1/3", "unit": "dimensionless", "uncertainty": 0, "tier": "T1", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11" },
+      "isospin3": -0.5,
+      "strangeness": 0,
+      "charm": 0,
+      "bottomness": 0,
+      "topness": 0,
+      "sizeUpperLimit": { "value": 1e-18, "unit": "m", "tier": "T1", "source": "HERA / LEP / PDG 2024", "retrievedOn": "2026-10-11" }
+    },
+    "s": {
+      "symbol": "s",
+      "nameEn": "Strange",
+      "nameBn": "স্ট্রেঞ্জ",
+      "charge": { "value": -0.3333333333333333, "fraction": "-1/3", "unit": "e", "uncertainty": 0, "tier": "T1", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11" },
+      "mass": { "value": 93.4, "unit": "MeV/c^2", "uncertainty": "+8.6 -3.4", "scheme": "MS-bar (mu = 2 GeV)", "tier": "T2", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11", "verify": true },
+      "spin": { "value": 0.5, "unit": "hbar", "uncertainty": 0, "tier": "T1", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11" },
+      "baryonNumber": { "value": 0.3333333333333333, "fraction": "1/3", "unit": "dimensionless", "uncertainty": 0, "tier": "T1", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11" },
+      "isospin3": 0,
+      "strangeness": -1,
+      "charm": 0,
+      "bottomness": 0,
+      "topness": 0,
+      "sizeUpperLimit": { "value": 1e-18, "unit": "m", "tier": "T1", "source": "HERA / LEP / PDG 2024", "retrievedOn": "2026-10-11" }
+    },
+    "c": {
+      "symbol": "c",
+      "nameEn": "Charm",
+      "nameBn": "চার্ম",
+      "charge": { "value": 0.6666666666666666, "fraction": "+2/3", "unit": "e", "uncertainty": 0, "tier": "T1", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11" },
+      "mass": { "value": 1.27, "unit": "GeV/c^2", "uncertainty": "+- 0.02", "scheme": "MS-bar at scale m_c", "tier": "T2", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11", "verify": true },
+      "spin": { "value": 0.5, "unit": "hbar", "uncertainty": 0, "tier": "T1", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11" },
+      "baryonNumber": { "value": 0.3333333333333333, "fraction": "1/3", "unit": "dimensionless", "uncertainty": 0, "tier": "T1", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11" },
+      "isospin3": 0,
+      "strangeness": 0,
+      "charm": 1,
+      "bottomness": 0,
+      "topness": 0,
+      "sizeUpperLimit": { "value": 1e-18, "unit": "m", "tier": "T1", "source": "HERA / LEP / PDG 2024", "retrievedOn": "2026-10-11" }
+    },
+    "b": {
+      "symbol": "b",
+      "nameEn": "Bottom",
+      "nameBn": "বটম",
+      "charge": { "value": -0.3333333333333333, "fraction": "-1/3", "unit": "e", "uncertainty": 0, "tier": "T1", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11" },
+      "mass": { "value": 4.18, "unit": "GeV/c^2", "uncertainty": "+0.03 -0.02", "scheme": "MS-bar at scale m_b", "tier": "T2", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11", "verify": true },
+      "spin": { "value": 0.5, "unit": "hbar", "uncertainty": 0, "tier": "T1", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11" },
+      "baryonNumber": { "value": 0.3333333333333333, "fraction": "1/3", "unit": "dimensionless", "uncertainty": 0, "tier": "T1", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11" },
+      "isospin3": 0,
+      "strangeness": 0,
+      "charm": 0,
+      "bottomness": -1,
+      "topness": 0,
+      "sizeUpperLimit": { "value": 1e-18, "unit": "m", "tier": "T1", "source": "HERA / LEP / PDG 2024", "retrievedOn": "2026-10-11" }
+    },
+    "t": {
+      "symbol": "t",
+      "nameEn": "Top",
+      "nameBn": "টপ",
+      "charge": { "value": 0.6666666666666666, "fraction": "+2/3", "unit": "e", "uncertainty": 0, "tier": "T1", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11" },
+      "mass": { "value": 172.57, "unit": "GeV/c^2", "uncertainty": "+- 0.29", "scheme": "Direct measurements / pole mass average", "tier": "T1", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11", "verify": true },
+      "lifetime": { "value": 5e-25, "unit": "s", "uncertainty": "+- 0.5e-25", "tier": "T1", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11" },
+      "decaysBeforeHadronization": { "value": true, "tier": "T1", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11" },
+      "toponiumCandidateNote": { "value": "CMS and ATLAS (2025) observed excess near t tbar threshold consistent with toponium, interpretation ongoing", "tier": "T3", "source": "CMS / ATLAS 2025", "retrievedOn": "2026-10-11", "verify": true },
+      "spin": { "value": 0.5, "unit": "hbar", "uncertainty": 0, "tier": "T1", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11" },
+      "baryonNumber": { "value": 0.3333333333333333, "fraction": "1/3", "unit": "dimensionless", "uncertainty": 0, "tier": "T1", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11" },
+      "isospin3": 0,
+      "strangeness": 0,
+      "charm": 0,
+      "bottomness": 0,
+      "topness": 1,
+      "sizeUpperLimit": { "value": 1e-18, "unit": "m", "tier": "T1", "source": "HERA / LEP / PDG 2024", "retrievedOn": "2026-10-11" }
+    }
+  },
+  "proton": {
+    "nameEn": "Proton",
+    "nameBn": "প্রোটন",
+    "valenceComposition": ["u", "u", "d"],
+    "mass": { "value": 938.272088, "unit": "MeV/c^2", "uncertainty": "+- 0.000058", "tier": "T1", "source": "PDG 2024/2026 / CODATA 2022", "retrievedOn": "2026-10-11" },
+    "charge": { "value": 1, "unit": "e", "uncertainty": 0, "tier": "T1", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11" },
+    "spin": { "value": 0.5, "unit": "hbar", "uncertainty": 0, "tier": "T1", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11" },
+    "chargeRadius": { "value": 0.8414, "unit": "fm", "uncertainty": "+- 0.0019", "tier": "T1", "source": "PDG 2024 / CODATA 2022", "retrievedOn": "2026-10-11" },
+    "diameter": { "value": 1.7, "unit": "fm", "approximate": true, "tier": "T1", "source": "PDG 2024", "retrievedOn": "2026-10-11" },
+    "valenceQuarkMassSum": { "value": 9.0, "unit": "MeV/c^2", "fractionOfProtonMass": 0.0096, "percentageApprox": 1, "tier": "T2", "source": "Lattice QCD", "retrievedOn": "2026-10-11" },
+    "jiMassDecomposition": {
+      "scheme": "Lattice QCD (MS-bar mu = 2 GeV)",
+      "tier": "T2",
+      "source": "X. Ji / Lattice QCD Collaborations",
+      "retrievedOn": "2026-10-11",
+      "verify": true,
+      "quarkEnergy": { "value": 0.32, "percentage": 32, "unit": "%" },
+      "glueEnergy": { "value": 0.36, "percentage": 36, "unit": "%" },
+      "traceAnomaly": { "value": 0.23, "percentage": 23, "unit": "%" },
+      "quarkMassContribution": { "value": 0.09, "percentage": 9, "unit": "%" },
+      "caveatEn": "Decomposition is scheme and scale dependent (approximate). Never state '99% without Higgs'.",
+      "caveatBn": "ভর বিভাজন স্কিম ও স্কেল-নির্ভর (আনুমানিক)। '৯৯% হিগস ছাড়া' লেখা নিষেধ।"
+    },
+    "seaQuarkAsymmetry": {
+      "relation": "d_bar > u_bar",
+      "tier": "T1",
+      "source": "E866/NuSea & SeaQuest E906 Collaborations",
+      "retrievedOn": "2026-10-11"
+    },
+    "valenceSumRules": {
+      "u_minus_ubar": 2,
+      "d_minus_dbar": 1,
+      "s_minus_sbar": 0
+    }
+  },
+  "colorCharge": {
+    "colors": ["red", "green", "blue"],
+    "antiColors": ["anti-red", "anti-green", "anti-blue"],
+    "antiColorHex": {
+      "red": "#00e5ff",
+      "green": "#ff007f",
+      "blue": "#ffd600"
+    },
+    "freeParticleCondition": "color_singlet_only",
+    "baryonColorState": "r + g + b (color singlet, white)",
+    "mesonColorState": "color + anti-color (color singlet, white)",
+    "antiBaryonColorState": "anti-red + anti-green + anti-blue (color singlet, white)",
+    "gluons": {
+      "count": 8,
+      "mass": { "value": 0, "unit": "MeV/c^2", "tier": "T1", "source": "PDG 2024/2026" },
+      "spin": { "value": 1, "unit": "hbar", "tier": "T1", "source": "PDG 2024/2026" },
+      "charge": { "value": 0, "unit": "e", "tier": "T1", "source": "PDG 2024/2026" },
+      "basisStates": [
+        "r g_bar", "r b_bar", "g r_bar", "g b_bar", "b r_bar", "b g_bar",
+        "(r r_bar - g g_bar)/sqrt(2)",
+        "(r r_bar + g g_bar - 2 b b_bar)/sqrt(6)"
+      ],
+      "ninthSingletExists": false
+    },
+    "strongCouplingAlphaS": {
+      "atZMass": { "value": 0.1180, "uncertainty": "+- 0.0009", "scale": "M_Z = 91.2 GeV", "tier": "T1", "source": "PDG 2024/2026", "retrievedOn": "2026-10-11" },
+      "at1GeV": { "value": 0.5, "approximate": true, "scale": "1 GeV (non-perturbative)", "tier": "T2", "source": "Lattice QCD / PDG", "retrievedOn": "2026-10-11", "verify": true }
+    }
+  },
+  "confinement": {
+    "stringTensionSigma": {
+      "value": 0.95,
+      "range": [0.90, 1.00],
+      "unit": "GeV/fm",
+      "valueGeV2": 0.187,
+      "tier": "T2",
+      "source": "Lattice QCD (Cornell / Bali)",
+      "retrievedOn": "2026-10-11",
+      "verify": true
+    },
+    "forceConstantN": {
+      "value": 152000,
+      "unit": "N",
+      "approxMetricTons": 15.5,
+      "distanceIndependence": "constant with distance",
+      "tier": "T2",
+      "source": "Lattice QCD string tension conversion"
+    },
+    "energyStored": {
+      "value": 0.95,
+      "unit": "GeV/fm",
+      "formula": "E = sigma * L",
+      "tier": "T2"
+    },
+    "mesonCornellPotential": {
+      "formula": "V(r) = -(4/3) * alpha_s * hbar * c / r + sigma * r",
+      "tier": "T3",
+      "source": "E. Eichten et al. (Cornell Model)"
+    },
+    "baryonFluxTubeGeometry": {
+      "shape": "Y-shaped flux tubes meeting at Fermat-Torricelli junction",
+      "tier": "T2",
+      "source": "Lattice QCD, T. Takahashi et al. 2001",
+      "retrievedOn": "2026-10-11"
+    },
+    "fluxTubeDiameter": {
+      "value": 0.4,
+      "range": [0.3, 0.5],
+      "unit": "fm",
+      "boundary": "fuzzy / gaussian profile",
+      "tier": "T2",
+      "source": "Lattice QCD flux tube profiles"
+    },
+    "openMathProblem": {
+      "title": "Yang-Mills Existence and Mass Gap Problem",
+      "organization": "Clay Mathematics Institute (Millennium Prize Problem)",
+      "status": "Unproven rigorous mathematical proof of confinement and mass gap",
+      "tier": "T1"
+    }
+  },
+  "stringBreaking": {
+    "staticQuarkBreakingDistance": {
+      "value": 1.25,
+      "unit": "fm",
+      "tier": "T2",
+      "source": "G. Bali et al. 2005 (SESAM Collaboration)",
+      "retrievedOn": "2026-10-11"
+    },
+    "dynamicalQuarkBreakingDistance": {
+      "lightQuarks": { "value": 1.22, "unit": "fm", "tier": "T2", "source": "J. Bulava et al. 2019", "retrievedOn": "2026-10-11" },
+      "strangeQuarks": { "value": 1.29, "unit": "fm", "tier": "T2", "source": "J. Bulava et al. 2019", "retrievedOn": "2026-10-11" }
+    },
+    "lundTunnelingFlavorWeights": {
+      "u": 1.0,
+      "d": 1.0,
+      "s": 0.25,
+      "c": 1e-11,
+      "b": 1e-20,
+      "t": 0.0,
+      "tier": "T3",
+      "source": "Lund String Model (Andersson et al. / PYTHIA 8)"
+    },
+    "newPairSeparationFm": {
+      "value": 0.65,
+      "range": [0.6, 0.7],
+      "unit": "fm",
+      "tier": "T3",
+      "source": "Lund Model tunneling parameter"
+    },
+    "colorAccounting": {
+      "newAntiquarkColor": "takes anti-color of pulled quark",
+      "newQuarkColor": "takes color of pulled quark"
+    }
+  },
+  "hadrons": {
+    "p": {
+      "id": "p",
+      "nameEn": "Proton",
+      "nameBn": "প্রোটন",
+      "symbol": "p",
+      "quarkContent": ["u", "u", "d"],
+      "baryonNumber": 1,
+      "spin": 0.5,
+      "charge": 1,
+      "mass": { "value": 938.272088, "unit": "MeV/c^2", "uncertainty": "+- 0.000058", "tier": "T1", "source": "PDG 2024/2026" },
+      "lifetime": { "value": "stable", "limitSec": "> 10^34 years", "tier": "T1", "source": "Super-Kamiokande / PDG" },
+      "chargeRadiusFm": 0.8414
+    },
+    "n": {
+      "id": "n",
+      "nameEn": "Neutron",
+      "nameBn": "নিউট্রন",
+      "symbol": "n",
+      "quarkContent": ["u", "d", "d"],
+      "baryonNumber": 1,
+      "spin": 0.5,
+      "charge": 0,
+      "mass": { "value": 939.565420, "unit": "MeV/c^2", "uncertainty": "+- 0.000060", "tier": "T1", "source": "PDG 2024/2026" },
+      "lifetime": { "value": 878.4, "unit": "s", "uncertainty": "+- 0.5", "tier": "T1", "source": "PDG 2024/2026" }
+    },
+    "pi0": {
+      "id": "pi0",
+      "nameEn": "Neutral Pion",
+      "nameBn": "নিউট্রাল পায়ন",
+      "symbol": "π⁰",
+      "quarkContent": ["u", "u_bar"],
+      "superpositionState": "(u u_bar - d d_bar)/sqrt(2)",
+      "baryonNumber": 0,
+      "spin": 0,
+      "charge": 0,
+      "mass": { "value": 134.9768, "unit": "MeV/c^2", "uncertainty": "+- 0.0005", "tier": "T1", "source": "PDG 2024/2026" },
+      "lifetime": { "value": 8.52e-17, "unit": "s", "decay": "gamma + gamma (98.8%)", "tier": "T1", "source": "PDG 2024/2026" }
+    },
+    "pi_plus": {
+      "id": "pi_plus",
+      "nameEn": "Positive Pion",
+      "nameBn": "পজিটিভ পায়ন",
+      "symbol": "π⁺",
+      "quarkContent": ["u", "d_bar"],
+      "baryonNumber": 0,
+      "spin": 0,
+      "charge": 1,
+      "mass": { "value": 139.57039, "unit": "MeV/c^2", "uncertainty": "+- 0.00018", "tier": "T1", "source": "PDG 2024/2026" },
+      "lifetime": { "value": 2.6033e-8, "unit": "s", "tier": "T1", "source": "PDG 2024/2026" },
+      "chargeRadiusFm": 0.659
+    },
+    "pi_minus": {
+      "id": "pi_minus",
+      "nameEn": "Negative Pion",
+      "nameBn": "নেগেটিভ পায়ন",
+      "symbol": "π⁻",
+      "quarkContent": ["d", "u_bar"],
+      "baryonNumber": 0,
+      "spin": 0,
+      "charge": -1,
+      "mass": { "value": 139.57039, "unit": "MeV/c^2", "uncertainty": "+- 0.00018", "tier": "T1", "source": "PDG 2024/2026" },
+      "lifetime": { "value": 2.6033e-8, "unit": "s", "tier": "T1", "source": "PDG 2024/2026" },
+      "chargeRadiusFm": 0.659
+    },
+    "k_plus": {
+      "id": "k_plus",
+      "nameEn": "Positive Kaon",
+      "nameBn": "পজিটিভ কেয়ন",
+      "symbol": "K⁺",
+      "quarkContent": ["u", "s_bar"],
+      "baryonNumber": 0,
+      "spin": 0,
+      "charge": 1,
+      "strangeness": 1,
+      "mass": { "value": 493.677, "unit": "MeV/c^2", "uncertainty": "+- 0.016", "tier": "T1", "source": "PDG 2024/2026" },
+      "lifetime": { "value": 1.238e-8, "unit": "s", "tier": "T1", "source": "PDG 2024/2026" },
+      "chargeRadiusFm": 0.560
+    },
+    "k_0": {
+      "id": "k_0",
+      "nameEn": "Neutral Kaon",
+      "nameBn": "নিউট্রাল কেয়ন",
+      "symbol": "K⁰",
+      "quarkContent": ["d", "s_bar"],
+      "baryonNumber": 0,
+      "spin": 0,
+      "charge": 0,
+      "strangeness": 1,
+      "mass": { "value": 497.611, "unit": "MeV/c^2", "uncertainty": "+- 0.013", "tier": "T1", "source": "PDG 2024/2026" }
+    },
+    "lambda": {
+      "id": "lambda",
+      "nameEn": "Lambda Baryon",
+      "nameBn": "ল্যাম্বডা ব্যারিয়ন",
+      "symbol": "Λ",
+      "quarkContent": ["u", "d", "s"],
+      "baryonNumber": 1,
+      "spin": 0.5,
+      "charge": 0,
+      "isospin": 0,
+      "strangeness": -1,
+      "mass": { "value": 1115.683, "unit": "MeV/c^2", "uncertainty": "+- 0.006", "tier": "T1", "source": "PDG 2024/2026" },
+      "lifetime": { "value": 2.632e-10, "unit": "s", "tier": "T1", "source": "PDG 2024/2026" }
+    },
+    "sigma_plus": {
+      "id": "sigma_plus",
+      "nameEn": "Sigma Plus",
+      "nameBn": "সিগমা প্লাস",
+      "symbol": "Σ⁺",
+      "quarkContent": ["u", "u", "s"],
+      "baryonNumber": 1,
+      "spin": 0.5,
+      "charge": 1,
+      "strangeness": -1,
+      "mass": { "value": 1189.37, "unit": "MeV/c^2", "uncertainty": "+- 0.07", "tier": "T1", "source": "PDG 2024/2026" },
+      "lifetime": { "value": 8.018e-11, "unit": "s", "tier": "T1", "source": "PDG 2024/2026" }
+    },
+    "delta_plus_plus": {
+      "id": "delta_plus_plus",
+      "nameEn": "Delta Plus Plus",
+      "nameBn": "ডেল্টা প্লাস প্লাস",
+      "symbol": "Δ⁺⁺",
+      "quarkContent": ["u", "u", "u"],
+      "baryonNumber": 1,
+      "spin": 1.5,
+      "charge": 2,
+      "strangeness": 0,
+      "mass": { "value": 1232.0, "unit": "MeV/c^2", "uncertainty": "+- 2.0", "tier": "T1", "source": "PDG 2024/2026" },
+      "lifetime": { "value": 5.63e-24, "unit": "s", "decay": "p + pi^+ (~100%)", "tier": "T1", "source": "PDG 2024/2026" }
+    },
+    "delta_plus": {
+      "id": "delta_plus",
+      "nameEn": "Delta Plus",
+      "nameBn": "ডেল্টা প্লাস",
+      "symbol": "Δ⁺",
+      "quarkContent": ["u", "u", "d"],
+      "baryonNumber": 1,
+      "spin": 1.5,
+      "charge": 1,
+      "strangeness": 0,
+      "mass": { "value": 1232.0, "unit": "MeV/c^2", "uncertainty": "+- 2.0", "tier": "T1", "source": "PDG 2024/2026" }
+    },
+    "delta_0": {
+      "id": "delta_0",
+      "nameEn": "Delta Zero",
+      "nameBn": "ডেল্টা জিরো",
+      "symbol": "Δ⁰",
+      "quarkContent": ["u", "d", "d"],
+      "baryonNumber": 1,
+      "spin": 1.5,
+      "charge": 0,
+      "strangeness": 0,
+      "mass": { "value": 1232.0, "unit": "MeV/c^2", "uncertainty": "+- 2.0", "tier": "T1", "source": "PDG 2024/2026" }
+    },
+    "sigma_0": {
+      "id": "sigma_0",
+      "nameEn": "Sigma Zero",
+      "nameBn": "সিগমা জিরো",
+      "symbol": "Σ⁰",
+      "quarkContent": ["u", "d", "s"],
+      "baryonNumber": 1,
+      "spin": 0.5,
+      "charge": 0,
+      "isospin": 1,
+      "strangeness": -1,
+      "mass": { "value": 1192.642, "unit": "MeV/c^2", "uncertainty": "+- 0.024", "tier": "T1", "source": "PDG 2024/2026" },
+      "lifetime": { "value": 7.4e-20, "unit": "s", "tier": "T1", "source": "PDG 2024/2026" }
+    },
+    "omega_minus": {
+      "id": "omega_minus",
+      "nameEn": "Omega Minus",
+      "nameBn": "ওমেগা মাইনাস",
+      "symbol": "Ω⁻",
+      "quarkContent": ["s", "s", "s"],
+      "baryonNumber": 1,
+      "spin": 1.5,
+      "charge": -1,
+      "strangeness": -3,
+      "mass": { "value": 1672.45, "unit": "MeV/c^2", "uncertainty": "+- 0.29", "tier": "T1", "source": "PDG 2024/2026" },
+      "lifetime": { "value": 8.21e-11, "unit": "s", "tier": "T1", "source": "PDG 2024/2026" }
+    },
+    "j_psi": {
+      "id": "j_psi",
+      "nameEn": "J/psi Meson",
+      "nameBn": "জে/সাই মেসন",
+      "symbol": "J/ψ",
+      "quarkContent": ["c", "c_bar"],
+      "baryonNumber": 0,
+      "spin": 1,
+      "charge": 0,
+      "charm": 0,
+      "mass": { "value": 3096.900, "unit": "MeV/c^2", "uncertainty": "+- 0.006", "tier": "T1", "source": "PDG 2024/2026" },
+      "lifetime": { "value": 7.1e-21, "unit": "s", "tier": "T1", "source": "PDG 2024/2026" }
+    },
+    "upsilon_1s": {
+      "id": "upsilon_1s",
+      "nameEn": "Upsilon (1S)",
+      "nameBn": "আপসিলন (১এস)",
+      "symbol": "Υ(1S)",
+      "quarkContent": ["b", "b_bar"],
+      "baryonNumber": 0,
+      "spin": 1,
+      "charge": 0,
+      "bottomness": 0,
+      "mass": { "value": 9460.30, "unit": "MeV/c^2", "uncertainty": "+- 0.26", "tier": "T1", "source": "PDG 2024/2026" },
+      "lifetime": { "value": 1.2e-20, "unit": "s", "tier": "T1", "source": "PDG 2024/2026" }
+    }
+  },
+  "timeScales": {
+    "hadronicNaturalTime": {
+      "value": 1,
+      "unit": "fm/c",
+      "seconds": 3.33564e-24,
+      "tier": "T1",
+      "source": "c = 299792458 m/s definition"
+    },
+    "visualizationSlowdownFactor": {
+      "value": 1e24,
+      "unit": "x slower",
+      "tier": "T4",
+      "note": "Symbolic animation slowdown factor for human visual perception"
+    }
+  }
+}
