@@ -145,10 +145,10 @@ it('Quark section defines all 5 chapters with individual URL hash routes and pla
   assert.strictEqual(ch1.isAvailable, true);
   assert.strictEqual(ch1.titleBn, 'প্রোটনের শরীর');
 
-  // Unimplemented chapters (2, 5) must be Coming Soon placeholders
+  // Unimplemented chapter (2) must be Coming Soon placeholder; chapters 1, 3, 4, 5 are available
   for (let i = 1; i < CHAPTER_LIST.length; i++) {
     const ch = CHAPTER_LIST[i];
-    if (ch.id === 'chapter-3' || ch.id === 'chapter-4') {
+    if (ch.id === 'chapter-3' || ch.id === 'chapter-4' || ch.id === 'chapter-5') {
       assert.strictEqual(ch.isAvailable, true, `Chapter ${ch.id} must be available`);
     } else {
       assert.strictEqual(ch.isAvailable, false, `Chapter ${ch.id} must be placeholder`);

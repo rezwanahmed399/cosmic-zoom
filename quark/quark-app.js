@@ -9,6 +9,7 @@ import { createTierBadge } from '../components/tier-badge.js';
 import { Chapter1Proton } from './chapter-1.js';
 import { Chapter3ColorLab } from './chapter-3.js';
 import { Chapter4FluxTubeLab } from './chapter-4.js';
+import { Chapter5StringBreaking } from './chapter-5.js';
 
 export const CHAPTER_LIST = [
   {
@@ -64,12 +65,12 @@ export const CHAPTER_LIST = [
     hash: '#/quarks/chapter-5',
     numberBn: '৫',
     numberEn: '5',
-    titleBn: 'হ্যাড্রন বর্ণালী ও কণা চিড়িয়াখানা',
-    titleEn: 'Hadron Spectrum & Particle Zoo',
-    subtitleBn: 'ব্যারিয়ন ও মেসন পরিবারের সম্পূর্ণ বিন্যাস',
-    subtitleEn: 'Complete Mapping of Baryons & Mesons',
-    tier: 'T1',
-    isAvailable: false
+    titleBn: 'টেনে ছেঁড়া (মোড A)',
+    titleEn: 'String Breaking (Mode A)',
+    subtitleBn: 'ধীর টান, ফ্লাক্স টিউব সংকট ও হ্যাড্রোনাইজেশন',
+    subtitleEn: 'Slow Pull, Flux Tube Criticality & Hadronization',
+    tier: 'T3',
+    isAvailable: true
   }
 ];
 
@@ -303,6 +304,14 @@ export class QuarkApp {
     } else if (chMeta.isAvailable && chapterId === 'chapter-4') {
       // Mount Chapter 4 Flux Tube Lab!
       this.currentChapterInstance = new Chapter4FluxTubeLab({
+        container: viewport,
+        lang: this.lang,
+        level: this.level,
+        infoDrawer: this.infoDrawer
+      });
+    } else if (chMeta.isAvailable && chapterId === 'chapter-5') {
+      // Mount Chapter 5 String Breaking (Mode A)!
+      this.currentChapterInstance = new Chapter5StringBreaking({
         container: viewport,
         lang: this.lang,
         level: this.level,

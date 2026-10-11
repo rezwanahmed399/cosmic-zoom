@@ -271,6 +271,21 @@
       "tier": "T3",
       "source": "Lund Model tunneling parameter"
     },
+    "gammaS": {
+      "value": 0.22,
+      "range": [0.20, 0.30],
+      "unit": "dimensionless",
+      "description": "Strange quark suppression factor gamma_s in string breaking",
+      "tier": "T2",
+      "source": "PDG / PYTHIA 8 tuning"
+    },
+    "breakingWidthFm": {
+      "value": 0.12,
+      "unit": "fm",
+      "description": "Transition width for string snapping error function",
+      "tier": "T3",
+      "source": "Lund string breaking phenomenological model"
+    },
     "colorAccounting": {
       "newAntiquarkColor": "takes anti-color of pulled quark",
       "newQuarkColor": "takes color of pulled quark"
@@ -286,6 +301,7 @@
       "baryonNumber": 1,
       "spin": 0.5,
       "charge": 1,
+      "strangeness": 0,
       "mass": { "value": 938.272088, "unit": "MeV/c^2", "uncertainty": "+- 0.000058", "tier": "T1", "source": "PDG 2024/2026" },
       "lifetime": { "value": "stable", "limitSec": "> 10^34 years", "tier": "T1", "source": "Super-Kamiokande / PDG" },
       "chargeRadiusFm": 0.8414
@@ -299,6 +315,7 @@
       "baryonNumber": 1,
       "spin": 0.5,
       "charge": 0,
+      "strangeness": 0,
       "mass": { "value": 939.565420, "unit": "MeV/c^2", "uncertainty": "+- 0.000060", "tier": "T1", "source": "PDG 2024/2026" },
       "lifetime": { "value": 878.4, "unit": "s", "uncertainty": "+- 0.5", "tier": "T1", "source": "PDG 2024/2026" }
     },
@@ -312,6 +329,7 @@
       "baryonNumber": 0,
       "spin": 0,
       "charge": 0,
+      "strangeness": 0,
       "mass": { "value": 134.9768, "unit": "MeV/c^2", "uncertainty": "+- 0.0005", "tier": "T1", "source": "PDG 2024/2026" },
       "lifetime": { "value": 8.52e-17, "unit": "s", "decay": "gamma + gamma (98.8%)", "tier": "T1", "source": "PDG 2024/2026" }
     },
@@ -324,6 +342,7 @@
       "baryonNumber": 0,
       "spin": 0,
       "charge": 1,
+      "strangeness": 0,
       "mass": { "value": 139.57039, "unit": "MeV/c^2", "uncertainty": "+- 0.00018", "tier": "T1", "source": "PDG 2024/2026" },
       "lifetime": { "value": 2.6033e-8, "unit": "s", "tier": "T1", "source": "PDG 2024/2026" },
       "chargeRadiusFm": 0.659
@@ -337,6 +356,7 @@
       "baryonNumber": 0,
       "spin": 0,
       "charge": -1,
+      "strangeness": 0,
       "mass": { "value": 139.57039, "unit": "MeV/c^2", "uncertainty": "+- 0.00018", "tier": "T1", "source": "PDG 2024/2026" },
       "lifetime": { "value": 2.6033e-8, "unit": "s", "tier": "T1", "source": "PDG 2024/2026" },
       "chargeRadiusFm": 0.659
