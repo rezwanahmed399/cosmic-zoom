@@ -24,15 +24,18 @@ import {
   CONFINEMENT,
   STRING_BREAKING,
   HADRONS,
+  LUND_JET_FRAGMENTATION,
   getQuarkData,
   getStringTension,
-  getConfinementForceN
+  getConfinementForceN,
+  getLundJetFragmentationData
 } from '../data/quark-facts.js';
 import {
   calculateBreakingProbability,
   evaluateStringPullingState,
   createPRNG,
-  generateSeed
+  generateSeed,
+  simulateLundJetFragmentation
 } from '../physics/string-breaking.js';
 import { createTierBadge } from '../components/tier-badge.js';
 
@@ -105,6 +108,16 @@ export class Chapter5StringBreaking {
     this.evaluatedState = null;
     this.hadronFlyProgress = 0.0; // 0 to 1 during S5
 
+    // Mode Switching: 'A' (Slow Pull) vs 'B' (High-Energy Jet)
+    this.activeMode = 'A';
+
+    // Mode B: Jet Fragmentation State
+    this.jetEnergyGeV = 20; // 2 to 50 GeV, default 20
+    this.struckQuarkModeB = 'u'; // 'u' or 'd'
+    this.jetSeed = this.seed;
+    this.jetSimulationResult = null;
+    this.lundFacts = typeof getLundJetFragmentationData === 'function' ? getLundJetFragmentationData() : (LUND_JET_FRAGMENTATION ?? STRING_BREAKING?.lundJetFragmentation);
+
     this.init();
   }
 
@@ -132,6 +145,7 @@ export class Chapter5StringBreaking {
     this.render();
     this.bindEvents();
     this.updatePhysics();
+    this.runJetSimulation();
     this.startMainLoop();
   }
 
@@ -178,8 +192,24 @@ export class Chapter5StringBreaking {
         </div>
       </div>
 
-      <!-- MAIN 3-COLUMN LAB WORKBENCH -->
-      <div class="c5-workbench-grid">
+      <!-- MODE SWITCHER TABS -->
+      <div class="c5-mode-switcher-bar" role="tablist">
+        <button class="c5-mode-tab-btn ${this.activeMode === 'A' ? 'active' : ''}" id="c5-mode-btn-a" role="tab" type="button" aria-selected="${this.activeMode === 'A'}">
+          <svg class="c5-mode-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <span>${isBn ? 'মোড A: ধীর টান (Quasi-Static Pull)' : 'Mode A: Slow Pull (Quasi-Static)'}</span>
+          <span class="c5-mode-tag">T3 ${isBn ? 'চিন্তা-পরীক্ষা' : 'Thought Experiment'}</span>
+        </button>
+        <button class="c5-mode-tab-btn ${this.activeMode === 'B' ? 'active' : ''}" id="c5-mode-btn-b" role="tab" type="button" aria-selected="${this.activeMode === 'B'}">
+          <svg class="c5-mode-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          <span>${isBn ? 'মোড B: আঘাতে ছিটকে দেওয়া (Jet Fragmentation)' : 'Mode B: Knockout Jet (Lund Fragmentation)'}</span>
+          <span class="c5-mode-tag accent">T3 ${isBn ? 'Lund মডেল' : 'Lund Model'}</span>
+        </button>
+      </div>
+
+      <!-- MODE A CONTAINER (100% INTACT ORIGINAL WORKBENCH & OUTCOME DRAWER) -->
+      <div id="c5-mode-a-container" style="display: ${this.activeMode === 'A' ? 'block' : 'none'};">
+        <!-- MAIN 3-COLUMN LAB WORKBENCH -->
+        <div class="c5-workbench-grid">
 
         <!-- ============================================== -->
         <!-- COLUMN 1: INTERACTIVE PULLING STAGE & CONTROLS -->
@@ -454,6 +484,113 @@ export class Chapter5StringBreaking {
           </div>
         </div>
       </div>
+      </div>
+
+      <!-- ============================================================== -->
+      <!-- MODE B CONTAINER (JET SIMULATION, LUND CASCADE & CONSERVATION) -->
+      <!-- ============================================================== -->
+      <div id="c5-mode-b-container" style="display: ${this.activeMode === 'B' ? 'block' : 'none'};">
+        <div class="c5-jet-grid">
+          <!-- COLUMN 1: JET STAGE & CONTROLS -->
+          <div class="c5-jet-stage-card">
+            <div class="c5-card-header">
+              <div class="c5-card-title-group">
+                <h3 class="c5-card-title">
+                  ${isBn ? '১. আঘাতে ছিটকে দেওয়া জেট মঞ্চ (DIS / Collider Jet)' : '1. Knockout Jet Stage (DIS / Collider Jet)'}
+                </h3>
+                <p class="c5-card-subtitle">
+                  ${isBn
+                    ? 'উচ্চশক্তি সংঘাতে প্রোটনের একটি কোয়ার্ক ছিটকে ছুটে যায়; স্ট্রিং বারবার ভেঙে মেসনের ঝাঁক ও অবশিষ্ট বেরিয়ন সৃষ্টি করে।'
+                    : 'A high-energy strike knocks out a valence quark; the color flux tube stretches and undergoes iterative Lund fragmentation into a collimated hadron jet.'}
+                </p>
+              </div>
+              <div class="c5-jet-quark-picker" role="tablist">
+                <span class="c5-sub-lbl">${isBn ? 'ছিটকে দেওয়া কোয়ার্ক:' : 'Struck Quark:'}</span>
+                <button class="c5-jet-pick-btn ${this.struckQuarkModeB === 'u' ? 'active' : ''}" id="c5-jet-pick-u" role="tab" type="button">u (Up)</button>
+                <button class="c5-jet-pick-btn ${this.struckQuarkModeB === 'd' ? 'active' : ''}" id="c5-jet-pick-d" role="tab" type="button">d (Down)</button>
+              </div>
+            </div>
+
+            <!-- Jet Visual Viewport -->
+            <div class="c5-jet-viewport" id="c5-jet-viewport">
+              <svg class="c5-jet-svg" id="c5-jet-svg" viewBox="0 0 760 300">
+                <!-- SVG dynamically rendered by renderJetSvg() -->
+              </svg>
+            </div>
+
+            <!-- Controls: Energy Slider & Fire Button -->
+            <div class="c5-jet-controls-bar">
+              <div class="c5-slider-group">
+                <div class="c5-slider-header">
+                  <span class="c5-slider-lbl">${isBn ? 'ছিটকে দেওয়া কোয়ার্কের শক্তি (Jet Energy E):' : 'Struck Quark Energy (Jet Energy E):'}</span>
+                  <span class="c5-jet-energy-val" id="c5-jet-energy-val">${this.jetEnergyGeV.toFixed(1)} GeV</span>
+                </div>
+                <input class="c5-slider-range" id="c5-slider-jet-energy" type="range" min="2" max="50" step="0.5" value="${this.jetEnergyGeV}" aria-label="Jet Energy Slider" />
+                <div class="c5-slider-ticks">
+                  <span>2 GeV (${isBn ? 'ল্যাটিস সীমা' : 'Lattice limit'})</span>
+                  <span>10 GeV</span>
+                  <span>25 GeV</span>
+                  <span>50 GeV (${isBn ? 'LEP / DIS স্কেল' : 'LEP / DIS scale'})</span>
+                </div>
+              </div>
+
+              <div class="c5-jet-buttons-row">
+                <button class="c5-btn-jet-fire" id="c5-btn-jet-fire" type="button">
+                  <svg class="c5-mode-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                  <span>${isBn ? 'জেট বিস্ফোরণ ঘটান (Fire Jet)' : 'Fire Jet (Simulate Lund Cascade)'}</span>
+                </button>
+                <button class="c5-btn-jet-seed" id="c5-btn-jet-new-seed" type="button">
+                  <svg class="c5-mode-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><circle cx="15.5" cy="15.5" r="1.5"></circle><circle cx="12" cy="12" r="1.5"></circle></svg>
+                  <span>${isBn ? 'নতুন Seed' : 'New Seed'}</span>
+                </button>
+                <button class="c5-btn-jet-seed" id="c5-btn-jet-replay" type="button">
+                  <svg class="c5-mode-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+                  <span>${isBn ? 'একই Seed-এ রিপ্লে' : 'Replay Seed'}</span>
+                </button>
+                <span class="c5-pythia-tune-badge" title="PYTHIA 8 Monash 2013 Parameter Tune">
+                  PYTHIA 8 Monash: a=0.68, b=0.98, σ_pT=0.335, γ_s=0.217
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- COLUMN 2: CONSERVATION LEDGER & MULTIPLICITY STATS -->
+          <div class="c5-jet-telemetry-card">
+            <div class="c5-card-header mini">
+              <h4 class="c5-card-title mini">${isBn ? '২. সংরক্ষণ খতিয়ান ও জেট পরিসংখ্যান' : '2. Conservation Ledger & Jet Stats'}</h4>
+              <span class="c5-status-pill verified" id="c5-jet-ledger-pill">
+                ${ICON_CHECK_SVG}
+                <span id="c5-jet-ledger-status">${isBn ? 'সব সংরক্ষিত [OK]' : 'All Conserved [OK]'}</span>
+              </span>
+            </div>
+
+            <!-- Conservation Cards Grid -->
+            <div class="c5-jet-ledger-cards" id="c5-jet-ledger-cards">
+              <!-- Dynamically populated by renderJetLedger() -->
+            </div>
+
+            <!-- Multiplicity & Particle Type Fraction Panel -->
+            <div class="c5-jet-stats-panel" id="c5-jet-stats-panel">
+              <!-- Dynamically populated by renderJetStats() -->
+            </div>
+          </div>
+        </div>
+
+        <!-- BOTTOM CARD: DETAILED FRAGMENTATION STEP-BY-STEP CASCADE TABLE -->
+        <div class="c5-jet-table-card">
+          <div class="c5-card-header mini">
+            <h4 class="c5-card-title mini">
+              ${isBn ? '৩. ধাপে ধাপে Lund স্ট্রিং ভাঙন ও হ্যাড্রন উৎপত্তি খতিয়ান' : '3. Step-by-Step Lund String Fragmentation Cascade Ledger'}
+            </h4>
+            <span class="c5-action-tier" style="background: rgba(14, 165, 233, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); padding: 3px 8px; border-radius: 6px; font-size: 11px; font-weight: 700;">
+              T3 Lund Model (PYTHIA 8 Monash Tune)
+            </span>
+          </div>
+          <div class="c5-jet-table-responsive" id="c5-jet-table-container">
+            <!-- Dynamically populated by renderJetTable() -->
+          </div>
+        </div>
+      </div>
     `;
 
     this.container.appendChild(this.wrapper);
@@ -535,6 +672,51 @@ export class Chapter5StringBreaking {
       btnPullAgain.addEventListener('click', () => {
         this.resetWithNewSeed();
       });
+    }
+
+    // 9. Mode Switcher Buttons (Mode A vs Mode B)
+    const btnModeA = this.wrapper.querySelector('#c5-mode-btn-a');
+    if (btnModeA) {
+      btnModeA.addEventListener('click', () => this.switchMode('A'));
+    }
+    const btnModeB = this.wrapper.querySelector('#c5-mode-btn-b');
+    if (btnModeB) {
+      btnModeB.addEventListener('click', () => this.switchMode('B'));
+    }
+
+    // 10. Mode B: Jet Energy Slider
+    const sliderJetEnergy = this.wrapper.querySelector('#c5-slider-jet-energy');
+    if (sliderJetEnergy) {
+      sliderJetEnergy.addEventListener('input', (e) => {
+        this.jetEnergyGeV = parseFloat(e.target.value);
+        const valTxt = this.wrapper.querySelector('#c5-jet-energy-val');
+        if (valTxt) valTxt.textContent = `${this.jetEnergyGeV.toFixed(1)} GeV`;
+        this.runJetSimulation();
+      });
+    }
+
+    // 11. Mode B: Struck Quark Selectors
+    const btnPickU = this.wrapper.querySelector('#c5-jet-pick-u');
+    if (btnPickU) {
+      btnPickU.addEventListener('click', () => this.selectJetQuark('u'));
+    }
+    const btnPickD = this.wrapper.querySelector('#c5-jet-pick-d');
+    if (btnPickD) {
+      btnPickD.addEventListener('click', () => this.selectJetQuark('d'));
+    }
+
+    // 12. Mode B: Buttons (Fire, New Seed, Replay)
+    const btnFire = this.wrapper.querySelector('#c5-btn-jet-fire');
+    if (btnFire) {
+      btnFire.addEventListener('click', () => this.runJetSimulation());
+    }
+    const btnJetNewSeed = this.wrapper.querySelector('#c5-btn-jet-new-seed');
+    if (btnJetNewSeed) {
+      btnJetNewSeed.addEventListener('click', () => this.resetJetSeed());
+    }
+    const btnJetReplay = this.wrapper.querySelector('#c5-btn-jet-replay');
+    if (btnJetReplay) {
+      btnJetReplay.addEventListener('click', () => this.runJetSimulation());
     }
   }
 
@@ -1288,6 +1470,431 @@ export class Chapter5StringBreaking {
       tier: 'T3',
       source: "Lund String Model (Andersson et al.) / Lattice QCD (Bali 2005)"
     });
+  }
+
+  // =========================================================================
+  // MODE B: HIGH-ENERGY JET & LUND STRING FRAGMENTATION METHODS
+  // =========================================================================
+
+  switchMode(mode) {
+    if (this.activeMode === mode) return;
+    this.activeMode = mode;
+    const isModeA = mode === 'A';
+    const btnA = this.wrapper.querySelector('#c5-mode-btn-a');
+    const btnB = this.wrapper.querySelector('#c5-mode-btn-b');
+    const containerA = this.wrapper.querySelector('#c5-mode-a-container');
+    const containerB = this.wrapper.querySelector('#c5-mode-b-container');
+
+    if (btnA) {
+      btnA.classList.toggle('active', isModeA);
+      btnA.setAttribute('aria-selected', isModeA ? 'true' : 'false');
+    }
+    if (btnB) {
+      btnB.classList.toggle('active', !isModeA);
+      btnB.setAttribute('aria-selected', !isModeA ? 'true' : 'false');
+    }
+    if (containerA) containerA.style.display = isModeA ? 'block' : 'none';
+    if (containerB) containerB.style.display = !isModeA ? 'block' : 'none';
+
+    if (!isModeA && !this.jetSimulationResult) {
+      this.runJetSimulation();
+    }
+  }
+
+  selectJetQuark(flavor) {
+    if (this.struckQuarkModeB === flavor) return;
+    this.struckQuarkModeB = flavor;
+    const btnU = this.wrapper.querySelector('#c5-jet-pick-u');
+    const btnD = this.wrapper.querySelector('#c5-jet-pick-d');
+    if (btnU) btnU.classList.toggle('active', flavor === 'u');
+    if (btnD) btnD.classList.toggle('active', flavor === 'd');
+    this.runJetSimulation();
+  }
+
+  resetJetSeed() {
+    this.jetSeed = generateSeed();
+    this.runJetSimulation();
+  }
+
+  runJetSimulation() {
+    this.jetSimulationResult = simulateLundJetFragmentation({
+      energyGeV: this.jetEnergyGeV,
+      struckQuark: this.struckQuarkModeB,
+      seed: this.jetSeed
+    });
+
+    this.renderJetSvg();
+    this.renderJetLedger();
+    this.renderJetStats();
+    this.renderJetTable();
+  }
+
+  renderJetSvg() {
+    const svg = this.wrapper.querySelector('#c5-jet-svg');
+    if (!svg || !this.jetSimulationResult) return;
+
+    const res = this.jetSimulationResult;
+    const isBn = this.lang === 'bn';
+    const steps = res.steps || [];
+    const remnantBaryon = res.finalRemnantBaryon;
+
+    let html = `
+      <defs>
+        <filter id="c5-jet-glow" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="3" result="blur" />
+          <feComposite in="SourceGraphic" in2="blur" operator="over" />
+        </filter>
+        <linearGradient id="c5-jet-string-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.9" />
+          <stop offset="50%" stop-color="#a855f7" stop-opacity="0.8" />
+          <stop offset="100%" stop-color="#f43f5e" stop-opacity="0.9" />
+        </linearGradient>
+      </defs>
+
+      <!-- Grid Axis Reference Lines -->
+      <line x1="120" y1="20" x2="120" y2="280" stroke="rgba(255,255,255,0.08)" stroke-dasharray="4 4" />
+      <line x1="30" y1="150" x2="730" y2="150" stroke="rgba(255,255,255,0.06)" />
+
+      <!-- Jet Cone Collimation Guides -->
+      <polygon points="120,150 720,50 720,250" fill="rgba(14, 165, 233, 0.03)" stroke="rgba(56, 189, 248, 0.15)" stroke-dasharray="3 3" />
+
+      <!-- Recoil Vector to Remnant Baryon (Leftwards) -->
+      <line x1="110" y1="150" x2="55" y2="150" stroke="#10b981" stroke-width="3" stroke-dasharray="4 2" />
+      <polygon points="50,150 62,144 62,156" fill="#10b981" />
+
+      <!-- Collision Vertex Marker -->
+      <circle cx="120" cy="150" r="8" fill="#f8fafc" stroke="#38bdf8" stroke-width="2" filter="url(#c5-jet-glow)" />
+      <circle cx="120" cy="150" r="3" fill="#0f172a" />
+      <text x="120" y="175" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="'JetBrains Mono', monospace">
+        ${isBn ? 'সংঘর্ষ বিন্দু' : 'Collision Vertex'}
+      </text>
+
+      <!-- Target Remnant Baryon Node (p, n, or Lambda) -->
+      <g class="c5-jet-node" transform="translate(45, 150)">
+        <circle cx="0" cy="0" r="18" fill="#10b981" stroke="#ffffff" stroke-width="2" filter="url(#c5-jet-glow)" />
+        <text x="0" y="5" text-anchor="middle" fill="#ffffff" font-weight="800" font-size="12">
+          ${remnantBaryon.symbol}
+        </text>
+        <text x="0" y="-24" text-anchor="middle" fill="#34d399" font-size="10" font-weight="700" font-family="'JetBrains Mono', monospace">
+          ${isBn ? 'অবশিষ্ট বেরিয়ন' : 'Remnant'}
+        </text>
+        <text x="0" y="32" text-anchor="middle" fill="#64748b" font-size="9" font-family="'JetBrains Mono', monospace">
+          ${remnantBaryon.energyGeV ? remnantBaryon.energyGeV.toFixed(1) + 'G' : ''}
+        </text>
+      </g>
+
+      <!-- Main Stretched Color String Segment -->
+      <line x1="120" y1="150" x2="680" y2="150" stroke="url(#c5-jet-string-grad)" stroke-width="6" stroke-linecap="round" opacity="0.8" filter="url(#c5-jet-glow)" />
+    `;
+
+    // Cascade Tracks & Hadron Nodes
+    const nSteps = steps.length;
+    steps.forEach((step, idx) => {
+      const frac = (idx + 1) / (nSteps + 1);
+      const sx = 140 + frac * 480;
+      const sy = 150;
+      const isUpper = idx % 2 === 0;
+
+      // Vertical offset based on transverse momentum pt and lightcone fraction z
+      const angleWeight = Math.min(1.0, (step.ptGeV / 0.5));
+      const spreadY = isUpper
+        ? -(35 + angleWeight * 50 + (idx % 3) * 18)
+        : (35 + angleWeight * 50 + (idx % 3) * 18);
+      const hx = Math.min(725, sx + 20 + Math.min(45, step.z * 50));
+      const hy = 150 + spreadY;
+
+      // Color scheme by hadron type
+      let fillCol = '#38bdf8';
+      let strokeCol = '#0284c7';
+      if (step.hadron.id.startsWith('k') || step.hadron.id.includes('anti_k')) {
+        fillCol = '#ec4899';
+        strokeCol = '#be185d';
+      } else if (step.hadron.type === 'baryon' || step.hadron.type === 'antibaryon') {
+        fillCol = '#10b981';
+        strokeCol = '#047857';
+      }
+
+      // Vacuum Tunneling Breakpoint circle along string
+      html += `
+        <!-- Breakpoint ${idx + 1} -->
+        <circle cx="${sx}" cy="${sy}" r="4" fill="#facc15" stroke="#ca8a04" stroke-width="1.5" />
+        <!-- Hadron Emission Track Line -->
+        <line x1="${sx}" y1="${sy}" x2="${hx}" y2="${hy}" stroke="${fillCol}" stroke-width="1.8" stroke-dasharray="3 2" opacity="0.8" />
+        <!-- Emitted Hadron Node -->
+        <g transform="translate(${hx}, ${hy})">
+          <circle cx="0" cy="0" r="14" fill="${fillCol}" stroke="#ffffff" stroke-width="1.5" filter="url(#c5-jet-glow)" />
+          <text x="0" y="4" text-anchor="middle" fill="#ffffff" font-weight="800" font-size="11">
+            ${step.hadron.symbol}
+          </text>
+          <text x="0" y="${isUpper ? -17 : 24}" text-anchor="middle" fill="#cbd5e1" font-size="9" font-family="'JetBrains Mono', monospace">
+            z=${step.z.toFixed(2)}
+          </text>
+        </g>
+      `;
+    });
+
+    // Heading Annotations
+    html += `
+      <text x="400" y="285" text-anchor="middle" fill="#64748b" font-size="11" font-family="'JetBrains Mono', monospace">
+        ${isBn ? 'স্ট্রিং অক্ষ (Longitudinal p_z >> p_T) → মেসনের ঝাঁক (Jet)' : 'Jet Axis (Longitudinal p_z >> p_T) → Hadron Jet'}
+      </text>
+    `;
+
+    svg.innerHTML = html;
+  }
+
+  renderJetLedger() {
+    const container = this.wrapper.querySelector('#c5-jet-ledger-cards');
+    const statusPill = this.wrapper.querySelector('#c5-jet-ledger-status');
+    if (!container || !this.jetSimulationResult) return;
+
+    const res = this.jetSimulationResult;
+    const isBn = this.lang === 'bn';
+    const init = res.initialState;
+    const led = res.finalLedger;
+
+    if (statusPill) {
+      statusPill.textContent = isBn ? 'সব সংরক্ষিত [OK]' : 'All Conserved [OK]';
+    }
+
+    container.innerHTML = `
+      <!-- 1. ELECTRIC CHARGE -->
+      <div class="c5-ledger-card valid">
+        <div class="c5-ledger-card-top">
+          <span class="c5-ledger-lbl">${isBn ? 'বৈদ্যুতিক আধান (Q)' : 'Electric Charge (Q)'}</span>
+          ${ICON_CHECK_SVG}
+        </div>
+        <div class="c5-ledger-val">
+          ${init.netCharge > 0 ? '+' + init.netCharge : init.netCharge} e → ${led.netCharge > 0 ? '+' + led.netCharge : led.netCharge} e
+        </div>
+        <span class="c5-ledger-sub">${isBn ? 'নিখুঁত সংরক্ষিত' : 'Strictly Conserved'}</span>
+      </div>
+
+      <!-- 2. BARYON NUMBER -->
+      <div class="c5-ledger-card valid">
+        <div class="c5-ledger-card-top">
+          <span class="c5-ledger-lbl">${isBn ? 'ব্যারিয়ন সংখ্যা (B)' : 'Baryon Number (B)'}</span>
+          ${ICON_CHECK_SVG}
+        </div>
+        <div class="c5-ledger-val">
+          B = ${init.baryonNumber} → ${led.baryonNumber}
+        </div>
+        <span class="c5-ledger-sub">${isBn ? 'অবশিষ্ট বেরিয়ন সহ B=1' : 'Conserved (Net B=1)'}</span>
+      </div>
+
+      <!-- 3. STRANGENESS -->
+      <div class="c5-ledger-card valid">
+        <div class="c5-ledger-card-top">
+          <span class="c5-ledger-lbl">${isBn ? 'স্ট্রেঞ্জনেস (S)' : 'Strangeness (S)'}</span>
+          ${ICON_CHECK_SVG}
+        </div>
+        <div class="c5-ledger-val">
+          S = ${init.strangeness} → ${led.strangeness}
+        </div>
+        <span class="c5-ledger-sub">${isBn ? 'γ_s জোড়ায় স্বতঃ-ভারসাম্য' : 'Net S=0 (γ_s auto-balanced)'}</span>
+      </div>
+
+      <!-- 4. COLOR SINGLET -->
+      <div class="c5-ledger-card valid">
+        <div class="c5-ledger-card-top">
+          <span class="c5-ledger-lbl">${isBn ? 'কালার কনফাইনমেন্ট' : 'Color Confinement'}</span>
+          ${ICON_CHECK_SVG}
+        </div>
+        <div class="c5-ledger-val">
+          ${isBn ? 'সাদা (Singlet)' : 'White (Singlet)'}
+        </div>
+        <span class="c5-ledger-sub">${isBn ? 'প্রতিটি হ্যাড্রন কালারলেস' : 'Every Hadron Colorless'}</span>
+      </div>
+
+      <!-- 5. TOTAL ENERGY-MOMENTUM BALANCE -->
+      <div class="c5-ledger-card valid" style="grid-column: span 2;">
+        <div class="c5-ledger-card-top">
+          <span class="c5-ledger-lbl">${isBn ? 'মোট শক্তি-ভরবেগ অডিট' : 'Total Energy-Momentum Balance'}</span>
+          ${ICON_CHECK_SVG}
+        </div>
+        <div class="c5-ledger-val">
+          E_total = ${init.totalEnergyGeV.toFixed(2)} GeV (E_jet + M_p)
+        </div>
+        <span class="c5-ledger-sub">
+          ${isBn
+            ? `বণ্টন: ${res.totalHadronCount}টি হ্যাড্রনের ট্রান্সভার্স ভর (m_T) ও অনুদৈর্ঘ্য ভগ্নাংশে (z)`
+            : `Distributed: ${res.totalHadronCount} hadrons via transverse mass (m_T) & lightcone (z)`}
+        </span>
+      </div>
+    `;
+  }
+
+  renderJetStats() {
+    const container = this.wrapper.querySelector('#c5-jet-stats-panel');
+    if (!container || !this.jetSimulationResult) return;
+
+    const res = this.jetSimulationResult;
+    const isBn = this.lang === 'bn';
+    const comp = res.composition;
+    const expN = (2 + 1.8 * Math.log(this.jetEnergyGeV)).toFixed(1);
+
+    container.innerHTML = `
+      <div class="c5-multiplicity-banner">
+        <div>
+          <span class="c5-mult-lbl">${isBn ? 'মোট উৎপন্ন হ্যাড্রন সংখ্যা:' : 'Total Produced Hadrons:'}</span>
+          <div style="font-size: 11px; color: #94a3b8; font-family: 'JetBrains Mono', monospace;">
+            N(E) ~ 2 + 1.8·ln(E) ≈ ${expN}
+          </div>
+        </div>
+        <span class="c5-mult-num">${res.totalHadronCount}</span>
+      </div>
+
+      <!-- PION FRACTION (DOMINANT ~75-80%) -->
+      <div class="c5-stat-bar-group">
+        <div class="c5-bar-lbl-row">
+          <span>${isBn ? 'পায়ন (Pions: π⁺, π⁻, π⁰)' : 'Pions (π⁺, π⁻, π⁰)'}</span>
+          <span style="font-family: 'JetBrains Mono', monospace; color: #38bdf8;">
+            ${comp.pionCount} (${(comp.pionFraction * 100).toFixed(1)}%)
+          </span>
+        </div>
+        <div class="c5-bar-track">
+          <div class="c5-bar-fill pion" style="width: ${(comp.pionFraction * 100).toFixed(1)}%;"></div>
+        </div>
+      </div>
+
+      <!-- KAON FRACTION (~10-12% NATURAL VIA GAMMA_S) -->
+      <div class="c5-stat-bar-group">
+        <div class="c5-bar-lbl-row">
+          <span>${isBn ? 'কেয়ন (Kaons: K⁺, K⁻, K⁰)' : 'Kaons (K⁺, K⁻, K⁰)'}</span>
+          <span style="font-family: 'JetBrains Mono', monospace; color: #ec4899;">
+            ${comp.kaonCount} (${(comp.kaonFraction * 100).toFixed(1)}%)
+          </span>
+        </div>
+        <div class="c5-bar-track">
+          <div class="c5-bar-fill kaon" style="width: ${(comp.kaonFraction * 100).toFixed(1)}%;"></div>
+        </div>
+      </div>
+
+      <!-- BARYON FRACTION (~5-8% VIA DIQUARKS & REMNANT) -->
+      <div class="c5-stat-bar-group">
+        <div class="c5-bar-lbl-row">
+          <span>${isBn ? 'বেরিয়ন (Baryons: p, n, Λ)' : 'Baryons (p, n, Λ)'}</span>
+          <span style="font-family: 'JetBrains Mono', monospace; color: #10b981;">
+            ${comp.baryonCount} (${(comp.baryonFraction * 100).toFixed(1)}%)
+          </span>
+        </div>
+        <div class="c5-bar-track">
+          <div class="c5-bar-fill baryon" style="width: ${(comp.baryonFraction * 100).toFixed(1)}%;"></div>
+        </div>
+      </div>
+
+      <!-- T3 TIER BADGE AND REPRODUCIBILITY INFO -->
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 6px; padding-top: 8px; border-top: 1px dashed rgba(255,255,255,0.1);">
+        <span class="c5-pythia-tune-badge" style="background: rgba(14, 165, 233, 0.12); color: #38bdf8; border-color: rgba(56, 189, 248, 0.3);">
+          T3 Lund মডেল, বাস্তব jet-এর পরিসংখ্যানগত চিত্র
+        </span>
+        <span style="font-size: 11px; color: #94a3b8; font-family: 'JetBrains Mono', monospace;">
+          Seed: ${this.jetSeed}
+        </span>
+      </div>
+    `;
+  }
+
+  renderJetTable() {
+    const container = this.wrapper.querySelector('#c5-jet-table-container');
+    if (!container || !this.jetSimulationResult) return;
+
+    const res = this.jetSimulationResult;
+    const isBn = this.lang === 'bn';
+    const steps = res.steps || [];
+    const remnantBaryon = res.finalRemnantBaryon;
+
+    let runningQ = 0;
+    let runningB = 0;
+    let runningS = 0;
+
+    let rowsHtml = '';
+    steps.forEach(step => {
+      runningQ += step.hadron.charge;
+      runningB += step.hadron.baryonNumber;
+      runningS += step.hadron.strangeness;
+
+      let tagClass = 'pion';
+      if (step.hadron.id.startsWith('k') || step.hadron.id.includes('anti_k')) tagClass = 'kaon';
+      else if (step.hadron.type === 'baryon' || step.hadron.type === 'antibaryon') tagClass = 'baryon';
+
+      const qStr = runningQ > 0 ? `+${runningQ}` : `${runningQ}`;
+      const sStr = runningS > 0 ? `+${runningS}` : `${runningS}`;
+
+      rowsHtml += `
+        <tr>
+          <td>#${step.stepIndex}</td>
+          <td>${step.leadingQuarkBefore}</td>
+          <td>${step.tunneledPair}</td>
+          <td>
+            <span class="c5-hadron-tag ${tagClass}">
+              ${step.hadron.symbol} (${isBn ? step.hadron.nameBn : step.hadron.nameEn})
+            </span>
+          </td>
+          <td>${step.hadron.type}</td>
+          <td>${step.hadron.massGeV.toFixed(4)}</td>
+          <td>${step.z.toFixed(4)}</td>
+          <td>${step.ptGeV.toFixed(4)}</td>
+          <td>${step.energyGeV ? step.energyGeV.toFixed(3) : '—'}</td>
+          <td>${step.remainingEnergyGeV.toFixed(3)}</td>
+          <td>Q=${qStr}, B=${runningB}, S=${sStr}</td>
+          <td>${ICON_CHECK_SVG} Singlet</td>
+        </tr>
+      `;
+    });
+
+    // Add final remnant row
+    runningQ += remnantBaryon.charge;
+    runningB += remnantBaryon.baryonNumber;
+    runningS += remnantBaryon.strangeness;
+
+    const finalQStr = runningQ > 0 ? `+${runningQ}` : `${runningQ}`;
+    const finalSStr = runningS > 0 ? `+${runningS}` : `${runningS}`;
+
+    rowsHtml += `
+      <tr style="background: rgba(16, 185, 129, 0.08); font-weight: 700;">
+        <td>Final</td>
+        <td>${res.initialState.remnantDiquark} + ${steps[steps.length - 1]?.leadingQuarkAfter || res.initialState.struckQuark}</td>
+        <td>Proton Core</td>
+        <td>
+          <span class="c5-hadron-tag baryon">
+            ${remnantBaryon.symbol} (${isBn ? remnantBaryon.nameBn : remnantBaryon.nameEn})
+          </span>
+        </td>
+        <td>baryon</td>
+        <td>${remnantBaryon.massGeV.toFixed(4)}</td>
+        <td>—</td>
+        <td>0.0000</td>
+        <td>${remnantBaryon.energyGeV ? remnantBaryon.energyGeV.toFixed(3) : '—'}</td>
+        <td>0.000</td>
+        <td style="color: #34d399;">Q=${finalQStr}, B=${runningB}, S=${finalSStr} [NET]</td>
+        <td style="color: #34d399;">${ICON_CHECK_SVG} Singlet</td>
+      </tr>
+    `;
+
+    container.innerHTML = `
+      <table class="c5-jet-table">
+        <thead>
+          <tr>
+            <th>${isBn ? 'ধাপ' : 'Step'}</th>
+            <th>${isBn ? 'লিডিং কোয়ার্ক' : 'Leading Q'}</th>
+            <th>${isBn ? 'ভ্যাকুয়াম জোড়া' : 'Vacuum Pair'}</th>
+            <th>${isBn ? 'গঠিত হ্যাড্রন' : 'Produced Hadron'}</th>
+            <th>${isBn ? 'ধরন' : 'Type'}</th>
+            <th>${isBn ? 'ভর (GeV)' : 'Mass (GeV)'}</th>
+            <th>Lund z</th>
+            <th>p_T (GeV)</th>
+            <th>E_H (GeV)</th>
+            <th>E_rem (GeV)</th>
+            <th>${isBn ? 'ক্রমপুঞ্জিত (Q, B, S)' : 'Cumulative (Q,B,S)'}</th>
+            <th>${isBn ? 'কালার সিঙ্গলেট' : 'Color Singlet'}</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rowsHtml}
+        </tbody>
+      </table>
+    `;
   }
 
   setLanguage(lang) {

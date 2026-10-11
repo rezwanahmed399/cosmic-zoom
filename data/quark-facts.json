@@ -801,6 +801,98 @@
     "colorAccounting": {
       "newAntiquarkColor": "takes anti-color of pulled quark",
       "newQuarkColor": "takes color of pulled quark"
+    },
+    "lundJetFragmentation": {
+      "nameEn": "Lund String Fragmentation (Mode B: High-Energy Jet)",
+      "nameBn": "Lund স্ট্রিং ফ্র্যাগমেন্টেশন (মোড B: আঘাতে ছিটকে দেওয়া jet)",
+      "tier": "T3",
+      "tierLabelBn": "Lund মডেল, বাস্তব jet-এর পরিসংখ্যানগত চিত্র",
+      "tierLabelEn": "Lund Model, statistical picture of real jets",
+      "energyRangeGeV": {
+        "min": 2,
+        "max": 50,
+        "default": 20,
+        "unit": "GeV"
+      },
+      "parameters": {
+        "aLund": {
+          "value": 0.68,
+          "symbol": "a",
+          "description": "Lund symmetric fragmentation function parameter a",
+          "source": "PYTHIA 8 Monash 2013 Tune (Skands et al., EPJC 74, 3024)",
+          "tier": "T3"
+        },
+        "bLund": {
+          "value": 0.98,
+          "symbol": "b",
+          "unit": "GeV^-2",
+          "description": "Lund symmetric fragmentation function parameter b",
+          "source": "PYTHIA 8 Monash 2013 Tune (Skands et al., EPJC 74, 3024)",
+          "tier": "T3"
+        },
+        "sigmaPT": {
+          "value": 0.335,
+          "symbol": "sigma_pT",
+          "unit": "GeV",
+          "description": "Gaussian transverse momentum dispersion for created quark pairs",
+          "source": "PYTHIA 8 Monash 2013 Tune (StringPT:sigma)",
+          "tier": "T3"
+        },
+        "gammaS": {
+          "value": 0.217,
+          "symbol": "gamma_s",
+          "unit": "dimensionless",
+          "description": "Strangeness tunneling suppression factor P(ss_bar)/P(uu_bar)",
+          "source": "PYTHIA 8 Monash 2013 Tune (StringFlav:probStoUD)",
+          "tier": "T3"
+        },
+        "diquarkWeight": {
+          "value": 0.081,
+          "symbol": "P(qq)/P(q)",
+          "unit": "dimensionless",
+          "description": "Diquark-antidiquark tunneling probability for baryon creation",
+          "source": "PYTHIA 8 Monash 2013 Tune (StringFlav:probQQtoQ)",
+          "tier": "T3"
+        },
+        "heavyQuarkSuppression": {
+          "c": 0.0,
+          "b": 0.0,
+          "t": 0.0,
+          "description": "Charm, bottom, and top creation probability is virtually zero due to heavy mass Schwinger suppression exp(-pi * m^2 / kappa)",
+          "tier": "T1"
+        }
+      },
+      "fragmentationFunction": {
+        "formula": "f(z) proportional to (1/z) * (1 - z)^a * exp(-b * m_T^2 / z)",
+        "transverseMassFormula": "m_T^2 = m_H^2 + p_T^2",
+        "citation": "B. Andersson, G. Gustafson, G. Ingelman, T. Sjöstrand, Phys. Rep. 97 (1983) 31"
+      },
+      "hadronFractionsApprox": {
+        "pion": {
+          "fraction": 0.78,
+          "percentage": "~78%",
+          "description": "Pions (pi+, pi-, pi0) dominate the jet"
+        },
+        "kaon": {
+          "fraction": 0.12,
+          "percentage": "~12%",
+          "description": "Kaons (K+, K-, K0, anti-K0) from strange tunneling"
+        },
+        "baryon": {
+          "fraction": 0.07,
+          "percentage": "~7%",
+          "description": "Baryons (p, n, Lambda) from proton remnant and vacuum diquarks"
+        },
+        "other": {
+          "fraction": 0.03,
+          "percentage": "~3%",
+          "description": "Vector mesons and resonances"
+        }
+      },
+      "hadronMultiplicityScaling": {
+        "formula": "N_hadron approximately proportional to 2 + 1.8 * ln(E_jet)",
+        "source": "PDG / LEP e+e- & DIS Jet Fragmentation Data"
+      }
     }
   },
   "hadrons": {

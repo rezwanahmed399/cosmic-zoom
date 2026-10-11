@@ -368,3 +368,12 @@ export function getQuarkGlossaryData() {
   return QUARK_FACTS.quarkGlossary;
 }
 
+export const LUND_JET_FRAGMENTATION = STRING_BREAKING.lundJetFragmentation;
+
+/**
+ * Returns Lund String Fragmentation (Mode B: Jet) parameters and metadata
+ */
+export function getLundJetFragmentationData() {
+  return STRING_BREAKING.lundJetFragmentation;
+}
+

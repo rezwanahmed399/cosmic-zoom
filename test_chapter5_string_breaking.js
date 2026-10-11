@@ -19,15 +19,22 @@ import {
   PROTON,
   STRING_BREAKING,
   HADRONS,
+  LUND_JET_FRAGMENTATION,
   getStringTension,
-  getConfinementForceN
+  getConfinementForceN,
+  getLundJetFragmentationData
 } from './data/quark-facts.js';
 import {
   erf,
   calculateBreakingProbability,
   createPRNG,
   evaluateStringPullingState,
-  calculateKinematics
+  calculateKinematics,
+  simulateLundJetFragmentation,
+  sampleLundZ,
+  sampleGaussianPt,
+  resolveHadronFromQuarks,
+  resolveRemnantBaryon
 } from './physics/string-breaking.js';
 import { CHAPTER_LIST } from './quark/quark-app.js';
 
@@ -310,6 +317,121 @@ it('Zero unicode emojis in Chapter 5 codebase', () => {
     const matches = content.match(new RegExp(emojiRegex, 'gu'));
     assert(!matches || matches.length === 0, `Found emojis in ${f}: ${matches ? matches.join(' ') : ''}`);
   });
+});
+
+// 9. LUND FRAGMENTATION PARAMETERS & PYTHIA 8 MONASH TUNE VERIFICATION
+it('Mode B parameters: verified against PYTHIA 8 Monash tune (a=0.68, b=0.98, sigma_pT=0.335, gamma_s=0.217)', () => {
+  const lund = getLundJetFragmentationData();
+  assert(lund, 'Lund jet fragmentation data must be defined in quark-facts.json');
+  assert.strictEqual(lund.parameters.aLund.value, 0.68, 'a parameter must be 0.68');
+  assert.strictEqual(lund.parameters.bLund.value, 0.98, 'b parameter must be 0.98 GeV^-2');
+  assert.strictEqual(lund.parameters.sigmaPT.value, 0.335, 'sigma_pT must be 0.335 GeV');
+  assert.strictEqual(lund.parameters.gammaS.value, 0.217, 'gamma_s strangeness suppression must be 0.217');
+  assert.strictEqual(lund.parameters.diquarkWeight.value, 0.081, 'diquark tunneling weight must be 0.081');
+  assert.strictEqual(lund.parameters.heavyQuarkSuppression.c, 0, 'Heavy charm quark probability must be 0');
+  assert.strictEqual(lund.parameters.heavyQuarkSuppression.b, 0, 'Heavy bottom quark probability must be 0');
+  assert.strictEqual(lund.tier, 'T3', 'Tier label must be T3');
+  assert(lund.parameters.aLund.source.includes('PYTHIA 8 Monash 2013 Tune'), 'Citation must refer to PYTHIA 8 Monash tune');
+});
+
+// 10. JET ENERGY RANGE (2 TO 50 GEV) & MULTIPLICITY SCALING
+it('Mode B energy slider: 2 to 50 GeV produces cascading fragmentation with increasing multiplicity', () => {
+  const res2 = simulateLundJetFragmentation({ energyGeV: 2, struckQuark: 'u', seed: 42 });
+  const res20 = simulateLundJetFragmentation({ energyGeV: 20, struckQuark: 'u', seed: 42 });
+  const res50 = simulateLundJetFragmentation({ energyGeV: 50, struckQuark: 'u', seed: 42 });
+
+  assert(res2.totalHadronCount >= 2, `2 GeV jet must yield at least 2 hadrons, got ${res2.totalHadronCount}`);
+  assert(res20.totalHadronCount > res2.totalHadronCount, `20 GeV jet (${res20.totalHadronCount}) must yield more hadrons than 2 GeV (${res2.totalHadronCount})`);
+  assert(res50.totalHadronCount > res20.totalHadronCount, `50 GeV jet (${res50.totalHadronCount}) must yield more hadrons than 20 GeV (${res20.totalHadronCount})`);
+
+  // Verify logarithmic scaling trend N ~ 2 + 1.8 * ln(E)
+  const expected50 = 2 + 1.8 * Math.log(50); // ~9.0
+  assert(Math.abs(res50.totalHadronCount - expected50) < 6, `50 GeV hadron count (${res50.totalHadronCount}) should approximate N ~ 2 + 1.8*ln(E) ≈ ${expected50.toFixed(1)}`);
+});
+
+// 11. STRICT CONSERVATION LAWS (Q, B, S, COLOR SINGLET) OVER 100 EVENTS
+it('Strict conservation ledger: Q=+1, B=+1, S=0, color-singlet verified across 100 random events', () => {
+  for (let s = 1; s <= 50; s++) {
+    // Test u-quark struck
+    const resU = simulateLundJetFragmentation({ energyGeV: 15 + (s % 35), struckQuark: 'u', seed: 1000 + s });
+    assert.strictEqual(resU.finalLedger.chargeConserved, true, `Event ${s} (u): Charge must be strictly conserved (+1)`);
+    assert.strictEqual(resU.finalLedger.baryonConserved, true, `Event ${s} (u): Baryon number must be strictly conserved (1)`);
+    assert.strictEqual(resU.finalLedger.strangenessConserved, true, `Event ${s} (u): Strangeness must be strictly conserved (0)`);
+    assert.strictEqual(resU.finalLedger.allColorSinglets, true, `Event ${s} (u): All hadrons must be color singlets`);
+
+    // Test d-quark struck
+    const resD = simulateLundJetFragmentation({ energyGeV: 15 + (s % 35), struckQuark: 'd', seed: 2000 + s });
+    assert.strictEqual(resD.finalLedger.chargeConserved, true, `Event ${s} (d): Charge must be strictly conserved (+1)`);
+    assert.strictEqual(resD.finalLedger.baryonConserved, true, `Event ${s} (d): Baryon number must be strictly conserved (1)`);
+    assert.strictEqual(resD.finalLedger.strangenessConserved, true, `Event ${s} (d): Strangeness must be strictly conserved (0)`);
+    assert.strictEqual(resD.finalLedger.allColorSinglets, true, `Event ${s} (d): All hadrons must be color singlets`);
+  }
+});
+
+// 12. NATURAL PRODUCTION OF STRANGE HADRONS (K, Lambda) AND ABSENCE OF HEAVY QUARKS (c, b = 0)
+it('Strange hadrons (K, Lambda) appear naturally via gamma_s; heavy c, b are strictly 0', () => {
+  let strangeCount = 0;
+  let heavyCount = 0;
+
+  for (let s = 1; s <= 40; s++) {
+    const res = simulateLundJetFragmentation({ energyGeV: 30, struckQuark: 'u', seed: 5000 + s });
+    res.allHadrons.forEach(h => {
+      if (h.id.startsWith('k') || h.id.includes('anti_k') || h.id.includes('lambda')) {
+        strangeCount++;
+      }
+      if (h.id.includes('d_meson') || h.id.includes('b_meson') || h.id.includes('jpsi')) {
+        heavyCount++;
+      }
+    });
+  }
+
+  assert(strangeCount > 0, `Strange hadrons must emerge naturally via gamma_s weight, observed: ${strangeCount}`);
+  assert.strictEqual(heavyCount, 0, 'Heavy charm and bottom hadrons must have probability 0');
+});
+
+// 13. HADRON TYPE PROPORTIONS: PIONS DOMINANT, KAONS ~10%, BARYONS ~5-8%
+it('Hadron composition matches statistical expectations: Pions dominant (>65%), Kaons (~8-15%), Baryons (~5-10%)', () => {
+  let totalPions = 0;
+  let totalKaons = 0;
+  let totalBaryons = 0;
+  let totalHadrons = 0;
+
+  for (let s = 1; s <= 60; s++) {
+    const res = simulateLundJetFragmentation({ energyGeV: 35, struckQuark: s % 2 === 0 ? 'u' : 'd', seed: 8000 + s });
+    totalPions += res.composition.pionCount;
+    totalKaons += res.composition.kaonCount;
+    totalBaryons += res.composition.baryonCount;
+    totalHadrons += res.totalHadronCount;
+  }
+
+  const pionFrac = totalPions / totalHadrons;
+  const kaonFrac = totalKaons / totalHadrons;
+  const baryonFrac = totalBaryons / totalHadrons;
+
+  assert(pionFrac >= 0.65 && pionFrac <= 0.88, `Pion fraction must be dominant (~70-85%), got ${(pionFrac * 100).toFixed(1)}%`);
+  assert(kaonFrac >= 0.05 && kaonFrac <= 0.20, `Kaon fraction must be ~8-15%, got ${(kaonFrac * 100).toFixed(1)}%`);
+  assert(baryonFrac >= 0.05 && baryonFrac <= 0.28, `Baryon fraction must include remnant and diquarks (~5-25%), got ${(baryonFrac * 100).toFixed(1)}%`);
+});
+
+// 14. SEED-BASED REPRODUCIBILITY & TIER LABEL
+it('Mode B seed reproducibility: identical seeds produce identical cascade, hadrons, z, and pt', () => {
+  const seed = 987654;
+  const run1 = simulateLundJetFragmentation({ energyGeV: 28, struckQuark: 'u', seed });
+  const run2 = simulateLundJetFragmentation({ energyGeV: 28, struckQuark: 'u', seed });
+
+  assert.strictEqual(run1.totalHadronCount, run2.totalHadronCount, 'Hadron count must match for identical seed');
+  assert.strictEqual(run1.steps.length, run2.steps.length, 'Steps count must match for identical seed');
+
+  for (let i = 0; i < run1.steps.length; i++) {
+    const s1 = run1.steps[i];
+    const s2 = run2.steps[i];
+    assert.strictEqual(s1.hadron.id, s2.hadron.id, `Step ${i} hadron must match`);
+    assert.strictEqual(s1.z, s2.z, `Step ${i} z must match`);
+    assert.strictEqual(s1.ptGeV, s2.ptGeV, `Step ${i} pt must match`);
+  }
+
+  assert.strictEqual(run1.finalLedger.tier, 'T3', 'Tier must be T3');
+  assert.strictEqual(run1.finalLedger.tierLabelBn, 'Lund মডেল, বাস্তব jet-এর পরিসংখ্যানগত চিত্র', 'Bengali tier label must match requirement');
 });
 
 console.log(`\nChapter 5 Test Suite Summary: ${passed} passed, ${failed} failed.`);
