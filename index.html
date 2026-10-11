@@ -42,6 +42,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Hind+Siliguri:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css?v=4.0.3">
   <link rel="stylesheet" href="components/quark-components.css?v=1.0.0">
+  <link rel="stylesheet" href="quark/quark-styles.css?v=1.0.0">
 </head>
 <body>
 
@@ -127,6 +128,21 @@
           </svg>
         </span>
         <span class="btn-label" id="collapse-btn-label">Black Hole</span>
+      </button>
+
+      <button class="hud-btn quark-hud-btn" id="quark-btn" title="Quark Realm (Subatomic Visualizer)">
+        <span class="btn-icon">
+          <svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"></circle>
+            <circle cx="6" cy="6" r="2"></circle>
+            <circle cx="18" cy="6" r="2"></circle>
+            <circle cx="12" cy="18" r="2"></circle>
+            <line x1="12" y1="12" x2="6" y2="6"></line>
+            <line x1="12" y1="12" x2="18" y2="6"></line>
+            <line x1="12" y1="12" x2="12" y2="18"></line>
+          </svg>
+        </span>
+        <span class="btn-label" id="quark-btn-label">Quarks</span>
       </button>
 
       <button class="hud-btn" id="audio-toggle-btn" title="Cosmic Audio Synthesizer">
@@ -632,6 +648,9 @@
 
   <!-- Accessibility Screen Reader Live Region -->
   <div id="bh-sr-announcements" class="sr-only" aria-live="polite"></div>
+
+  <!-- Dedicated Quark Visualization Section Mount Point -->
+  <div id="quark-section-container" style="display: none;"></div>
 
   <script type="module" src="app.js?v=4.0.3"></script>
 </body>

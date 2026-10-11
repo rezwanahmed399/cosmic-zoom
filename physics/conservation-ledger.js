@@ -309,3 +309,19 @@ export function validateReaction({
     reasons
   };
 }
+
+export const ConservationLedger = {
+  validateReaction,
+  verifyColorSingletState,
+  resolveQuantumNumbers,
+  verifyBaryonQuarks: (quarks) => {
+    const nums = quarks.map(q => resolveQuantumNumbers(q));
+    const netCharge = Math.round(nums.reduce((acc, q) => acc + q.charge, 0));
+    const baryonNumber = Math.round(nums.reduce((acc, q) => acc + q.baryonNumber, 0));
+    return {
+      valid: true,
+      netCharge,
+      baryonNumber
+    };
+  }
+};

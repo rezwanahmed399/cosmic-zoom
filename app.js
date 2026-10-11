@@ -8,6 +8,7 @@ import { COSMIC_OBJECTS, SCALE_DOMAINS, SCALE_COMPARISONS, SCALE_QUIZ_QUESTIONS 
 import { CosmicAudioEngine } from './audio-engine.js';
 import { CosmicRenderEngine } from './render-engine.js';
 import { getIcon } from './icons.js';
+import { QuarkApp } from './quark/quark-app.js';
 
 class CosmicApp {
   constructor() {
@@ -225,6 +226,20 @@ class CosmicApp {
     // keeping the cosmic canvas 100% clear with quick restore pills ready to toggle.
     this.setObjectCardVisible(false, true);
     this.setForcesPanelVisible(false, true);
+
+    // Quark Subatomic Section Mount Point & Router
+    this.quarkBtn = document.getElementById('quark-btn');
+    this.quarkBtnLabel = document.getElementById('quark-btn-label');
+    this.quarkMountPoint = document.getElementById('quark-section-container');
+    if (this.quarkMountPoint) {
+      this.quarkApp = new QuarkApp({
+        mountPoint: this.quarkMountPoint,
+        lang: this.lang,
+        onExit: () => {
+          this.syncHash();
+        }
+      });
+    }
   }
 
   populateQuickJumps() {
@@ -374,6 +389,10 @@ class CosmicApp {
   checkInitialHash() {
     try {
       const hash = window.location.hash;
+      if (hash && hash.startsWith('#/quarks')) {
+        if (this.quarkApp) this.quarkApp.handleHashChange();
+        return;
+      }
       if (hash && hash.startsWith('#s=')) {
         const val = parseFloat(hash.substring(3));
         if (!isNaN(val) && val >= -35.0 && val <= 27.0) {
@@ -387,6 +406,12 @@ class CosmicApp {
   handleHashChange() {
     try {
       const hash = window.location.hash;
+      if (hash && hash.startsWith('#/quarks')) {
+        if (this.quarkApp) this.quarkApp.handleHashChange();
+        return;
+      } else {
+        if (this.quarkApp) this.quarkApp.hide();
+      }
       if (hash && hash.startsWith('#s=')) {
         const val = parseFloat(hash.substring(3));
         if (!isNaN(val) && val >= -35.0 && val <= 27.0) {
@@ -397,6 +422,7 @@ class CosmicApp {
   }
 
   syncHash() {
+    if (window.location.hash && window.location.hash.startsWith('#/quarks')) return;
     const now = performance.now();
     if (!this.lastHashSync || (now - this.lastHashSync > 600)) {
       this.lastHashSync = now;
@@ -717,6 +743,13 @@ class CosmicApp {
       });
     }
 
+    if (this.quarkBtn) {
+      this.quarkBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        window.location.hash = '#/quarks/chapter-1';
+      });
+    }
+
     if (this.evaporateBtn) {
       this.evaporateBtn.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -900,6 +933,7 @@ class CosmicApp {
     if (this.compareBtnLabel) this.compareBtnLabel.textContent = isBn ? 'তুলনা' : 'Compare';
     if (this.quizBtnLabel) this.quizBtnLabel.textContent = isBn ? 'কুইজ' : 'Quiz';
     if (this.collapseBtnLabel) this.collapseBtnLabel.textContent = isBn ? 'ব্ল্যাকহোল' : 'Black Hole';
+    if (this.quarkBtnLabel) this.quarkBtnLabel.textContent = isBn ? 'কোয়ার্ক' : 'Quarks';
 
     const searchBtn = document.getElementById('search-btn');
     if (searchBtn) searchBtn.title = isBn ? 'বস্তু খুঁজুন (Search Objects)' : 'Search Objects';
@@ -907,8 +941,13 @@ class CosmicApp {
     if (compareBtn) compareBtn.title = isBn ? 'স্কেলের তুলনা (Scale Comparisons)' : 'Scale Comparisons';
     if (this.quizBtn) this.quizBtn.title = isBn ? 'স্কেল চ্যালেঞ্জ কুইজ (Scale Quiz)' : 'Scale Estimation Quiz';
     if (this.collapseBtn) this.collapseBtn.title = isBn ? 'মহাকর্ষীয় সংকোচন ও ব্ল্যাকহোল সৃষ্টি' : 'Gravitational Collapse Simulation';
+    if (this.quarkBtn) this.quarkBtn.title = isBn ? 'কোয়ার্ক জগত' : 'Quark Realm (Subatomic Visualizer)';
     if (this.audioBtn) this.audioBtn.title = isBn ? 'কোয়ান্টাম-কসমিক অডিও' : 'Cosmic Audio Synthesizer';
     if (this.fullscreenBtn) this.fullscreenBtn.title = isBn ? 'ফুলস্ক্রিন' : 'Toggle Fullscreen';
+
+    if (this.quarkApp) {
+      this.quarkApp.setLanguage(this.lang);
+    }
 
     // Left info card
     if (this.cardHideLabel) this.cardHideLabel.textContent = isBn ? 'লুকান' : 'Hide';

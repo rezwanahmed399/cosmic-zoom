@@ -159,3 +159,20 @@ export function computeTorricelliJunction(A, B, C, options = {}) {
     }
   };
 }
+
+/**
+ * Convenience wrapper returning junction coordinates, angles, and arm lengths array.
+ */
+export function calculateFermatTorricelliJunction(p1, p2, p3, customSigma = null) {
+  const res = computeTorricelliJunction(p1, p2, p3, customSigma);
+  return {
+    junction: res.junction,
+    isVertex: res.isAtVertex,
+    collapsedVertexIndex: res.collapsedVertex === 'A' ? 0 : (res.collapsedVertex === 'B' ? 1 : (res.collapsedVertex === 'C' ? 2 : null)),
+    anglesDeg: [res.junctionAngles.deg.BJC, res.junctionAngles.deg.CJA, res.junctionAngles.deg.AJB],
+    armLengthsFm: [res.arms.lengthA, res.arms.lengthB, res.arms.lengthC],
+    totalLengthFm: res.arms.totalLength,
+    confinementEnergyGeV: res.confinementEnergy.valueGeV,
+    raw: res
+  };
+}
