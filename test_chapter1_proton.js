@@ -136,19 +136,24 @@ it('Chapter 1 strictly reads proton mass, charge radius, valence mass, and tensi
 });
 
 // 5. CHAPTER ROUTING & PLACEHOLDERS INTEGRITY
-it('Quark section defines all 5 chapters with individual URL hash routes and placeholders', () => {
-  assert.strictEqual(CHAPTER_LIST.length, 5);
+it('Quark section defines all 6 chapters with individual URL hash routes and placeholders', () => {
+  assert.strictEqual(CHAPTER_LIST.length, 6);
 
-  const ch1 = CHAPTER_LIST[0];
-  assert.strictEqual(ch1.id, 'chapter-1');
+  const ch0 = CHAPTER_LIST.find(c => c.id === 'chapter-0');
+  assert(ch0, 'Chapter 0 must exist in CHAPTER_LIST');
+  assert.strictEqual(ch0.hash, '#/quarks/chapter-0');
+  assert.strictEqual(ch0.isAvailable, true);
+  assert.strictEqual(ch0.titleBn, 'স্কেল-সিঁড়ি');
+
+  const ch1 = CHAPTER_LIST.find(c => c.id === 'chapter-1');
+  assert(ch1, 'Chapter 1 must exist in CHAPTER_LIST');
   assert.strictEqual(ch1.hash, '#/quarks/chapter-1');
   assert.strictEqual(ch1.isAvailable, true);
   assert.strictEqual(ch1.titleBn, 'প্রোটনের শরীর');
 
-  // Unimplemented chapter (2) must be Coming Soon placeholder; chapters 1, 3, 4, 5 are available
-  for (let i = 1; i < CHAPTER_LIST.length; i++) {
-    const ch = CHAPTER_LIST[i];
-    if (ch.id === 'chapter-3' || ch.id === 'chapter-4' || ch.id === 'chapter-5') {
+  // Unimplemented chapter (2) must be Coming Soon placeholder; chapters 0, 1, 3, 4, 5 are available
+  for (const ch of CHAPTER_LIST) {
+    if (['chapter-0', 'chapter-1', 'chapter-3', 'chapter-4', 'chapter-5'].includes(ch.id)) {
       assert.strictEqual(ch.isAvailable, true, `Chapter ${ch.id} must be available`);
     } else {
       assert.strictEqual(ch.isAvailable, false, `Chapter ${ch.id} must be placeholder`);
@@ -160,7 +165,8 @@ it('Quark section defines all 5 chapters with individual URL hash routes and pla
 // 6. WCAG 2.2 AA & ZERO EMOJI IN CODE
 it('Zero unicode emojis in new quark modules', () => {
   const emojiRegex = /[\u{1F300}-\u{1F6FF}\u{1F900}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F1E6}-\u{1F1FF}\u{1F004}\u{1F0CF}\u{1F170}-\u{1F251}]/u;
-  const quarkFiles = ['quark/chapter-1.js', 'quark/quark-app.js', 'quark/quark-styles.css'];
+  const quarkFiles = ['quark/chapter-0.js', 'quark/chapter-1.js', 'quark/quark-app.js', 'quark/quark-styles.css'];
+
 
   quarkFiles.forEach(f => {
     const content = fs.readFileSync(f, 'utf8');

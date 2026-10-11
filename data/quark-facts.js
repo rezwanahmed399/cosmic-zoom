@@ -15,6 +15,21 @@ export const CONFINEMENT = QUARK_FACTS.confinement;
 export const STRING_BREAKING = QUARK_FACTS.stringBreaking;
 export const HADRONS = QUARK_FACTS.hadrons;
 export const TIME_SCALES = QUARK_FACTS.timeScales;
+export const SCALE_LADDER = QUARK_FACTS.scaleLadder;
+
+/**
+ * Returns the scale ladder steps (Atom, Nucleus, Proton, Quark)
+ */
+export function getScaleLadderSteps() {
+  return SCALE_LADDER.steps;
+}
+
+/**
+ * Returns Planck gap metadata
+ */
+export function getPlanckGapInfo() {
+  return SCALE_LADDER.planckGap;
+}
 
 /**
  * Returns quark or antiquark properties by flavor key.

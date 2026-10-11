@@ -746,7 +746,7 @@ class CosmicApp {
     if (this.quarkBtn) {
       this.quarkBtn.addEventListener('click', (e) => {
         e.stopPropagation();
-        window.location.hash = '#/quarks/chapter-1';
+        window.location.hash = '#/quarks/chapter-0';
       });
     }
 

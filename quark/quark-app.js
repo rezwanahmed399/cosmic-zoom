@@ -6,12 +6,25 @@
 
 import { InfoDrawer } from '../components/info-drawer.js';
 import { createTierBadge } from '../components/tier-badge.js';
+import { Chapter0ScaleLadder } from './chapter-0.js';
 import { Chapter1Proton } from './chapter-1.js';
 import { Chapter3ColorLab } from './chapter-3.js';
 import { Chapter4FluxTubeLab } from './chapter-4.js';
 import { Chapter5StringBreaking } from './chapter-5.js';
 
 export const CHAPTER_LIST = [
+  {
+    id: 'chapter-0',
+    hash: '#/quarks/chapter-0',
+    numberBn: '০',
+    numberEn: '0',
+    titleBn: 'স্কেল-সিঁড়ি',
+    titleEn: 'Scale Ladder',
+    subtitleBn: 'পরমাণু থেকে কোয়ার্ক ও প্ল্যাঙ্ক সীমার ব্যবধান',
+    subtitleEn: 'From Atom to Quark & The 17-Order Planck Gap',
+    tier: 'T1',
+    isAvailable: true
+  },
   {
     id: 'chapter-1',
     hash: '#/quarks/chapter-1',
@@ -238,8 +251,8 @@ export class QuarkApp {
       if (chParam && CHAPTER_LIST.some(c => c.id === chParam)) {
         this.routeChapter(chParam);
       } else {
-        // Default to chapter-1
-        this.routeChapter('chapter-1');
+        // Default to chapter-0 (the section entrance gateway)
+        this.routeChapter('chapter-0');
       }
     }
   }
@@ -285,7 +298,15 @@ export class QuarkApp {
     const chMeta = CHAPTER_LIST.find(c => c.id === chapterId);
     if (!chMeta) return;
 
-    if (chMeta.isAvailable && chapterId === 'chapter-1') {
+    if (chMeta.isAvailable && chapterId === 'chapter-0') {
+      // Mount Chapter 0 Scale Ladder Gateway!
+      this.currentChapterInstance = new Chapter0ScaleLadder({
+        container: viewport,
+        lang: this.lang,
+        level: this.level,
+        infoDrawer: this.infoDrawer
+      });
+    } else if (chMeta.isAvailable && chapterId === 'chapter-1') {
       // Mount Chapter 1 Proton Hero Interactive!
       this.currentChapterInstance = new Chapter1Proton({
         container: viewport,
