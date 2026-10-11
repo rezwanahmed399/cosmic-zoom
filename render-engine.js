@@ -1674,18 +1674,20 @@ export class CosmicRenderEngine {
     const isMobile = this.width <= 600;
 
     if (isMobile) {
-      // Mobile Responsive Label: Centered anchor above or below center object
+      // Mobile Responsive Label: Centered anchor strictly below center object
+      // (Eliminates duplicate upper arrow / connector and keeps top area clear of HUD & Planck Wall banner)
       ctx.font = '600 12.5px system-ui, sans-serif';
       const textWidth = Math.max(ctx.measureText(nameStr).width, 130);
       const startX = Math.max(16, Math.min(this.width - textWidth - 16, cx - textWidth / 2));
-      const tagY = cy > this.height * 0.5 ? cy - Math.max(r + 40, 75) : cy + Math.max(r + 45, 85);
+      const maxTagY = this.height - 130;
+      const tagY = Math.min(maxTagY, cy + Math.max(r + 40, 80));
 
-      // Subtle indicator connector
+      // Subtle indicator connector strictly pointing downward to label
       ctx.strokeStyle = obj.accentColor;
       ctx.lineWidth = 1.2;
       ctx.beginPath();
       ctx.moveTo(cx, cy);
-      const lineToY = cy > this.height * 0.5 ? tagY + 20 : tagY - 14;
+      const lineToY = tagY - 14;
       ctx.lineTo(cx, lineToY);
       ctx.stroke();
 

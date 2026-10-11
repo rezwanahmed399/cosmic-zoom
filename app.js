@@ -500,30 +500,39 @@ class CosmicApp {
       if (this.renderEngine.currentOrder <= -34.5) {
         if (e.touches.length === 1) {
           const diffY = e.touches[0].clientY - touchStartY;
-          touchStartY = e.touches[0].clientY;
           if (diffY < 0) { // Swiping up = trying to zoom in deeper
+            touchStartY = e.touches[0].clientY;
             accumulatedTouchStrain += Math.abs(diffY);
             if (accumulatedTouchStrain >= 26) {
               accumulatedTouchStrain = 0;
               this.accumulatePlanckStrain(1);
             }
             return;
-          } else if (diffY > 15 && this.planckStrainCount > 0) {
-            this.planckStrainCount = 0;
-            if (this.strainContainer) this.strainContainer.style.display = 'none';
+          } else if (diffY > 0) { // Swiping down = zooming backwards out of Planck scale
+            if (this.planckStrainCount > 0) {
+              this.planckStrainCount = 0;
+              if (this.strainContainer) this.strainContainer.style.display = 'none';
+            }
+            touchStartY = e.touches[0].clientY;
+            this.renderEngine.addZoomDelta(diffY * 0.02);
+            return;
           }
         } else if (e.touches.length === 2) {
           const dx = e.touches[0].clientX - e.touches[1].clientX;
           const dy = e.touches[0].clientY - e.touches[1].clientY;
           const dist = Math.sqrt(dx * dx + dy * dy);
           const pinchDelta = dist - touchStartDist;
-          touchStartDist = dist;
           if (pinchDelta < 0) { // Pinching in = trying to zoom deeper
+            touchStartDist = dist;
             accumulatedTouchStrain += Math.abs(pinchDelta);
             if (accumulatedTouchStrain >= 22) {
               accumulatedTouchStrain = 0;
               this.accumulatePlanckStrain(1);
             }
+            return;
+          } else if (pinchDelta > 0) { // Pinching out = zooming backwards out of Planck scale
+            touchStartDist = dist;
+            this.renderEngine.addZoomDelta(pinchDelta * 0.03);
             return;
           }
         }
