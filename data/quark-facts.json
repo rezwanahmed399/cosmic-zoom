@@ -1256,6 +1256,114 @@
         "physicsProofBn": "ল্যাটিস QCD গণনা থেকে প্রোটন, নিউট্রন, ল্যাম্বডা, সিগমা ও ডেল্টা হ্যাড্রনের পরীক্ষালব্ধ ভর মাত্র কয়েক শতাংশ সূক্ষ্মতায় হুবহু মিলে যায় — যা প্রমাণ করে QCD-ই হ্যাড্রন ভরের মূল উৎস।"
       }
     ]
+  },
+  "resolutionSliderPDF": {
+    "tier": "T2",
+    "dataset": "CT18NNLO",
+    "version": "1.0",
+    "authors": "T.-J. Hou, K. Xie, J. Gao, S. Dulat, M. Guzzi, T. J. Hobbs, J. Huston, P. Nadolsky, J. Pumplin, C. Schmidt, I. Sitiwaldi, D. Stump, C.-P. Yuan",
+    "citation": "Phys. Rev. D 103, 014013 (2021) [arXiv:1908.11394]; CERN LHAPDF",
+    "orderQCD": "NNLO (3-loop DGLAP evolution)",
+    "alphaS_MZ": 0.1180,
+    "validRangeQ2_GeV2": [2.145, 228248642.41],
+    "nonPerturbativeLimitQ2_GeV2": 2.0,
+    "sumRules": {
+      "valenceUpIntegral": { "target": 2.0, "tolerance": 0.02, "verified": true },
+      "valenceDownIntegral": { "target": 1.0, "tolerance": 0.015, "verified": true },
+      "strangeAsymmetryIntegral": { "target": 0.0, "tolerance": 0.005, "verified": true },
+      "momentumSumRule": { "target": 1.0, "tolerance": 0.015, "verified": true }
+    },
+    "asymptoticMomentumLimitFormula": "16 / (16 + 3 * n_f)",
+    "asymptoticMomentumLimit_nf5": 0.5161,
+    "warningGlobalFitBn": "সতর্কতা: কোয়ার্ক ও গ্লুয়ন পার্টন ডিস্ট্রিবিউশন ফাংশন (PDF) সরাসরি পরীক্ষাগারে একক কোনো সংবেদকে মাপা যায় না। বিভিন্ন ত্বরকযন্ত্রের (DIS, Drell-Yan, Jet) হাজার হাজার পরিমাপ একসাথে গ্লোবাল ফিট (T2) করে এটি বের করা হয়।"
+  },
+  "qgpCosmology": {
+    "tier": "T2",
+    "transitionTemperatureMeV": {
+      "value": 156.5,
+      "uncertainty": 1.5,
+      "kelvin": 1.816e12,
+      "source": "HotQCD Collaboration (Bazavov et al., Phys. Lett. B 795 (2019) 15); Wuppertal-Budapest (JHEP 1009 (2010) 073)",
+      "tier": "T2"
+    },
+    "universeAgeMicroseconds": {
+      "range": [10.0, 30.0],
+      "nominal": 15.0,
+      "seconds": 1.5e-5,
+      "era": "কসমিক হ্যাড্রোনাইজেশন যুগ (Cosmic Hadronization Era)"
+    },
+    "transitionNature": {
+      "typeBn": "মসৃণ ক্রসওভার (Smooth Crossover)",
+      "typeEn": "Smooth Crossover (not a sharp 1st-order phase transition)",
+      "explanationBn": "শূন্য নেট-ব্যারিয়ন ঘনত্বে (mu_B = 0) কোয়ার্ক-গ্লুয়ন প্লাজমা থেকে হ্যাড্রন গ্যাসে রূপান্তর কোনো ধারালো বা ল্যাটেন্ট হিটযুক্ত ফেজ ট্রানজিশন নয়; বরং তাপমাত্রা কমার সাথে সাথে একটি মসৃণ চিরাল ও ডিকনফাইনমেন্ট ক্রসওভার।",
+      "tier": "T2"
+    },
+    "nearlyPerfectFluid": {
+      "discoveryFacility": "RHIC (BNL: STAR, PHENIX) & LHC (CERN: ALICE)",
+      "propertyBn": "কোয়ার্ক-গ্লুয়ন প্লাজমা কোনো গ্যাসীয় মাধ্যমের মতো নয়, বরং অতি-নিম্ন সান্দ্রতার (shear viscosity to entropy ratio eta/s ~ 1/4pi) প্রায় নিখুঁত তরল (nearly perfect fluid) হিসেবে আচরণ করে।",
+      "tier": "T1"
+    },
+    "neutronStarCoreSpeculation": {
+      "statusBn": "অজানা / অনুমান (Empirically Unknown)",
+      "statusEn": "Empirically Unknown / Speculative",
+      "descriptionBn": "নিউট্রন তারার অতি-ঘন ও শীতল কেন্দ্রে (উচ্চ mu_B, নিম্ন T) কোয়ার্ক পদার্থ বা কালার সুপারকন্ডাক্টিং অবস্থা (CFL) বিদ্যমান কিনা তা এখনো অজানা ও সক্রিয় গবেষণার বিষয়।"
+    }
+  },
+  "protonSpinPuzzle": {
+    "tier": "T2",
+    "statusBn": "আংশিক অমীমাংসিত রহস্য (T2: Partially Unsolved)",
+    "statusEn": "Partially Unsolved (Tier T2)",
+    "equation": "1/2 = (1/2)DeltaSigma + DeltaG + L_q + L_g",
+    "components": [
+      {
+        "id": "quark_spin",
+        "symbol": "(1/2)ΔΣ",
+        "nameBn": "কোয়ার্ক স্পিন (Quark Intrinsic Spin)",
+        "percentage": 30.0,
+        "uncertainty": 4.0,
+        "value": 0.15,
+        "rangePercent": [25.0, 35.0],
+        "sources": "EMC (CERN 1987), COMPASS, HERMES, NNPDFpol, Lattice QCD (ETMC, PNDME)",
+        "tier": "T2"
+      },
+      {
+        "id": "gluon_spin",
+        "symbol": "ΔG",
+        "nameBn": "গ্লুয়ন স্পিন (Gluon Polarization)",
+        "percentage": 40.0,
+        "uncertainty": 8.0,
+        "value": 0.20,
+        "rangePercent": [32.0, 48.0],
+        "sources": "RHIC Spin Program (STAR, PHENIX polarized pp), DSSV global fit",
+        "tier": "T2"
+      },
+      {
+        "id": "quark_orbital",
+        "symbol": "L_q",
+        "nameBn": "কোয়ার্কের কক্ষীয় কৌণিক ভরবেগ (Quark OAM)",
+        "percentage": 20.0,
+        "uncertainty": 8.0,
+        "value": 0.10,
+        "rangePercent": [12.0, 28.0],
+        "sources": "Generalized Parton Distributions (GPD), JLab 12 GeV, Lattice QCD",
+        "tier": "T2"
+      },
+      {
+        "id": "gluon_orbital",
+        "symbol": "L_g",
+        "nameBn": "গ্লুয়নের কক্ষীয় কৌণিক ভরবেগ (Gluon OAM)",
+        "percentage": 10.0,
+        "uncertainty": 7.0,
+        "value": 0.05,
+        "rangePercent": [3.0, 17.0],
+        "sources": "Lattice QCD & theoretical Ji sum rule constraint",
+        "tier": "T2"
+      }
+    ],
+    "mythBusting": {
+      "naiveModelBn": "সরল কোয়ার্ক মডেলের অনুমান: দুইটি আপ কোয়ার্ক স্পিন-আপ (+1/2, +1/2) এবং একটি ডাউন কোয়ার্ক স্পিন-ডাউন (-1/2) হলেই মোট স্পিন 1/2 হয়ে যাবে।",
+      "realityBn": "প্রকৃত বৈজ্ঞানিক সত্য: ১৯৮৭ সালে ইউরোপিয়ান মিউয়ন কোলাবোরেশন (EMC, CERN) প্রোটনে পোলারাইজড ডিপ-ইনইলাস্টিক বিক্ষেপণে পরীক্ষা করে আবিষ্কার করে যে ৩টি ভ্যালেন্স কোয়ার্কের নিজস্ব স্পিন মোট স্পিনের মাত্র প্রায় ২৫-৩৫% বহন করে! বাকি ৭০% স্পিন আসে গ্লুয়নের পোলারাইজেশন ও কোয়ার্ক-গ্লুয়নদের প্রচণ্ড গতিবেগের কক্ষীয় ঘূর্ণন (OAM) থেকে।"
+    }
   }
 }
 

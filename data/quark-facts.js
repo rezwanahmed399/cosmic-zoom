@@ -5,8 +5,11 @@
  */
 
 import quarkData from './quark-facts.json' with { type: 'json' };
+import quarkPdfData from './quark-pdf-data.json' with { type: 'json' };
 
 export const QUARK_FACTS = Object.freeze(quarkData);
+export const QUARK_PDF_DATA = Object.freeze(quarkPdfData);
+export const RESOLUTION_SLIDER_PDF = QUARK_FACTS.resolutionSliderPDF;
 
 export const QUARKS = QUARK_FACTS.quarks;
 export const PROTON = QUARK_FACTS.proton;
@@ -259,5 +262,69 @@ export function getRRatioTheory(sqrt_s_GeV, Nc = 3) {
     // Active flavors: u, d, s, c, b -> 10/9 + 1/9 = 11/9
     return +(Nc * (11 / 9)).toFixed(3);
   }
+}
+
+/**
+ * Returns precomputed Parton Distribution Function (PDF) dataset from CT18NNLO
+ */
+export function getResolutionSliderPdfData() {
+  return QUARK_PDF_DATA;
+}
+
+/**
+ * Finds the PDF slice closest to a given Q^2 without extrapolating outside the grid
+ * @param {number} q2_GeV2 - Energy squared in GeV^2
+ * @returns {Object}
+ */
+export function getPdfAtQ2(q2_GeV2) {
+  if (typeof q2_GeV2 !== 'number' || isNaN(q2_GeV2) || q2_GeV2 < 2.0) {
+    const q2 = q2_GeV2 || 1.0;
+    return {
+      isNonPerturbative: true,
+      q2_GeV2: q2,
+      q_GeV: +Math.sqrt(q2).toFixed(3),
+      wavelength_fm: +(0.197327 / Math.sqrt(Math.max(0.1, q2))).toFixed(4),
+      warningBn: 'Q² < ২ GeV²: নন-পার্টারবেটিভ এলাকা — কোনো সুসংজ্ঞায়িত PDF বক্ররেখা খাটে না।',
+      warningEn: 'Q² < 2 GeV²: Non-perturbative domain — No well-defined PDF curves apply.'
+    };
+  }
+
+  const pts = QUARK_PDF_DATA.points;
+  const clampedQ2 = Math.max(pts[0].q2_GeV2, Math.min(pts[pts.length - 1].q2_GeV2, q2_GeV2));
+
+  // Find nearest slice in log10(Q^2) space
+  let bestSlice = pts[0];
+  let minDiff = Math.abs(Math.log10(bestSlice.q2_GeV2) - Math.log10(clampedQ2));
+
+  for (let i = 1; i < pts.length; i++) {
+    const diff = Math.abs(Math.log10(pts[i].q2_GeV2) - Math.log10(clampedQ2));
+    if (diff < minDiff) {
+      minDiff = diff;
+      bestSlice = pts[i];
+    }
+  }
+
+  return {
+    isNonPerturbative: false,
+    xGrid: QUARK_PDF_DATA.xGrid,
+    ...bestSlice
+  };
+}
+
+export const QGP_COSMOLOGY = QUARK_FACTS.qgpCosmology;
+export const PROTON_SPIN_PUZZLE = QUARK_FACTS.protonSpinPuzzle;
+
+/**
+ * Returns Quark-Gluon Plasma and early universe hadronization data
+ */
+export function getQgpCosmologyData() {
+  return QUARK_FACTS.qgpCosmology;
+}
+
+/**
+ * Returns Proton Spin Decomposition puzzle data
+ */
+export function getProtonSpinPuzzleData() {
+  return QUARK_FACTS.protonSpinPuzzle;
 }
 

@@ -14,8 +14,11 @@ import { Chapter4FluxTubeLab } from './chapter-4.js';
 import { Chapter5StringBreaking } from './chapter-5.js';
 import { Chapter6HadronBuilder } from './chapter-6.js';
 import { Chapter7MassOrigin } from './chapter-7.js';
+import { Chapter8ResolutionSlider } from './chapter-8.js';
 import { Chapter9AsymptoticFreedom } from './chapter-9.js';
 import { Chapter10EvidenceLab } from './chapter-10.js';
+import { Chapter11QGP } from './chapter-11.js';
+import { Chapter12SpinPuzzle } from './chapter-12.js';
 
 export const CHAPTER_LIST = [
   {
@@ -119,12 +122,12 @@ export const CHAPTER_LIST = [
     hash: '#/quarks/chapter-8',
     numberBn: '৮',
     numberEn: '8',
-    titleBn: 'Sea Quarks ও চরম অবস্থা',
-    titleEn: 'Sea Quarks & Extreme Matter',
-    subtitleBn: 'ভার্চুয়াল জোড় ও কোয়ার্ক-গ্লুয়ন প্লাজমা (শীঘ্রই আসছে)',
-    subtitleEn: 'Virtual Pairs & Quark-Gluon Plasma (Coming Soon)',
+    titleBn: 'রেজোলিউশন-স্লাইডার',
+    titleEn: 'Resolution Slider (PDF)',
+    subtitleBn: 'Q² বৃদ্ধি, x·f(x, Q²) পার্টন ডিস্ট্রিবিউশন ফাংশন ও গ্লুয়ন ভরবেগ',
+    subtitleEn: 'Q² Evolution, x·f(x, Q²) Parton Distributions & Gluon Momentum',
     tier: 'T2',
-    isAvailable: false
+    isAvailable: true
   },
   {
     id: 'chapter-9',
@@ -148,6 +151,30 @@ export const CHAPTER_LIST = [
     subtitleBn: 'R-ratio সিঁড়ি (N_c = ৩ এর প্রমাণ) এবং ৫টি ঐতিহাসিক অকাট্য পরীক্ষা',
     subtitleEn: 'R-Ratio Staircase (Proof of N_c = 3) & 5 Historic Experiments',
     tier: 'T1',
+    isAvailable: true
+  },
+  {
+    id: 'chapter-11',
+    hash: '#/quarks/chapter-11',
+    numberBn: '১১',
+    numberEn: '11',
+    titleBn: 'আদি মহাবিশ্ব ও QGP',
+    titleEn: 'Early Universe & QGP',
+    subtitleBn: 'T_c ≈ ১৫৬.৫ MeV সংকট বিন্দু, মসৃণ ক্রসওভার ও কসমিক হ্যাড্রোনাইজেশন',
+    subtitleEn: 'T_c ≈ 156.5 MeV Crossover & Quark-Gluon Plasma',
+    tier: 'T2',
+    isAvailable: true
+  },
+  {
+    id: 'chapter-12',
+    hash: '#/quarks/chapter-12',
+    numberBn: '১২',
+    numberEn: '12',
+    titleBn: 'প্রোটনের spin ধাঁধা',
+    titleEn: 'Proton Spin Puzzle',
+    subtitleBn: '১/২ = ১/২ ΔΣ + ΔG + L_q + L_g, EMC স্পিন ক্রাইসিস ও আধুনিক রহস্য',
+    subtitleEn: '1/2 = 1/2 ΔΣ + ΔG + L_q + L_g, EMC Spin Crisis & Modern Mystery',
+    tier: 'T2',
     isAvailable: true
   }
 ];
@@ -427,6 +454,14 @@ export class QuarkApp {
         level: this.level,
         infoDrawer: this.infoDrawer
       });
+    } else if (chMeta.isAvailable && chapterId === 'chapter-8') {
+      // Mount Chapter 8 Resolution Slider (PDF)!
+      this.currentChapterInstance = new Chapter8ResolutionSlider({
+        container: viewport,
+        lang: this.lang,
+        level: this.level,
+        infoDrawer: this.infoDrawer
+      });
     } else if (chMeta.isAvailable && chapterId === 'chapter-9') {
       // Mount Chapter 9 Asymptotic Freedom!
       this.currentChapterInstance = new Chapter9AsymptoticFreedom({
@@ -438,6 +473,22 @@ export class QuarkApp {
     } else if (chMeta.isAvailable && chapterId === 'chapter-10') {
       // Mount Chapter 10 Evidence Lab!
       this.currentChapterInstance = new Chapter10EvidenceLab({
+        container: viewport,
+        lang: this.lang,
+        level: this.level,
+        infoDrawer: this.infoDrawer
+      });
+    } else if (chMeta.isAvailable && chapterId === 'chapter-11') {
+      // Mount Chapter 11 Early Universe & QGP!
+      this.currentChapterInstance = new Chapter11QGP({
+        container: viewport,
+        lang: this.lang,
+        level: this.level,
+        infoDrawer: this.infoDrawer
+      });
+    } else if (chMeta.isAvailable && chapterId === 'chapter-12') {
+      // Mount Chapter 12 Proton Spin Puzzle!
+      this.currentChapterInstance = new Chapter12SpinPuzzle({
         container: viewport,
         lang: this.lang,
         level: this.level,

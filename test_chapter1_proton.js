@@ -137,7 +137,7 @@ it('Chapter 1 strictly reads proton mass, charge radius, valence mass, and tensi
 
 // 5. CHAPTER ROUTING & PLACEHOLDERS INTEGRITY
 it('Quark section defines chapters with individual URL hash routes and placeholders', () => {
-  assert.strictEqual(CHAPTER_LIST.length, 11);
+  assert.strictEqual(CHAPTER_LIST.length, 13);
 
   const ch0 = CHAPTER_LIST.find(c => c.id === 'chapter-0');
   assert(ch0, 'Chapter 0 must exist in CHAPTER_LIST');
@@ -184,7 +184,7 @@ it('Quark section defines chapters with individual URL hash routes and placehold
 // 6. WCAG 2.2 AA & ZERO EMOJI IN CODE
 it('Zero unicode emojis in new quark modules', () => {
   const emojiRegex = /[\u{1F300}-\u{1F6FF}\u{1F900}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F1E6}-\u{1F1FF}\u{1F004}\u{1F0CF}\u{1F170}-\u{1F251}]/u;
-  const quarkFiles = ['quark/chapter-0.js', 'quark/chapter-1.js', 'quark/chapter-2.js', 'quark/chapter-6.js', 'quark/chapter-7.js', 'quark/chapter-9.js', 'quark/chapter-10.js', 'quark/quark-app.js', 'quark/quark-styles.css'];
+  const quarkFiles = ['quark/chapter-0.js', 'quark/chapter-1.js', 'quark/chapter-2.js', 'quark/chapter-3.js', 'quark/chapter-4.js', 'quark/chapter-5.js', 'quark/chapter-6.js', 'quark/chapter-7.js', 'quark/chapter-8.js', 'quark/chapter-9.js', 'quark/chapter-10.js', 'quark/chapter-11.js', 'quark/chapter-12.js', 'quark/quark-app.js', 'quark/quark-styles.css'];
 
   quarkFiles.forEach(f => {
     const content = fs.readFileSync(f, 'utf8');
